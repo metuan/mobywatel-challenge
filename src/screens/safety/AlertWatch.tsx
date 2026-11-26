@@ -16,12 +16,11 @@ const LEGS: { a?: number; d?: number; t?: string; taps?: number; side?: 'l' | 'r
 export function AlertWatch(c: Ctx) {
   const [k, setK] = useState(0);
   const [dist, setDist] = useState(240);
-  const [ping, setPing] = useState(0);
-  const face = useRef<HTMLDivElement>(null),
-    root = useRef<HTMLDivElement>(null);
+  const faceRef = useRef<HTMLDivElement>(null),
+    rootRef = useRef<HTMLDivElement>(null);
   /* shared-element morph from the red shelter card */
   useLayoutEffect(() => {
-    const f = face.current,
+    const f = faceRef.current,
       from = takeBox('shelter');
     if (!f || !from || reducedMotion()) return;
     const ph = document.querySelector<HTMLElement>('.phone');
@@ -47,7 +46,6 @@ export function AlertWatch(c: Ctx) {
     if (k >= LEGS.length - 1) return;
     const leg = LEGS[k];
     if (leg.taps) {
-      setPing(p => p + 1);
       buzz(Array.from({ length: leg.taps * 2 - 1 }, (_, i) => (i % 2 ? 90 : 45)));
     }
     const end = LEGS[k + 1].d || 0;
@@ -76,12 +74,12 @@ export function AlertWatch(c: Ctx) {
   const prog = arrived ? 1 : 1 - dist / 240;
   const C = 2 * Math.PI * 104;
   const open = () => {
-    const f = face.current;
+    const f = faceRef.current;
     if (!f || reducedMotion()) {
       c.go('alert-guide');
       return;
     }
-    root.current && root.current.classList.add('leaving');
+    rootRef.current && rootRef.current.classList.add('leaving');
     f.animate(
       [
         { transform: 'none', borderRadius: '50%' },
@@ -94,7 +92,7 @@ export function AlertWatch(c: Ctx) {
   return (
     <div
       className="wt8 absolute inset-0 z-30 [background:#050608] text-white flex flex-col items-center p-[64px_20px_26px]"
-      ref={root}
+      ref={rootRef}
       role="region"
       aria-label="Zegarek prowadzi do schronienia"
     >
@@ -111,7 +109,7 @@ export function AlertWatch(c: Ctx) {
           <span className="absolute -right-2.25 top-[50%] w-3 h-9.5 -mt-4.75 [border-radius:4px] [background:linear-gradient(90deg,_#2a2d35,_#4a4e58)] motion-safe:animate-[fade_0.3s_ease-out_0.4s_both]"></span>
           <div
             className="relative w-56 h-56 rounded-[50%] [background:#050608] grid place-items-center overflow-hidden will-change-transform"
-            ref={face}
+            ref={faceRef}
           >
             <svg className="absolute inset-0.5 w-55 h-55" viewBox="0 0 220 220" aria-hidden="true">
               <circle cx="110" cy="110" r="104" stroke="rgba(255,255,255,.1)" strokeWidth="7" fill="none" />
@@ -166,7 +164,7 @@ export function AlertWatch(c: Ctx) {
         </div>
         {leg.taps && (
           <div
-            key={ping}
+            key={k}
             className={
               'wt-hap absolute top-[50%] flex items-center pointer-events-none [&.l]:-left-1.5 [&.l]:flex-row-reverse [&.r]:-right-1.5 [&_i]:absolute [&_i]:top-[50%] [&_i]:w-22.5 [&_i]:h-22.5 [&_i]:-mt-11.25 [&_i]:rounded-[50%] [&_i]:[border:2px_solid_rgb(255_255_255_/_60%)] [&_i]:opacity-[0] [&.l_i]:-left-2.5 [&.r_i]:-right-2.5 [&_span]:absolute [&_span]:top-25 [&_span]:whitespace-nowrap [&_span]:text-[12px] [&_span]:font-semibold [&_span]:tracking-[0.02em] [&_span]:bg-d-hair [&_span]:p-[4px_9px] [&_span]:rounded-[999px] [&_span]:text-white [&.l_span]:left-0 [&.r_span]:right-0 motion-safe:[&_i]:[animation:hap_1s_cubic-bezier(0.23,_1,_0.32,_1)_both] motion-safe:[&_i:nth-child(2)]:[animation-delay:0.18s] motion-safe:[&_span]:[animation:fade-up_0.3s_cubic-bezier(0.23,_1,_0.32,_1)_both] ' +
               leg.side

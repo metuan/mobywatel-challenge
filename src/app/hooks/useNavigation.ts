@@ -14,7 +14,8 @@ export const hashRoute = () => {
 /** The current screen, the back stack, the persona and the app state, kept in sync with the URL hash. */
 export function useNavigation() {
   const [route, setRoute] = useState<Route>(() => hashRoute() || 'today');
-  const [, setHist] = useState<Route[]>([]);
+  /** The back stack. Never rendered, so it lives in a ref. */
+  const histRef = useRef<Route[]>([]);
   const [dir, setDir] = useState('tab');
   const [s, setS] = useState<AppState>(() => ({
     persona: startPersona(hashRoute() || 'today'),
@@ -28,7 +29,7 @@ export function useNavigation() {
     if (persona) setS(x => ({ ...x, persona, easy: persona === 'tata' }));
     setDir(kbdRef.current ? 'kbd' : TABS.some(t => t[0] === r) ? 'tab' : '');
     kbdRef.current = false;
-    setHist(h => [...h.slice(-30), route]);
+    histRef.current = [...histRef.current.slice(-30), route];
     setRoute(r);
     try {
       history.replaceState(null, '', '#' + r);
@@ -36,17 +37,18 @@ export function useNavigation() {
   };
   const back = () => {
     setDir('back');
-    setHist(h => {
-      const p = h[h.length - 1] || (s.persona === 'tata' ? 'easy' : 'today');
-      setRoute(p);
-      try {
-        history.replaceState(null, '', '#' + p);
-      } catch {}
-      return h.slice(0, -1);
-    });
+    const h = histRef.current;
+    const p = h[h.length - 1] || (s.persona === 'tata' ? 'easy' : 'today');
+    histRef.current = h.slice(0, -1);
+    setRoute(p);
+    try {
+      history.replaceState(null, '', '#' + p);
+    } catch {}
   };
   const set = (patch: Partial<AppState>) => setS(x => ({ ...x, ...patch }));
-  const clearHistory = () => setHist([]);
+  const clearHistory = () => {
+    histRef.current = [];
+  };
 
   useEffect(() => {
     const f = () => {

@@ -102,8 +102,8 @@ export function Letter2(c: Ctx) {
   useEffect(() => {
     if (k >= 4) {
       c.s.l2seen || c.set({ l2seen: true });
-      setTimeout(() => window.dispatchEvent(new Event('coach')), 60);
-      return;
+      const t = setTimeout(() => window.dispatchEvent(new Event('coach')), 60);
+      return () => clearTimeout(t);
     }
     const a = setTimeout(() => setK(k + 1), k ? 520 : 900);
     return () => clearTimeout(a);

@@ -81,6 +81,8 @@ export function Assistant(c: Ctx) {
   const fin = (i: number) => setMsgs(m => m.map((x, j) => (j === i && x.ai ? { ...x, typing: false } : x)));
   useEffect(() => {
     if (c.s.q) {
+      // A question typed on another screen arrives through the app state: ask it once, on arrival.
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       ask(c.s.q);
       c.set({ q: null });
     }

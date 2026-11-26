@@ -42,7 +42,7 @@ const QRCode = ({ size = 132 }) => {
   for (let y = 0; y < n; y++)
     for (let x = 0; x < n; x++)
       if (!finder(x, y) && rnd() > 0.52) cells.push(<rect x={x} y={y} width="1" height="1" />);
-  const F = (x: number, y: number) => (
+  const finderMark = (x: number, y: number) => (
     <g>
       <rect x={x} y={y} width="7" height="7" rx="1.6" />
       <rect x={x + 1} y={y + 1} width="5" height="5" rx="1" fill="#fff" />
@@ -58,9 +58,9 @@ const QRCode = ({ size = 132 }) => {
       shapeRendering="crispEdges"
     >
       {cells}
-      {F(0, 0)}
-      {F(n - 7, 0)}
-      {F(0, n - 7)}
+      {finderMark(0, 0)}
+      {finderMark(n - 7, 0)}
+      {finderMark(0, n - 7)}
     </svg>
   );
 };
@@ -108,7 +108,6 @@ export function DocCard({
   const ref = useRef<HTMLButtonElement>(null);
   useEffect(() => {
     if (!flip) return;
-    setLeft(179);
     const i = setInterval(() => setLeft(x => Math.max(0, x - 1)), 1000);
     return () => clearInterval(i);
   }, [flip]);
@@ -138,7 +137,11 @@ export function DocCard({
         ref={ref}
         onPointerMove={interactive ? move : undefined}
         onPointerLeave={leave}
-        onClick={() => interactive && setFlip(true)}
+        onClick={() => {
+          if (!interactive) return;
+          setLeft(179);
+          setFlip(true);
+        }}
         aria-label="Dowód osobisty, dotknij aby pokazać kod QR"
       >
         {ROSETTE}

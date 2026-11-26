@@ -77,7 +77,7 @@ export function TapShare({
 /* 1. One confirmation loader for the whole app: a face scan that draws, steps that tick, then a check */
 export function Confirming({ steps }: { steps?: string[] }) {
   const S = steps || ['Potwierdzam, że to Ty', 'Podpisuję', 'Wysyłam'];
-  const [k, setK] = useState(reducedMotion() ? S.length : 0);
+  const [k, setK] = useState(() => (reducedMotion() ? S.length : 0));
   useEffect(() => {
     coachTip(null);
     document.querySelectorAll('.coach').forEach(e => e.classList.remove('coach'));
@@ -223,28 +223,28 @@ export function HoldBtn({
   onTap: () => void;
 }) {
   const [p, setP] = useState(0);
-  const raf = useRef(0),
-    held = useRef(false);
+  const rafRef = useRef(0),
+    heldRef = useRef(false);
   const start = (e: ReactPointerEvent<HTMLElement>) => {
     if (e.button > 0) return;
-    held.current = false;
+    heldRef.current = false;
     const t0 = performance.now();
     const tick = (now: number) => {
       const k = Math.min(1, (now - t0) / ms);
       setP(k);
       if (k >= 1) {
-        held.current = true;
+        heldRef.current = true;
         buzz(20);
         onDone();
         return;
       }
-      raf.current = requestAnimationFrame(tick);
+      rafRef.current = requestAnimationFrame(tick);
     };
-    raf.current = requestAnimationFrame(tick);
+    rafRef.current = requestAnimationFrame(tick);
   };
   const stop = () => {
-    cancelAnimationFrame(raf.current);
-    if (!held.current && p > 0) setP(0);
+    cancelAnimationFrame(rafRef.current);
+    if (!heldRef.current && p > 0) setP(0);
   };
   return (
     <Button
@@ -260,7 +260,7 @@ export function HoldBtn({
       onPointerCancel={stop}
       onClick={e => {
         if (e.detail === 0) onTap();
-        else if (!held.current && p === 0) onTap();
+        else if (!heldRef.current && p === 0) onTap();
       }}
     >
       <span className="hold-l">{p > 0 && p < 1 ? holdLabel : label}</span>

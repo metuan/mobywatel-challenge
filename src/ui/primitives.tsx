@@ -13,7 +13,7 @@ import {
   ListRowIcon,
   ListRowTitle,
 } from '@/components/ui/list';
-import { useEffect, useRef, useState } from 'react';
+import { useEffect, useState } from 'react';
 import { reducedMotion } from '@/lib/env';
 import { I } from '@/ui/icons';
 import { ILL } from '@/ui/illustrations';
@@ -265,7 +265,7 @@ export const AppIcon = ({ k }: { k: string }) =>
 /* Hop 19: the assistant thinks visibly, then answers word by word */
 export function Typed({ text, onDone }: { text: string; onDone?: () => void }) {
   const W = text.split(' ');
-  const [n, setN] = useState(reducedMotion() ? W.length : 0);
+  const [n, setN] = useState(() => (reducedMotion() ? W.length : 0));
   useEffect(() => {
     if (n >= W.length) {
       onDone && onDone();
@@ -291,9 +291,13 @@ export function Typed({ text, onDone }: { text: string; onDone?: () => void }) {
 /* M4: digits roll when a number changes (signature counter, badges) */
 export function Num({ v, fmtf }: { v: number | string; fmtf?: (v: number | string) => string }) {
   const s = (fmtf || String)(v);
-  const prev = useRef(s);
-  const old = prev.current;
-  prev.current = s;
+  // the value shown before the last change; digits that differ from it roll in
+  const [shown, setShown] = useState(s);
+  const [old, setOld] = useState(s);
+  if (shown !== s) {
+    setOld(shown);
+    setShown(s);
+  }
   return (
     <span className="inline-flex [font-variant-numeric:tabular-nums]" aria-label={s}>
       {s.split('').map((ch, i) => {
