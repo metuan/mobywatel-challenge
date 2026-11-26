@@ -6,7 +6,6 @@ import { freezeClock } from '../e2e/helpers';
  * Pixel baselines for every screen, taken inside the phone frame.
  * They guard the visual parity of refactors: a change that moves a pixel shows up here.
  */
-test.use({ viewport: { width: 1440, height: 900 }, reducedMotion: 'reduce' });
 
 for (const route of Object.keys(R)) {
   test(`screen ${route}`, async ({ page }) => {

@@ -29,48 +29,71 @@ npm run preview    # serve the production build
 
 The build is a single HTML file with the code and styles inlined. It runs on GitHub Pages, straight from disk, and without a server.
 
-| Script              | What it does                                                |
-| ------------------- | ----------------------------------------------------------- |
-| `npm run typecheck` | TypeScript in `strict` mode                                 |
-| `npm run lint`      | ESLint for code and Stylelint for styles                    |
-| `npm run format`    | Prettier                                                    |
-| `npm test`          | unit tests (Vitest)                                         |
-| `npm run test:e2e`  | Playwright plays the whole story on desktop and phone sizes |
-| `npm run check`     | everything above except e2e, plus a build                   |
+| Script                | What it does                                                        |
+| --------------------- | ------------------------------------------------------------------- |
+| `npm run typecheck`   | TypeScript in `strict` mode                                         |
+| `npm run lint`        | ESLint for code and Stylelint for styles                            |
+| `npm run format`      | Prettier                                                            |
+| `npm test`            | unit tests (Vitest)                                                 |
+| `npm run test:e2e`    | Playwright plays the whole story on desktop and phone sizes         |
+| `npm run test:visual` | screenshots of all 82 screens, desktop and phone, against baselines |
+| `npm run check`       | everything above except e2e and visual, plus a build                |
+
+## Stack
+
+- **React 19 and TypeScript** (`strict`), built by **Vite** into one self-contained HTML file.
+- **Tailwind CSS 4** for styling, with the design tokens (ink on paper, one accent, a type scale) exposed as theme variables in `src/styles/theme.css`.
+- **shadcn/ui conventions** for the component library in `src/components/ui`: each component is a small file you own, styled with Tailwind, varied with `class-variance-authority`, merged with `cn()` (clsx + tailwind-merge), and marked with a `data-slot` attribute.
+- **Radix primitives** under the interactive parts: the bottom sheet is a Radix Dialog (focus trap, Escape, labelled), switches are Radix Switch, and segmented controls are a Radix ToggleGroup.
+
+| Component                                                             | What it is                                                             |
+| --------------------------------------------------------------------- | ---------------------------------------------------------------------- |
+| `Button`, `Actions`                                                   | pill buttons in six variants, and the stack or row they sit in         |
+| `Display`, `Title`, `Subtitle`, `Lead`, `Eyebrow`, `Muted`, `Caption` | the type scale                                                         |
+| `Card`, `Badge`, `Note`                                               | surfaces, status badges, notes with an icon and a tone                 |
+| `List`, `ListRow*`, `ListItem*`, `Field*`                             | grouped lists with hairline dividers, rows, and label and value fields |
+| `Switch`, `Segmented`, `Sheet`                                        | the Radix-based controls                                               |
 
 ## Project structure
 
 ```
 src/
-  main.ts              entry point: styles and mounting the app
+  main.tsx             entry point: styles and mounting the app
   types.ts             AppState, Ctx (what every screen receives), sheets, toasts
-  app/                 shell: App, routes (routes.ts), gestures, Dynamic Island
+  app/                 shell: App, routes (routes.tsx), gestures, Dynamic Island
+  components/ui/       the component library (shadcn/ui style)
   screens/             screens grouped by tab and topic
     today/ matters/ family/ safety/ docs/ profile/ trust/ money/ easy/ ...
   flows/               multi-step tasks: moving, new baby, doctor visit, letter, damage claim, signing
   story/               chapters and beats, "tap here" coach marks, intro tour, how-to answers
   tech/                content for the "how it works" panel
-  ui/                  shared components: icons, illustrations, document card, controls, hooks
-  lib/                 Preact + htm, browser helpers, shared-element transitions
+  ui/                  app-specific pieces: icons, illustrations, document card, controls, hooks
+  lib/                 cn(), the styled() helper, browser helpers, shared-element transitions
   styles/
+    index.css          cascade layers: theme, base, legacy, components, utilities
+    theme.css          Tailwind theme mapped onto the design tokens
     00-tokens.css      design tokens: colour, type, elevation, motion
-    01-…25-*.css       style layers; their import order in index.css matters
+    01-…25-*.css       screen-specific styles from before the component library, in the `legacy` layer
 tests/
   unit/                story and route data consistency, search
   e2e/                 plays every chapter, renders every screen
+  visual/              pixel baselines for every screen
 ```
 
 ## How it works
 
-- **Views** are functions that return [htm](https://github.com/developit/htm) templates rendered by [Preact](https://preactjs.com/). There is no JSX build step, and screen code stays close to plain HTML.
-- **Routes** live in the URL hash (`#move-1`, `#alert-red`). `src/app/routes.ts` maps 82 routes to screens, so any screen can be opened from a link.
+- **Screens** are React components that receive a `Ctx`. They are built from the components in `src/components/ui` and Tailwind classes, with no inline styles except computed values such as a progress width.
+- **Styles** sit in cascade layers. Tailwind utilities and component styles come after the `legacy` layer, so they always win over the older screen styles without `!important`. The legacy layer is what is left of the hand-written CSS and shrinks as screens move to components.
+- **Routes** live in the URL hash (`#move-1`, `#alert-red`). `src/app/routes.tsx` maps 82 routes to screens, so any screen can be opened from a link.
 - **State** (`AppState`) only records what the visitor has done so far: a fine paid, a form signed, an appointment booked. Every screen receives a `Ctx` with navigation, state and confirmation sheets.
 - **The story** is plain data in `src/story/chapters.ts`: chapters (today versus the new app) and beats, each naming the element to tap. The same data drives the side panel, the phone's story bar, the coach marks and the e2e tests.
 - **Motion** respects `prefers-reduced-motion`, and every animation checks it first.
 
 ## Tests and CI
 
-Every pull request runs through GitHub Actions: types, lint, formatting, unit tests, a build, and an end-to-end test. The e2e test plays all 13 chapters at two screen sizes by tapping whatever the coach mark points at, and checks that each of the 82 screens renders without errors.
+Every pull request runs through GitHub Actions: types, lint, formatting, unit tests, a build, an end-to-end test, and a screenshot test. The e2e test plays all 13 chapters at two screen sizes by tapping whatever the coach mark points at, and checks that each of the 82 screens renders without errors. The screenshot test compares every screen, on desktop and on a phone, with its baseline.
+
+The baselines are rendered in Playwright's Linux image, so they only match a run in the same image. When a change is meant to move pixels, push a commit whose message contains `[update baselines]` (or run the "Update screenshot baselines" workflow), and the new screenshots are committed to the branch for review. To check a change locally, take your own baseline first: `VISUAL_SNAPSHOTS=.visual-local npm run test:visual -- -u`, make the change, then run the same command without `-u`.
 
 When a change lands on `main`, `deploy.yml` builds the prototype and publishes it to GitHub Pages.
 
