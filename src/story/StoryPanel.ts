@@ -31,7 +31,7 @@ export function StoryPanel({
       <div class="on"><span class="st-k">W nowym mObywatelu</span><p>${ch.razem}</p></div>
     </div>
     <ol class="beats">${beats.map(
-      ([r, t, act], j) => html`<li class=${j < cur ? 'done' : j === cur ? 'now' : ''}>
+      ([r, t], j) => html`<li class=${j < cur ? 'done' : j === cur ? 'now' : ''}>
       <button class="bt-dot" onClick=${() => go(r, ch.p)} aria-label=${'Krok ' + (j + 1)}>${j < cur ? I('check', 13) : j + 1}</button>
       <div><p>${t}</p>${j === cur && off && html`<button class="bt-back" onClick=${() => go(r, ch.p)}>${I('left', 14)}<span>Wróć do tego kroku</span></button>`}</div></li>`,
     )}</ol>

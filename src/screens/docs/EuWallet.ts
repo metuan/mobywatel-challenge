@@ -5,7 +5,7 @@ import { I } from '@/ui/icons';
 import { Label } from '@/ui/primitives';
 import type { Ctx } from '@/types';
 
-export function EuWallet(c: Ctx) {
+export function EuWallet(_c: Ctx) {
   const [side, setSide] = useState(0);
   const [sent, setSent] = useState(false);
   useEffect(() => {

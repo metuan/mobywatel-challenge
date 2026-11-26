@@ -4,7 +4,7 @@
   background: var(--app);
 }
 .askdock::before {
-  background: linear-gradient(rgba(255, 255, 255, 0), #fff 55%);
+  background: linear-gradient(rgb(255 255 255 / 0%), #fff 55%);
 }
 .card,
 .list {
@@ -222,11 +222,11 @@
   flex-direction: column;
   padding: 58px 14px 22px;
   color: #fff;
-  background: radial-gradient(90% 45% at 50% 0%, rgba(212, 42, 62, 0.55), transparent 70%), #0e1016;
+  background: radial-gradient(90% 45% at 50% 0%, rgb(212 42 62 / 55%), transparent 70%), #0e1016;
   overflow-y: auto;
 }
 .rcb-screen.clear {
-  background: radial-gradient(90% 45% at 50% 0%, rgba(31, 122, 79, 0.55), transparent 70%), #0e1016;
+  background: radial-gradient(90% 45% at 50% 0%, rgb(31 122 79 / 55%), transparent 70%), #0e1016;
 }
 .rcb-clock {
   text-align: center;
@@ -245,11 +245,11 @@
   margin-bottom: 18px;
 }
 .rcb {
-  background: rgba(255, 255, 255, 0.96);
+  background: rgb(255 255 255 / 96%);
   color: var(--ink);
   border-radius: 22px;
   padding: 14px 16px;
-  box-shadow: 0 20px 50px -20px rgba(0, 0, 0, 0.6);
+  box-shadow: 0 20px 50px -20px rgb(0 0 0 / 60%);
 }
 .rcb .hd {
   display: flex;
@@ -310,7 +310,7 @@
   padding: 8px 16px 2px;
 }
 .rcb-screen .btn.ghost {
-  background: rgba(255, 255, 255, 0.12);
+  background: rgb(255 255 255 / 12%);
   color: #fff;
   border: 0;
 }

@@ -41,7 +41,7 @@
   width: calc((100% - 6px) / var(--n, 3));
   border-radius: 9px;
   background: var(--surface);
-  box-shadow: 0 1px 3px rgba(11, 13, 18, 0.1);
+  box-shadow: 0 1px 3px rgb(11 13 18 / 10%);
   transform: translateX(calc(var(--k, 0) * 100%));
   transition: transform 0.28s cubic-bezier(0.32, 0.72, 0, 1);
 }
@@ -102,7 +102,7 @@
   position: absolute;
   inset: 0;
   z-index: -1;
-  background: rgba(0, 0, 0, 0.28);
+  background: rgb(0 0 0 / 28%);
   clip-path: inset(0 calc((1 - var(--p)) * 100%) 0 0);
   transition: clip-path 0.2s cubic-bezier(0.23, 1, 0.32, 1);
 }
@@ -277,7 +277,7 @@ button.row:active .check {
   line-height: 1.4;
 }
 .app.scrolled .topbar {
-  background: rgba(244, 244, 246, 0.82);
+  background: rgb(244 244 246 / 82%);
   backdrop-filter: blur(24px) saturate(180%);
   -webkit-backdrop-filter: blur(24px) saturate(180%);
   transition: box-shadow 0.2s;
@@ -285,10 +285,10 @@ button.row:active .check {
 /* scroll fix: one calm material under the status bar, no grey band, no logo/title overlap */
 .app.scrolled .topbar,
 .app.compact .topbar {
-  background: rgba(244, 244, 246, 0.94) !important;
+  background: rgb(244 244 246 / 94%) !important;
   backdrop-filter: blur(20px) saturate(160%) !important;
   -webkit-backdrop-filter: blur(20px) saturate(160%) !important;
-  box-shadow: 0 0.5px 0 rgba(20, 20, 40, 0.12) !important;
+  box-shadow: 0 0.5px 0 rgb(20 20 40 / 12%) !important;
 }
 .topbar .wm {
   transition: opacity 0.12s var(--out);
@@ -305,7 +305,7 @@ button.row:active .check {
 }
 /* "Dotknij tutaj" always on top of its target and never cut off */
 .coach-tip span {
-  margin-left: var(--dx, 0px);
+  margin-left: var(--dx, 0);
 }
 .coach-tip span::after {
   left: calc(50% - var(--dx, 0px));
@@ -441,7 +441,7 @@ button.row:active .check {
   position: relative;
   outline: 2px solid #2f6bff;
   outline-offset: 3px;
-  box-shadow: 0 0 0 3px rgba(47, 107, 255, 0.25) !important;
+  box-shadow: 0 0 0 3px rgb(47 107 255 / 25%) !important;
   border-radius: 14px;
 }
 .guide-tip {
@@ -456,7 +456,7 @@ button.row:active .check {
   position: absolute;
   left: 0;
   bottom: 0;
-  margin-left: var(--dx, 0px);
+  margin-left: var(--dx, 0);
   transform: translateX(-50%);
   white-space: nowrap;
   background: #2f6bff;
@@ -465,7 +465,7 @@ button.row:active .check {
   font-weight: 600;
   padding: 7px 12px;
   border-radius: 999px;
-  box-shadow: 0 8px 20px -6px rgba(47, 107, 255, 0.55);
+  box-shadow: 0 8px 20px -6px rgb(47 107 255 / 55%);
 }
 .guide-tip span::after {
   content: '';

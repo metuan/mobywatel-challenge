@@ -3,7 +3,7 @@ import { I } from '@/ui/icons';
 import { Av, GRow, Label, Sec, Toggle } from '@/ui/primitives';
 import type { Ctx } from '@/types';
 
-export function Plan(c: Ctx) {
+export function Plan(_c: Ctx) {
   return html`<div>
     <h1 class="h-l">Plan rodziny na sytuację kryzysową</h1>
     <p class="lead">Ustalony razem z Tomaszem. Działa bez internetu.</p>
@@ -30,7 +30,7 @@ export function Plan(c: Ctx) {
   </div>`;
 }
 
-export function Places(c: Ctx) {
+export function Places(_c: Ctx) {
   return html`<div><h1 class="h-l">Obserwowane miejsca</h1>
     <p class="lead">Alerty dla Twojej lokalizacji przychodzą zawsze. Alerty dla tych miejsc są oznaczone ich nazwą, żeby ich nie pomylić.</p>
     <div class="list">${[

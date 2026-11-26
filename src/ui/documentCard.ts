@@ -43,7 +43,6 @@ export const ROSETTE = html`<svg class="rosette" viewBox="-100 -100 200 200" ari
 const Holo = () => html`<span class="holo" aria-hidden="true"></span>`;
 
 export function DocCard({
-  c,
   tone = 'id',
   interactive = true,
 }: {

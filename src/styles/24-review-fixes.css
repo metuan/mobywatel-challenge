@@ -42,7 +42,7 @@
   height: 2px;
   border-radius: 2px;
   background: #2f6bff;
-  box-shadow: 0 0 12px 2px rgba(47, 107, 255, 0.6);
+  box-shadow: 0 0 12px 2px rgb(47 107 255 / 60%);
   top: 14px;
   animation: cfscan 1s ease-in-out 0.2s 2 alternate;
 }
@@ -128,7 +128,7 @@
   50% {
     box-shadow:
       inset 0 0 0 2px #2f6bff,
-      0 0 0 4px rgba(47, 107, 255, 0.15);
+      0 0 0 4px rgb(47 107 255 / 15%);
   }
 }
 @media (prefers-reduced-motion: reduce) {
@@ -153,8 +153,8 @@
 }
 .stack.w2:not(.has-sel) .scard:not(.front) {
   box-shadow:
-    inset 0 1px 0 rgba(255, 255, 255, 0.14),
-    0 -1px 0 rgba(0, 0, 0, 0.25);
+    inset 0 1px 0 rgb(255 255 255 / 14%),
+    0 -1px 0 rgb(0 0 0 / 25%);
 }
 .stack.w2 .d-top {
   min-height: 24px;
@@ -171,7 +171,7 @@
 }
 .w2-meta {
   font-size: 12.5px;
-  color: rgba(255, 255, 255, 0.62);
+  color: rgb(255 255 255 / 62%);
   margin-top: 4px;
   font-variant-numeric: tabular-nums;
 }

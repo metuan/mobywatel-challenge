@@ -5,14 +5,14 @@
 
   /* Surfaces and ink */
   --bg: #f4f4f6;
-  --surface: #ffffff;
+  --surface: #fff;
   --fill: #edeef1;
   --fill-2: #e4e5e9;
   --ink: #0b0d12;
   --ink-2: #6b7079;
   --ink-3: #8e939b;
-  --hair: rgba(11, 13, 18, 0.08);
-  --hair-2: rgba(11, 13, 18, 0.14);
+  --hair: rgb(11 13 18 / 8%);
+  --hair-2: rgb(11 13 18 / 14%);
   --app: var(--bg);
   --tile: #fff;
 
@@ -30,7 +30,7 @@
   --d-0: #0b0d12;
   --d-1: #111723;
   --d-2: #1a2233;
-  --d-hair: rgba(255, 255, 255, 0.1);
+  --d-hair: rgb(255 255 255 / 10%);
   --d-ink: #fff;
   --d-ink-2: #a2a8b3;
   --doc-id: #111723;
@@ -46,9 +46,9 @@
   --disp: var(--sans);
 
   /* Elevation */
-  --shadow: 0 1px 2px rgba(12, 18, 34, 0.04), 0 18px 40px -18px rgba(12, 18, 34, 0.18);
-  --shadow-s: 0 1px 2px rgba(12, 18, 34, 0.05), 0 6px 16px -8px rgba(12, 18, 34, 0.16);
-  --e-float: 0 8px 28px -8px rgba(11, 13, 18, 0.18), 0 0 0 0.5px rgba(11, 13, 18, 0.08);
+  --shadow: 0 1px 2px rgb(12 18 34 / 4%), 0 18px 40px -18px rgb(12 18 34 / 18%);
+  --shadow-s: 0 1px 2px rgb(12 18 34 / 5%), 0 6px 16px -8px rgb(12 18 34 / 16%);
+  --e-float: 0 8px 28px -8px rgb(11 13 18 / 18%), 0 0 0 0.5px rgb(11 13 18 / 8%);
 
   /* Motion */
   --ease-out: cubic-bezier(0.23, 1, 0.32, 1);

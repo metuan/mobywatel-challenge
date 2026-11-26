@@ -4,7 +4,7 @@ import { I } from '@/ui/icons';
 import { Label, Ring, Tile } from '@/ui/primitives';
 import type { Ctx } from '@/types';
 
-export function CaseMeld(c: Ctx) {
+export function CaseMeld(_c: Ctx) {
   const st = [
     ['Wniosek złożony', '14 listopada'],
     ['Opłata 54,50 zł', 'Zapłacono 14 listopada'],

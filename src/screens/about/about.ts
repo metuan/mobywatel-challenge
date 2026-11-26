@@ -20,7 +20,7 @@ export function Roadmap(c: Ctx) {
     <div class="list">${r.map(([t, s, go], i) => html`<button class="row" onClick=${() => c.go(go)}><span class="it">${String(i + 1).padStart(2, '0')}</span><span class="tx"><div class="t">${t}</div><div class="s">${s}</div></span><span class="chev">${I('chevron', 18)}</span></button>`)}</div></div>`;
 }
 
-export function About(c: Ctx) {
+export function About(_c: Ctx) {
   return html`<div><h1 class="h-l">O tej koncepcji</h1>
     <p>Ten prototyp nowego mObywatela to niezależna koncepcja na konkurs mObywatel Challenge (mobywatel.ai). Nie jest oficjalną aplikacją mObywatel ani usługą administracji.</p>
     <p class="small">Wszystkie osoby, adresy i numery są fikcyjne. Asystent w tej wersji działa na przygotowanych scenariuszach. Wersja docelowa korzysta z polskich modeli językowych (Bielik lub PLLuM) z filtrem Bielik Guard.</p>

@@ -51,7 +51,7 @@ export function MemberTata(c: Ctx) {
   </div>`;
 }
 
-export function MemberTomasz(c: Ctx) {
+export function MemberTomasz(_c: Ctx) {
   return html`<div>
     <div style="display:flex;gap:12px;align-items:center;margin-top:8px"><span class="face-i" style="background:#3d5a80;width:52px;height:52px">TN</span><div><h1 class="h-m">Tomasz Nowicki</h1><div class="small">Partner</div></div></div>
     <${Sec} t="Wspólne"/>

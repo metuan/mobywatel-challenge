@@ -272,8 +272,8 @@ button.row:active {
 }
 .seg button[aria-pressed='true'] {
   box-shadow:
-    0 3px 8px rgba(0, 0, 0, 0.12),
-    0 3px 1px rgba(0, 0, 0, 0.04);
+    0 3px 8px rgb(0 0 0 / 12%),
+    0 3px 1px rgb(0 0 0 / 4%);
 }
 .toggle {
   width: 51px;
@@ -286,8 +286,8 @@ button.row:active {
   top: 2px;
   left: 2px;
   box-shadow:
-    0 3px 8px rgba(0, 0, 0, 0.15),
-    0 3px 1px rgba(0, 0, 0, 0.06);
+    0 3px 8px rgb(0 0 0 / 15%),
+    0 3px 1px rgb(0 0 0 / 6%);
 }
 .toggle[aria-checked='true'] {
   background: #34c759;
@@ -316,10 +316,10 @@ button.row:active {
   display: grid;
   grid-template-columns: repeat(5, 1fr);
   padding: 6px 4px calc(24px + env(safe-area-inset-bottom, 0px));
-  background: rgba(249, 249, 249, 0.86);
+  background: rgb(249 249 249 / 86%);
   backdrop-filter: saturate(1.8) blur(20px);
   -webkit-backdrop-filter: saturate(1.8) blur(20px);
-  border-top: 0.5px solid rgba(0, 0, 0, 0.2);
+  border-top: 0.5px solid rgb(0 0 0 / 20%);
   position: relative;
   z-index: 20;
 }
@@ -337,7 +337,7 @@ button.row:active {
   color: var(--tint);
 }
 .tabbar button[aria-current='page'] svg path {
-  fill: currentColor;
+  fill: currentcolor;
   fill-opacity: 0.14;
 }
 .scroll {
@@ -346,7 +346,7 @@ button.row:active {
 .toast {
   bottom: 104px;
   border-radius: 14px;
-  background: rgba(30, 30, 32, 0.92);
+  background: rgb(30 30 32 / 92%);
   backdrop-filter: blur(10px);
 }
 /* cards with illustrations */
@@ -392,7 +392,7 @@ button.row:active {
 }
 /* sheets as iOS cards */
 .sheet-bg {
-  background: rgba(0, 0, 0, 0.28);
+  background: rgb(0 0 0 / 28%);
   backdrop-filter: none;
   -webkit-backdrop-filter: none;
   align-items: flex-end;

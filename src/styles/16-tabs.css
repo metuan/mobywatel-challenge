@@ -8,14 +8,14 @@
   color: #fff;
 }
 .app.blue-top .how-btn {
-  background: rgba(255, 255, 255, 0.18);
+  background: rgb(255 255 255 / 18%);
   color: #fff;
 }
 .app.blue-top .avatar-btn {
-  background: rgba(255, 255, 255, 0.22);
+  background: rgb(255 255 255 / 22%);
 }
 .app.blue-top .flag {
-  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.4);
+  box-shadow: 0 0 0 1px rgb(255 255 255 / 40%);
 }
 .blue-hero {
   margin: 0 -16px;
@@ -56,7 +56,7 @@
 }
 .bh-pill {
   margin-top: 12px;
-  background: rgba(255, 255, 255, 0.2);
+  background: rgb(255 255 255 / 20%);
   color: #fff;
   border-radius: 999px;
   padding: 7px 14px;
@@ -81,7 +81,7 @@
   width: 52px;
   height: 52px;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.2);
+  background: rgb(255 255 255 / 20%);
   display: grid;
   place-items: center;
 }
@@ -97,7 +97,7 @@
   background: #fff;
   border-radius: 18px;
   padding: 14px 16px;
-  box-shadow: 0 8px 24px -12px rgba(0, 0, 0, 0.18);
+  box-shadow: 0 8px 24px -12px rgb(0 0 0 / 18%);
 }
 .hk {
   font-size: 12px;
@@ -229,7 +229,7 @@
   height: 44px;
   border-radius: 10px;
   background: #fff;
-  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.08);
+  box-shadow: inset 0 0 0 1px rgb(0 0 0 / 8%);
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -383,7 +383,7 @@
   padding: 5px 11px;
   font-size: 13px;
   font-weight: 600;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+  box-shadow: 0 2px 8px rgb(0 0 0 / 12%);
 }
 /* family */
 .fstack {
@@ -397,7 +397,7 @@
   color: #fff;
   cursor: pointer;
   text-align: left;
-  box-shadow: 0 10px 24px -16px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 10px 24px -16px rgb(0 0 0 / 50%);
 }
 .fc-top {
   display: flex;
@@ -408,7 +408,7 @@
   width: 34px;
   height: 34px;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.25);
+  background: rgb(255 255 255 / 25%);
   display: grid;
   place-items: center;
   font-weight: 700;
@@ -438,7 +438,7 @@
   flex-wrap: wrap;
 }
 .fc-chips button {
-  background: rgba(255, 255, 255, 0.22);
+  background: rgb(255 255 255 / 22%);
   color: #fff;
   border-radius: 999px;
   padding: 6px 12px;
@@ -496,8 +496,8 @@
   justify-content: space-between;
   margin-top: -148px;
   box-shadow:
-    0 -1px 0 rgba(255, 255, 255, 0.4) inset,
-    0 -6px 18px -10px rgba(0, 0, 0, 0.25);
+    0 -1px 0 rgb(255 255 255 / 40%) inset,
+    0 -6px 18px -10px rgb(0 0 0 / 25%);
   position: relative;
   transition: transform 0.25s var(--ease-out);
 }
@@ -520,7 +520,7 @@
 .wc-b {
   font-size: 12px;
   font-weight: 700;
-  background: rgba(0, 0, 0, 0.12);
+  background: rgb(0 0 0 / 12%);
   border-radius: 999px;
   padding: 3px 9px;
 }
@@ -546,7 +546,7 @@
   width: 220px;
   height: 220px;
   border-radius: 50%;
-  background: radial-gradient(circle, rgba(52, 199, 89, 0.35), transparent 65%);
+  background: radial-gradient(circle, rgb(52 199 89 / 35%), transparent 65%);
 }
 .dh-top {
   display: flex;
@@ -561,7 +561,7 @@
   height: 8px;
   border-radius: 50%;
   background: #34c759;
-  box-shadow: 0 0 0 0 rgba(52, 199, 89, 0.6);
+  box-shadow: 0 0 0 0 rgb(52 199 89 / 60%);
 }
 @media (prefers-reduced-motion: no-preference) {
   .pulse-dot {
@@ -569,7 +569,7 @@
   }
   @keyframes ping-g {
     100% {
-      box-shadow: 0 0 0 10px rgba(52, 199, 89, 0);
+      box-shadow: 0 0 0 10px rgb(52 199 89 / 0%);
     }
   }
 }
@@ -591,7 +591,7 @@
   position: relative;
 }
 .dhp {
-  background: rgba(255, 255, 255, 0.08);
+  background: rgb(255 255 255 / 8%);
   border-radius: 12px;
   padding: 10px;
   color: #fff;

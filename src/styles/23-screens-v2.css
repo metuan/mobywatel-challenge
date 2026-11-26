@@ -25,7 +25,7 @@
   display: inline-flex;
   align-items: center;
   gap: 6px;
-  background: rgba(255, 255, 255, 0.14);
+  background: rgb(255 255 255 / 14%);
   color: #fff;
   border-radius: 999px;
   padding: 7px 12px;
@@ -168,7 +168,7 @@
   position: absolute;
   inset: 0;
   border-radius: 50%;
-  border: 1.5px solid rgba(255, 255, 255, 0.35);
+  border: 1.5px solid rgb(255 255 255 / 35%);
   animation: callring 1.6s var(--out) 3;
 }
 .call-av i + i {
@@ -195,7 +195,7 @@
 }
 .call-t {
   font-size: 17px;
-  color: rgba(255, 255, 255, 0.6);
+  color: rgb(255 255 255 / 60%);
   margin-top: 6px;
   font-variant-numeric: tabular-nums;
 }
@@ -206,10 +206,10 @@
   align-items: flex-start;
   font-size: 14px;
   line-height: 1.4;
-  background: rgba(255, 255, 255, 0.08);
+  background: rgb(255 255 255 / 8%);
   border-radius: 16px;
   padding: 12px 14px;
-  color: rgba(255, 255, 255, 0.85);
+  color: rgb(255 255 255 / 85%);
   animation: fadeUp 0.3s var(--out);
 }
 .call-keys {
@@ -234,7 +234,7 @@
   border-radius: 50%;
   display: grid;
   place-items: center;
-  background: rgba(255, 255, 255, 0.12);
+  background: rgb(255 255 255 / 12%);
   transition:
     background 0.2s,
     color 0.2s,
@@ -566,7 +566,7 @@
   color: #fff;
   background: linear-gradient(135deg, #2f6bff, #7a4dff);
   margin: 2px 0 10px;
-  box-shadow: 0 4px 12px -6px rgba(76, 90, 255, 0.7);
+  box-shadow: 0 4px 12px -6px rgb(76 90 255 / 70%);
 }
 .ai-work span {
   animation: fadeUp 0.25s var(--out);
@@ -694,7 +694,7 @@
 .seg8 button[aria-pressed='true'] {
   background: var(--surface);
   color: var(--ink);
-  box-shadow: 0 1px 3px rgba(11, 13, 18, 0.08);
+  box-shadow: 0 1px 3px rgb(11 13 18 / 8%);
 }
 .mail {
   display: flex;
@@ -776,7 +776,7 @@
   font-size: 13px;
   line-height: 1.35;
   color: var(--ink);
-  background: linear-gradient(135deg, rgba(47, 107, 255, 0.07), rgba(122, 77, 255, 0.07));
+  background: linear-gradient(135deg, rgb(47 107 255 / 7%), rgb(122 77 255 / 7%));
   border-radius: 10px;
   padding: 8px 10px;
 }
@@ -832,7 +832,7 @@
 }
 .cl-k {
   font-size: 14px;
-  color: rgba(255, 255, 255, 0.6);
+  color: rgb(255 255 255 / 60%);
 }
 .cl-n {
   font-size: 40px;
@@ -842,7 +842,7 @@
 }
 .cl-num {
   font-size: 16px;
-  color: rgba(255, 255, 255, 0.6);
+  color: rgb(255 255 255 / 60%);
   margin-top: 4px;
   font-variant-numeric: tabular-nums;
 }
@@ -854,7 +854,7 @@
   text-align: left;
   font-size: 14.5px;
   line-height: 1.4;
-  background: rgba(255, 255, 255, 0.1);
+  background: rgb(255 255 255 / 10%);
   backdrop-filter: blur(20px);
   border-radius: 20px;
   padding: 14px 16px;
@@ -869,7 +869,7 @@
   width: 34px;
   height: 34px;
   border-radius: 50%;
-  background: rgba(255, 255, 255, 0.2);
+  background: rgb(255 255 255 / 20%);
   display: grid;
   place-items: center;
 }
@@ -878,7 +878,7 @@
   width: 18px;
   height: 18px;
   border-radius: 50%;
-  border: 2px solid rgba(255, 255, 255, 0.25);
+  border: 2px solid rgb(255 255 255 / 25%);
   border-top-color: #fff;
   animation: spin 0.8s linear infinite;
   margin-top: 1px;
@@ -927,7 +927,7 @@
   margin: 22px 0 0;
   font-size: 12px;
   line-height: 1.4;
-  color: rgba(255, 255, 255, 0.55);
+  color: rgb(255 255 255 / 55%);
 }
 /* hop 14: dynamic island live activity */
 .phone .notch.island {
@@ -957,7 +957,7 @@
   display: grid;
 }
 .is-r .ring svg circle:first-child {
-  stroke: rgba(255, 255, 255, 0.25);
+  stroke: rgb(255 255 255 / 25%);
 }
 .is-x {
   position: absolute;
@@ -989,7 +989,7 @@
   width: 40px;
   height: 40px;
   border-radius: 12px;
-  background: rgba(255, 255, 255, 0.12);
+  background: rgb(255 255 255 / 12%);
   display: grid;
   place-items: center;
 }
@@ -1004,7 +1004,7 @@
 }
 .is-tx span {
   font-size: 12.5px;
-  color: rgba(255, 255, 255, 0.6);
+  color: rgb(255 255 255 / 60%);
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -1018,7 +1018,7 @@
   grid-column: 1/-1;
   height: 4px;
   border-radius: 4px;
-  background: rgba(255, 255, 255, 0.18);
+  background: rgb(255 255 255 / 18%);
   overflow: hidden;
   margin-top: 8px;
 }
@@ -1099,7 +1099,7 @@
   height: 24px;
   background: #fff;
   box-shadow:
-    0 1px 4px rgba(11, 13, 18, 0.25),
+    0 1px 4px rgb(11 13 18 / 25%),
     0 0 0 0.5px var(--hair-2);
 }
 /* hop 16: edge swipe */
@@ -1179,7 +1179,7 @@ button.row:active,
 }
 .pay-m button[aria-pressed='true'] {
   background: var(--surface);
-  box-shadow: 0 1px 3px rgba(11, 13, 18, 0.08);
+  box-shadow: 0 1px 3px rgb(11 13 18 / 8%);
 }
 .pay-m .gtx {
   flex: 1;
@@ -1286,7 +1286,7 @@ button.row:active,
   letter-spacing: -0.006em;
   padding: 7px 12px;
   border-radius: 999px;
-  box-shadow: 0 8px 20px -6px rgba(47, 107, 255, 0.55);
+  box-shadow: 0 8px 20px -6px rgb(47 107 255 / 55%);
   pointer-events: none;
   z-index: 5;
   animation: tip-in 0.22s cubic-bezier(0.23, 1, 0.32, 1) both;
@@ -1415,7 +1415,7 @@ button.row:active,
 .tstep.ai .ts-dot {
   background: linear-gradient(135deg, #2f6bff, #7a4dff);
   color: #fff;
-  box-shadow: 0 4px 10px -4px rgba(76, 90, 255, 0.6);
+  box-shadow: 0 4px 10px -4px rgb(76 90 255 / 60%);
 }
 .ts-b {
   min-width: 0;
@@ -1443,7 +1443,7 @@ button.row:active,
   font-weight: 700;
   letter-spacing: 0.05em;
   color: #4a55f0;
-  background: linear-gradient(135deg, rgba(47, 107, 255, 0.12), rgba(122, 77, 255, 0.14));
+  background: linear-gradient(135deg, rgb(47 107 255 / 12%), rgb(122 77 255 / 14%));
   flex: none;
 }
 .ts-w {

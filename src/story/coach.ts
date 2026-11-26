@@ -35,7 +35,6 @@ export function coachTip(ph: HTMLElement | null, el?: Element | null) {
       tip.remove();
       return;
     }
-    const z = parseFloat(getComputedStyle(ph).zoom) || 1;
     const pr = ph.getBoundingClientRect(),
       r = el.getBoundingClientRect();
     const sx = pr.width / ph.offsetWidth || 1;
@@ -125,7 +124,7 @@ export function coach(i: number, route: string, retry?: boolean): boolean {
   el.classList.add('coach');
   try {
     el.scrollIntoView({ block: 'center', behavior: 'smooth' });
-  } catch (e) {}
+  } catch {}
   coachTip(ph, el);
   const target = el;
   const off = (ev: Event) => {

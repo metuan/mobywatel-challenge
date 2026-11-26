@@ -247,7 +247,7 @@
   width: 6px;
   height: 6px;
   border-radius: 50%;
-  background: currentColor;
+  background: currentcolor;
 }
 .tag-j {
   color: var(--green);
@@ -308,7 +308,7 @@
   margin: -14px 10px 0;
   height: 20px;
   border-radius: 0 0 18px 18px;
-  background: rgba(245, 245, 247, 0.45);
+  background: rgb(245 245 247 / 45%);
   font-size: 0;
 }
 .lock {

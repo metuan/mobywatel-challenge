@@ -99,7 +99,7 @@
       0 0 0 1px #1a1c22,
       0 0 0 9px #0b0d12,
       0 0 0 10px #2a2d35,
-      0 60px 120px -40px rgba(11, 13, 18, 0.35) !important;
+      0 60px 120px -40px rgb(11 13 18 / 35%) !important;
     position: relative;
     top: 0;
   }
@@ -145,7 +145,7 @@
   border-radius: 18px;
   background: var(--ink);
   color: #fff;
-  box-shadow: 0 12px 30px -10px rgba(11, 13, 18, 0.45);
+  box-shadow: 0 12px 30px -10px rgb(11 13 18 / 45%);
 }
 .ms-main {
   flex: 1;
@@ -162,7 +162,7 @@
   font-size: 12px;
   font-weight: 600;
   font-variant-numeric: tabular-nums;
-  background: rgba(255, 255, 255, 0.14);
+  background: rgb(255 255 255 / 14%);
   border-radius: 999px;
   padding: 4px 8px;
 }

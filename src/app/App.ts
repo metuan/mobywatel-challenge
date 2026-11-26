@@ -15,19 +15,6 @@ import { I } from '@/ui/icons';
 import { Wm } from '@/ui/primitives';
 import type { AppState, Ctx, Persona, Sheet, SheetRequest, ToastInput } from '@/types';
 
-const DEMO = [
-  ['Ekran Dziś', 'today', 'T1 T5', 'anna'],
-  ['Przeprowadzka od A do Z', 'move-1', 'T2 T3', 'anna'],
-  ['Pakiet „Nowe dziecko”', 'baby-1', 'T2', 'anna'],
-  ['Alert RCB na ekranie blokady', 'lock', 'T1', 'anna'],
-  ['Alarm, schron, mapa rodziny', 'alert-red', 'T1', 'anna'],
-  ['Kardiolog dla Zosi', 'visit-1', 'T2', 'anna'],
-  ['Rodzina i pomoc tacie', 'family', 'T4', 'anna'],
-  ['Kto sprawdzał moje dane', 'access-log', 'T6', 'anna'],
-  ['Wyjaśnij pismo z urzędu', 'letter-1', 'T3', 'anna'],
-  ['Tryb prosty: tata', 'easy', 'T4', 'tata'],
-];
-
 const startPersona = (r: string): Persona =>
   r === 'easy' || r === 'easy-doc' || r === 'easy-rx' || r === 'easy-voice' ? 'tata' : 'anna';
 
@@ -38,7 +25,7 @@ const hashRoute = () => {
 
 export function App() {
   const [route, setRoute] = useState<Route>(hashRoute() || 'today');
-  const [hist, setHist] = useState<Route[]>([]);
+  const [, setHist] = useState<Route[]>([]);
   const [dir, setDir] = useState('tab');
   const [s, setS] = useState<AppState>({ persona: startPersona(hashRoute() || 'today'), inboxNew: 2 });
   const [sheet, setSheet] = useState<Sheet | null>(null);
@@ -65,7 +52,7 @@ export function App() {
     setRoute(r);
     try {
       history.replaceState(null, '', '#' + r);
-    } catch (e) {}
+    } catch {}
   };
   const back = () => {
     setDir('back');
@@ -74,7 +61,7 @@ export function App() {
       setRoute(p);
       try {
         history.replaceState(null, '', '#' + p);
-      } catch (e) {}
+      } catch {}
       return h.slice(0, -1);
     });
   };
@@ -256,7 +243,7 @@ export function App() {
     const ch = CHAPTERS[k];
     try {
       history.pushState({ chap: k }, '', '#' + ch.r[0]);
-    } catch (e) {}
+    } catch {}
     setSheet(null);
     setMenu(false);
     setToast(null);
@@ -304,13 +291,6 @@ export function App() {
     window.addEventListener('keydown', f);
     return () => window.removeEventListener('keydown', f);
   }, [chap]);
-  const [dq, setDq] = useState('');
-  const sendQ = () => {
-    const q = dq || 'Jak zameldować się w nowym mieszkaniu?';
-    setDq('');
-    c.ask(q);
-  };
-  const showDock = !tata && !FULL.has(route) && route !== 'assistant';
   const MENU: [Route, string][] = [
     ['today', 'Dziś'],
     ['matters', 'Sprawy'],
@@ -341,7 +321,7 @@ export function App() {
                 }}><${Wm}/></button>`
               : html`<button class="navback" onClick=${back}>${I('left', 22)}<span>Wstecz</span></button>`
           }
-          ${!tata && html`<span class="tb-title">${isTab ? (TABS.find(t => t[0] === route) || [, ''])[1] : ttl}</span>`}
+          ${!tata && html`<span class="tb-title">${isTab ? (TABS.find(t => t[0] === route)?.[1] ?? '') : ttl}</span>`}
           <div class="tb-right"><button class="how-btn" aria-label="Jak to działa" onClick=${() => setSheet({ tech: true })}>${I('info', 18)}</button>
           ${
             tata
@@ -384,7 +364,6 @@ export function App() {
           }}><span class="ms-n">${chap + 1}/${CHAPTERS.length}</span><span class="ms-t"><b>${CHAPTERS[chap].t}</b><span>${(() => {
             const h = beatOf(chap, route);
             if (h < 0 && route !== BEATS[chap][0][0]) return 'Poza historią. Dotknij, by wrócić';
-            const b = BEATS[chap][h >= 0 ? h : lastBeat];
             const bi = h >= 0 ? h : lastBeat,
               n = BEATS[chap].length;
             return `Krok ${bi + 1} z ${n}`;

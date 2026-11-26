@@ -97,7 +97,7 @@ body {
   border-radius: 3px;
   margin-right: 8px;
   background: linear-gradient(#fff 50%, var(--red) 50%);
-  box-shadow: 0 0 0 0.5px rgba(11, 13, 18, 0.22);
+  box-shadow: 0 0 0 0.5px rgb(11 13 18 / 22%);
   display: inline-block;
   flex: none;
 }
@@ -108,7 +108,7 @@ body {
 .topbar {
   height: 52px;
   padding: 0 20px;
-  background: rgba(244, 244, 246, 0.78);
+  background: rgb(244 244 246 / 78%);
   backdrop-filter: blur(24px) saturate(180%);
   -webkit-backdrop-filter: blur(24px) saturate(180%);
   position: relative;
@@ -150,7 +150,7 @@ body {
   padding: 0 6px;
   border-radius: 999px;
   border: 0;
-  background: rgba(255, 255, 255, 0.8);
+  background: rgb(255 255 255 / 80%);
   backdrop-filter: blur(24px) saturate(180%);
   -webkit-backdrop-filter: blur(24px) saturate(180%);
   box-shadow: var(--e-float);
@@ -171,7 +171,7 @@ body {
   stroke-width: 2.1;
 }
 .tabbar button[aria-current='page'] svg path {
-  fill: currentColor;
+  fill: currentcolor;
   fill-opacity: 0.08;
 }
 .toast {
@@ -263,7 +263,7 @@ body {
 .seg button[aria-pressed='true'] {
   background: var(--surface);
   color: var(--ink);
-  box-shadow: 0 1px 2px rgba(11, 13, 18, 0.1);
+  box-shadow: 0 1px 2px rgb(11 13 18 / 10%);
 }
 .toggle[aria-checked='true'] {
   background: var(--ink);
@@ -353,7 +353,7 @@ body {
   border-radius: 22px 22px 0 0;
 }
 .sheet-bg {
-  background: rgba(11, 13, 18, 0.4);
+  background: rgb(11 13 18 / 40%);
 }
 .sheet .fields {
   border-radius: 22px;
@@ -560,18 +560,18 @@ body {
     linear-gradient(
         115deg,
         transparent 30%,
-        rgba(255, 255, 255, 0.1) 46%,
-        rgba(255, 255, 255, 0.02) 54%,
+        rgb(255 255 255 / 10%) 46%,
+        rgb(255 255 255 / 2%) 54%,
         transparent 68%
       )
       var(--sx, 0%) 0/220% 100% no-repeat,
-    repeating-radial-gradient(circle at 82% 118%, rgba(255, 255, 255, 0.045) 0 1px, transparent 1px 7px),
+    repeating-radial-gradient(circle at 82% 118%, rgb(255 255 255 / 4.5%) 0 1px, transparent 1px 7px),
     linear-gradient(150deg, var(--d-2), var(--tone) 60%);
   box-shadow:
     inset 0 0 0 1px var(--d-hair),
-    inset 0 1px 0 rgba(255, 255, 255, 0.16),
-    0 1px 2px rgba(11, 13, 18, 0.2),
-    0 18px 36px -18px rgba(11, 13, 18, 0.45);
+    inset 0 1px 0 rgb(255 255 255 / 16%),
+    0 1px 2px rgb(11 13 18 / 20%),
+    0 18px 36px -18px rgb(11 13 18 / 45%);
 }
 .tone-drive {
   --tone: var(--doc-drive);
@@ -592,11 +592,11 @@ body {
     linear-gradient(
       115deg,
       transparent 30%,
-      rgba(255, 255, 255, 0.1) 46%,
-      rgba(255, 255, 255, 0.02) 54%,
+      rgb(255 255 255 / 10%) 46%,
+      rgb(255 255 255 / 2%) 54%,
       transparent 68%
     ),
-    repeating-radial-gradient(circle at 82% 118%, rgba(255, 255, 255, 0.045) 0 1px, transparent 1px 7px),
+    repeating-radial-gradient(circle at 82% 118%, rgb(255 255 255 / 4.5%) 0 1px, transparent 1px 7px),
     linear-gradient(150deg, color-mix(in srgb, var(--tone) 70%, #3a4254), var(--tone) 60%);
 }
 .flipwrap > .doc {
@@ -687,7 +687,7 @@ body {
   height: 24px;
   padding: 0 10px;
   border-radius: 999px;
-  background: rgba(255, 255, 255, 0.12);
+  background: rgb(255 255 255 / 12%);
   font-size: 12px;
   font-weight: 500;
   display: inline-flex;
@@ -1054,11 +1054,11 @@ body {
 .status.flood .st-calm,
 .status.flood .gs,
 .status.flood .st-warn {
-  color: rgba(255, 255, 255, 0.85);
+  color: rgb(255 255 255 / 85%);
 }
 .status.flood .st-people,
 .status.flood .st-warn {
-  border-color: rgba(255, 255, 255, 0.2);
+  border-color: rgb(255 255 255 / 20%);
 }
 /* --- Illustrations: ink line --- */
 .ill path[stroke-dasharray] {
@@ -1173,13 +1173,13 @@ body {
     0 0 0 1px #1a1c22,
     0 0 0 9px #0b0d12,
     0 0 0 10px #2a2d35,
-    0 60px 120px -40px rgba(11, 13, 18, 0.35);
+    0 60px 120px -40px rgb(11 13 18 / 35%);
 }
 .phone::after {
   content: none;
 }
 .stage.wide .phone {
-  filter: drop-shadow(0 40px 30px rgba(11, 13, 18, 0.06));
+  filter: drop-shadow(0 40px 30px rgb(11 13 18 / 6%));
 }
 .side .demo-k {
   font-size: 13px;
@@ -1305,7 +1305,7 @@ button.pill::before,
   border-radius: 18px !important;
   box-shadow:
     inset 0 0 0 1px var(--d-hair),
-    0 18px 36px -18px rgba(11, 13, 18, 0.45) !important;
+    0 18px 36px -18px rgb(11 13 18 / 45%) !important;
 }
 .doccard .tiny {
   letter-spacing: 0 !important;

@@ -66,7 +66,7 @@ button.row:hover {
   width: 7px;
   height: 7px;
   border-radius: 50%;
-  background: currentColor;
+  background: currentcolor;
   flex: none;
 }
 .p-red {
@@ -128,9 +128,9 @@ button.row:hover {
   position: absolute;
   inset: -40%;
   background:
-    radial-gradient(40% 35% at 20% 30%, rgba(120, 140, 255, 0.38), transparent 70%),
-    radial-gradient(35% 30% at 80% 25%, rgba(200, 170, 255, 0.35), transparent 70%),
-    radial-gradient(40% 35% at 60% 85%, rgba(255, 190, 200, 0.3), transparent 70%);
+    radial-gradient(40% 35% at 20% 30%, rgb(120 140 255 / 38%), transparent 70%),
+    radial-gradient(35% 30% at 80% 25%, rgb(200 170 255 / 35%), transparent 70%),
+    radial-gradient(40% 35% at 60% 85%, rgb(255 190 200 / 30%), transparent 70%);
   filter: blur(10px);
 }
 .aurora > * {
@@ -138,19 +138,19 @@ button.row:hover {
 }
 .aurora.warm::before {
   background:
-    radial-gradient(40% 35% at 25% 30%, rgba(255, 190, 140, 0.42), transparent 70%),
-    radial-gradient(35% 35% at 80% 70%, rgba(255, 160, 180, 0.35), transparent 70%),
-    radial-gradient(30% 30% at 70% 20%, rgba(255, 225, 150, 0.4), transparent 70%);
+    radial-gradient(40% 35% at 25% 30%, rgb(255 190 140 / 42%), transparent 70%),
+    radial-gradient(35% 35% at 80% 70%, rgb(255 160 180 / 35%), transparent 70%),
+    radial-gradient(30% 30% at 70% 20%, rgb(255 225 150 / 40%), transparent 70%);
 }
 .aurora.green::before {
   background:
-    radial-gradient(40% 35% at 25% 30%, rgba(140, 215, 180, 0.45), transparent 70%),
-    radial-gradient(35% 35% at 80% 70%, rgba(150, 200, 255, 0.35), transparent 70%);
+    radial-gradient(40% 35% at 25% 30%, rgb(140 215 180 / 45%), transparent 70%),
+    radial-gradient(35% 35% at 80% 70%, rgb(150 200 255 / 35%), transparent 70%);
 }
 .aurora.rose::before {
   background:
-    radial-gradient(40% 35% at 70% 30%, rgba(255, 170, 190, 0.42), transparent 70%),
-    radial-gradient(35% 35% at 20% 75%, rgba(190, 170, 255, 0.38), transparent 70%);
+    radial-gradient(40% 35% at 70% 30%, rgb(255 170 190 / 42%), transparent 70%),
+    radial-gradient(35% 35% at 20% 75%, rgb(190 170 255 / 38%), transparent 70%);
 }
 .tag {
   display: inline-block;

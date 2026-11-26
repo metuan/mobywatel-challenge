@@ -41,7 +41,7 @@
   height: 10px;
   border-radius: 2px;
   background: linear-gradient(#fff 50%, var(--red) 50%);
-  box-shadow: 0 0 0 1px rgba(12, 18, 34, 0.1);
+  box-shadow: 0 0 0 1px rgb(12 18 34 / 10%);
   flex: none;
 }
 .menu-btn {
@@ -88,7 +88,7 @@
   right: -14px;
   bottom: -40px;
   height: 120px;
-  background: linear-gradient(rgba(245, 245, 246, 0), var(--bg) 55%);
+  background: linear-gradient(rgb(245 245 246 / 0%), var(--bg) 55%);
   z-index: -1;
   pointer-events: none;
 }
@@ -97,7 +97,7 @@
   align-items: center;
   gap: 6px;
   background: var(--surface);
-  border: 1px solid rgba(12, 18, 34, 0.14);
+  border: 1px solid rgb(12 18 34 / 14%);
   border-radius: 999px;
   padding: 7px 7px 7px 20px;
   box-shadow: var(--shadow);
@@ -133,7 +133,7 @@
   position: absolute;
   inset: 0;
   z-index: 45;
-  background: rgba(235, 235, 238, 0.6);
+  background: rgb(235 235 238 / 60%);
   backdrop-filter: blur(14px);
   -webkit-backdrop-filter: blur(14px);
   display: flex;

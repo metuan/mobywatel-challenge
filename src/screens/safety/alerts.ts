@@ -1,6 +1,5 @@
 import { html, useState } from '@/lib/preact';
 import { I } from '@/ui/icons';
-import { Hero } from '@/ui/illustrations';
 import { Sec } from '@/ui/primitives';
 import type { Ctx } from '@/types';
 import { stashBox } from '@/lib/morph';
@@ -118,12 +117,4 @@ export function AlertSafe(c: Ctx) {
     </div>
     <p class="tiny" style="margin-top:12px">Status widzą tylko osoby z Twojej rodziny. Znika po 72 godzinach.</p>
   </div>`;
-}
-
-function AlertDamage(c: Ctx) {
-  return html`<div><p class="stepk">Po zdarzeniu</p><h1 class="h-l">Zgłoś szkody</h1>
-    <${Hero} n="shelter" bg="sand"/>
-    <p class="lead">Zrób zdjęcia. Dodamy lokalizację i datę. Komisja z gminy umówi oględziny.</p>
-    <button class="card" style="width:100%;padding:30px;display:grid;place-items:center;gap:6px;color:var(--navy)">${I('camera', 30)}<span style="font-weight:600">Zrób zdjęcie</span></button>
-    <p class="tiny" style="margin-top:10px">Funkcja z planu rozwoju. Wzorowana na ukraińskim eRecovery w aplikacji Diia.</p></div>`;
 }

@@ -40,7 +40,6 @@ export function Move2(c: Ctx) {
           t,
           sub,
           ini,
-          col,
         ]) => html`<button class="row" role="checkbox" aria-checked=${on[k]} onClick=${() => setOn({ ...on, [k]: !on[k] })}>
         <span class="org">${ini}</span>
         <span class="tx"><div class="t">${t}</div><div class="s">${sub}</div></span>

@@ -7,7 +7,7 @@
   font-size: 11px;
   font-weight: 600;
   color: var(--tint);
-  background: rgba(10, 88, 208, 0.1);
+  background: rgb(10 88 208 / 10%);
   border-radius: 6px;
   padding: 2px 6px;
 }
@@ -96,15 +96,15 @@
   display: flex;
   justify-content: space-between;
   padding: 10px 0;
-  border-top: 0.5px solid rgba(255, 255, 255, 0.15);
+  border-top: 0.5px solid rgb(255 255 255 / 15%);
   font-size: 15px;
 }
 .med-r span {
-  color: rgba(235, 235, 245, 0.6);
+  color: rgb(235 235 245 / 60%);
 }
 .med-f {
   font-size: 12px;
-  color: rgba(235, 235, 245, 0.5);
+  color: rgb(235 235 245 / 50%);
   margin-top: 10px;
 }
 .photos {
@@ -125,7 +125,7 @@
   bottom: 8px;
   font-size: 11px;
   color: #fff;
-  background: rgba(0, 0, 0, 0.45);
+  background: rgb(0 0 0 / 45%);
   border-radius: 6px;
   padding: 2px 6px;
 }
@@ -254,7 +254,7 @@
   display: flex;
   gap: 6px;
   align-items: center;
-  background: rgba(0, 0, 0, 0.4);
+  background: rgb(0 0 0 / 40%);
   padding: 4px 10px;
   border-radius: 999px;
 }

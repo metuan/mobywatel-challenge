@@ -33,19 +33,19 @@
   opacity: 0.95;
 }
 .alert .box {
-  background: rgba(255, 255, 255, 0.96);
+  background: rgb(255 255 255 / 96%);
   color: var(--ink);
   border-radius: 24px;
   padding: 16px 18px;
   margin-top: 10px;
-  box-shadow: 0 20px 40px -20px rgba(0, 0, 0, 0.35);
+  box-shadow: 0 20px 40px -20px rgb(0 0 0 / 35%);
 }
 .alert .btn {
   background: #fff;
   color: var(--ink);
 }
 .alert .btn.ghost {
-  background: rgba(255, 255, 255, 0.14);
+  background: rgb(255 255 255 / 14%);
   color: #fff;
   box-shadow: none;
 }
@@ -181,7 +181,7 @@
   content: '';
   position: absolute;
   inset: 0;
-  background-image: radial-gradient(rgba(255, 255, 255, 0.5) 0.6px, transparent 0.7px);
+  background-image: radial-gradient(rgb(255 255 255 / 50%) 0.6px, transparent 0.7px);
   background-size: 22px 22px;
   opacity: 0.25;
 }

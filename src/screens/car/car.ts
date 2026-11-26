@@ -4,16 +4,6 @@ import { Hero } from '@/ui/illustrations';
 import { Row, Sec } from '@/ui/primitives';
 import type { Ctx } from '@/types';
 
-function Car(c: Ctx) {
-  return html`<div><${Hero} n="car" bg="sky"/><h1 class="h-l">Toyota Yaris, KR 4F21</h1>
-    <div class="list">
-      <${Row} icon="shield" t="OC" s="Kończy się 6 grudnia" right=${html`<span class="pill p-red">12 dni</span>`} onClick=${() => c.toast('Pokażemy oferty OC. Wybór i zakup po Twojej stronie.')}/>
-      <${Row} icon="car" t="Przegląd techniczny" s="Do 14 lutego 2027" right=${html`<span class="pill p-gray">82 dni</span>`} onClick=${() => {}}/>
-      <${Row} icon="doc" t="Punkty karne" s="0 punktów" right=${html`<span class="pill p-green">Czysto</span>`} onClick=${() => {}}/>
-    </div>
-    <div class="actions"><button class="btn ghost" onClick=${() => c.go('car-sell')}>Sprzedaję ten samochód</button></div></div>`;
-}
-
 export function CarSell(c: Ctx) {
   return html`<div><p class="stepk">Ważny moment</p><h1 class="h-l">Sprzedaż samochodu</h1>
     <p class="lead">Jedna sprawa w aplikacji zamiast trzech wizyt w urzędach. Kupujący potwierdza w swojej aplikacji.</p>
