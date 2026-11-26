@@ -1,3 +1,4 @@
+import { Eyebrow, Lead, Title } from '@/components/ui/typography';
 import { Actions, Button } from '@/components/ui/button';
 import { payWrap } from '@/screens/money/pay';
 import { Hero } from '@/ui/illustrations';
@@ -7,11 +8,11 @@ import type { Ctx } from '@/types';
 export function CarSell(c: Ctx) {
   return (
     <div>
-      <p className="stepk">Ważny moment</p>
-      <h1 className="h-l">Sprzedaż samochodu</h1>
-      <p className="lead">
+      <Eyebrow>Ważny moment</Eyebrow>
+      <Title>Sprzedaż samochodu</Title>
+      <Lead>
         Jedna sprawa w aplikacji zamiast trzech wizyt w urzędach. Kupujący potwierdza w swojej aplikacji.
-      </p>
+      </Lead>
       <div className="road">
         {[
           'Wpisz numer PESEL lub NIP kupującego',
@@ -37,10 +38,8 @@ function CarFullBase(c: Ctx) {
   return (
     <div>
       <Hero n="car" />
-      <h1 className="h-l">Toyota Yaris</h1>
-      <p className="lead" style={{ marginTop: '-6px' }}>
-        KR 4F21 · 2019 · benzyna
-      </p>
+      <Title>Toyota Yaris</Title>
+      <Lead style={{ marginTop: '-6px' }}>KR 4F21 · 2019 · benzyna</Lead>
       <div className="stats">
         <div>
           <div className="l">OC</div>

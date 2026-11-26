@@ -1,3 +1,4 @@
+import { Caption, Lead, Title } from '@/components/ui/typography';
 import { useState, type MouseEvent as ReactMouseEvent } from 'react';
 import { swipeRow } from '@/ui/controls';
 import { I } from '@/ui/icons';
@@ -72,10 +73,10 @@ export function Inbox(c: Ctx) {
   const shown = list.filter(x => f === 'all' || x.unread);
   return (
     <div className="inbox8">
-      <h1 className="h-l">Skrzynka</h1>
-      <p className="lead" style={{ marginBottom: '12px' }}>
+      <Title>Skrzynka</Title>
+      <Lead style={{ marginBottom: '12px' }}>
         Pisma ze wszystkich urzędów w jednym miejscu. Pod każdym krótkie wyjaśnienie.
-      </p>
+      </Lead>
       <div className="seg8">
         {[
           ['all', 'Wszystkie'],
@@ -131,9 +132,7 @@ export function Inbox(c: Ctx) {
           </div>
         )}
       </div>
-      <p className="tiny" style={{ marginTop: '12px' }}>
-        Przesuń pismo w lewo, żeby je zarchiwizować.
-      </p>
+      <Caption style={{ marginTop: '12px' }}>Przesuń pismo w lewo, żeby je zarchiwizować.</Caption>
     </div>
   );
 }

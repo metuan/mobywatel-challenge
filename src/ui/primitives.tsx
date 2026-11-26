@@ -131,7 +131,7 @@ export const AvStack = ({ size = 28, list = AV }: { size?: number; list?: [strin
   </span>
 );
 
-export const Lead = ({ ic }: { ic: IconName }) => <span className="lead-i">{I(ic, 20)}</span>;
+export const LeadIcon = ({ ic }: { ic: IconName }) => <span className="lead-i">{I(ic, 20)}</span>;
 
 export const GRow = ({
   ic,
@@ -151,7 +151,7 @@ export const GRow = ({
   onClick?: () => void;
 }) => (
   <button className="grow-row" onClick={onClick}>
-    {ic ? <Lead ic={ic} /> : av ? av : ''}
+    {ic ? <LeadIcon ic={ic} /> : av ? av : ''}
     <span className="gtx">
       <span className="gt">{t}</span>
       {s && <span className="gs">{s}</span>}

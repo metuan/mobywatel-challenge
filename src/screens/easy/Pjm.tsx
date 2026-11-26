@@ -1,3 +1,4 @@
+import { Lead, Title } from '@/components/ui/typography';
 import { Actions, Button } from '@/components/ui/button';
 import { useState } from 'react';
 import { I } from '@/ui/icons';
@@ -9,10 +10,8 @@ export function Pjm(c: Ctx) {
   const [on, setOn] = useState(false);
   return (
     <div>
-      <h1 className="h-l">Tłumacz polskiego języka migowego</h1>
-      <p className="lead">
-        Na każdym ekranie przycisk „PJM”. Łączy z tłumaczem na wideo, w dni robocze 8–20.
-      </p>
+      <Title>Tłumacz polskiego języka migowego</Title>
+      <Lead>Na każdym ekranie przycisk „PJM”. Łączy z tłumaczem na wideo, w dni robocze 8–20.</Lead>
       <div className="video">
         <svg viewBox="0 0 320 200" width="100%" aria-hidden="true">
           <rect width="320" height="200" fill="#2c2f36" />

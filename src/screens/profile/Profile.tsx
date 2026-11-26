@@ -1,3 +1,4 @@
+import { Caption, Muted, Subtitle } from '@/components/ui/typography';
 import { sx } from '@/lib/sx';
 import { I } from '@/ui/icons';
 import { Label, Row, Sec, Toggle } from '@/ui/primitives';
@@ -11,8 +12,8 @@ function ProfileBase(c: Ctx) {
           AN
         </span>
         <div>
-          <h1 className="h-m">Anna Nowicka</h1>
-          <div className="small">Kraków</div>
+          <Subtitle as="h1">Anna Nowicka</Subtitle>
+          <Muted>Kraków</Muted>
         </div>
       </div>
       <Sec t="Zaufanie" />
@@ -118,9 +119,7 @@ export function Profile(c: Ctx) {
       <Label t="Wielkość tekstu" />
       <div className="card" style={{ padding: '16px 18px' }}>
         <TextSize {...c} />
-        <p className="tiny" style={{ margin: '10px 0 0' }}>
-          Zmiana działa od razu na każdym ekranie.
-        </p>
+        <Caption style={{ margin: '10px 0 0' }}>Zmiana działa od razu na każdym ekranie.</Caption>
       </div>
     </div>
   );

@@ -1,6 +1,7 @@
+import { Display } from '@/components/ui/typography';
 import { sx } from '@/lib/sx';
 import { I } from '@/ui/icons';
-import { Av, AvStack, GRow, Label, Lead } from '@/ui/primitives';
+import { Av, AvStack, GRow, Label, LeadIcon } from '@/ui/primitives';
 import type { Ctx } from '@/types';
 
 export function Family(c: Ctx) {
@@ -13,7 +14,7 @@ export function Family(c: Ctx) {
   ];
   return (
     <div>
-      <h1 className="h-xl">Bliscy</h1>
+      <Display>Bliscy</Display>
       <div className="fhead">
         <AvStack size={32} />
         <span>{fam.length} osoby · 1 sprawa wymaga uwagi</span>
@@ -38,7 +39,7 @@ export function Family(c: Ctx) {
           </button>
         ))}
         <button className="grow-row" onClick={() => c.go('invite')}>
-          <Lead ic="plus" />
+          <LeadIcon ic="plus" />
           <span className="gtx">
             <span className="gt">Dodaj osobę</span>
           </span>

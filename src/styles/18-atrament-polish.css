@@ -1,14 +1,5 @@
 /* ===== v8.1 polish ===== */
 /* type: tighter, calmer */
-.h-xl {
-  font-size: 34px;
-  line-height: 38px;
-  letter-spacing: -0.035em;
-  font-weight: 680;
-}
-.today8 .h-xl {
-  margin-bottom: 20px;
-}
 .hi-d,
 .lbl {
   font-size: 13px;

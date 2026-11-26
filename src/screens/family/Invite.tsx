@@ -1,3 +1,4 @@
+import { Eyebrow, Lead, Muted, Title } from '@/components/ui/typography';
 import { Actions, Button } from '@/components/ui/button';
 import { useState } from 'react';
 import { QR } from '@/ui/documentCard';
@@ -15,12 +16,12 @@ export function Invite(c: Ctx) {
   if (step === 1)
     return (
       <div>
-        <p className="stepk">Krok 2 z 2</p>
-        <h1 className="h-l">Pokaż ten kod osobie, którą zapraszasz</h1>
+        <Eyebrow>Krok 2 z 2</Eyebrow>
+        <Title>Pokaż ten kod osobie, którą zapraszasz</Title>
         <div className="qr">{QR()}</div>
-        <p className="small" style={{ textAlign: 'center' }}>
+        <Muted as="p" style={{ textAlign: 'center' }}>
           Kod działa 10 minut. Zapraszana osoba potwierdza go swoim mDowodem.
-        </p>
+        </Muted>
         <Actions>
           <Button
             onClick={() => {
@@ -41,11 +42,9 @@ export function Invite(c: Ctx) {
   ];
   return (
     <div>
-      <p className="stepk">Krok 1 z 2</p>
-      <h1 className="h-l">Co ta osoba może?</h1>
-      <p className="lead">
-        Możesz to zmienić lub cofnąć w każdej chwili. Każde użycie zobaczysz w historii dostępu.
-      </p>
+      <Eyebrow>Krok 1 z 2</Eyebrow>
+      <Title>Co ta osoba może?</Title>
+      <Lead>Możesz to zmienić lub cofnąć w każdej chwili. Każde użycie zobaczysz w historii dostępu.</Lead>
       <div className="list">
         {rows.map(([k, t, s]) => (
           <div className="row">

@@ -1,3 +1,4 @@
+import { Eyebrow, Muted, Title } from '@/components/ui/typography';
 import { Actions, Button } from '@/components/ui/button';
 import { useEffect, useState } from 'react';
 import { I } from '@/ui/icons';
@@ -15,7 +16,7 @@ export function Letter1(c: Ctx) {
   return (
     <div>
       <Hero n="letter" />
-      <h1 className="h-l">Zrób zdjęcie pisma</h1>
+      <Title>Zrób zdjęcie pisma</Title>
       <div
         style={{
           background: '#1b1e24',
@@ -74,8 +75,8 @@ export function Letter1(c: Ctx) {
 export function Letter3(c: Ctx) {
   return (
     <div>
-      <p className="stepk">Podgląd odpowiedzi</p>
-      <h1 className="h-l">Wyjaśnienie do urzędu</h1>
+      <Eyebrow>Podgląd odpowiedzi</Eyebrow>
+      <Title>Wyjaśnienie do urzędu</Title>
       <div className="card" style={{ padding: '16px', fontSize: '14px', lineHeight: '1.6' }}>
         <p style={{ margin: '0 0 8px' }}>W sprawie: pisma z 19.11.2026, PIT-37 za 2025 r.</p>
         <p style={{ margin: '0 0 8px' }}>
@@ -141,8 +142,8 @@ export function Letter2(c: Ctx) {
   ];
   return (
     <div>
-      <p className="stepk">Wyjaśnienie pisma</p>
-      <h1 className="h-l">Urząd skarbowy prosi o wyjaśnienie korekty PIT-37.</h1>
+      <Eyebrow>Wyjaśnienie pisma</Eyebrow>
+      <Title>Urząd skarbowy prosi o wyjaśnienie korekty PIT-37.</Title>
       {k < 4 && (
         <div className="ai-work">
           {I('sparkle', 14)}{' '}
@@ -169,7 +170,7 @@ export function Letter2(c: Ctx) {
       {k >= 4 && (
         <>
           <div className="msg ai in" style={{ maxWidth: '100%', marginTop: '12px' }}>
-            <span className="small">Źródła</span>
+            <Muted as="span">Źródła</Muted>
             <div className="srcs">
               <span>Ordynacja podatkowa, art. 155</span>
               <span>podatki.gov.pl: korekta zeznania</span>

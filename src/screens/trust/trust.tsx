@@ -1,3 +1,4 @@
+import { Caption, Lead, Muted, Title } from '@/components/ui/typography';
 import { Actions, Button } from '@/components/ui/button';
 import { useState } from 'react';
 import { LOG } from '@/data/household';
@@ -11,8 +12,8 @@ export function AccessLog(c: Ctx) {
   return (
     <div>
       <Hero n="lock" />
-      <h1 className="h-l">Kto sprawdzał moje dane</h1>
-      <p className="lead">Listopad 2026. Każde sprawdzenie Twoich dokumentów lub rejestrów.</p>
+      <Title>Kto sprawdzał moje dane</Title>
+      <Lead>Listopad 2026. Każde sprawdzenie Twoich dokumentów lub rejestrów.</Lead>
       <div className="list">
         {LOG.map((l, i) => (
           <div className="row" style={{ alignItems: 'flex-start' }}>
@@ -20,9 +21,9 @@ export function AccessLog(c: Ctx) {
             <span className="tx">
               <div className="t">{l.who}</div>
               <div className="s">{l.why}</div>
-              <div className="tiny">
+              <Caption as="div">
                 {l.when} · {l.how}
-              </div>
+              </Caption>
               {flag === i ? (
                 <div className="note red" style={{ marginTop: '8px' }}>
                   {I('check', 16)}
@@ -59,16 +60,16 @@ export function Signin(c: Ctx) {
       <div className="face scan" style={{ marginTop: '60px' }}>
         {I('eye', 40)}
       </div>
-      <h1 className="h-l">Zaloguj się twarzą</h1>
-      <p className="lead">
+      <Title>Zaloguj się twarzą</Title>
+      <Lead>
         Bez kodów i haseł. Klucz dostępu działa tylko na stronach i w aplikacjach rządowych, więc fałszywa
         strona go nie przechwyci.
-      </p>
+      </Lead>
       <Actions>
         <Button onClick={() => c.go('today')}>Kontynuuj</Button>
         <Button variant="secondary">Użyj kodu PIN</Button>
       </Actions>
-      <p className="tiny">Wzorowane na Singpass (Singapur).</p>
+      <Caption>Wzorowane na Singpass (Singapur).</Caption>
     </div>
   );
 }
@@ -79,11 +80,11 @@ export function Offline(c: Ctx) {
       <div className="offline" style={{ margin: '8px -20px 0' }}>
         {I('wifi', 16)} Aktualizacja się nie powiodła. Nie masz internetu, ale najważniejsze rzeczy działają.
       </div>
-      <h1 className="h-l">Twoje dokumenty są bezpieczne.</h1>
-      <p className="lead">
+      <Title>Twoje dokumenty są bezpieczne.</Title>
+      <Lead>
         mDowód, prawo jazdy i poradnik bezpieczeństwa działają bez połączenia. Usługi online wrócą po
         aktualizacji.
-      </p>
+      </Lead>
       <div className="list">
         <Row icon="card" t="mDowód" s="Działa bez internetu" onClick={() => c.go('doc-id')} />
         <Row
@@ -96,9 +97,9 @@ export function Offline(c: Ctx) {
       <Actions>
         <Button>Spróbuj zaktualizować ponownie</Button>
       </Actions>
-      <p className="small" style={{ marginTop: '10px' }}>
+      <Muted as="p" style={{ marginTop: '10px' }}>
         Masz telefon z Androidem 8? Miesiąc przed końcem wsparcia aplikacja Cię ostrzeże i powie, co zrobić.
-      </p>
+      </Muted>
     </div>
   );
 }
@@ -108,11 +109,11 @@ export function Devices(c: Ctx) {
   const [lost, setLost] = useState(c.s.lost || false);
   return (
     <div>
-      <h1 className="h-l">Urządzenia i sesje</h1>
-      <p className="lead">
+      <Title>Urządzenia i sesje</Title>
+      <Lead>
         Tu widzisz, gdzie jesteś zalogowana. Jeśli zgubisz telefon, wyloguj go stąd albo z gov.pl na innym
         urządzeniu.
-      </p>
+      </Lead>
       <div className="list">
         <div className="row">
           <span className="it">{I('phone', 18)}</span>
@@ -179,8 +180,8 @@ export function Scam(c: Ctx) {
   return (
     <div>
       <Hero n="lock" />
-      <h1 className="h-l">Tarcza antyoszustwa</h1>
-      <p className="lead">Wklej podejrzaną wiadomość. Sprawdzimy link na liście ostrzeżeń CERT Polska.</p>
+      <Title>Tarcza antyoszustwa</Title>
+      <Lead>Wklej podejrzaną wiadomość. Sprawdzimy link na liście ostrzeżeń CERT Polska.</Lead>
       <div className="sms">
         <div className="sms-h">SMS · +48 731 •••</div>Twoja paczka czeka. Dopłać 1,99 zł: inpost-dopłata.pl/x7
       </div>
@@ -191,10 +192,10 @@ export function Scam(c: Ctx) {
       ) : (
         <div className="verdict">
           <div className="vh">{I('x', 18)} To oszustwo</div>
-          <div className="small" style={{ color: 'var(--ink)' }}>
+          <Muted style={{ color: 'var(--ink)' }}>
             Ta strona jest na liście ostrzeżeń CERT Polska od 21 listopada. Firmy kurierskie nie proszą o
             dopłaty SMS-em z linkiem.
-          </div>
+          </Muted>
           <Actions row style={{ marginTop: '12px' }}>
             <Button variant="secondary" onClick={() => c.toast('Usunięte')}>
               Usuń

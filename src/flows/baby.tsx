@@ -1,3 +1,4 @@
+import { Eyebrow, Lead, Title } from '@/components/ui/typography';
 import { Actions, Button } from '@/components/ui/button';
 import { useEffect, useState } from 'react';
 import { I } from '@/ui/icons';
@@ -8,10 +9,10 @@ import type { Ctx } from '@/types';
 export function Baby1(c: Ctx) {
   return (
     <div>
-      <p className="stepk">Nowe dziecko · krok 1 z 4</p>
+      <Eyebrow>Nowe dziecko · krok 1 z 4</Eyebrow>
       <Progress n={1} of={4} />
       <Hero n="baby" />
-      <h1 className="h-l">Gratulacje! Zgłośmy narodziny.</h1>
+      <Title>Gratulacje! Zgłośmy narodziny.</Title>
       <div className="note">
         {I('doc', 18)}
         <span>Szpital Uniwersytecki zgłosił urodzenie 15 listopada. Masz czas do 6 grudnia.</span>
@@ -47,12 +48,10 @@ export function Baby2(c: Ctx) {
   const [on, setOn] = useState<Record<string, boolean>>({ p800: true, nfz: true, pass: false });
   return (
     <div>
-      <p className="stepk">Nowe dziecko · krok 2 z 4</p>
+      <Eyebrow>Nowe dziecko · krok 2 z 4</Eyebrow>
       <Progress n={2} of={4} />
-      <h1 className="h-l">Co załatwić od razu?</h1>
-      <p className="lead">
-        Po zgłoszeniu Julia dostanie PESEL i adres automatycznie. Te sprawy wypełnimy za Ciebie:
-      </p>
+      <Title>Co załatwić od razu?</Title>
+      <Lead>Po zgłoszeniu Julia dostanie PESEL i adres automatycznie. Te sprawy wypełnimy za Ciebie:</Lead>
       <div className="list">
         {[
           ['p800', '800+', 'Wniosek do ZUS, bez logowania na stronę ZUS'],
@@ -85,9 +84,9 @@ export function Baby3(c: Ctx) {
   }, [stage]);
   return (
     <div>
-      <p className="stepk">Nowe dziecko · krok 3 z 4</p>
+      <Eyebrow>Nowe dziecko · krok 3 z 4</Eyebrow>
       <Progress n={3} of={4} />
-      <h1 className="h-l">Sprawdź i poproś Tomasza o zgodę</h1>
+      <Title>Sprawdź i poproś Tomasza o zgodę</Title>
       <div className="list">
         <div className="field">
           <div className="l">Akt urodzenia</div>
@@ -155,7 +154,7 @@ export function BabyDone(c: Ctx) {
       >
         {I('check', 28)}
       </div>
-      <h1 className="h-l">Witaj, Julio.</h1>
+      <Title>Witaj, Julio.</Title>
       <div className="list">
         <Row
           t="Akt urodzenia"

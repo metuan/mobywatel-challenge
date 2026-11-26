@@ -25,7 +25,6 @@ body {
 }
 /* kill uppercase everywhere */
 .dateline,
-.stepk,
 .sheet .q,
 .tech .eyebrow,
 .hk,
@@ -38,25 +37,6 @@ body {
   letter-spacing: 0 !important;
 }
 /* type */
-.h-xl {
-  font-size: 32px;
-  line-height: 36px;
-  font-weight: 650;
-  letter-spacing: -0.03em;
-  margin: 4px 0 16px;
-}
-.h-l {
-  font-size: 24px;
-  line-height: 28px;
-  font-weight: 650;
-  letter-spacing: -0.025em;
-}
-.h-m {
-  font-size: 17px;
-  line-height: 22px;
-  font-weight: 600;
-  letter-spacing: -0.015em;
-}
 .sec h3 {
   font-size: 14px;
   font-weight: 500;
@@ -736,9 +716,6 @@ body {
   color: var(--ink-2);
   margin: 8px 4px 0;
 }
-.today8 .h-xl {
-  margin: 2px 4px 18px;
-}
 .qa8 {
   display: grid;
   grid-template-columns: repeat(4, 1fr);
@@ -1294,8 +1271,4 @@ button.pill::before {
   box-shadow:
     inset 0 0 0 1px var(--d-hair),
     0 18px 36px -18px rgb(11 13 18 / 45%) !important;
-}
-.doccard .tiny {
-  letter-spacing: 0 !important;
-  text-transform: none;
 }

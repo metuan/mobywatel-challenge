@@ -180,9 +180,6 @@
   position: relative;
   z-index: 1;
 }
-.doccard .h-m {
-  color: #fff;
-}
 .qr {
   width: 180px;
   height: 180px;
@@ -194,9 +191,6 @@
 }
 
 /* ---------- Easy mode ---------- */
-.easy .h-xl {
-  font-size: 50px;
-}
 .tiles {
   display: grid;
   grid-template-columns: 1fr;

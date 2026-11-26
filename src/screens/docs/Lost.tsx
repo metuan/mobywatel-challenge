@@ -1,3 +1,4 @@
+import { Caption, Lead, Title } from '@/components/ui/typography';
 import { Actions } from '@/components/ui/button';
 import { sx } from '@/lib/sx';
 import { useState } from 'react';
@@ -20,12 +21,12 @@ export function Lost(c: Ctx) {
   };
   return (
     <div>
-      <h1 className="h-l">{done ? 'Wszystko zastrzeżone.' : 'Zgubiłaś portfel?'}</h1>
-      <p className="lead">
+      <Title>{done ? 'Wszystko zastrzeżone.' : 'Zgubiłaś portfel?'}</Title>
+      <Lead>
         {done
           ? 'Zastrzeżenia są aktywne od 15:58. Oto co dalej.'
           : 'Zastrzeżemy to wszystko naraz. Każdy krok możesz później cofnąć.'}
-      </p>
+      </Lead>
       <div className={'list lost8' + (done ? ' done' : '')}>
         {items.map((t, i) => (
           <div className="row" style={sx(`--i:${i}`)}>
@@ -61,9 +62,9 @@ export function Lost(c: Ctx) {
               }
             />
           </Actions>
-          <p className="tiny" style={{ textAlign: 'center', marginTop: '8px' }}>
+          <Caption style={{ textAlign: 'center', marginTop: '8px' }}>
             Przytrzymaj przycisk przez sekundę. Krótkie dotknięcie pokaże podsumowanie.
-          </p>
+          </Caption>
         </>
       )}
     </div>

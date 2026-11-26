@@ -1,3 +1,4 @@
+import { Lead, Title } from '@/components/ui/typography';
 import { I } from '@/ui/icons';
 import type { Ctx } from '@/types';
 
@@ -14,8 +15,8 @@ export function Calendar(c: Ctx) {
   ];
   return (
     <div>
-      <h1 className="h-l">Kalendarz rodziny</h1>
-      <p className="lead">Najbliższe 90 dni. Każdy termin ma następny krok.</p>
+      <Title>Kalendarz rodziny</Title>
+      <Lead>Najbliższe 90 dni. Każdy termin ma następny krok.</Lead>
       <div className="glist cal8">
         {items.map(([d, m, t, w, left, r, urg]) => (
           <button className={'grow-row' + (urg ? ' urg' : '')} onClick={() => c.go(r)}>

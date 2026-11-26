@@ -1,3 +1,4 @@
+import { Display, Lead, Title } from '@/components/ui/typography';
 import { Actions, Button } from '@/components/ui/button';
 import { sx } from '@/lib/sx';
 import { useState } from 'react';
@@ -9,8 +10,8 @@ import type { IconName } from '@/ui/icons';
 export function Plan(_c: Ctx) {
   return (
     <div>
-      <h1 className="h-l">Plan rodziny na sytuację kryzysową</h1>
-      <p className="lead">Ustalony razem z Tomaszem. Działa bez internetu.</p>
+      <Title>Plan rodziny na sytuację kryzysową</Title>
+      <Lead>Ustalony razem z Tomaszem. Działa bez internetu.</Lead>
       <div className="list">
         <div className="field">
           <div className="l">Miejsce spotkania 1</div>
@@ -60,11 +61,11 @@ export function Plan(_c: Ctx) {
 export function Places(_c: Ctx) {
   return (
     <div>
-      <h1 className="h-l">Obserwowane miejsca</h1>
-      <p className="lead">
+      <Title>Obserwowane miejsca</Title>
+      <Lead>
         Alerty dla Twojej lokalizacji przychodzą zawsze. Alerty dla tych miejsc są oznaczone ich nazwą, żeby
         ich nie pomylić.
-      </p>
+      </Lead>
       <div className="list">
         {[
           ['Sandomierz', 'Tata, ul. Mickiewicza'],
@@ -96,7 +97,7 @@ export function Safety(c: Ctx) {
   };
   return (
     <div>
-      <h1 className="h-xl">Ochrona</h1>
+      <Display>Ochrona</Display>
       <div className={'status' + (flood ? ' flood' : '')}>
         <div className="st-k">
           <span className="pulse-dot"></span>Połączono z RCB · 15:40

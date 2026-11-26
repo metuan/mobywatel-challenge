@@ -1,3 +1,4 @@
+import { Display } from '@/components/ui/typography';
 import { sx } from '@/lib/sx';
 import { DocCard } from '@/ui/documentCard';
 import { I } from '@/ui/icons';
@@ -11,7 +12,7 @@ function TodayBase(c: Ctx) {
     <div className="today8">
       <div className="hi">
         <div className="hi-d">Wtorek, 24 listopada</div>
-        <h1 className="h-xl">Dzień dobry, Anno</h1>
+        <Display className="mx-1 mt-0.5 mb-5">Dzień dobry, Anno</Display>
       </div>
       {c.bar || ''}
       <DocCard c={c} />

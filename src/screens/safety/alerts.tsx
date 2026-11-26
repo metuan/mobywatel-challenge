@@ -1,3 +1,4 @@
+import { Caption, Lead, Title } from '@/components/ui/typography';
 import { Actions, Button } from '@/components/ui/button';
 import { useState } from 'react';
 import { I } from '@/ui/icons';
@@ -106,7 +107,7 @@ export function AlertShelter(c: Ctx) {
       <span className="pill p-red" style={{ marginTop: '8px' }}>
         Alert RCB trwa · Kraków
       </span>
-      <h1 className="h-l">Idź do schronienia przy ul. Dekerta 24</h1>
+      <Title>Idź do schronienia przy ul. Dekerta 24</Title>
       <div className="map">{ShelterMap()}</div>
       <div className="list" style={{ marginTop: '12px' }}>
         <div className="field">
@@ -141,10 +142,8 @@ export function AlertGuide(c: Ctx) {
       <span className="pill p-red" style={{ marginTop: '8px' }}>
         Alert RCB trwa
       </span>
-      <h1 className="h-l">Co robić teraz</h1>
-      <p className="lead">
-        Zasady z poradnika RCB. Alarm to syrena, której dźwięk rośnie i opada przez 3 minuty.
-      </p>
+      <Title>Co robić teraz</Title>
+      <Lead>Zasady z poradnika RCB. Alarm to syrena, której dźwięk rośnie i opada przez 3 minuty.</Lead>
       <button className="speak" style={{ width: '100%' }} onClick={() => setReading(!reading)}>
         {I(reading ? 'pause' : 'speaker', 22)} {reading ? 'Zatrzymaj odczyt' : 'Odczytaj na głos'}
       </button>
@@ -228,7 +227,7 @@ export function AlertSafe(c: Ctx) {
   };
   return (
     <div>
-      <h1 className="h-l">{sent ? 'Rodzina wie, że jesteś bezpieczna.' : 'Daj znać rodzinie'}</h1>
+      <Title>{sent ? 'Rodzina wie, że jesteś bezpieczna.' : 'Daj znać rodzinie'}</Title>
       {!sent && (
         <Actions style={{ marginTop: '6px' }}>
           <Button variant="success" onClick={send}>
@@ -287,9 +286,9 @@ export function AlertSafe(c: Ctx) {
           </button>
         </div>
       </div>
-      <p className="tiny" style={{ marginTop: '12px' }}>
+      <Caption style={{ marginTop: '12px' }}>
         Status widzą tylko osoby z Twojej rodziny. Znika po 72 godzinach.
-      </p>
+      </Caption>
     </div>
   );
 }

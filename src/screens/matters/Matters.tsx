@@ -1,3 +1,4 @@
+import { Display, Eyebrow, Title } from '@/components/ui/typography';
 import { sx } from '@/lib/sx';
 import { useState } from 'react';
 import { Search } from '@/screens/search/Search';
@@ -15,8 +16,8 @@ export function CaseMeld(_c: Ctx) {
   ];
   return (
     <div>
-      <p className="stepk">Sprawa</p>
-      <h1 className="h-l">Wymiana dowodu rejestracyjnego</h1>
+      <Eyebrow>Sprawa</Eyebrow>
+      <Title>Wymiana dowodu rejestracyjnego</Title>
       <div className="list">
         {st.map(([t, s], i) => (
           <div className="row">
@@ -65,7 +66,7 @@ export function Matters(c: Ctx) {
   ];
   return (
     <div>
-      <h1 className="h-xl">Sprawy</h1>
+      <Display>Sprawy</Display>
       <Search c={c} ph="Czego potrzebujesz?" />
       <div className="chips">
         {cats.map(([k, t]) => (

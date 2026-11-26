@@ -1,3 +1,4 @@
+import { Caption, Subtitle } from '@/components/ui/typography';
 import { Actions, Button } from '@/components/ui/button';
 import { sx } from '@/lib/sx';
 import { useEffect, useRef, useState } from 'react';
@@ -528,12 +529,11 @@ export function App() {
               ) : sheet.stage === 0 ? (
                 <div>
                   <div className="q">Czy te dane są poprawne?</div>
-                  <h2
-                    className="h-m"
+                  <Subtitle
                     style={sx(sheet.big ? 'font-size:30px;margin-bottom:12px' : 'margin-bottom:12px')}
                   >
                     {sheet.t}
-                  </h2>
+                  </Subtitle>
                   <div className="fields">
                     {(sheet.items || []).map(i => (
                       <div className="field" style={sx(sheet.big ? 'font-size:18px' : '')}>
@@ -544,10 +544,10 @@ export function App() {
                       </div>
                     ))}
                   </div>
-                  <p className="tiny" style={{ marginTop: '12px' }}>
+                  <Caption style={{ marginTop: '12px' }}>
                     Potwierdzasz twarzą lub kodem PIN. To jest Twój podpis. Nic nie zostanie wysłane
                     wcześniej.
-                  </p>
+                  </Caption>
                   <Actions row>
                     <Button variant="secondary" onClick={() => closeSheet()}>
                       Nie, popraw

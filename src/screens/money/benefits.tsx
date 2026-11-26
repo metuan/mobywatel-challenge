@@ -1,3 +1,4 @@
+import { Caption, Eyebrow, Title } from '@/components/ui/typography';
 import { sx } from '@/lib/sx';
 import { I } from '@/ui/icons';
 import { Hero } from '@/ui/illustrations';
@@ -8,7 +9,7 @@ export function Benefits(c: Ctx) {
   return (
     <div>
       <Hero n="coin" />
-      <h1 className="h-l">Świadczenia, które mogą Ci przysługiwać</h1>
+      <Title>Świadczenia, które mogą Ci przysługiwać</Title>
       <div className="note amber">
         {I('lock', 18)}
         <span>
@@ -47,8 +48,8 @@ export function P800(c: Ctx) {
   const M = ['cze', 'lip', 'sie', 'wrz', 'paź', 'lis', 'gru', 'sty', 'lut', 'mar', 'kwi', 'maj'];
   return (
     <div className="p8">
-      <p className="stepk">Świadczenie dla Zosi</p>
-      <h1 className="h-l">800+</h1>
+      <Eyebrow>Świadczenie dla Zosi</Eyebrow>
+      <Title>800+</Title>
       <div className="p8-hero">
         <Ring v={26} max={30} size={76} w={4}>
           <b>2</b>
@@ -94,9 +95,7 @@ export function P800(c: Ctx) {
           />
         </div>
       )}
-      <p className="tiny" style={{ marginTop: '12px' }}>
-        Nie musisz logować się do ZUS ani do banku.
-      </p>
+      <Caption style={{ marginTop: '12px' }}>Nie musisz logować się do ZUS ani do banku.</Caption>
     </div>
   );
 }
@@ -112,8 +111,8 @@ export function Vacc(c: Ctx) {
   ];
   return (
     <div>
-      <p className="stepk">Zosia, 6 lat</p>
-      <h1 className="h-l">Szczepienia</h1>
+      <Eyebrow>Zosia, 6 lat</Eyebrow>
+      <Title>Szczepienia</Title>
       <div className="vt">
         {V.map(([age, t, s, st]) => (
           <div className={'vt-i ' + st}>
@@ -131,7 +130,7 @@ export function Vacc(c: Ctx) {
           </div>
         ))}
       </div>
-      <p className="tiny">Z Internetowego Konta Pacjenta. Oboje rodzice widzą to samo.</p>
+      <Caption>Z Internetowego Konta Pacjenta. Oboje rodzice widzą to samo.</Caption>
     </div>
   );
 }

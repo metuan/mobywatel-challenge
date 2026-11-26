@@ -1,3 +1,4 @@
+import { Caption, Display, Eyebrow, Lead, Muted, Subtitle, Title } from '@/components/ui/typography';
 import { Actions, Button } from '@/components/ui/button';
 import { sx } from '@/lib/sx';
 import { useLayoutEffect, useState } from 'react';
@@ -5,7 +6,7 @@ import { reducedMotion } from '@/lib/env';
 import { DRAWER } from '@/ui/controls';
 import { DocCard, QR, ROSETTE } from '@/ui/documentCard';
 import { I } from '@/ui/icons';
-import { GRow, Label, Lead, Row, Sec } from '@/ui/primitives';
+import { GRow, Label, LeadIcon, Row, Sec } from '@/ui/primitives';
 import type { Ctx } from '@/types';
 import type { Persona } from '@/types';
 import { stashBox, takeBox } from '@/lib/morph';
@@ -45,7 +46,7 @@ export function ShareMin(c: Ctx) {
   const [what, setWhat] = useState('age');
   return (
     <div>
-      <h1 className="h-l">Pokaż tylko to, co trzeba</h1>
+      <Title>Pokaż tylko to, co trzeba</Title>
       <div className="seg full" style={{ marginBottom: '8px' }}>
         {[
           ['age', 'Pełnoletność'],
@@ -59,7 +60,7 @@ export function ShareMin(c: Ctx) {
       </div>
       <div className="qr">{QR()}</div>
       <div className="card" style={{ padding: '14px 16px' }}>
-        <div className="small">Osoba, która sprawdza, zobaczy:</div>
+        <Muted>Osoba, która sprawdza, zobaczy:</Muted>
         <div style={{ fontWeight: '600', fontSize: '18px' }}>
           {what === 'age'
             ? 'Osoba pełnoletnia: TAK'
@@ -67,13 +68,13 @@ export function ShareMin(c: Ctx) {
               ? 'Miejsce zamieszkania: Kraków'
               : 'Imię, nazwisko, PESEL, zdjęcie, data ważności'}
         </div>
-        <div className="tiny">
+        <Caption as="div">
           {what === 'full' ? 'Użyj tylko w urzędzie, banku lub na poczcie.' : 'Bez imienia, PESEL i zdjęcia.'}
-        </div>
+        </Caption>
       </div>
-      <p className="tiny" style={{ marginTop: '10px' }}>
+      <Caption style={{ marginTop: '10px' }}>
         Każde sprawdzenie trafia do historii „Kto sprawdzał moje dane”.
-      </p>
+      </Caption>
       <Actions>
         <Button variant="secondary" onClick={() => c.go('eu')}>
           {I('card', 18)} Za granicą: portfel UE
@@ -86,11 +87,11 @@ export function ShareMin(c: Ctx) {
 export function RenewPass(c: Ctx) {
   return (
     <div>
-      <p className="stepk">Zosia</p>
-      <h1 className="h-l">Nowy paszport dla Zosi</h1>
-      <p className="lead">
+      <Eyebrow>Zosia</Eyebrow>
+      <Title>Nowy paszport dla Zosi</Title>
+      <Lead>
         Wniosek przygotujemy z danych, które już są w rejestrach. Potrzebna jest zgoda obojga rodziców.
-      </p>
+      </Lead>
       <div className="list">
         <div className="field">
           <div className="l">Wizyta w urzędzie</div>
@@ -113,17 +114,17 @@ export function Issued(c: Ctx) {
   const [acc, setAcc] = useState(c.s.diploma || false);
   return (
     <div>
-      <h1 className="h-l">Dokumenty od wystawcy</h1>
-      <p className="lead">
+      <Title>Dokumenty od wystawcy</Title>
+      <Lead>
         Uczelnie, szkoły i urzędy wydają dokumenty prosto do aplikacji. Bez skanów i kopii „za zgodność”.
-      </p>
+      </Lead>
       {!acc ? (
         <div className="card" style={{ padding: '16px' }}>
-          <div className="small">Nowy dokument · dziś</div>
-          <div className="h-m" style={{ margin: '4px 0 2px' }}>
+          <Muted>Nowy dokument · dziś</Muted>
+          <Subtitle as="div" style={{ margin: '4px 0 2px' }}>
             Dyplom ukończenia studiów
-          </div>
-          <div className="small">Uniwersytet Jagielloński · Pielęgniarstwo, magister</div>
+          </Subtitle>
+          <Muted>Uniwersytet Jagielloński · Pielęgniarstwo, magister</Muted>
           <Actions row style={{ marginTop: '14px' }}>
             <Button variant="secondary" onClick={() => c.toast('Odrzucono')}>
               Odrzuć
@@ -190,7 +191,7 @@ function DocsBase(c: Ctx) {
   const [sel, setSel] = useState(-1);
   return (
     <div>
-      <h1 className="h-xl">Dokumenty</h1>
+      <Display>Dokumenty</Display>
       <div
         className={'stack w2' + (sel >= 0 ? ' has-sel' : '')}
         style={sx(sel >= 0 ? '' : `height:${PEEK * (n - 1) + FRONT}px`)}
@@ -253,7 +254,7 @@ function DocsBase(c: Ctx) {
       </div>
       <div className="glist" style={{ marginTop: '12px' }}>
         <button className="grow-row" onClick={() => c.go('lost')}>
-          <Lead ic="lock" />
+          <LeadIcon ic="lock" />
           <span className="gtx">
             <span className="gt red-t">Zgubiłam portfel</span>
             <span className="gs">Zastrzeż wszystkie dokumenty naraz</span>

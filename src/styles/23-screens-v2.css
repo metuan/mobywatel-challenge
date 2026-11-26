@@ -1,12 +1,5 @@
 /* ===== Uphill pass, 26 Nov ===== */
 /* hop 1: big easy-mode headings no longer collide (fixed px line-height under a bigger inline size) */
-.h-l {
-  line-height: 1.16;
-}
-.easy .h-l {
-  line-height: 1.1;
-  text-wrap: balance;
-}
 /* hop 2: compact nav title on every screen */
 .tb-title {
   max-width: 200px;

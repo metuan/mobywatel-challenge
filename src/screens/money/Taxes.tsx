@@ -1,3 +1,4 @@
+import { Muted, Title } from '@/components/ui/typography';
 import { Hero } from '@/ui/illustrations';
 import { Row, Sec } from '@/ui/primitives';
 import type { Ctx } from '@/types';
@@ -7,17 +8,17 @@ function TaxesBase(c: Ctx) {
   return (
     <div>
       <Hero n="coin" />
-      <h1 className="h-l">Podatki</h1>
+      <Title>Podatki</Title>
       <div className="card taxhero">
-        <div className="small">PIT-37 za 2025 · Twój e-PIT · zwrot do 45 dni</div>
+        <Muted>PIT-37 za 2025 · Twój e-PIT · zwrot do 45 dni</Muted>
         <div className="big">1 284 zł</div>
-        <div className="small">zwrotu, wysłany 3 marca na konto •••• 4471</div>
+        <Muted>zwrotu, wysłany 3 marca na konto •••• 4471</Muted>
         <div className="steps" style={{ gridTemplateColumns: 'repeat(3,1fr)' }}>
           <i className="on"></i>
           <i className="on"></i>
           <i className="on"></i>
         </div>
-        <div className="small">Złożony · przyjęty · zwrot wypłacony</div>
+        <Muted>Złożony · przyjęty · zwrot wypłacony</Muted>
       </div>
       <Sec t="Opłaty lokalne" />
       <div className="list">

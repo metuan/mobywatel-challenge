@@ -1,3 +1,4 @@
+import { Caption, Eyebrow, Title } from '@/components/ui/typography';
 import { useEffect, useState } from 'react';
 import { reducedMotion } from '@/lib/env';
 import { TapShare } from '@/ui/controls';
@@ -18,8 +19,8 @@ export function EuWallet(_c: Ctx) {
   });
   return (
     <div>
-      <p className="stepk">Lizbona · wypożyczalnia aut</p>
-      <h1 className="h-l">Ta sama karta w całej Unii</h1>
+      <Eyebrow>Lizbona · wypożyczalnia aut</Eyebrow>
+      <Title>Ta sama karta w całej Unii</Title>
       <div className={'eu-flip' + (side ? ' on' : '')}>
         <div className="eu-f eu-pl doc tone-id">
           <div className="d-top">
@@ -61,9 +62,7 @@ export function EuWallet(_c: Ctx) {
           </span>
         ))}
       </div>
-      <p className="tiny" style={{ margin: '8px 0 14px' }}>
-        Nie udostępniasz: adresu, PESEL ani daty urodzenia.
-      </p>
+      <Caption style={{ margin: '8px 0 14px' }}>Nie udostępniasz: adresu, PESEL ani daty urodzenia.</Caption>
       <TapShare
         them="Rent-a-car Lisboa"
         sub="Anna przykłada telefon do terminala przy ladzie."

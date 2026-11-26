@@ -1,3 +1,4 @@
+import { Title } from '@/components/ui/typography';
 import { useEffect, useRef, useState } from 'react';
 import { norm } from '@/lib/env';
 import { HOWTO, HowCard, howFor, showMe } from '@/story/howto';
@@ -120,7 +121,7 @@ export function SearchScreen(c: Ctx) {
   const [pick, setPick] = useState('');
   return (
     <div>
-      <h1 className="h-l">Szukaj</h1>
+      <Title>Szukaj</Title>
       <Search key={pick} init={pick} c={c} auto={!pick} />
       {!pick && (
         <>

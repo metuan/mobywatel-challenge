@@ -1,3 +1,4 @@
+import { Title } from '@/components/ui/typography';
 import { I } from '@/ui/icons';
 import type { Ctx } from '@/types';
 
@@ -7,7 +8,7 @@ export function FamilyMap(c: Ctx) {
       <span className="pill p-red" style={{ marginTop: '8px' }}>
         Alert RCB trwa · Kraków
       </span>
-      <h1 className="h-l">Gdzie jest rodzina</h1>
+      <Title>Gdzie jest rodzina</Title>
       <div className="map" style={{ position: 'relative' }}>
         <svg viewBox="0 0 350 260" width="100%" role="img" aria-label="Mapa: położenie rodziny">
           <rect width="350" height="260" fill="#eef0ea" />

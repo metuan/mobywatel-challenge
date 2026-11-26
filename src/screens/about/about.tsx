@@ -1,3 +1,4 @@
+import { Lead, Muted, Title } from '@/components/ui/typography';
 import { I } from '@/ui/icons';
 import type { Ctx } from '@/types';
 
@@ -17,8 +18,8 @@ export function Roadmap(c: Ctx) {
   ];
   return (
     <div>
-      <h1 className="h-l">Nowe funkcje</h1>
-      <p className="lead">11 rzeczy, o które prosili ludzie w badaniach. Każdą da się kliknąć.</p>
+      <Title>Nowe funkcje</Title>
+      <Lead>11 rzeczy, o które prosili ludzie w badaniach. Każdą da się kliknąć.</Lead>
       <div className="list">
         {r.map(([t, s, go], i) => (
           <button className="row" onClick={() => c.go(go)}>
@@ -38,20 +39,20 @@ export function Roadmap(c: Ctx) {
 export function About(_c: Ctx) {
   return (
     <div>
-      <h1 className="h-l">O tej koncepcji</h1>
+      <Title>O tej koncepcji</Title>
       <p>
         Ten prototyp nowego mObywatela to niezależna koncepcja na konkurs mObywatel Challenge (mobywatel.ai).
         Nie jest oficjalną aplikacją mObywatel ani usługą administracji.
       </p>
-      <p className="small">
+      <Muted as="p">
         Wszystkie osoby, adresy i numery są fikcyjne. Asystent w tej wersji działa na przygotowanych
         scenariuszach. Wersja docelowa korzysta z polskich modeli językowych (Bielik lub PLLuM) z filtrem
         Bielik Guard.
-      </p>
-      <p className="small">
+      </Muted>
+      <Muted as="p">
         Wzorce zaczerpnięte z: Diia (Ukraina), Singpass i LifeSG (Singapur), GOV.UK, Digital Post (Dania),
         aplikacja Home Front Command (Izrael), portfel EUDI.
-      </p>
+      </Muted>
     </div>
   );
 }

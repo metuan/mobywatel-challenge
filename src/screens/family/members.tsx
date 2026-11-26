@@ -1,3 +1,4 @@
+import { Caption, Muted, Subtitle } from '@/components/ui/typography';
 import { Actions, Button } from '@/components/ui/button';
 import { sx } from '@/lib/sx';
 import { I } from '@/ui/icons';
@@ -12,8 +13,8 @@ export function MemberZosia(c: Ctx) {
           ZN
         </span>
         <div>
-          <h1 className="h-m">Zofia Nowicka</h1>
-          <div className="small">6 lat, PESEL 200307•••••</div>
+          <Subtitle as="h1">Zofia Nowicka</Subtitle>
+          <Muted>6 lat, PESEL 200307•••••</Muted>
         </div>
       </div>
       <Sec t="Dokumenty" />
@@ -62,9 +63,7 @@ export function MemberZosia(c: Ctx) {
       <div className="list">
         <Row icon="coin" t="800+" s="Wypłata 28 listopada" onClick={() => c.go('p800')} />
       </div>
-      <p className="tiny" style={{ marginTop: '14px' }}>
-        Widzą: Ty i Tomasz (oboje rodzice).
-      </p>
+      <Caption style={{ marginTop: '14px' }}>Widzą: Ty i Tomasz (oboje rodzice).</Caption>
     </div>
   );
 }
@@ -77,8 +76,8 @@ export function MemberTata(c: Ctx) {
           SN
         </span>
         <div>
-          <h1 className="h-m">Stanisław Nowicki</h1>
-          <div className="small">Tata, 71 lat, Sandomierz</div>
+          <Subtitle as="h1">Stanisław Nowicki</Subtitle>
+          <Muted>Tata, 71 lat, Sandomierz</Muted>
         </div>
       </div>
       <div className="note green" style={{ marginTop: '16px' }}>
@@ -141,8 +140,8 @@ export function MemberTomasz(_c: Ctx) {
           TN
         </span>
         <div>
-          <h1 className="h-m">Tomasz Nowicki</h1>
-          <div className="small">Partner</div>
+          <Subtitle as="h1">Tomasz Nowicki</Subtitle>
+          <Muted>Partner</Muted>
         </div>
       </div>
       <Sec t="Wspólne" />
@@ -162,9 +161,9 @@ export function MemberTomasz(_c: Ctx) {
           </div>
         ))}
       </div>
-      <p className="small" style={{ marginTop: '12px' }}>
+      <Muted as="p" style={{ marginTop: '12px' }}>
         Każdy z Was zachowuje własne dokumenty, finanse i zdrowie. Nie są wspólne.
-      </p>
+      </Muted>
     </div>
   );
 }

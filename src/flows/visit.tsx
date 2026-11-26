@@ -1,3 +1,4 @@
+import { Caption, Eyebrow, Title } from '@/components/ui/typography';
 import { Actions, Button } from '@/components/ui/button';
 import { sx } from '@/lib/sx';
 import { useState } from 'react';
@@ -9,9 +10,9 @@ import type { Ctx } from '@/types';
 export function Visit1(c: Ctx) {
   return (
     <div>
-      <p className="stepk">e-Skierowanie · Zosia</p>
+      <Eyebrow>e-Skierowanie · Zosia</Eyebrow>
       <Hero n="doctor" />
-      <h1 className="h-l">Kardiolog dziecięcy</h1>
+      <Title>Kardiolog dziecięcy</Title>
       <div className="list">
         <div className="field">
           <div className="l">Wystawił</div>
@@ -29,9 +30,9 @@ export function Visit1(c: Ctx) {
       <Actions>
         <Button onClick={() => c.go('visit-2')}>Zarezerwuj wizytę</Button>
       </Actions>
-      <p className="tiny" style={{ marginTop: '10px' }}>
+      <Caption style={{ marginTop: '10px' }}>
         Przez system rejestracji NFZ. Nie musisz przepisywać kodu.
-      </p>
+      </Caption>
     </div>
   );
 }
@@ -46,8 +47,8 @@ export function Visit2(c: Ctx) {
   ];
   return (
     <div>
-      <p className="stepk">Wybierz termin</p>
-      <h1 className="h-l">Najbliższe terminy</h1>
+      <Eyebrow>Wybierz termin</Eyebrow>
+      <Title>Najbliższe terminy</Title>
       <div className="seg full" style={{ marginBottom: '12px' }}>
         <button aria-pressed="true">Najszybciej</button>
         <button aria-pressed="false" onClick={() => c.toast('Sortowanie po odległości w pełnej wersji')}>
@@ -99,8 +100,8 @@ export function Visit3(c: Ctx) {
   const s = c.s.visitPick || ['15 grudnia, 10:30', 'Szpital Dziecięcy, Prokocim'];
   return (
     <div>
-      <p className="stepk">Podgląd</p>
-      <h1 className="h-l">Sprawdź rezerwację</h1>
+      <Eyebrow>Podgląd</Eyebrow>
+      <Title>Sprawdź rezerwację</Title>
       <div className="list">
         <div className="field">
           <div className="l">Pacjent</div>
@@ -150,7 +151,7 @@ export function Visit4(c: Ctx) {
       >
         {I('check', 28)}
       </div>
-      <h1 className="h-l">Wizyta Zosi: {c.s.visit || '15 grudnia, 10:30'}</h1>
+      <Title>Wizyta Zosi: {c.s.visit || '15 grudnia, 10:30'}</Title>
       <div className="list">
         <div className="row">
           <span className="tx">

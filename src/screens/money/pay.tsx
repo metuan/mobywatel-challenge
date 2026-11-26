@@ -1,3 +1,4 @@
+import { Caption } from '@/components/ui/typography';
 import { Actions, Button } from '@/components/ui/button';
 import { useEffect } from 'react';
 import { coachTip } from '@/story/coach';
@@ -48,9 +49,9 @@ export function PaySheet({
         </Button>
         <Button onClick={() => setSheet({ ...sheet, stage: 1 })}>Zapłać {sheet.amt}</Button>
       </Actions>
-      <p className="tiny" style={{ textAlign: 'center', marginTop: '10px' }}>
+      <Caption style={{ textAlign: 'center', marginTop: '10px' }}>
         Potwierdzasz twarzą. Pieniądze trafiają prosto do urzędu.
-      </p>
+      </Caption>
     </div>
   );
 }

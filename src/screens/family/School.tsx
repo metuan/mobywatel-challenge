@@ -1,3 +1,4 @@
+import { Caption, Eyebrow, Lead, Muted, Subtitle, Title } from '@/components/ui/typography';
 import { Actions, Button } from '@/components/ui/button';
 import { useEffect, useState } from 'react';
 import { I } from '@/ui/icons';
@@ -17,12 +18,12 @@ export function Consent2(c: Ctx) {
   }, [c.s.askedTom]);
   return (
     <div>
-      <p className="stepk">Paszport dla Zosi</p>
-      <h1 className="h-l">Potrzebna zgoda obojga rodziców</h1>
-      <p className="lead">
+      <Eyebrow>Paszport dla Zosi</Eyebrow>
+      <Title>Potrzebna zgoda obojga rodziców</Title>
+      <Lead>
         Od czerwca 2026 drugi rodzic może zatwierdzić paszport w swoim mObywatelu. Rozszerzamy to na szkołę i
         wyjazdy, w jednym miejscu.
-      </p>
+      </Lead>
       <div className="list">
         <div className="row">
           <span className="face-i" style={{ background: '#22408f' }}>
@@ -92,10 +93,10 @@ export function School(c: Ctx) {
           <div className="t" style={{ fontWeight: '600', fontSize: '17px' }}>
             Zosia · zerówka
           </div>
-          <div className="small">Szkoła Podstawowa nr 9, Kraków</div>
+          <Muted>Szkoła Podstawowa nr 9, Kraków</Muted>
         </div>
       </div>
-      <h1 className="h-l">Szkoła</h1>
+      <Title>Szkoła</Title>
       <div className="seg full" style={{ marginBottom: '14px' }}>
         {['dziś', 'frekwencja', 'oceny'].map(t => (
           <button aria-pressed={tab === t} onClick={() => setTab(t)}>
@@ -155,33 +156,33 @@ export function School(c: Ctx) {
       {tab === 'frekwencja' && (
         <div className="card" style={{ padding: '16px' }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline' }}>
-            <div className="h-m">96%</div>
-            <div className="small">listopad</div>
+            <Subtitle as="div">96%</Subtitle>
+            <Muted>listopad</Muted>
           </div>
           <div className="att">
             {Array.from({ length: 20 }, (_, i) => (
               <i className={i === 15 ? (ex ? 'ex' : 'ab') : ''}></i>
             ))}
           </div>
-          <div className="small" style={{ marginTop: '8px' }}>
+          <Muted style={{ marginTop: '8px' }}>
             1 nieobecność{ex ? ' (usprawiedliwiona)' : ''} · 0 spóźnień
-          </div>
+          </Muted>
         </div>
       )}
       {tab === 'oceny' && (
         <div className="card" style={{ padding: '16px' }}>
-          <div className="small">
+          <Muted>
             Ocena opisowa za I półrocze pojawi się w styczniu. W klasach 1–3 oceny też są opisowe.
-          </div>
+          </Muted>
           <div className="note" style={{ marginTop: '12px', background: 'var(--fill)' }}>
             {I('sparkle', 18)}
             <span>Jeśli chcesz, streścimy ocenę w trzech zdaniach.</span>
           </div>
         </div>
       )}
-      <p className="tiny" style={{ marginTop: '12px' }}>
+      <Caption style={{ marginTop: '12px' }}>
         Widzą oboje rodzice. Dane z dziennika elektronicznego szkoły.
-      </p>
+      </Caption>
     </div>
   );
 }

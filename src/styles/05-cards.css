@@ -194,12 +194,6 @@ button.row:hover {
   background: #f0f0f3;
   box-shadow: var(--shadow-s);
 }
-.moment .h-m {
-  font-size: 26px;
-}
-.moment .tiny {
-  color: var(--ink2);
-}
 .mgrid {
   display: grid;
   grid-template-columns: 1fr 1fr;

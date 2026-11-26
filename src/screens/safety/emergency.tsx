@@ -1,3 +1,4 @@
+import { Caption, Eyebrow, Title } from '@/components/ui/typography';
 import { useState } from 'react';
 import { I } from '@/ui/icons';
 import { Toggle } from '@/ui/primitives';
@@ -8,8 +9,8 @@ export function Ice(c: Ctx) {
   const [lock, setLock] = useState(c.s.medLock !== false);
   return (
     <div>
-      <p className="stepk">Karta ratunkowa</p>
-      <h1 className="h-l">Na wypadek, gdy nie możesz mówić</h1>
+      <Eyebrow>Karta ratunkowa</Eyebrow>
+      <Title>Na wypadek, gdy nie możesz mówić</Title>
       <div className="icecard">
         <div className="ice-h">
           <span className="ice-star">{I('plus', 18)}</span>
@@ -79,10 +80,10 @@ export function Ice(c: Ctx) {
           <span className="chev">{I('chevron', 18)}</span>
         </button>
       </div>
-      <p className="tiny" style={{ marginTop: '12px' }}>
+      <Caption style={{ marginTop: '12px' }}>
         Alergie i leki pobieramy z Internetowego Konta Pacjenta za Twoją zgodą. Grupę krwi i kontakty
         wpisujesz sama.
-      </p>
+      </Caption>
     </div>
   );
 }

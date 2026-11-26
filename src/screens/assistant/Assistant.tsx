@@ -1,3 +1,4 @@
+import { Title } from '@/components/ui/typography';
 import { Button } from '@/components/ui/button';
 import { useEffect, useRef, useState } from 'react';
 import { reducedMotion } from '@/lib/env';
@@ -89,7 +90,7 @@ export function Assistant(c: Ctx) {
   }, [msgs, busy]);
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
-      <h1 className="h-l">Asystent</h1>
+      <Title>Asystent</Title>
       <p className="ai-warn" style={{ textAlign: 'left', margin: '0' }}>
         Odpowiadam na podstawie stron gov.pl i Twoich danych. Mogę się mylić. Niczego nie wysyłam bez Twojego
         „Potwierdź”.

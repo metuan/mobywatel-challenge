@@ -1,3 +1,4 @@
+import { Eyebrow, Lead, Title } from '@/components/ui/typography';
 import { Actions, Button } from '@/components/ui/button';
 import { sx } from '@/lib/sx';
 import { useState } from 'react';
@@ -11,10 +12,10 @@ export function Damage1(c: Ctx) {
   const [n, setN] = useState(c.s.dmgPhotos || 0);
   return (
     <div>
-      <p className="stepk">Zgłoszenie szkód · krok 1 z 3</p>
+      <Eyebrow>Zgłoszenie szkód · krok 1 z 3</Eyebrow>
       <Progress n={1} of={3} />
-      <h1 className="h-l">Zrób zdjęcia szkód</h1>
-      <p className="lead">Do każdego zdjęcia dodamy datę i miejsce. Nikt ich potem nie zmieni.</p>
+      <Title>Zrób zdjęcia szkód</Title>
+      <Lead>Do każdego zdjęcia dodamy datę i miejsce. Nikt ich potem nie zmieni.</Lead>
       <div className="photos">
         {[0, 1, 2, 3].map(i =>
           i < n ? (
@@ -62,9 +63,9 @@ export function Damage2(c: Ctx) {
   const [k, setK] = useState('dom');
   return (
     <div>
-      <p className="stepk">Zgłoszenie szkód · krok 2 z 3</p>
+      <Eyebrow>Zgłoszenie szkód · krok 2 z 3</Eyebrow>
       <Progress n={2} of={3} />
-      <h1 className="h-l">Co zostało uszkodzone?</h1>
+      <Title>Co zostało uszkodzone?</Title>
       <div className="seg full" style={{ marginBottom: '14px' }}>
         {[
           ['dom', 'Mieszkanie'],
@@ -119,8 +120,8 @@ export function Damage3(c: Ctx) {
   return (
     <div>
       <Hero n="shelter" />
-      <h1 className="h-l">Zgłoszenie przyjęte</h1>
-      <p className="lead">Numer sprawy: KR/SZK/2026/0412. Zajmuje się nią Urząd Miasta Krakowa.</p>
+      <Title>Zgłoszenie przyjęte</Title>
+      <Lead>Numer sprawy: KR/SZK/2026/0412. Zajmuje się nią Urząd Miasta Krakowa.</Lead>
       <div className="list timeline">
         {[
           ['Zgłoszenie wysłane', 'Dziś, 16:04', 1],

@@ -1,3 +1,4 @@
+import { Caption, Eyebrow, Lead, Title } from '@/components/ui/typography';
 import { Actions, Button } from '@/components/ui/button';
 import { sx } from '@/lib/sx';
 import { useEffect, useState } from 'react';
@@ -5,7 +6,7 @@ import { GRID, KRK2 } from '@/flows/sign/map';
 import { buzz, fire, fmt, reducedMotion } from '@/lib/env';
 import { TapShare } from '@/ui/controls';
 import { I } from '@/ui/icons';
-import { Av, Label, Lead, Num } from '@/ui/primitives';
+import { Av, Label, LeadIcon, Num } from '@/ui/primitives';
 import type { Ctx } from '@/types';
 
 const BILL = {
@@ -20,8 +21,8 @@ const BILL = {
 export function Sign1(c: Ctx) {
   return (
     <div>
-      <p className="stepk">Rynek Główny · sobota, 11:20</p>
-      <h1 className="h-l">Podpis bez kartki i długopisu</h1>
+      <Eyebrow>Rynek Główny · sobota, 11:20</Eyebrow>
+      <Title>Podpis bez kartki i długopisu</Title>
       <div className="bill8">
         <div className="b8-k">{BILL.k}</div>
         <div className="b8-t">{BILL.t}</div>
@@ -45,29 +46,29 @@ export function Sign1(c: Ctx) {
 export function Sign2(c: Ctx) {
   return (
     <div>
-      <p className="stepk">Głos · sprawdź, zanim podpiszesz</p>
-      <h1 className="h-l">{BILL.t}</h1>
-      <p className="lead">
+      <Eyebrow>Głos · sprawdź, zanim podpiszesz</Eyebrow>
+      <Title>{BILL.t}</Title>
+      <Lead>
         {BILL.k}. {BILL.who}.
-      </p>
+      </Lead>
       <Label t="Kto co zobaczy" />
       <div className="glist">
         <div className="grow-row is-static">
-          <Lead ic="people" />
+          <LeadIcon ic="people" />
           <span className="g-tx">
             <span className="gt">Komitet</span>
             <span className="gs">„1 ważny podpis, Kraków”. Bez imienia, PESEL i adresu.</span>
           </span>
         </div>
         <div className="grow-row is-static">
-          <Lead ic="shield" />
+          <LeadIcon ic="shield" />
           <span className="g-tx">
             <span className="gt">Marszałek Sejmu</span>
             <span className="gs">Twoje dane, tylko do sprawdzenia ważności podpisu.</span>
           </span>
         </div>
         <div className="grow-row is-static">
-          <Lead ic="eye" />
+          <LeadIcon ic="eye" />
           <span className="g-tx">
             <span className="gt">Ty</span>
             <span className="gs">Podpis trafi do „Moje podpisy”. Możesz śledzić losy projektu.</span>
@@ -106,11 +107,11 @@ export function Sign2(c: Ctx) {
 export function SignList(c: Ctx) {
   return (
     <div>
-      <h1 className="h-l">Moje podpisy</h1>
-      <p className="lead">Wszystko, co poparłaś: projekty ustaw, petycje i kandydaci.</p>
+      <Title>Moje podpisy</Title>
+      <Lead>Wszystko, co poparłaś: projekty ustaw, petycje i kandydaci.</Lead>
       <div className="glist">
         <div className="grow-row is-static">
-          <Lead ic="doc" />
+          <LeadIcon ic="doc" />
           <span className="g-tx">
             <span className="gt">{BILL.t}</span>
             <span className="gs">
@@ -119,24 +120,24 @@ export function SignList(c: Ctx) {
           </span>
         </div>
         <div className="grow-row is-static">
-          <Lead ic="mail" />
+          <LeadIcon ic="mail" />
           <span className="g-tx">
             <span className="gt">Więcej drzew na Kazimierzu</span>
             <span className="gs">Petycja do Rady Miasta Krakowa · odpowiedź do 12 grudnia</span>
           </span>
         </div>
         <div className="grow-row is-static">
-          <Lead ic="check" />
+          <LeadIcon ic="check" />
           <span className="g-tx">
             <span className="gt">Kandydatka do Senatu, okręg 32</span>
             <span className="gs">Poparcie zgłoszenia · podpis ważny, sprawdzony w rejestrze wyborców</span>
           </span>
         </div>
       </div>
-      <p className="tiny" style={{ marginTop: '12px' }}>
+      <Caption style={{ marginTop: '12px' }}>
         Partie i komitety nie mogą wysyłać Ci powiadomień. Podpisujesz tylko to, czego sama szukasz albo co
         ktoś poda Ci osobiście.
-      </p>
+      </Caption>
       <Label t="Tego samego dnia w Sandomierzu" />
       <button className="sg-twist" onClick={() => c.go('easy-sign', 'tata')}>
         <Av i="S" size={40} />
@@ -155,12 +156,10 @@ export function EasySign(c: Ctx) {
   return (
     <div className="easy">
       <div className="es-ic">{I('shield', 34)}</div>
-      <h1 className="h-l" style={{ fontSize: '34px', lineHeight: '38px' }}>
-        Ktoś podpisał się za Pana
-      </h1>
-      <p className="lead" style={{ fontSize: '19px', lineHeight: '27px' }}>
+      <Title style={{ fontSize: '34px', lineHeight: '38px' }}>Ktoś podpisał się za Pana</Title>
+      <Lead style={{ fontSize: '19px', lineHeight: '27px' }}>
         Pana PESEL jest na liście poparcia komitetu wyborczego „Nowa Fala”. Lista wpłynęła 22 listopada.
-      </p>
+      </Lead>
       {rep ? (
         <>
           <div className="note green" style={{ fontSize: '17px' }}>
@@ -214,7 +213,7 @@ export function Sign3(c: Ctx) {
   const lit = n > BILL.n;
   return (
     <div>
-      <p className="stepk">Głos · podpisano</p>
+      <Eyebrow>Głos · podpisano</Eyebrow>
       <div className="pl-map v2">
         <svg viewBox="0 0 300 278" role="img" aria-label="Mapa Polski: gdzie ludzie podpisali projekt">
           {GRID.map(([x, y, v]) => (

@@ -12,31 +12,6 @@ body {
   background: #f5f5f7;
 }
 /* titles */
-.h-xl {
-  font-family: var(--disp);
-  font-weight: 700;
-  font-size: 34px;
-  line-height: 1.12;
-  letter-spacing: -0.022em;
-  margin: 2px 0 12px;
-}
-.h-l {
-  font-family: var(--disp);
-  font-weight: 700;
-  font-size: 28px;
-  line-height: 1.14;
-  letter-spacing: -0.02em;
-  margin: 10px 0 10px;
-}
-.h-m {
-  font-family: var(--disp);
-  font-weight: 600;
-  font-size: 20px;
-  letter-spacing: -0.015em;
-}
-.moment .h-m {
-  font-size: 20px;
-}
 .dateline {
   font-size: 13px;
   font-weight: 600;
@@ -45,22 +20,10 @@ body {
   color: var(--label2);
   margin: 6px 0 0;
 }
-.lead {
-  color: var(--label2);
-  font-size: 16px;
-}
-.small,
 .row .s,
 .field .l,
 .mcard .ms {
   color: var(--label2);
-}
-.stepk {
-  font-size: 13px;
-  font-weight: 600;
-  color: var(--label2);
-  text-transform: uppercase;
-  letter-spacing: 0.01em;
 }
 .sec {
   margin: 28px 4px 8px;
@@ -467,9 +430,6 @@ button.row:active {
 .doccard {
   border-radius: 16px;
 }
-.doccard .h-m {
-  font-family: var(--disp);
-}
 .qr {
   border-radius: 16px;
 }
@@ -481,9 +441,6 @@ button.row:active {
   font-family: var(--disp);
   font-weight: 700;
   font-size: 20px;
-}
-.easy .h-xl {
-  font-size: 40px;
 }
 .tile {
   border-radius: 16px;

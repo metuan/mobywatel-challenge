@@ -1,3 +1,4 @@
+import { Eyebrow, Lead, Muted, Title } from '@/components/ui/typography';
 import { Actions, Button } from '@/components/ui/button';
 import { useState } from 'react';
 import { I } from '@/ui/icons';
@@ -9,10 +10,10 @@ import type { MoveSelection } from '@/types';
 export function Move1(c: Ctx) {
   return (
     <div>
-      <p className="stepk">Przeprowadzka · krok 1 z 4</p>
+      <Eyebrow>Przeprowadzka · krok 1 z 4</Eyebrow>
       <Progress n={1} of={4} />
       <Hero n="move" />
-      <h1 className="h-l">Dokąd się przeprowadzasz?</h1>
+      <Title>Dokąd się przeprowadzasz?</Title>
       <div className="list">
         <div className="field">
           <div className="l">Nowy adres</div>
@@ -46,13 +47,13 @@ export function Move2(c: Ctx) {
   const n = Object.values(on).filter(Boolean).length;
   return (
     <div>
-      <p className="stepk">Przeprowadzka · krok 2 z 4</p>
+      <Eyebrow>Przeprowadzka · krok 2 z 4</Eyebrow>
       <Progress n={2} of={4} />
-      <h1 className="h-l">Zaktualizuj adres we wszystkich urzędach</h1>
-      <p className="lead">
+      <Title>Zaktualizuj adres we wszystkich urzędach</Title>
+      <Lead>
         Asystent znalazł 4 miejsca, gdzie Twój adres musi się zmienić. Odznacz to, czego nie chcesz teraz
         załatwiać.
-      </p>
+      </Lead>
       <div className="card" style={{ padding: '6px 0' }}>
         <div
           style={{
@@ -62,8 +63,8 @@ export function Move2(c: Ctx) {
             padding: '12px 18px 6px',
           }}
         >
-          <span className="small">ul. Długa 12/4, Kraków</span>
-          <span className="small">{n} z 4</span>
+          <Muted as="span">ul. Długa 12/4, Kraków</Muted>
+          <Muted as="span">{n} z 4</Muted>
         </div>
         {items.map(([k, t, sub, ini]) => (
           <button
@@ -106,9 +107,9 @@ export function Move3(c: Ctx) {
   const n = Object.values(sel).filter(Boolean).length;
   return (
     <div>
-      <p className="stepk">Przeprowadzka · krok 3 z 4</p>
+      <Eyebrow>Przeprowadzka · krok 3 z 4</Eyebrow>
       <Progress n={3} of={4} />
-      <h1 className="h-l">Sprawdź przed wysłaniem</h1>
+      <Title>Sprawdź przed wysłaniem</Title>
       {sel.meld && (
         <>
           <div className="sec">
@@ -210,7 +211,7 @@ export function MoveDone(c: Ctx) {
       >
         {I('check', 28)}
       </div>
-      <h1 className="h-l">Wysłane. Resztą zajmiemy się razem.</h1>
+      <Title>Wysłane. Resztą zajmiemy się razem.</Title>
       <div className="list">
         <Row
           t="Zameldowanie"

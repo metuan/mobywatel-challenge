@@ -1,3 +1,4 @@
+import { Display, Lead, Muted, Title } from '@/components/ui/typography';
 import { Actions, Button } from '@/components/ui/button';
 import { sx } from '@/lib/sx';
 import { useEffect, useState } from 'react';
@@ -8,7 +9,7 @@ import type { Ctx } from '@/types';
 export function Easy(c: Ctx) {
   return (
     <div className="easy">
-      <h1 className="h-xl">Dzień dobry, Panie Stanisławie.</h1>
+      <Display>Dzień dobry, Panie Stanisławie.</Display>
       {c.s.easyApproved ? (
         ''
       ) : (
@@ -52,9 +53,9 @@ export function EasyApprove(c: Ctx) {
   const done = c.s.easyApproved;
   return (
     <div className="easy">
-      <h1 className="h-l" style={{ fontSize: '38px' }}>
+      <Title style={{ fontSize: '38px' }}>
         {done ? 'Zgoda zapisana.' : 'Anna chce Panu pomagać w sprawach urzędowych.'}
-      </h1>
+      </Title>
       <div className="card" style={{ padding: '18px', fontSize: '18px', lineHeight: '1.5' }}>
         <div style={{ fontWeight: '600', marginBottom: '6px' }}>Anna będzie mogła:</div>
         <div>✓ widzieć Pana terminy</div>
@@ -104,13 +105,9 @@ export function EasyApprove(c: Ctx) {
 export function EasyDoc(c: Ctx) {
   return (
     <div className="easy">
-      <h1 className="h-l" style={{ fontSize: '38px' }}>
-        Pana dowód
-      </h1>
+      <Title style={{ fontSize: '38px' }}>Pana dowód</Title>
       <div className="card" style={{ padding: '20px', fontSize: '20px' }}>
-        <div className="small" style={{ fontSize: '16px' }}>
-          Ważny do
-        </div>
+        <Muted style={{ fontSize: '16px' }}>Ważny do</Muted>
         <div style={{ fontWeight: '600', fontSize: '28px' }}>26 stycznia 2027</div>
         <div className="note amber" style={{ marginTop: '12px', fontSize: '16px' }}>
           Za 63 dni. Anna pomoże złożyć wniosek o nowy.
@@ -237,12 +234,8 @@ export function EasyRx(c: Ctx) {
   ];
   return (
     <div className="easy">
-      <h1 className="h-l" style={{ fontSize: '34px', lineHeight: '1.1' }}>
-        Pana recepty
-      </h1>
-      <p className="lead" style={{ fontSize: '18px' }}>
-        Dotknij recepty i pokaż ekran w aptece.
-      </p>
+      <Title style={{ fontSize: '34px', lineHeight: '1.1' }}>Pana recepty</Title>
+      <Lead style={{ fontSize: '18px' }}>Dotknij recepty i pokaż ekran w aptece.</Lead>
       <div className="rx8">
         {RX.map(([t, k, how, d], i) => (
           <button

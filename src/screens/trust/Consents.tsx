@@ -1,3 +1,4 @@
+import { Title } from '@/components/ui/typography';
 import { sx } from '@/lib/sx';
 import { useState } from 'react';
 import { collapseOut } from '@/ui/controls';
@@ -61,7 +62,7 @@ export function Consents(c: Ctx) {
   const active = list.filter(x => x.left !== 0).length;
   return (
     <div className="cons">
-      <h1 className="h-l">Moje zgody</h1>
+      <Title>Moje zgody</Title>
       <div className="cons-sum">
         <div>
           <b>
