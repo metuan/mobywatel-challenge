@@ -1,3 +1,4 @@
+import { Actions, Button } from '@/components/ui/button';
 import { useEffect, useState } from 'react';
 import { I } from '@/ui/icons';
 import { Hero } from '@/ui/illustrations';
@@ -35,11 +36,9 @@ export function Baby1(c: Ctx) {
           <div className="v">ul. Długa 12/4, Kraków</div>
         </div>
       </div>
-      <div className="actions">
-        <button className="btn" onClick={() => c.go('baby-2')}>
-          Dalej
-        </button>
-      </div>
+      <Actions>
+        <Button onClick={() => c.go('baby-2')}>Dalej</Button>
+      </Actions>
     </div>
   );
 }
@@ -69,11 +68,9 @@ export function Baby2(c: Ctx) {
           </div>
         ))}
       </div>
-      <div className="actions">
-        <button className="btn" onClick={() => c.go('baby-3')}>
-          Pokaż podgląd
-        </button>
-      </div>
+      <Actions>
+        <Button onClick={() => c.go('baby-3')}>Pokaż podgląd</Button>
+      </Actions>
     </div>
   );
 }
@@ -109,11 +106,9 @@ export function Baby3(c: Ctx) {
         </div>
       </div>
       {stage === 0 && (
-        <div className="actions">
-          <button className="btn" onClick={() => setStage(1)}>
-            Poproś Tomasza o zgodę
-          </button>
-        </div>
+        <Actions>
+          <Button onClick={() => setStage(1)}>Poproś Tomasza o zgodę</Button>
+        </Actions>
       )}
       {stage === 1 && (
         <div className="note amber" style={{ marginTop: '14px' }}>
@@ -127,9 +122,8 @@ export function Baby3(c: Ctx) {
             {I('check', 18)}
             <span>Tomasz potwierdził na swoim telefonie o 15:31.</span>
           </div>
-          <div className="actions">
-            <button
-              className="btn"
+          <Actions>
+            <Button
               onClick={() =>
                 c.confirm({
                   t: 'Wysłać pakiet „Nowe dziecko”?',
@@ -143,8 +137,8 @@ export function Baby3(c: Ctx) {
               }
             >
               Potwierdź
-            </button>
-          </div>
+            </Button>
+          </Actions>
         </div>
       )}
     </div>
@@ -188,11 +182,9 @@ export function BabyDone(c: Ctx) {
           onClick={() => c.go('p800')}
         />
       </div>
-      <div className="actions">
-        <button className="btn" onClick={() => c.go('family')}>
-          Zobacz kartę Julii w Bliskich
-        </button>
-      </div>
+      <Actions>
+        <Button onClick={() => c.go('family')}>Zobacz kartę Julii w Bliskich</Button>
+      </Actions>
     </div>
   );
 }

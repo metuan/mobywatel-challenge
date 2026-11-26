@@ -1,3 +1,4 @@
+import { Button } from '@/components/ui/button';
 import { useEffect, useRef, useState } from 'react';
 import { reducedMotion } from '@/lib/env';
 import { I } from '@/ui/icons';
@@ -122,13 +123,13 @@ export function Assistant(c: Ctx) {
                     ))}
                   </div>
                   {m.ai.act && (
-                    <button
-                      className="btn in"
+                    <Button
+                      className="animate-[fadeUp_0.25s_var(--out)]"
                       style={{ marginTop: '10px', padding: '11px' }}
                       onClick={() => c.go(m.ai.act![1])}
                     >
                       {m.ai.act[0]}
-                    </button>
+                    </Button>
                   )}
                 </>
               )}

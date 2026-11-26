@@ -89,9 +89,11 @@ export function coach(i: number, route: string, retry?: boolean): boolean {
       );
     return [...ph.querySelectorAll<HTMLElement>(sel)].find(ok);
   };
-  const sheetBtn = [...ph.querySelectorAll<HTMLElement>('.sheet-bg .actions .btn:not(.soft)')].find(
-    x => x.offsetParent !== null && !COACHED.has(x),
-  );
+  const sheetBtn = [
+    ...ph.querySelectorAll<HTMLElement>(
+      '.sheet-bg [data-slot=actions] [data-slot=button]:not([data-variant=secondary])',
+    ),
+  ].find(x => x.offsetParent !== null && !COACHED.has(x));
   if (sheetBtn) {
     sheetBtn.classList.add('coach');
     coachTip(ph, sheetBtn);
@@ -114,7 +116,9 @@ export function coach(i: number, route: string, retry?: boolean): boolean {
     used = sels[k];
   }
   if (!el && !sels.length) {
-    el = find('.btn:not(.soft):not(.ghost)') || find('.scroll button');
+    el =
+      find('[data-slot=button]:not([data-variant=secondary]):not([data-variant=inverseSecondary])') ||
+      find('.scroll button');
     used = null;
   }
   if (!el) {

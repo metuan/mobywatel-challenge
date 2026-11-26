@@ -1,3 +1,4 @@
+import { Actions, Button } from '@/components/ui/button';
 import { sx } from '@/lib/sx';
 import { I } from '@/ui/icons';
 import { Row, Sec } from '@/ui/primitives';
@@ -123,11 +124,11 @@ export function MemberTata(c: Ctx) {
           onClick={() => {}}
         />
       </div>
-      <div className="actions">
-        <button className="btn ghost" onClick={() => c.go('easy-approve')}>
+      <Actions>
+        <Button variant="secondary" onClick={() => c.go('easy-approve')}>
           Zobacz, jak tata to zatwierdził
-        </button>
-      </div>
+        </Button>
+      </Actions>
     </div>
   );
 }

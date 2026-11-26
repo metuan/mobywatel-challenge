@@ -1,3 +1,4 @@
+import { Actions, Button } from '@/components/ui/button';
 import { useState } from 'react';
 import { LOG } from '@/data/household';
 import { I } from '@/ui/icons';
@@ -44,11 +45,9 @@ export function AccessLog(c: Ctx) {
         ))}
       </div>
       {flag !== null && (
-        <div className="actions">
-          <button className="btn" onClick={() => c.go('devices')}>
-            Urządzenia na moim koncie
-          </button>
-        </div>
+        <Actions>
+          <Button onClick={() => c.go('devices')}>Urządzenia na moim koncie</Button>
+        </Actions>
       )}
     </div>
   );
@@ -65,12 +64,10 @@ export function Signin(c: Ctx) {
         Bez kodów i haseł. Klucz dostępu działa tylko na stronach i w aplikacjach rządowych, więc fałszywa
         strona go nie przechwyci.
       </p>
-      <div className="actions">
-        <button className="btn" onClick={() => c.go('today')}>
-          Kontynuuj
-        </button>
-        <button className="btn ghost">Użyj kodu PIN</button>
-      </div>
+      <Actions>
+        <Button onClick={() => c.go('today')}>Kontynuuj</Button>
+        <Button variant="secondary">Użyj kodu PIN</Button>
+      </Actions>
       <p className="tiny">Wzorowane na Singpass (Singapur).</p>
     </div>
   );
@@ -96,9 +93,9 @@ export function Offline(c: Ctx) {
           onClick={() => c.go('alert-guide')}
         />
       </div>
-      <div className="actions">
-        <button className="btn">Spróbuj zaktualizować ponownie</button>
-      </div>
+      <Actions>
+        <Button>Spróbuj zaktualizować ponownie</Button>
+      </Actions>
       <p className="small" style={{ marginTop: '10px' }}>
         Masz telefon z Androidem 8? Miesiąc przed końcem wsparcia aplikacja Cię ostrzeże i powie, co zrobić.
       </p>
@@ -188,11 +185,9 @@ export function Scam(c: Ctx) {
         <div className="sms-h">SMS · +48 731 •••</div>Twoja paczka czeka. Dopłać 1,99 zł: inpost-dopłata.pl/x7
       </div>
       {!chk ? (
-        <div className="actions">
-          <button className="btn" onClick={() => setChk(true)}>
-            Sprawdź wiadomość
-          </button>
-        </div>
+        <Actions>
+          <Button onClick={() => setChk(true)}>Sprawdź wiadomość</Button>
+        </Actions>
       ) : (
         <div className="verdict">
           <div className="vh">{I('x', 18)} To oszustwo</div>
@@ -200,14 +195,12 @@ export function Scam(c: Ctx) {
             Ta strona jest na liście ostrzeżeń CERT Polska od 21 listopada. Firmy kurierskie nie proszą o
             dopłaty SMS-em z linkiem.
           </div>
-          <div className="actions row2" style={{ marginTop: '12px' }}>
-            <button className="btn soft" onClick={() => c.toast('Usunięte')}>
+          <Actions row style={{ marginTop: '12px' }}>
+            <Button variant="secondary" onClick={() => c.toast('Usunięte')}>
               Usuń
-            </button>
-            <button className="btn" onClick={() => c.toast('Przekazano do CERT Polska (SMS 8080)')}>
-              Zgłoś do CERT
-            </button>
-          </div>
+            </Button>
+            <Button onClick={() => c.toast('Przekazano do CERT Polska (SMS 8080)')}>Zgłoś do CERT</Button>
+          </Actions>
         </div>
       )}
       <div className="list" style={{ marginTop: '14px' }}>

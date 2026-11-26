@@ -46,13 +46,6 @@
 .mini {
   background: #f2f2f4;
 }
-.btn.ghost {
-  box-shadow: none;
-  border: 1px solid var(--ink);
-}
-.btn.soft {
-  background: #f2f2f4;
-}
 .menu-btn,
 .round {
   box-shadow: none;
@@ -308,15 +301,6 @@
   font-size: 12px;
   color: var(--ink-2);
   padding: 8px 16px 2px;
-}
-.rcb-screen .btn.ghost {
-  background: rgb(255 255 255 / 12%);
-  color: #fff;
-  border: 0;
-}
-.rcb-screen .btn {
-  background: #fff;
-  color: var(--ink);
 }
 .lvl-chip {
   display: inline-flex;

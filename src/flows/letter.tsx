@@ -1,3 +1,4 @@
+import { Actions, Button } from '@/components/ui/button';
 import { useEffect, useState } from 'react';
 import { I } from '@/ui/icons';
 import { Hero } from '@/ui/illustrations';
@@ -63,11 +64,9 @@ export function Letter1(c: Ctx) {
           </div>
         )}
       </div>
-      <div className="actions">
-        <button className="btn" onClick={() => setSnap(true)}>
-          {I('camera', 18)} Zrób zdjęcie
-        </button>
-      </div>
+      <Actions>
+        <Button onClick={() => setSnap(true)}>{I('camera', 18)} Zrób zdjęcie</Button>
+      </Actions>
     </div>
   );
 }
@@ -97,9 +96,8 @@ export function Letter3(c: Ctx) {
           <span>Wysłano przez e-Doręczenia. Urzędowe potwierdzenie odbioru jest zapisane w sprawie.</span>
         </div>
       ) : (
-        <div className="actions">
-          <button
-            className="btn"
+        <Actions>
+          <Button
             onClick={() =>
               c.confirm({
                 t: 'Wysłać wyjaśnienie?',
@@ -113,9 +111,9 @@ export function Letter3(c: Ctx) {
             }
           >
             Potwierdź
-          </button>
-          <button className="btn ghost">Edytuj treść</button>
-        </div>
+          </Button>
+          <Button variant="secondary">Edytuj treść</Button>
+        </Actions>
       )}
     </div>
   );
@@ -180,11 +178,11 @@ export function Letter2(c: Ctx) {
           <p className="ai-warn">Asystent może się mylić. To nie jest porada prawna.</p>
         </>
       )}
-      <div className="actions">
-        <button className="btn" disabled={k < 4} onClick={() => c.go('letter-3')}>
+      <Actions>
+        <Button disabled={k < 4} onClick={() => c.go('letter-3')}>
           Przygotuj odpowiedź
-        </button>
-      </div>
+        </Button>
+      </Actions>
     </div>
   );
 }

@@ -182,7 +182,6 @@ body {
   font-size: 14px;
 }
 /* buttons */
-.btn,
 .pill {
   height: 52px;
   border-radius: 999px;
@@ -198,19 +197,9 @@ body {
   border: 0;
   box-shadow: none;
 }
-.btn.soft,
-.pill.soft,
-.btn.ghost {
+.pill.soft {
   background: var(--fill);
   color: var(--ink);
-}
-.btn.black {
-  background: var(--ink);
-}
-.btn.danger,
-.btn.red {
-  background: var(--red-soft);
-  color: var(--red);
 }
 .pill.wide {
   width: 100%;
@@ -1288,8 +1277,7 @@ body {
     bottom: max(14px, env(safe-area-inset-bottom));
   }
 }
-button.pill::before,
-.btn::before {
+button.pill::before {
   content: none !important;
   display: none !important;
 }

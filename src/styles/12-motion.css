@@ -68,7 +68,6 @@
     animation-delay: 0.12s;
   }
   button,
-  .btn,
   .mcard,
   .row,
   .notif,
@@ -79,7 +78,6 @@
       color 0.2s,
       box-shadow 0.2s;
   }
-  .btn:active,
   .mini:active,
   .menu-btn:active,
   .round:active,

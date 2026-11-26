@@ -1,3 +1,5 @@
+import { Actions, Button } from '@/components/ui/button';
+import { cn } from '@/lib/utils';
 import type { PointerEvent as ReactPointerEvent } from 'react';
 import { sx } from '@/lib/sx';
 import { useEffect, useRef, useState } from 'react';
@@ -57,11 +59,9 @@ export function TapShare({
         {st === 0 ? sub : st === 1 ? 'Łączenie…' : 'Gotowe. Telefony się rozpoznały.'}
       </div>
       {st === 0 && (
-        <div className="actions">
-          <button className="btn" onClick={() => setSt(1)}>
-            {label}
-          </button>
-        </div>
+        <Actions>
+          <Button onClick={() => setSt(1)}>{label}</Button>
+        </Actions>
       )}
     </div>
   );
@@ -221,8 +221,9 @@ export function HoldBtn({
     if (!held.current && p > 0) setP(0);
   };
   return (
-    <button
-      className={'btn red hold8' + (p > 0 && p < 1 ? ' holding' : '')}
+    <Button
+      variant="destructive"
+      className={cn('hold8', p > 0 && p < 1 && 'holding')}
       style={sx(`--p:${p}`)}
       onPointerDown={start}
       onPointerUp={stop}
@@ -237,6 +238,6 @@ export function HoldBtn({
       <span className="hold-fill" aria-hidden="true">
         {p > 0 && p < 1 ? holdLabel : label}
       </span>
-    </button>
+    </Button>
   );
 }

@@ -1,3 +1,4 @@
+import { Actions, Button } from '@/components/ui/button';
 import { useEffect, useState } from 'react';
 import { I } from '@/ui/icons';
 import type { Ctx } from '@/types';
@@ -64,20 +65,15 @@ export function Consent2(c: Ctx) {
           <div className="v">30 zł</div>
         </div>
       </div>
-      <div className="actions">
+      <Actions>
         {tom ? (
-          <button
-            className="btn"
-            onClick={() => c.toast('Wizyta: Małopolski Urząd Wojewódzki, 2 grudnia, 9:20')}
-          >
+          <Button onClick={() => c.toast('Wizyta: Małopolski Urząd Wojewódzki, 2 grudnia, 9:20')}>
             Umów wizytę w urzędzie
-          </button>
+          </Button>
         ) : (
-          <button className="btn" onClick={() => c.set({ askedTom: true })}>
-            Poproś Tomasza o zgodę
-          </button>
+          <Button onClick={() => c.set({ askedTom: true })}>Poproś Tomasza o zgodę</Button>
         )}
-      </div>
+      </Actions>
     </div>
   );
 }

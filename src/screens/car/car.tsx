@@ -1,3 +1,4 @@
+import { Actions, Button } from '@/components/ui/button';
 import { payWrap } from '@/screens/money/pay';
 import { Hero } from '@/ui/illustrations';
 import { Row, Sec } from '@/ui/primitives';
@@ -24,11 +25,9 @@ export function CarSell(c: Ctx) {
           </>
         ))}
       </div>
-      <div className="actions">
-        <button className="btn" onClick={() => c.toast('Ten ekran jest tylko przykładem.')}>
-          Rozpocznij
-        </button>
-      </div>
+      <Actions>
+        <Button onClick={() => c.toast('Ten ekran jest tylko przykładem.')}>Rozpocznij</Button>
+      </Actions>
     </div>
   );
 }
@@ -100,11 +99,11 @@ function CarFullBase(c: Ctx) {
           )}
         </div>
       </div>
-      <div className="actions">
-        <button className="btn ghost" onClick={() => c.go('car-sell')}>
+      <Actions>
+        <Button variant="secondary" onClick={() => c.go('car-sell')}>
           Sprzedaję ten samochód
-        </button>
-      </div>
+        </Button>
+      </Actions>
     </div>
   );
 }

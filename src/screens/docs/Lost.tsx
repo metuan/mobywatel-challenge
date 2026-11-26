@@ -1,3 +1,4 @@
+import { Actions } from '@/components/ui/button';
 import { sx } from '@/lib/sx';
 import { useState } from 'react';
 import { HoldBtn } from '@/ui/controls';
@@ -45,7 +46,7 @@ export function Lost(c: Ctx) {
         </>
       ) : (
         <>
-          <div className="actions">
+          <Actions>
             <HoldBtn
               label="Przytrzymaj, żeby zastrzec"
               holdLabel="Trzymaj…"
@@ -59,7 +60,7 @@ export function Lost(c: Ctx) {
                 })
               }
             />
-          </div>
+          </Actions>
           <p className="tiny" style={{ textAlign: 'center', marginTop: '8px' }}>
             Przytrzymaj przycisk przez sekundę. Krótkie dotknięcie pokaże podsumowanie.
           </p>

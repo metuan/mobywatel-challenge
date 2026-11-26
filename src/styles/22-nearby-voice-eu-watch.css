@@ -575,11 +575,7 @@
   max-width: 300px;
   line-height: 20px;
 }
-.wt8 .btn {
-  background: #fff;
-  color: var(--ink);
-}
-.wt8 .actions {
+.wt8 .wt-actions {
   width: 100%;
 }
 @media (prefers-reduced-motion: no-preference) {
@@ -652,7 +648,7 @@
   .wt8.leaving .wt-strap,
   .wt8.leaving .wt-cap,
   .wt8.leaving .wt-legend,
-  .wt8.leaving .actions {
+  .wt8.leaving .wt-actions {
     transition: opacity 0.2s ease-out;
     opacity: 0;
   }

@@ -1,3 +1,4 @@
+import { Actions, Button } from '@/components/ui/button';
 import { sx } from '@/lib/sx';
 import { useLayoutEffect, useState } from 'react';
 import { reducedMotion } from '@/lib/env';
@@ -24,14 +25,12 @@ function DocIdBase(c: Ctx) {
           </span>
         </div>
       </div>
-      <div className="actions">
-        <button className="btn" onClick={() => c.go('share-min')}>
-          {I('qr', 18)} Pokaż do sprawdzenia
-        </button>
-        <button className="btn ghost" onClick={() => setShow(!show)}>
+      <Actions>
+        <Button onClick={() => c.go('share-min')}>{I('qr', 18)} Pokaż do sprawdzenia</Button>
+        <Button variant="secondary" onClick={() => setShow(!show)}>
           {show ? 'Ukryj PESEL' : 'Pokaż PESEL'}
-        </button>
-      </div>
+        </Button>
+      </Actions>
       <div className="note" style={{ marginTop: '14px' }}>
         {I('wifi', 18)}
         <span>
@@ -75,11 +74,11 @@ export function ShareMin(c: Ctx) {
       <p className="tiny" style={{ marginTop: '10px' }}>
         Każde sprawdzenie trafia do historii „Kto sprawdzał moje dane”.
       </p>
-      <div className="actions">
-        <button className="btn ghost" onClick={() => c.go('eu')}>
+      <Actions>
+        <Button variant="secondary" onClick={() => c.go('eu')}>
           {I('card', 18)} Za granicą: portfel UE
-        </button>
-      </div>
+        </Button>
+      </Actions>
     </div>
   );
 }
@@ -102,11 +101,9 @@ export function RenewPass(c: Ctx) {
           <div className="v">30 zł</div>
         </div>
       </div>
-      <div className="actions">
-        <button className="btn" onClick={() => c.go('consent2')}>
-          Dalej: zgoda obojga rodziców
-        </button>
-      </div>
+      <Actions>
+        <Button onClick={() => c.go('consent2')}>Dalej: zgoda obojga rodziców</Button>
+      </Actions>
     </div>
   );
 }
@@ -127,20 +124,19 @@ export function Issued(c: Ctx) {
             Dyplom ukończenia studiów
           </div>
           <div className="small">Uniwersytet Jagielloński · Pielęgniarstwo, magister</div>
-          <div className="actions row2" style={{ marginTop: '14px' }}>
-            <button className="btn soft" onClick={() => c.toast('Odrzucono')}>
+          <Actions row style={{ marginTop: '14px' }}>
+            <Button variant="secondary" onClick={() => c.toast('Odrzucono')}>
               Odrzuć
-            </button>
-            <button
-              className="btn"
+            </Button>
+            <Button
               onClick={() => {
                 setAcc(true);
                 c.set({ diploma: true });
               }}
             >
               Dodaj
-            </button>
-          </div>
+            </Button>
+          </Actions>
         </div>
       ) : (
         <div className="diploma">
@@ -169,11 +165,11 @@ export function Issued(c: Ctx) {
         />
         {acc && <Row icon="doc" t="Dyplom magistra" s="Uniwersytet Jagielloński, 2016" onClick={() => {}} />}
       </div>
-      <div className="actions">
-        <button className="btn ghost" onClick={() => c.go('share-min')}>
+      <Actions>
+        <Button variant="secondary" onClick={() => c.go('share-min')}>
           Pokaż pracodawcy tylko dyplom
-        </button>
-      </div>
+        </Button>
+      </Actions>
     </div>
   );
 }

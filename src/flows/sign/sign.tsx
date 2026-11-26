@@ -1,3 +1,4 @@
+import { Actions, Button } from '@/components/ui/button';
 import { sx } from '@/lib/sx';
 import { useEffect, useState } from 'react';
 import { GRID, KRK2 } from '@/flows/sign/map';
@@ -77,9 +78,8 @@ export function Sign2(c: Ctx) {
         {I('info', 18)}
         <span>To poparcie projektu, nie głos w wyborach.</span>
       </div>
-      <div className="actions">
-        <button
-          className="btn"
+      <Actions>
+        <Button
           onClick={() =>
             c.confirm({
               t: 'Poprzeć projekt ustawy?',
@@ -97,8 +97,8 @@ export function Sign2(c: Ctx) {
           }
         >
           Podpisz
-        </button>
-      </div>
+        </Button>
+      </Actions>
     </div>
   );
 }
@@ -170,18 +170,17 @@ export function EasySign(c: Ctx) {
               informację.
             </span>
           </div>
-          <div className="actions">
-            <button className="btn ghost bigbtn" onClick={() => c.go('easy', 'tata')}>
+          <Actions>
+            <Button variant="secondary" onClick={() => c.go('easy', 'tata')}>
               Wróć
-            </button>
-          </div>
+            </Button>
+          </Actions>
         </>
       ) : (
         <>
           <p style={{ fontSize: '20px', fontWeight: '600', margin: '18px 0 0' }}>Czy to Pan podpisał?</p>
-          <div className="actions">
-            <button
-              className="btn bigbtn"
+          <Actions>
+            <Button
               onClick={() => {
                 setRep(true);
                 buzz(20);
@@ -189,11 +188,11 @@ export function EasySign(c: Ctx) {
               }}
             >
               Nie, to nie ja
-            </button>
-            <button className="btn ghost bigbtn" onClick={() => c.go('easy', 'tata')}>
+            </Button>
+            <Button variant="secondary" onClick={() => c.go('easy', 'tata')}>
               Tak, to ja
-            </button>
-          </div>
+            </Button>
+          </Actions>
         </>
       )}
     </div>
@@ -269,11 +268,9 @@ export function Sign3(c: Ctx) {
           podkładce dla każdego, kto zrobi zdjęcie.
         </span>
       </div>
-      <div className="actions">
-        <button className="btn" onClick={() => c.go('sign-list')}>
-          Moje podpisy
-        </button>
-      </div>
+      <Actions>
+        <Button onClick={() => c.go('sign-list')}>Moje podpisy</Button>
+      </Actions>
     </div>
   );
 }

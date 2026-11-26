@@ -599,9 +599,6 @@
 .msg.in {
   animation: fadeUp 0.3s var(--out);
 }
-.btn:disabled {
-  opacity: 0.35;
-}
 @media (prefers-reduced-motion: reduce) {
   .wave i,
   .skel i,
@@ -1256,8 +1253,7 @@ button.row:active,
     opacity: 1;
   }
 }
-.srcs.in,
-.btn.in {
+.srcs.in {
   animation: fadeUp 0.25s var(--out);
 }
 @media (prefers-reduced-motion: reduce) {

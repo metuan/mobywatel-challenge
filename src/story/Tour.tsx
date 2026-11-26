@@ -105,7 +105,7 @@ export function Tour({
                 <i></i>
                 <i></i>
                 <i className="s"></i>
-                <i className="btn"></i>
+                <i className="hw-btn"></i>
               </span>
               <em>Czytasz</em>
             </div>

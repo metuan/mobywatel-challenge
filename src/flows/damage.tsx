@@ -1,3 +1,4 @@
+import { Actions, Button } from '@/components/ui/button';
 import { sx } from '@/lib/sx';
 import { useState } from 'react';
 import { I } from '@/ui/icons';
@@ -48,16 +49,11 @@ export function Damage1(c: Ctx) {
           ),
         )}
       </div>
-      <div className="actions">
-        <button
-          className="btn"
-          disabled={n === 0}
-          style={sx(n === 0 ? 'opacity:.4' : '')}
-          onClick={() => c.go('damage-2')}
-        >
+      <Actions>
+        <Button disabled={n === 0} style={sx(n === 0 ? 'opacity:.4' : '')} onClick={() => c.go('damage-2')}>
           Dalej
-        </button>
-      </div>
+        </Button>
+      </Actions>
     </div>
   );
 }
@@ -101,9 +97,8 @@ export function Damage2(c: Ctx) {
           <Src t="konto do zwrotu podatku" />
         </div>
       </div>
-      <div className="actions">
-        <button
-          className="btn"
+      <Actions>
+        <Button
           onClick={() =>
             c.confirm({
               t: 'Wysłać zgłoszenie do gminy?',
@@ -114,8 +109,8 @@ export function Damage2(c: Ctx) {
           }
         >
           Sprawdź i wyślij
-        </button>
-      </div>
+        </Button>
+      </Actions>
     </div>
   );
 }
@@ -142,11 +137,11 @@ export function Damage3(c: Ctx) {
           </div>
         ))}
       </div>
-      <div className="actions">
-        <button className="btn" onClick={() => c.toast('Komisja przyjdzie 26 listopada, 10:00–12:00')}>
+      <Actions>
+        <Button onClick={() => c.toast('Komisja przyjdzie 26 listopada, 10:00–12:00')}>
           Wybierz termin wizyty komisji
-        </button>
-      </div>
+        </Button>
+      </Actions>
     </div>
   );
 }

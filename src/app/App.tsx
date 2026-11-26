@@ -1,3 +1,4 @@
+import { Actions, Button } from '@/components/ui/button';
 import { sx } from '@/lib/sx';
 import { useEffect, useRef, useState } from 'react';
 import { edgeBack, leave, sheetDrag } from '@/app/gestures';
@@ -518,11 +519,11 @@ export function App() {
                     }}
                   />
                   <TechPanel route={route} />
-                  <div className="actions">
-                    <button className="btn soft" onClick={() => closeSheet()}>
+                  <Actions>
+                    <Button variant="secondary" onClick={() => closeSheet()}>
                       Zamknij
-                    </button>
-                  </div>
+                    </Button>
+                  </Actions>
                 </div>
               ) : sheet.stage === 0 ? (
                 <div>
@@ -547,20 +548,12 @@ export function App() {
                     Potwierdzasz twarzą lub kodem PIN. To jest Twój podpis. Nic nie zostanie wysłane
                     wcześniej.
                   </p>
-                  <div className="actions row2">
-                    <button
-                      className={'btn soft' + (sheet.big ? ' bigbtn' : '')}
-                      onClick={() => closeSheet()}
-                    >
+                  <Actions row>
+                    <Button variant="secondary" onClick={() => closeSheet()}>
                       Nie, popraw
-                    </button>
-                    <button
-                      className={'btn' + (sheet.big ? ' bigbtn' : '')}
-                      onClick={() => setSheet({ ...sheet, stage: 1 })}
-                    >
-                      {sheet.ok}
-                    </button>
-                  </div>
+                    </Button>
+                    <Button onClick={() => setSheet({ ...sheet, stage: 1 })}>{sheet.ok}</Button>
+                  </Actions>
                 </div>
               ) : (
                 <Confirming

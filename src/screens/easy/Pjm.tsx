@@ -1,3 +1,4 @@
+import { Actions, Button } from '@/components/ui/button';
 import { useState } from 'react';
 import { I } from '@/ui/icons';
 import { Toggle } from '@/ui/primitives';
@@ -44,17 +45,15 @@ export function Pjm(c: Ctx) {
           )}
         </div>
       </div>
-      <div className="actions">
+      <Actions>
         {on ? (
-          <button className="btn" style={{ background: '#ff3b30' }} onClick={() => setOn(false)}>
+          <Button style={{ background: '#ff3b30' }} onClick={() => setOn(false)}>
             Zakończ
-          </button>
+          </Button>
         ) : (
-          <button className="btn" onClick={() => setOn(true)}>
-            {I('camera', 18)} Połącz z tłumaczem
-          </button>
+          <Button onClick={() => setOn(true)}>{I('camera', 18)} Połącz z tłumaczem</Button>
         )}
-      </div>
+      </Actions>
       <div className="list" style={{ marginTop: '14px' }}>
         <div className="row">
           <span className="tx">

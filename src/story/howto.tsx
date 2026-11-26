@@ -1,3 +1,4 @@
+import { Button } from '@/components/ui/button';
 import { sx } from '@/lib/sx';
 import { norm, reducedMotion } from '@/lib/env';
 import { I } from '@/ui/icons';
@@ -200,9 +201,9 @@ export function HowCard({ c, h }: { c: Ctx; h: HowTo }) {
           </li>
         ))}
       </ol>
-      <button className="btn how8-go" onClick={() => showMe(c, h)}>
+      <Button className="how8-go" onClick={() => showMe(c, h)}>
         Pokaż mi, gdzie to jest
-      </button>
+      </Button>
     </div>
   );
 }

@@ -1,3 +1,4 @@
+import { Actions, Button } from '@/components/ui/button';
 import { useState } from 'react';
 import { I } from '@/ui/icons';
 import { Hero } from '@/ui/illustrations';
@@ -27,11 +28,9 @@ export function Move1(c: Ctx) {
           <div className="v">Ty, Tomasz, Zosia</div>
         </div>
       </div>
-      <div className="actions">
-        <button className="btn" onClick={() => c.go('move-2')}>
-          Dalej
-        </button>
-      </div>
+      <Actions>
+        <Button onClick={() => c.go('move-2')}>Dalej</Button>
+      </Actions>
     </div>
   );
 }
@@ -88,17 +87,16 @@ export function Move2(c: Ctx) {
         {I('sparkle', 18)}
         <span>Asystent może się mylić. W następnym kroku zobaczysz każde pole i jego źródło.</span>
       </div>
-      <div className="actions">
-        <button
-          className="btn"
+      <Actions>
+        <Button
           onClick={() => {
             c.set({ moveSel: on });
             c.go('move-3');
           }}
         >
           Pokaż podgląd
-        </button>
-      </div>
+        </Button>
+      </Actions>
     </div>
   );
 }
@@ -176,9 +174,8 @@ export function Move3(c: Ctx) {
           </div>
         </>
       )}
-      <div className="actions">
-        <button
-          className="btn"
+      <Actions>
+        <Button
           onClick={() =>
             c.confirm({
               t: `Wysłać ${n} ${n === 1 ? 'wniosek' : 'wnioski'}?`,
@@ -194,11 +191,11 @@ export function Move3(c: Ctx) {
           }
         >
           Potwierdź
-        </button>
-        <button className="btn ghost" onClick={() => c.go('move-2')}>
+        </Button>
+        <Button variant="secondary" onClick={() => c.go('move-2')}>
           Wróć i zmień
-        </button>
-      </div>
+        </Button>
+      </Actions>
     </div>
   );
 }
@@ -240,11 +237,9 @@ export function MoveDone(c: Ctx) {
           onClick={() => c.go('case-meld')}
         />
       </div>
-      <div className="actions">
-        <button className="btn" onClick={() => c.go('today')}>
-          Wróć do ekranu Dziś
-        </button>
-      </div>
+      <Actions>
+        <Button onClick={() => c.go('today')}>Wróć do ekranu Dziś</Button>
+      </Actions>
     </div>
   );
 }

@@ -40,15 +40,6 @@
   margin-top: 10px;
   box-shadow: 0 20px 40px -20px rgb(0 0 0 / 35%);
 }
-.alert .btn {
-  background: #fff;
-  color: var(--ink);
-}
-.alert .btn.ghost {
-  background: rgb(255 255 255 / 14%);
-  color: #fff;
-  box-shadow: none;
-}
 .levels {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -232,10 +223,6 @@
   display: grid;
   place-items: center;
   flex: none;
-}
-.bigbtn {
-  font-size: 20px;
-  padding: 20px;
 }
 .speak {
   display: flex;

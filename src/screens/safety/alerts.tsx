@@ -1,3 +1,4 @@
+import { Actions, Button } from '@/components/ui/button';
 import { useState } from 'react';
 import { I } from '@/ui/icons';
 import { Sec } from '@/ui/primitives';
@@ -43,20 +44,20 @@ export function AlertRed(c: Ctx) {
         </button>
       </div>
       <div style={{ flex: '1', minHeight: '14px' }}></div>
-      <div className="actions" style={{ marginTop: '12px' }}>
-        <button
-          className="btn"
+      <Actions style={{ marginTop: '12px' }}>
+        <Button
+          variant="inverse"
           onClick={() => {
             stashBox('shelter', document.querySelector('.phone .rcb-app'));
             c.go('alert-watch');
           }}
         >
           {I('route', 18)} Prowadź do schronienia
-        </button>
-        <button className="btn ghost" onClick={() => c.go('alert-guide')}>
+        </Button>
+        <Button variant="inverseSecondary" onClick={() => c.go('alert-guide')}>
           {I('speaker', 18)} Co robić teraz (odczytaj)
-        </button>
-      </div>
+        </Button>
+      </Actions>
     </div>
   );
 }
@@ -126,11 +127,9 @@ export function AlertShelter(c: Ctx) {
         {I('wifi', 18)}
         <span>Mapa i trasa są zapisane w telefonie. Działają bez internetu.</span>
       </div>
-      <div className="actions">
-        <button className="btn" onClick={() => c.go('alert-guide')}>
-          Jestem na miejscu
-        </button>
-      </div>
+      <Actions>
+        <Button onClick={() => c.go('alert-guide')}>Jestem na miejscu</Button>
+      </Actions>
     </div>
   );
 }
@@ -163,14 +162,12 @@ export function AlertGuide(c: Ctx) {
           </>
         ))}
       </div>
-      <div className="actions">
-        <button className="btn" onClick={() => c.go('alert-safe')}>
-          {I('heart', 18)} Jestem bezpieczna
-        </button>
-        <button className="btn ghost" onClick={() => c.go('alert-clear')}>
+      <Actions>
+        <Button onClick={() => c.go('alert-safe')}>{I('heart', 18)} Jestem bezpieczna</Button>
+        <Button variant="secondary" onClick={() => c.go('alert-clear')}>
           Pokaż odwołanie alarmu (demo)
-        </button>
-      </div>
+        </Button>
+      </Actions>
     </div>
   );
 }
@@ -211,14 +208,14 @@ export function AlertClear(c: Ctx) {
         </div>
       </div>
       <div style={{ flex: '1', minHeight: '14px' }}></div>
-      <div className="actions" style={{ marginTop: '12px' }}>
-        <button className="btn" onClick={() => c.go('alert-safe')}>
+      <Actions style={{ marginTop: '12px' }}>
+        <Button variant="inverse" onClick={() => c.go('alert-safe')}>
           Zobacz status rodziny
-        </button>
-        <button className="btn ghost" onClick={() => c.go('damage-1')}>
+        </Button>
+        <Button variant="inverseSecondary" onClick={() => c.go('damage-1')}>
           Zgłoś szkody
-        </button>
-      </div>
+        </Button>
+      </Actions>
     </div>
   );
 }
@@ -233,17 +230,17 @@ export function AlertSafe(c: Ctx) {
     <div>
       <h1 className="h-l">{sent ? 'Rodzina wie, że jesteś bezpieczna.' : 'Daj znać rodzinie'}</h1>
       {!sent && (
-        <div className="actions" style={{ marginTop: '6px' }}>
-          <button className="btn green bigbtn" onClick={send}>
+        <Actions style={{ marginTop: '6px' }}>
+          <Button variant="success" onClick={send}>
             {I('check', 22)} Jestem bezpieczna
-          </button>
-          <button
-            className="btn ghost"
+          </Button>
+          <Button
+            variant="secondary"
             onClick={() => c.toast('Rodzina dostała Twoją prośbę o pomoc i lokalizację.')}
           >
             Potrzebuję pomocy
-          </button>
-        </div>
+          </Button>
+        </Actions>
       )}
       <Sec t="Status rodziny" more="Mapa" go={() => c.go('family-map')} />
       <div className="list">

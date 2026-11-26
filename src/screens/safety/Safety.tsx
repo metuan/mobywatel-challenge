@@ -1,3 +1,4 @@
+import { Actions, Button } from '@/components/ui/button';
 import { sx } from '@/lib/sx';
 import { useState } from 'react';
 import { I } from '@/ui/icons';
@@ -80,9 +81,9 @@ export function Places(_c: Ctx) {
           </div>
         ))}
       </div>
-      <div className="actions">
-        <button className="btn ghost">{I('plus', 18)} Dodaj miejsce</button>
-      </div>
+      <Actions>
+        <Button variant="secondary">{I('plus', 18)} Dodaj miejsce</Button>
+      </Actions>
     </div>
   );
 }

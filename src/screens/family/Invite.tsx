@@ -1,3 +1,4 @@
+import { Actions, Button } from '@/components/ui/button';
 import { useState } from 'react';
 import { QR } from '@/ui/documentCard';
 import { Toggle } from '@/ui/primitives';
@@ -20,17 +21,16 @@ export function Invite(c: Ctx) {
         <p className="small" style={{ textAlign: 'center' }}>
           Kod działa 10 minut. Zapraszana osoba potwierdza go swoim mDowodem.
         </p>
-        <div className="actions">
-          <button
-            className="btn"
+        <Actions>
+          <Button
             onClick={() => {
               c.toast('Zaproszenie wysłane. Czekamy na potwierdzenie.');
               c.go('family');
             }}
           >
             Gotowe
-          </button>
-        </div>
+          </Button>
+        </Actions>
       </div>
     );
   const rows = [
@@ -57,11 +57,9 @@ export function Invite(c: Ctx) {
           </div>
         ))}
       </div>
-      <div className="actions">
-        <button className="btn" onClick={() => setStep(1)}>
-          Utwórz zaproszenie
-        </button>
-      </div>
+      <Actions>
+        <Button onClick={() => setStep(1)}>Utwórz zaproszenie</Button>
+      </Actions>
     </div>
   );
 }

@@ -1,3 +1,4 @@
+import { Actions, Button } from '@/components/ui/button';
 import { sx } from '@/lib/sx';
 import { useState } from 'react';
 import { I } from '@/ui/icons';
@@ -25,11 +26,9 @@ export function Visit1(c: Ctx) {
           <div className="v">21 listopada 2027</div>
         </div>
       </div>
-      <div className="actions">
-        <button className="btn" onClick={() => c.go('visit-2')}>
-          Zarezerwuj wizytę
-        </button>
-      </div>
+      <Actions>
+        <Button onClick={() => c.go('visit-2')}>Zarezerwuj wizytę</Button>
+      </Actions>
       <p className="tiny" style={{ marginTop: '10px' }}>
         Przez system rejestracji NFZ. Nie musisz przepisywać kodu.
       </p>
@@ -82,17 +81,16 @@ export function Visit2(c: Ctx) {
         </span>
         <Toggle on={wait} set={setWait} label="Poczekalnia" />
       </div>
-      <div className="actions">
-        <button
-          className="btn"
+      <Actions>
+        <Button
           onClick={() => {
             c.set({ visitPick: slots[pick] });
             c.go('visit-3');
           }}
         >
           Dalej
-        </button>
-      </div>
+        </Button>
+      </Actions>
     </div>
   );
 }
@@ -121,9 +119,8 @@ export function Visit3(c: Ctx) {
           <div className="v">Wyniki EKG, książeczka zdrowia</div>
         </div>
       </div>
-      <div className="actions">
-        <button
-          className="btn"
+      <Actions>
+        <Button
           onClick={() =>
             c.confirm({
               t: 'Zarezerwować wizytę?',
@@ -137,8 +134,8 @@ export function Visit3(c: Ctx) {
           }
         >
           Potwierdź
-        </button>
-      </div>
+        </Button>
+      </Actions>
     </div>
   );
 }
@@ -169,9 +166,9 @@ export function Visit4(c: Ctx) {
           onClick={() => c.go('calendar')}
         />
       </div>
-      <div className="actions">
-        <button
-          className="btn ghost"
+      <Actions>
+        <Button
+          variant="secondary"
           onClick={() => {
             c.set({ visit: null });
             c.toast('Wizyta odwołana. Termin może zająć ktoś inny.');
@@ -179,8 +176,8 @@ export function Visit4(c: Ctx) {
           }}
         >
           Odwołaj wizytę
-        </button>
-      </div>
+        </Button>
+      </Actions>
     </div>
   );
 }

@@ -1,49 +1,4 @@
 /* ---------- Buttons ---------- */
-.btn {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 8px;
-  width: 100%;
-  background: var(--navy);
-  color: #fff;
-  border-radius: 999px;
-  padding: 16px 22px;
-  font-weight: 500;
-  font-size: 16px;
-  text-align: center;
-  letter-spacing: -0.01em;
-}
-.btn.black {
-  background: var(--ink);
-}
-.btn.ghost {
-  background: var(--surface);
-  color: var(--ink);
-  box-shadow: var(--shadow-s);
-}
-.btn.soft {
-  background: var(--track);
-  color: var(--ink);
-}
-.btn.red {
-  background: var(--red);
-}
-.btn.green {
-  background: var(--green);
-}
-.actions {
-  display: flex;
-  flex-direction: column;
-  gap: 10px;
-  margin-top: 24px;
-}
-.actions.row2 {
-  flex-direction: row;
-}
-.actions.row2 .btn {
-  flex: 1;
-}
 .link {
   color: var(--ink);
   font-weight: 500;

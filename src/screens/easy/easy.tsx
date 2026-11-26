@@ -1,3 +1,4 @@
+import { Actions, Button } from '@/components/ui/button';
 import { sx } from '@/lib/sx';
 import { useEffect, useState } from 'react';
 import { I } from '@/ui/icons';
@@ -64,18 +65,13 @@ export function EasyApprove(c: Ctx) {
         <div>✗ wysyłać niczego bez Pana zgody</div>
       </div>
       {done ? (
-        <div className="actions">
-          <button
-            className="btn bigbtn"
-            onClick={() => c.go(c.s.persona === 'tata' ? 'easy' : 'member-tata')}
-          >
-            Wróć
-          </button>
-        </div>
+        <Actions>
+          <Button onClick={() => c.go(c.s.persona === 'tata' ? 'easy' : 'member-tata')}>Wróć</Button>
+        </Actions>
       ) : (
-        <div className="actions">
-          <button
-            className="btn green bigbtn"
+        <Actions>
+          <Button
+            variant="success"
             onClick={() =>
               c.confirm({
                 t: 'Zgodzić się?',
@@ -94,12 +90,12 @@ export function EasyApprove(c: Ctx) {
             }
           >
             Zgadzam się
-          </button>
-          <button className="btn ghost bigbtn" onClick={() => c.go('easy')}>
+          </Button>
+          <Button variant="secondary" onClick={() => c.go('easy')}>
             Nie teraz
-          </button>
-          <button className="btn ghost bigbtn">{I('speaker', 22)} Przeczytaj mi to</button>
-        </div>
+          </Button>
+          <Button variant="secondary">{I('speaker', 22)} Przeczytaj mi to</Button>
+        </Actions>
       )}
     </div>
   );
@@ -120,14 +116,12 @@ export function EasyDoc(c: Ctx) {
           Za 63 dni. Anna pomoże złożyć wniosek o nowy.
         </div>
       </div>
-      <div className="actions">
-        <button className="btn bigbtn" onClick={() => c.go('share-min')}>
-          Pokaż do sprawdzenia
-        </button>
-        <button className="btn ghost bigbtn" onClick={() => c.go('easy')}>
+      <Actions>
+        <Button onClick={() => c.go('share-min')}>Pokaż do sprawdzenia</Button>
+        <Button variant="secondary" onClick={() => c.go('easy')}>
           Wróć
-        </button>
-      </div>
+        </Button>
+      </Actions>
     </div>
   );
 }
@@ -222,14 +216,12 @@ export function EasyVoice(c: Ctx) {
         <div className="card v-a" style={{ padding: '20px', fontSize: '20px', lineHeight: '1.5' }}>
           Pana dowód jest ważny do <b>26 stycznia 2027</b>, czyli jeszcze 63 dni. Anna może pomóc złożyć
           wniosek o nowy.
-          <div className="actions">
+          <Actions>
             <button className="speak" onClick={() => c.toast('Czytam na głos…')}>
               {I('speaker', 22)} Przeczytaj jeszcze raz
             </button>
-            <button className="btn bigbtn" onClick={() => c.go('easy-doc')}>
-              Pokaż mój dowód
-            </button>
-          </div>
+            <Button onClick={() => c.go('easy-doc')}>Pokaż mój dowód</Button>
+          </Actions>
         </div>
       )}
     </div>
@@ -276,11 +268,11 @@ export function EasyRx(c: Ctx) {
           </button>
         ))}
       </div>
-      <div className="actions">
-        <button className="btn ghost bigbtn" onClick={() => c.go('easy')}>
+      <Actions>
+        <Button variant="secondary" onClick={() => c.go('easy')}>
           Wróć
-        </button>
-      </div>
+        </Button>
+      </Actions>
     </div>
   );
 }

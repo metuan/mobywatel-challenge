@@ -1,3 +1,4 @@
+import { Actions, Button } from '@/components/ui/button';
 import { sx } from '@/lib/sx';
 import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { buzz, fire, reducedMotion } from '@/lib/env';
@@ -161,11 +162,11 @@ export function AlertWatch(c: Ctx) {
       </div>
       <div style={{ flex: '1' }}></div>
       {arrived && (
-        <div className="actions">
-          <button className="btn" onClick={open}>
+        <Actions className="wt-actions">
+          <Button variant="inverse" onClick={open}>
             Otwórz w telefonie
-          </button>
-        </div>
+          </Button>
+        </Actions>
       )}
     </div>
   );

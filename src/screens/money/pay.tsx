@@ -1,3 +1,4 @@
+import { Actions, Button } from '@/components/ui/button';
 import { useEffect } from 'react';
 import { coachTip } from '@/story/coach';
 import { I } from '@/ui/icons';
@@ -41,14 +42,12 @@ export function PaySheet({
           </button>
         ))}
       </div>
-      <div className="actions row2">
-        <button className="btn soft" onClick={close}>
+      <Actions row>
+        <Button variant="secondary" onClick={close}>
           Anuluj
-        </button>
-        <button className="btn" onClick={() => setSheet({ ...sheet, stage: 1 })}>
-          Zapłać {sheet.amt}
-        </button>
-      </div>
+        </Button>
+        <Button onClick={() => setSheet({ ...sheet, stage: 1 })}>Zapłać {sheet.amt}</Button>
+      </Actions>
       <p className="tiny" style={{ textAlign: 'center', marginTop: '10px' }}>
         Potwierdzasz twarzą. Pieniądze trafiają prosto do urzędu.
       </p>
