@@ -1,10 +1,4 @@
 /* ===== v4 layout: explainer left, demo list right ===== */
-.side {
-  max-height: none;
-  overflow: visible;
-  display: flex;
-  flex-direction: column;
-}
 .side .flows {
   gap: 0;
 }
@@ -24,6 +18,8 @@
   }
   .stage.wide .side {
     grid-area: side;
+    display: block;
+    grid-column: 1/-1;
   }
   .side .flows {
     grid-template-columns: 1fr 1fr;

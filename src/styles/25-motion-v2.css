@@ -31,12 +31,21 @@
   touch-action: none;
   user-select: none;
   -webkit-user-select: none;
+  background: var(--red-soft) !important;
+  color: var(--red) !important;
 }
 .hold-fill {
   position: absolute;
   inset: 0;
   clip-path: inset(0 calc((1 - var(--p)) * 100%) 0 0);
   transition: clip-path 0.2s cubic-bezier(0.23, 1, 0.32, 1);
+  z-index: 1;
+  display: grid;
+  place-items: center;
+  background: var(--red);
+  color: #fff;
+  font: inherit;
+  font-weight: inherit;
 }
 .hold8.holding .hold-fill {
   transition: none;
@@ -166,19 +175,6 @@
     stroke-dashoffset: 0;
   }
 }
-.hold8 {
-  background: var(--red-soft) !important;
-  color: var(--red) !important;
-}
-.hold-fill {
-  z-index: 1;
-  display: grid;
-  place-items: center;
-  background: var(--red);
-  color: #fff;
-  font: inherit;
-  font-weight: inherit;
-}
 /* callouts nested inside a list row: align with the row text, no extra left inset */
 .app.scrolled .topbar {
   transition: box-shadow 0.2s;
@@ -194,11 +190,6 @@
 .topbar .wm {
   transition: opacity 0.12s var(--out);
 }
-.tb-title {
-  transition:
-    opacity 0.18s var(--out) 0.08s,
-    transform 0.22s var(--out) 0.08s;
-}
 .app:not(.compact) .tb-title {
   transition:
     opacity 0.1s var(--out),
@@ -207,30 +198,6 @@
 /* "Dotknij tutaj" always on top of its target and never cut off */
 .coach-tip span {
   margin-left: var(--dx, 0);
-}
-.coach-tip span::after {
-  left: calc(50% - var(--dx, 0px));
-}
-.coach-tip {
-  z-index: 80;
-}
-.st-nav .pill.st-next.ready::before {
-  left: 50% !important;
-  top: auto !important;
-  bottom: calc(100% + 14px) !important;
-  transform: translateX(-50%) !important;
-  animation: tip-in 0.22s cubic-bezier(0.23, 1, 0.32, 1) both !important;
-  z-index: 30;
-}
-.st-nav .pill.st-next.ready::after {
-  left: 50% !important;
-  top: auto !important;
-  bottom: calc(100% + 2px) !important;
-  margin: 0 0 0 -6px !important;
-  border-color: transparent !important;
-  border-top-color: #2f6bff !important;
-  animation: tip-in-a 0.22s cubic-bezier(0.23, 1, 0.32, 1) both !important;
-  z-index: 30;
 }
 @keyframes tip-in-a {
   from {

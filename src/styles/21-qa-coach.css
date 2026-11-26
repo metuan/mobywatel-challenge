@@ -119,9 +119,6 @@
     }
   }
   /* coach mark: calmer pulse, transform-free */
-  .coach {
-    animation-duration: 1.6s;
-  }
 }
 /* materials respect reduced transparency / more contrast */
 @media (prefers-reduced-transparency: reduce) {
@@ -183,6 +180,7 @@
   top: 0;
   pointer-events: none;
   transition: opacity 0.15s ease-out;
+  z-index: 80;
 }
 .coach-tip span {
   position: absolute;
@@ -205,6 +203,7 @@
   margin-left: -6px;
   border: 6px solid transparent;
   border-top-color: #2f6bff;
+  left: calc(50% - var(--dx, 0px));
 }
 .coach-tip.below span {
   bottom: auto;

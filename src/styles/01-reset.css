@@ -12,6 +12,9 @@ body {
   margin: 0;
   font-size: 15px;
   line-height: 1.45;
+  letter-spacing: -0.011em;
+  color: var(--ink);
+  background: var(--bg);
 }
 button {
   font: inherit;
@@ -30,4 +33,5 @@ input {
   outline: 2px solid var(--blue);
   outline-offset: 2px;
   border-radius: 10px;
+  outline-color: var(--ink);
 }

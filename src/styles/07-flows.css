@@ -32,6 +32,7 @@
   place-items: center;
   margin: 26px 0 4px;
   box-shadow: var(--shadow-s);
+  border-color: var(--app) !important;
 }
 
 /* confirm card */

@@ -3,17 +3,11 @@
   font-weight: 500;
   color: var(--ink-2);
   font-variant-numeric: tabular-nums;
+  display: flex;
+  justify-content: space-between;
 }
 .st-t {
   font-weight: 680;
-}
-.st-p {
-  font-size: 16px;
-  line-height: 25px;
-  color: var(--ink);
-  margin: 0;
-  max-width: 34em;
-  text-wrap: pretty;
 }
 .st-more {
   display: flex;
@@ -54,10 +48,6 @@
 .st-nav .pill:disabled {
   opacity: 0.35;
 }
-.side .flows button {
-  height: 38px;
-  font-size: 14px;
-}
 @media (prefers-reduced-motion: no-preference) {
   .story .st-p {
     animation: rise 0.5s var(--out) 0.05s both;
@@ -87,10 +77,6 @@
 }
 
 /* ===== story v2 + tour ===== */
-.st-n {
-  display: flex;
-  justify-content: space-between;
-}
 .st-hook {
   font-weight: 500;
   margin: 0 0 16px;
@@ -116,11 +102,6 @@
 }
 .st-ab .on p {
   color: var(--ink);
-}
-.st-k {
-  font-size: 12px;
-  font-weight: 600;
-  color: var(--ink-3);
 }
 .st-ab .on .st-k {
   color: var(--ink);
@@ -279,6 +260,7 @@
 .tv-art.week i.red {
   background: var(--red);
   box-shadow: none;
+  color: #fff;
 }
 .tour-foot {
   display: flex;
@@ -443,15 +425,13 @@
   width: 46px;
   height: 46px;
 }
-.tv-art.week i.red {
-  color: #fff;
-}
 .tv-art.week div:nth-child(5) span {
   color: var(--red);
   font-weight: 600;
 }
 .st-ab > div {
   background: #f9f9fa;
+  padding: 12px 14px;
 }
 @media (max-width: 640px) {
   .tv-art.week {
@@ -487,6 +467,7 @@
 @media (prefers-reduced-motion: no-preference) {
   .coach {
     animation: coach 1.4s var(--out) infinite;
+    animation-duration: 1.6s;
   }
   @keyframes coach {
     0%,
@@ -605,10 +586,6 @@
   align-items: start;
   padding-top: 92px;
 }
-.stage.wide .phone {
-  position: sticky;
-  top: 24px;
-}
 .tlink8 {
   font-size: 13px;
   color: var(--ink);
@@ -699,9 +676,6 @@
 .st-ab p {
   font-size: 13.5px;
   line-height: 19px;
-}
-.st-ab > div {
-  padding: 12px 14px;
 }
 /* beats stepper */
 .beats {
@@ -823,16 +797,9 @@
     animation: rise 0.45s var(--out) both;
   }
 }
-.side .flows {
-  display: none;
-}
 @media (max-width: 1279px) {
   .stage.wide {
     grid-template-columns: minmax(320px, 460px) 392px;
-  }
-  .stage.wide .side {
-    display: block;
-    grid-column: 1/-1;
   }
 }
 .sheet .p12 {

@@ -1,7 +1,4 @@
 /* ===== v5: review pass (paper app, calmer type, one neutral tile, one blue) ===== */
-.sec button {
-  text-decoration: none;
-}
 .menu-btn {
   border: 0;
   background: none;
@@ -36,6 +33,7 @@
   width: 6px;
   height: 6px;
   border-radius: 50%;
+  background: #ff3b30;
 }
 .urgent .ui {
   width: auto;
@@ -91,6 +89,7 @@
   width: 6px;
   height: 6px;
   border-radius: 50%;
+  background: var(--ink-3) !important;
 }
 /* alert screens: flat, sans clock, red rule */
 .rcb-screen,
@@ -112,9 +111,6 @@
 .how-btn {
   padding: 0;
   justify-content: center;
-}
-.done-mark {
-  border-color: var(--app) !important;
 }
 .screen.full {
   position: absolute;

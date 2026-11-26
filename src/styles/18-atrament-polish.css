@@ -18,6 +18,7 @@
   transition:
     background-color 0.2s,
     box-shadow 0.2s;
+  z-index: 16;
 }
 .tb-title {
   position: absolute;
@@ -38,9 +39,6 @@
 .scroll {
   margin-top: -52px;
   padding-top: 56px;
-}
-.topbar {
-  z-index: 16;
 }
 .how-btn,
 .avatar-btn {
@@ -69,26 +67,21 @@
   transition: transform 0.42s var(--spring);
   pointer-events: none;
 }
-.tabbar button {
-  position: relative;
-  z-index: 1;
-}
-.tabbar button[aria-current='page'] svg path {
-  fill-opacity: 0;
-}
 .tabbar button[aria-current='page'] span {
   font-weight: 600;
 }
 /* document card: guilloche rosette, hologram, finer light */
-.doc {
-  isolation: isolate;
-}
 .rosette {
   position: absolute;
   fill: none;
   stroke-width: 0.5;
   z-index: -1;
   pointer-events: none;
+  right: -110px;
+  top: -80px;
+  width: 300px;
+  height: 300px;
+  stroke: rgb(255 255 255 / 5.5%);
 }
 .doc > *:not(.rosette) {
   position: relative;
@@ -113,73 +106,24 @@
 .d-mid {
   position: relative;
 }
-.doc {
-  box-shadow:
-    inset 0 0 0 1px rgb(255 255 255 / 8%),
-    inset 0 1px 0 rgb(255 255 255 / 14%),
-    0 1px 1px rgb(11 13 18 / 12%),
-    0 24px 48px -24px rgb(11 13 18 / 55%);
-}
-.d-name {
-  font-size: 21px;
-  letter-spacing: -0.025em;
-}
-.d-f b {
-  letter-spacing: 0.01em;
-}
 .d-chip {
   background: rgb(255 255 255 / 10%);
   box-shadow: inset 0 0 0 0.5px rgb(255 255 255 / 14%);
   backdrop-filter: blur(8px);
 }
 /* quick actions: white discs on grey */
-.qa8 {
-  margin-top: 24px;
-}
 .qa8-i {
   width: 56px;
   height: 56px;
   background: #fff;
   box-shadow: 0 0 0 0.5px var(--hair);
 }
-.qa8 button {
-  font-size: 12px;
-  color: var(--ink-2);
-  gap: 9px;
-}
 /* cards: one radius, more air */
-.attn {
-  padding: 18px 18px 6px;
-}
-.attn-act {
-  padding: 12px 18px 18px;
-}
 .attn-act .pill {
   height: 38px;
 }
-.w8 {
-  gap: 10px;
-}
-.w {
-  padding: 16px 16px 15px;
-  min-height: 138px;
-}
-.wk {
-  color: var(--ink-2);
-}
-.wico {
-  color: var(--ink-3);
-}
-.wv {
-  font-size: 30px;
-  line-height: 32px;
-  letter-spacing: -0.035em;
-}
 .lead-i {
   background: var(--bg);
-}
-.mtile {
-  box-shadow: none;
 }
 .mtile .ill path[stroke-dasharray] {
   display: none;
@@ -194,17 +138,6 @@
 .av {
   background: #e6e7eb;
   font-weight: 600;
-}
-.fhead {
-  margin-top: -6px;
-}
-.st-city {
-  font-size: 34px;
-  letter-spacing: -0.035em;
-}
-.chips button {
-  height: 36px;
-  padding: 0 16px;
 }
 .chips button:not([aria-pressed='true']) {
   background: #fff;
@@ -259,31 +192,12 @@
 }
 .stage.wide .phone {
   filter: drop-shadow(0 50px 40px rgb(11 13 18 / 8%));
-}
-.flipwrap .doc-back {
-  visibility: hidden;
-  transition:
-    transform 0.52s var(--out),
-    visibility 0s 0.26s;
-}
-.flipwrap.flipped .doc-back {
-  visibility: visible;
-  transition:
-    transform 0.52s var(--out),
-    visibility 0s 0.26s;
+  position: sticky;
+  top: 24px;
+  zoom: var(--pz, 1);
 }
 .flipwrap > .doc:first-child {
   transition:
     transform 0.52s var(--out),
     visibility 0s 0.26s;
-}
-.flipwrap.flipped > .doc:first-child {
-  visibility: hidden;
-}
-.rosette {
-  right: -110px;
-  top: -80px;
-  width: 300px;
-  height: 300px;
-  stroke: rgb(255 255 255 / 5.5%);
 }

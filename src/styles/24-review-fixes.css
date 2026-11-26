@@ -53,6 +53,8 @@
 .conf8.done .cf-face,
 .conf8.done .cf-br {
   transition: opacity 0.15s;
+  animation: none !important;
+  opacity: 0 !important;
 }
 .conf8.done .cf-ok {
   opacity: 1;
@@ -145,6 +147,9 @@
 .tb-title {
   max-width: 150px;
   font-size: 15px;
+  transition:
+    opacity 0.18s var(--out) 0.08s,
+    transform 0.22s var(--out) 0.08s;
 }
 /* wallet */
 .stack.w2 .scard {
@@ -318,11 +323,6 @@
   text-overflow: ellipsis;
 }
 /* loader end state: keyframe fill was keeping the face visible under the check */
-.conf8.done .cf-face,
-.conf8.done .cf-br {
-  animation: none !important;
-  opacity: 0 !important;
-}
 .conf8.done .cf-art {
   animation: cfdone 0.35s var(--spring);
 }

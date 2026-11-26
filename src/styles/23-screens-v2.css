@@ -366,6 +366,14 @@
   overflow: hidden;
   opacity: 0;
   text-align: center;
+  display: block;
+  max-height: 0;
+  padding: 0 16px;
+  transition:
+    max-height 0.32s var(--out),
+    opacity 0.2s,
+    margin 0.32s var(--out),
+    padding 0.32s var(--out);
 }
 .rx-code > * {
   min-height: 0;
@@ -376,6 +384,8 @@
   margin: 16px 0 4px;
   background: var(--fill);
   border-radius: 16px;
+  max-height: 200px;
+  padding: 16px;
 }
 .rx-code b {
   display: block;
@@ -588,20 +598,6 @@
   .bars i {
     animation: none !important;
   }
-}
-.rx-code {
-  display: block;
-  max-height: 0;
-  padding: 0 16px;
-  transition:
-    max-height 0.32s var(--out),
-    opacity 0.2s,
-    margin 0.32s var(--out),
-    padding 0.32s var(--out);
-}
-.rx.open .rx-code {
-  max-height: 200px;
-  padding: 16px;
 }
 .screen.full .call8 {
   margin: 0;
@@ -1218,9 +1214,23 @@
   width: auto;
   height: auto;
   border-radius: 999px;
+  left: 50% !important;
+  top: auto !important;
+  bottom: calc(100% + 14px) !important;
+  transform: translateX(-50%) !important;
+  animation: tip-in 0.22s cubic-bezier(0.23, 1, 0.32, 1) both !important;
+  z-index: 30;
 }
 .st-nav .pill.st-next.ready::after {
   border-right-color: #2f6bff;
+  left: 50% !important;
+  top: auto !important;
+  bottom: calc(100% + 2px) !important;
+  margin: 0 0 0 -6px !important;
+  border-color: transparent !important;
+  border-top-color: #2f6bff !important;
+  animation: tip-in-a 0.22s cubic-bezier(0.23, 1, 0.32, 1) both !important;
+  z-index: 30;
 }
 @keyframes tip-side {
   from {

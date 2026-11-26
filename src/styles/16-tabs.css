@@ -18,6 +18,8 @@
 }
 .ring-c small {
   margin-top: 2px;
+  font-size: 10px;
+  color: var(--ink-2);
 }
 @media (prefers-reduced-motion: no-preference) {
   .ring-p {

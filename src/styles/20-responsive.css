@@ -1,9 +1,18 @@
 /* ===== responsive ===== */
-.stage.wide .phone {
-  zoom: var(--pz, 1);
-}
 .mstory {
   display: none;
+  position: absolute;
+  left: 12px;
+  right: 12px;
+  bottom: 84px;
+  z-index: 19;
+  align-items: center;
+  gap: 6px;
+  padding: 6px;
+  border-radius: 18px;
+  background: var(--ink);
+  color: #fff;
+  box-shadow: 0 12px 30px -10px rgb(11 13 18 / 45%);
 }
 /* small laptops: tighter rails */
 @media (max-width: 1439px) and (min-width: 1280px) {
@@ -130,20 +139,6 @@
   .top8 {
     display: none;
   }
-}
-.mstory {
-  position: absolute;
-  left: 12px;
-  right: 12px;
-  bottom: 84px;
-  z-index: 19;
-  align-items: center;
-  gap: 6px;
-  padding: 6px;
-  border-radius: 18px;
-  background: var(--ink);
-  color: #fff;
-  box-shadow: 0 12px 30px -10px rgb(11 13 18 / 45%);
 }
 .ms-main {
   flex: 1;

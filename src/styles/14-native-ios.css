@@ -4,9 +4,6 @@
   font-family: var(--disp);
 }
 /* top bar */
-.topbar {
-  min-height: 44px;
-}
 .word {
   font-size: 17px;
   font-weight: 600;
@@ -18,6 +15,9 @@
   align-items: center;
   gap: 0;
   margin-left: -8px;
+  color: var(--ink);
+  font-size: 16px;
+  font-weight: 500;
 }
 .avatar-btn {
   display: grid;
@@ -103,9 +103,6 @@
 .urgent {
   padding: 14px 16px;
 }
-.urgent .k::before {
-  background: #ff3b30;
-}
 .due {
   font-size: 17px;
   font-weight: 400;
@@ -130,12 +127,6 @@
   font-family: var(--disp);
   font-weight: 600;
   font-size: 19px;
-}
-.tech h3 {
-  font-family: var(--disp);
-  font-weight: 700;
-  font-size: 24px;
-  letter-spacing: -0.02em;
 }
 .word em {
   display: none;
