@@ -770,10 +770,6 @@
   border-radius: 10px;
   padding: 8px 10px;
 }
-.pill.p-red {
-  background: var(--red-soft);
-  color: var(--red);
-}
 /* hop 12: live search */
 .srch8 {
   position: relative;

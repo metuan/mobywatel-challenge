@@ -1,3 +1,6 @@
+import { Badge } from '@/components/ui/badge';
+import { Card } from '@/components/ui/card';
+import { Note } from '@/components/ui/note';
 import { Eyebrow, Lead, Muted, Title } from '@/components/ui/typography';
 import { Actions, Button } from '@/components/ui/button';
 import { useState } from 'react';
@@ -54,7 +57,7 @@ export function Move2(c: Ctx) {
         Asystent znalazł 4 miejsca, gdzie Twój adres musi się zmienić. Odznacz to, czego nie chcesz teraz
         załatwiać.
       </Lead>
-      <div className="card" style={{ padding: '6px 0' }}>
+      <Card style={{ padding: '6px 0' }}>
         <div
           style={{
             display: 'flex',
@@ -83,11 +86,10 @@ export function Move2(c: Ctx) {
             </span>
           </button>
         ))}
-      </div>
-      <div className="note" style={{ marginTop: '12px' }}>
-        {I('sparkle', 18)}
-        <span>Asystent może się mylić. W następnym kroku zobaczysz każde pole i jego źródło.</span>
-      </div>
+      </Card>
+      <Note icon="sparkle" style={{ marginTop: '12px' }}>
+        Asystent może się mylić. W następnym kroku zobaczysz każde pole i jego źródło.
+      </Note>
       <Actions>
         <Button
           onClick={() => {
@@ -216,25 +218,20 @@ export function MoveDone(c: Ctx) {
         <Row
           t="Zameldowanie"
           s="Przyjęte. Właściciel potwierdził o 15:12."
-          right={<span className="pill p-green">Przyjęte</span>}
+          right={<Badge>Przyjęte</Badge>}
           onClick={() => {}}
         />
         <Row
           t="Lekarz rodzinny"
           s="Deklaracja aktywna od 1 grudnia"
-          right={<span className="pill p-green">Gotowe</span>}
+          right={<Badge>Gotowe</Badge>}
           onClick={() => {}}
         />
-        <Row
-          t="Miejsce głosowania"
-          s="Zmienione"
-          right={<span className="pill p-green">Gotowe</span>}
-          onClick={() => {}}
-        />
+        <Row t="Miejsce głosowania" s="Zmienione" right={<Badge>Gotowe</Badge>} onClick={() => {}} />
         <Row
           t="Dowód rejestracyjny"
           s="Urząd odpowie do 8 grudnia"
-          right={<span className="pill p-navy">W toku</span>}
+          right={<Badge>W toku</Badge>}
           onClick={() => c.go('case-meld')}
         />
       </div>

@@ -256,26 +256,6 @@ button.row:active .check {
   font-weight: inherit;
 }
 /* callouts nested inside a list row: align with the row text, no extra left inset */
-.row .tx .note,
-.grow-row .gtx .note {
-  padding: 10px 0 2px;
-  background: none !important;
-  gap: 10px;
-  align-items: center;
-}
-.row .tx .note > svg,
-.grow-row .gtx .note > svg {
-  width: 28px !important;
-  height: 28px !important;
-  padding: 6px;
-  margin-top: 0;
-}
-.row .tx .note > span,
-.grow-row .gtx .note > span {
-  padding-top: 0;
-  font-size: 13.5px;
-  line-height: 1.4;
-}
 .app.scrolled .topbar {
   background: rgb(244 244 246 / 82%);
   backdrop-filter: blur(24px) saturate(180%);

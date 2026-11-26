@@ -1,3 +1,6 @@
+import { Badge } from '@/components/ui/badge';
+import { Card } from '@/components/ui/card';
+import { Note } from '@/components/ui/note';
 import { Caption, Eyebrow, Title } from '@/components/ui/typography';
 import { sx } from '@/lib/sx';
 import { I } from '@/ui/icons';
@@ -10,32 +13,29 @@ export function Benefits(c: Ctx) {
     <div>
       <Hero n="coin" />
       <Title>Świadczenia, które mogą Ci przysługiwać</Title>
-      <div className="note amber">
-        {I('lock', 18)}
-        <span>
-          Sprawdzamy to tylko za Twoją zgodą, na podstawie danych o rodzinie. Nic nie składamy bez Ciebie.
-        </span>
-      </div>
+      <Note icon="lock" tone="amber">
+        Sprawdzamy to tylko za Twoją zgodą, na podstawie danych o rodzinie. Nic nie składamy bez Ciebie.
+      </Note>
       <div className="list" style={{ marginTop: '12px' }}>
         <Row
           icon="coin"
           t="800+ na drugie dziecko"
           s="Po urodzeniu Julii"
-          right={<span className="pill p-green">Pasuje</span>}
+          right={<Badge>Pasuje</Badge>}
           onClick={() => c.go('baby-1')}
         />
         <Row
           icon="card"
           t="Karta Dużej Rodziny"
           s="Od trojga dzieci"
-          right={<span className="pill p-gray">Nie teraz</span>}
+          right={<Badge>Nie teraz</Badge>}
           onClick={() => {}}
         />
         <Row
           icon="coin"
           t="Ulga na dzieci w PIT"
           s="Przy rozliczeniu za 2026"
-          right={<span className="pill p-green">Pasuje</span>}
+          right={<Badge>Pasuje</Badge>}
           onClick={() => {}}
         />
       </div>
@@ -62,7 +62,7 @@ export function P800(c: Ctx) {
         </div>
       </div>
       <Label t="Wypłaty od czerwca 2026 do maja 2027" />
-      <div className="card p8-chart">
+      <Card className="p8-chart">
         <div className="bars">
           {M.map((m, i) => (
             <span className={i < 5 ? 'paid' : i === 5 ? 'next' : ''}>
@@ -77,7 +77,7 @@ export function P800(c: Ctx) {
           </span>
           <span>5 z 12</span>
         </div>
-      </div>
+      </Card>
       {c.s.babyDone ? (
         <>
           <Label t="Julia" />

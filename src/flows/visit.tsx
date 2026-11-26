@@ -1,3 +1,4 @@
+import { Card } from '@/components/ui/card';
 import { Caption, Eyebrow, Title } from '@/components/ui/typography';
 import { Actions, Button } from '@/components/ui/button';
 import { sx } from '@/lib/sx';
@@ -73,7 +74,7 @@ export function Visit2(c: Ctx) {
           </button>
         ))}
       </div>
-      <div className="row card" style={{ marginTop: '12px' }}>
+      <Card className="row" style={{ marginTop: '12px' }}>
         <span className="tx">
           <div className="t">Poczekalnia</div>
           <div className="s">
@@ -81,7 +82,7 @@ export function Visit2(c: Ctx) {
           </div>
         </span>
         <Toggle on={wait} set={setWait} label="Poczekalnia" />
-      </div>
+      </Card>
       <Actions>
         <Button
           onClick={() => {

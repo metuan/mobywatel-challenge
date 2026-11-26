@@ -1,3 +1,5 @@
+import { Badge } from '@/components/ui/badge';
+import { Note } from '@/components/ui/note';
 import { Title } from '@/components/ui/typography';
 import { I } from '@/ui/icons';
 import type { Ctx } from '@/types';
@@ -5,9 +7,7 @@ import type { Ctx } from '@/types';
 export function FamilyMap(c: Ctx) {
   return (
     <div>
-      <span className="pill p-red" style={{ marginTop: '8px' }}>
-        Alert RCB trwa · Kraków
-      </span>
+      <Badge style={{ marginTop: '8px' }}>Alert RCB trwa · Kraków</Badge>
       <Title>Gdzie jest rodzina</Title>
       <div className="map" style={{ position: 'relative' }}>
         <svg viewBox="0 0 350 260" width="100%" role="img" aria-label="Mapa: położenie rodziny">
@@ -92,7 +92,7 @@ export function FamilyMap(c: Ctx) {
             <div className="t">Ty</div>
             <div className="s">Schron, Dekerta 24 · od 15:49</div>
           </span>
-          <span className="pill p-green">Bezpieczna</span>
+          <Badge>Bezpieczna</Badge>
         </div>
         <div className="row">
           <span className="face-i" style={{ background: '#b0533f' }}>
@@ -102,7 +102,7 @@ export function FamilyMap(c: Ctx) {
             <div className="t">Zosia</div>
             <div className="s">Z przedszkolem w schronie · 1,9 km od Ciebie</div>
           </span>
-          <span className="pill p-green">Bezpieczna</span>
+          <Badge>Bezpieczna</Badge>
         </div>
         <div className="row">
           <span className="face-i" style={{ background: '#3d5a80' }}>
@@ -112,7 +112,7 @@ export function FamilyMap(c: Ctx) {
             <div className="t">Tomasz</div>
             <div className="s">Katowice · poza strefą alarmu</div>
           </span>
-          <span className="pill p-green">Bezpieczny</span>
+          <Badge>Bezpieczny</Badge>
         </div>
         <div className="row">
           <span className="face-i" style={{ background: '#1c7a4c' }}>
@@ -127,13 +127,9 @@ export function FamilyMap(c: Ctx) {
           </button>
         </div>
       </div>
-      <div className="note" style={{ marginTop: '12px' }}>
-        {I('lock', 18)}
-        <span>
-          Lokalizację widzi tylko rodzina i tylko w czasie alarmu. Udostępnianie wyłącza się samo po
-          odwołaniu.
-        </span>
-      </div>
+      <Note icon="lock" style={{ marginTop: '12px' }}>
+        Lokalizację widzi tylko rodzina i tylko w czasie alarmu. Udostępnianie wyłącza się samo po odwołaniu.
+      </Note>
     </div>
   );
 }

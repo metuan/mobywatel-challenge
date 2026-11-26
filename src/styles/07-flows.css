@@ -95,29 +95,6 @@
   flex: none;
   box-shadow: inset 0 0 0 2px rgb(255 255 255 / 35%);
 }
-.note {
-  display: flex;
-  gap: 10px;
-  align-items: flex-start;
-  background: var(--surface);
-  box-shadow: var(--shadow-s);
-  border-radius: 18px;
-  padding: 13px 15px;
-  font-size: 13.5px;
-  color: var(--ink2);
-}
-.note.amber {
-  color: var(--ink2);
-}
-.note.amber svg {
-  color: var(--amber);
-}
-.note.green svg {
-  color: var(--green);
-}
-.note.red svg {
-  color: var(--red);
-}
 .done-mark {
   width: 60px;
   height: 60px;

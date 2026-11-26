@@ -1,3 +1,4 @@
+import { Note } from '@/components/ui/note';
 import { Caption, Eyebrow, Lead, Title } from '@/components/ui/typography';
 import { Actions, Button } from '@/components/ui/button';
 import { sx } from '@/lib/sx';
@@ -75,10 +76,9 @@ export function Sign2(c: Ctx) {
           </span>
         </div>
       </div>
-      <div className="note" style={{ marginTop: '14px' }}>
-        {I('info', 18)}
-        <span>To poparcie projektu, nie głos w wyborach.</span>
-      </div>
+      <Note icon="info" style={{ marginTop: '14px' }}>
+        To poparcie projektu, nie głos w wyborach.
+      </Note>
       <Actions>
         <Button
           onClick={() =>
@@ -162,13 +162,10 @@ export function EasySign(c: Ctx) {
       </Lead>
       {rep ? (
         <>
-          <div className="note green" style={{ fontSize: '17px' }}>
-            {I('check', 20)}
-            <span>
-              Zgłoszone do Państwowej Komisji Wyborczej. Ten podpis nie zostanie policzony. Anna dostała
-              informację.
-            </span>
-          </div>
+          <Note icon="check" tone="green" style={{ fontSize: '17px' }}>
+            Zgłoszone do Państwowej Komisji Wyborczej. Ten podpis nie zostanie policzony. Anna dostała
+            informację.
+          </Note>
           <Actions>
             <Button variant="secondary" onClick={() => c.go('easy', 'tata')}>
               Wróć
@@ -260,13 +257,10 @@ export function Sign3(c: Ctx) {
       <div className="b8-bar big">
         <i style={sx(`width:${(n / BILL.goal) * 100}%`)}></i>
       </div>
-      <div className="note" style={{ marginTop: '14px' }}>
-        {I('shield', 18)}
-        <span>
-          Komitet widzi tylko: „1 ważny podpis, Kraków”. Na papierze Twoje imię, PESEL i adres leżałyby na
-          podkładce dla każdego, kto zrobi zdjęcie.
-        </span>
-      </div>
+      <Note icon="shield" style={{ marginTop: '14px' }}>
+        Komitet widzi tylko: „1 ważny podpis, Kraków”. Na papierze Twoje imię, PESEL i adres leżałyby na
+        podkładce dla każdego, kto zrobi zdjęcie.
+      </Note>
       <Actions>
         <Button onClick={() => c.go('sign-list')}>Moje podpisy</Button>
       </Actions>

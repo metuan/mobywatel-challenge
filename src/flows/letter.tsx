@@ -1,3 +1,5 @@
+import { Card } from '@/components/ui/card';
+import { Note } from '@/components/ui/note';
 import { Eyebrow, Muted, Title } from '@/components/ui/typography';
 import { Actions, Button } from '@/components/ui/button';
 import { useEffect, useState } from 'react';
@@ -77,14 +79,14 @@ export function Letter3(c: Ctx) {
     <div>
       <Eyebrow>Podgląd odpowiedzi</Eyebrow>
       <Title>Wyjaśnienie do urzędu</Title>
-      <div className="card" style={{ padding: '16px', fontSize: '14px', lineHeight: '1.6' }}>
+      <Card style={{ padding: '16px', fontSize: '14px', lineHeight: '1.6' }}>
         <p style={{ margin: '0 0 8px' }}>W sprawie: pisma z 19.11.2026, PIT-37 za 2025 r.</p>
         <p style={{ margin: '0 0 8px' }}>
           Poprawiłam zeznanie, bo w pierwszej wersji zapomniałam o uldze na dziecko (Zofia Nowicka, PESEL
           200307•••••). Dołączam zaświadczenie.
         </p>
         <p style={{ margin: '0' }}>Anna Nowicka</p>
-      </div>
+      </Card>
       <div className="list" style={{ marginTop: '10px' }}>
         <div className="field">
           <div className="l">Załącznik</div>
@@ -92,10 +94,9 @@ export function Letter3(c: Ctx) {
         </div>
       </div>
       {c.s.letterSent ? (
-        <div className="note green" style={{ marginTop: '14px' }}>
-          {I('check', 18)}
-          <span>Wysłano przez e-Doręczenia. Urzędowe potwierdzenie odbioru jest zapisane w sprawie.</span>
-        </div>
+        <Note icon="check" tone="green" style={{ marginTop: '14px' }}>
+          Wysłano przez e-Doręczenia. Urzędowe potwierdzenie odbioru jest zapisane w sprawie.
+        </Note>
       ) : (
         <Actions>
           <Button

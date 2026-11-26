@@ -1,3 +1,5 @@
+import { Badge } from '@/components/ui/badge';
+import { Note } from '@/components/ui/note';
 import { Caption, Muted, Subtitle } from '@/components/ui/typography';
 import { Actions, Button } from '@/components/ui/button';
 import { sx } from '@/lib/sx';
@@ -23,7 +25,7 @@ export function MemberZosia(c: Ctx) {
           icon="card"
           t="Paszport"
           s="Ważny do 4 stycznia 2027"
-          right={<span className="pill p-amber">41 dni</span>}
+          right={<Badge>41 dni</Badge>}
           onClick={() => c.go('renew-pass')}
         />
         <Row
@@ -49,7 +51,7 @@ export function MemberZosia(c: Ctx) {
           t="e-Skierowanie: kardiolog"
           s={c.s.visit ? 'Wizyta: ' + c.s.visit : 'Zarezerwuj wizytę'}
           onClick={() => c.go(c.s.visit ? 'visit-4' : 'visit-1')}
-          right={c.s.visit ? <span className="pill p-green">Umówiona</span> : undefined}
+          right={c.s.visit ? <Badge>Umówiona</Badge> : undefined}
         />
         <Row icon="heart" t="Szczepienia" s="1 zalecane do końca roku" onClick={() => c.go('vacc')} />
         <Row
@@ -80,13 +82,10 @@ export function MemberTata(c: Ctx) {
           <Muted>Tata, 71 lat, Sandomierz</Muted>
         </div>
       </div>
-      <div className="note green" style={{ marginTop: '16px' }}>
-        {I('check', 18)}
-        <span>
-          Tata zatwierdził Twój dostęp 24 listopada 2026, w trybie prostym na swoim telefonie. Może go cofnąć
-          w każdej chwili.
-        </span>
-      </div>
+      <Note icon="check" tone="green" style={{ marginTop: '16px' }}>
+        Tata zatwierdził Twój dostęp 24 listopada 2026, w trybie prostym na swoim telefonie. Może go cofnąć w
+        każdej chwili.
+      </Note>
       <Sec t="Możesz" />
       <div className="list">
         {[
@@ -112,14 +111,14 @@ export function MemberTata(c: Ctx) {
           icon="card"
           t="Dowód osobisty"
           s="Ważny do 26 stycznia 2027"
-          right={<span className="pill p-amber">63 dni</span>}
+          right={<Badge>63 dni</Badge>}
           onClick={() => c.toast('Przygotowałaś wniosek o nowy dowód. Tata zatwierdzi go u siebie.')}
         />
         <Row
           icon="doc"
           t="Legitymacja emeryta"
           s="Bezterminowa"
-          right={<span className="pill p-gray">Ważna</span>}
+          right={<Badge>Ważna</Badge>}
           onClick={() => {}}
         />
       </div>

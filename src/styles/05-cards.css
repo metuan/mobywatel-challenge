@@ -1,5 +1,4 @@
 /* ---------- Cards and rows ---------- */
-.card,
 .list {
   background: var(--surface);
   border-radius: 26px;
@@ -60,29 +59,6 @@ button.row:hover {
   font-weight: 500;
   white-space: nowrap;
   color: var(--ink-2);
-}
-.pill::before {
-  content: '';
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background: currentcolor;
-  flex: none;
-}
-.p-red {
-  color: var(--red);
-}
-.p-amber {
-  color: var(--amber);
-}
-.p-green {
-  color: var(--green);
-}
-.p-navy {
-  color: var(--navy);
-}
-.p-gray {
-  color: var(--faint);
 }
 .mini {
   background: var(--bg);

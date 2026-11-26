@@ -1,3 +1,5 @@
+import { Badge } from '@/components/ui/badge';
+import { Note } from '@/components/ui/note';
 import { Eyebrow, Lead, Title } from '@/components/ui/typography';
 import { Actions, Button } from '@/components/ui/button';
 import { useEffect, useState } from 'react';
@@ -13,10 +15,7 @@ export function Baby1(c: Ctx) {
       <Progress n={1} of={4} />
       <Hero n="baby" />
       <Title>Gratulacje! Zgłośmy narodziny.</Title>
-      <div className="note">
-        {I('doc', 18)}
-        <span>Szpital Uniwersytecki zgłosił urodzenie 15 listopada. Masz czas do 6 grudnia.</span>
-      </div>
+      <Note icon="doc">Szpital Uniwersytecki zgłosił urodzenie 15 listopada. Masz czas do 6 grudnia.</Note>
       <div className="list" style={{ marginTop: '12px' }}>
         <div className="field">
           <div className="l">Imię dziecka</div>
@@ -110,17 +109,15 @@ export function Baby3(c: Ctx) {
         </Actions>
       )}
       {stage === 1 && (
-        <div className="note amber" style={{ marginTop: '14px' }}>
-          {I('bell', 18)}
-          <span>Tomasz dostał prośbę. Czekamy, aż potwierdzi…</span>
-        </div>
+        <Note icon="bell" tone="amber" style={{ marginTop: '14px' }}>
+          Tomasz dostał prośbę. Czekamy, aż potwierdzi…
+        </Note>
       )}
       {stage === 2 && (
         <div>
-          <div className="note green" style={{ marginTop: '14px' }}>
-            {I('check', 18)}
-            <span>Tomasz potwierdził na swoim telefonie o 15:31.</span>
-          </div>
+          <Note icon="check" tone="green" style={{ marginTop: '14px' }}>
+            Tomasz potwierdził na swoim telefonie o 15:31.
+          </Note>
           <Actions>
             <Button
               onClick={() =>
@@ -159,25 +156,25 @@ export function BabyDone(c: Ctx) {
         <Row
           t="Akt urodzenia"
           s="Odpis wysłany na e-Doręczenia"
-          right={<span className="pill p-green">Gotowe</span>}
+          right={<Badge>Gotowe</Badge>}
           onClick={() => {}}
         />
         <Row
           t="PESEL i zameldowanie"
           s="Nadane automatycznie"
-          right={<span className="pill p-green">Gotowe</span>}
+          right={<Badge>Gotowe</Badge>}
           onClick={() => {}}
         />
         <Row
           t="Ubezpieczenie NFZ"
           s="Aktywne od 15 listopada"
-          right={<span className="pill p-green">Gotowe</span>}
+          right={<Badge>Gotowe</Badge>}
           onClick={() => {}}
         />
         <Row
           t="800+"
           s="Decyzja ZUS do 24 grudnia, z wyrównaniem"
-          right={<span className="pill p-navy">W toku</span>}
+          right={<Badge>W toku</Badge>}
           onClick={() => c.go('p800')}
         />
       </div>

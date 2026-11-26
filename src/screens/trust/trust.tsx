@@ -1,3 +1,5 @@
+import { Badge } from '@/components/ui/badge';
+import { Note } from '@/components/ui/note';
 import { Caption, Lead, Muted, Title } from '@/components/ui/typography';
 import { Actions, Button } from '@/components/ui/button';
 import { useState } from 'react';
@@ -25,13 +27,10 @@ export function AccessLog(c: Ctx) {
                 {l.when} · {l.how}
               </Caption>
               {flag === i ? (
-                <div className="note red" style={{ marginTop: '8px' }}>
-                  {I('check', 16)}
-                  <span>
-                    Zgłosiliśmy to do CERT Polska i do instytucji, która sprawdzała dane. Odpowiedź w ciągu 7
-                    dni.
-                  </span>
-                </div>
+                <Note icon="check" tone="red" compact style={{ marginTop: '8px' }}>
+                  Zgłosiliśmy to do CERT Polska i do instytucji, która sprawdzała dane. Odpowiedź w ciągu 7
+                  dni.
+                </Note>
               ) : (
                 <button
                   className="link"
@@ -131,7 +130,7 @@ export function Devices(c: Ctx) {
             </div>
           </span>
           {lost ? (
-            <span className="pill p-gray">Wylogowany</span>
+            <Badge>Wylogowany</Badge>
           ) : (
             <button
               className="mini"
@@ -164,12 +163,9 @@ export function Devices(c: Ctx) {
           </span>
         </div>
       </div>
-      <div className="note" style={{ marginTop: '14px' }}>
-        {I('bell', 18)}
-        <span>
-          Dostaniesz powiadomienie przy każdym nowym logowaniu. Jeśli to nie Ty, wylogujesz je jednym ruchem.
-        </span>
-      </div>
+      <Note icon="bell" style={{ marginTop: '14px' }}>
+        Dostaniesz powiadomienie przy każdym nowym logowaniu. Jeśli to nie Ty, wylogujesz je jednym ruchem.
+      </Note>
     </div>
   );
 }

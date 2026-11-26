@@ -3,11 +3,9 @@
 .app {
   background: var(--app);
 }
-.card,
 .list,
 .person,
 .tile,
-.note,
 .sug,
 .msg.ai,
 .levels div,

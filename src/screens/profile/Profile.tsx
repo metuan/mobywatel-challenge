@@ -1,3 +1,4 @@
+import { Card } from '@/components/ui/card';
 import { Caption, Muted, Subtitle } from '@/components/ui/typography';
 import { sx } from '@/lib/sx';
 import { I } from '@/ui/icons';
@@ -117,10 +118,10 @@ export function Profile(c: Ctx) {
     <div>
       {ProfileBase(c)}
       <Label t="Wielkość tekstu" />
-      <div className="card" style={{ padding: '16px 18px' }}>
+      <Card style={{ padding: '16px 18px' }}>
         <TextSize {...c} />
         <Caption style={{ margin: '10px 0 0' }}>Zmiana działa od razu na każdym ekranie.</Caption>
-      </div>
+      </Card>
     </div>
   );
 }

@@ -1,3 +1,4 @@
+import { Note } from '@/components/ui/note';
 import { Display, Eyebrow, Title } from '@/components/ui/typography';
 import { sx } from '@/lib/sx';
 import { useState } from 'react';
@@ -31,10 +32,9 @@ export function CaseMeld(_c: Ctx) {
           </div>
         ))}
       </div>
-      <div className="note" style={{ marginTop: '14px' }}>
-        {I('bell', 18)}
-        <span>Dostaniesz powiadomienie, gdy dokument będzie gotowy. Nie musisz dzwonić do urzędu.</span>
-      </div>
+      <Note icon="bell" style={{ marginTop: '14px' }}>
+        Dostaniesz powiadomienie, gdy dokument będzie gotowy. Nie musisz dzwonić do urzędu.
+      </Note>
     </div>
   );
 }

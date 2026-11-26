@@ -14,10 +14,6 @@
 .rcb.clear {
   background-color: #1f2a24;
 }
-.note.red svg {
-  color: var(--red);
-  opacity: 1;
-}
 .bt-back {
   display: inline-flex;
   align-items: center;

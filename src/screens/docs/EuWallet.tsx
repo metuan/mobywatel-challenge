@@ -1,3 +1,4 @@
+import { Note } from '@/components/ui/note';
 import { Caption, Eyebrow, Title } from '@/components/ui/typography';
 import { useEffect, useState } from 'react';
 import { reducedMotion } from '@/lib/env';
@@ -70,13 +71,10 @@ export function EuWallet(_c: Ctx) {
         onDone={() => setSent(true)}
       />
       {sent && (
-        <div className="note green" style={{ marginTop: '10px' }}>
-          {I('check', 18)}
-          <span>
-            Udostępniono 3 informacje. Wypożyczalnia nie dostała PESEL ani adresu. Wpis jest w „Kto sprawdzał
-            moje dane”.
-          </span>
-        </div>
+        <Note icon="check" tone="green" style={{ marginTop: '10px' }}>
+          Udostępniono 3 informacje. Wypożyczalnia nie dostała PESEL ani adresu. Wpis jest w „Kto sprawdzał
+          moje dane”.
+        </Note>
       )}
     </div>
   );

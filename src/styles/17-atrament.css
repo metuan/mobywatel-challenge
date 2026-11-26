@@ -242,11 +242,9 @@ body {
   border-color: var(--ink);
 }
 /* legacy surfaces: white on grey, no shadows, no coloured squares */
-.card,
 .list,
 .person,
 .tile,
-.note,
 .sug,
 .msg.ai,
 .levels div,
@@ -292,14 +290,6 @@ body {
 .row .chev,
 .chev {
   color: var(--ink-3);
-}
-.pill:not(button) {
-  height: auto;
-  background: none;
-  color: inherit;
-  padding: 0;
-  font-size: 14px;
-  font-weight: 500;
 }
 .due.red,
 .row .s.red,
@@ -1253,10 +1243,6 @@ body {
   .tabbar {
     bottom: max(14px, env(safe-area-inset-bottom));
   }
-}
-button.pill::before {
-  content: none !important;
-  display: none !important;
 }
 .stack:not(.has-sel) .scard:not(:last-child) .sc-s {
   visibility: hidden;

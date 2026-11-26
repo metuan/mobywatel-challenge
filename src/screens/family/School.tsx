@@ -1,3 +1,6 @@
+import { Badge } from '@/components/ui/badge';
+import { Card } from '@/components/ui/card';
+import { Note } from '@/components/ui/note';
 import { Caption, Eyebrow, Lead, Muted, Subtitle, Title } from '@/components/ui/typography';
 import { Actions, Button } from '@/components/ui/button';
 import { useEffect, useState } from 'react';
@@ -33,7 +36,7 @@ export function Consent2(c: Ctx) {
             <div className="t">Anna</div>
             <div className="s">Zatwierdzone dziś, 16:10</div>
           </span>
-          <span className="pill p-green">Zgoda</span>
+          <Badge>Zgoda</Badge>
         </div>
         <div className="row">
           <span className="face-i" style={{ background: '#3d5a80' }}>
@@ -49,11 +52,7 @@ export function Consent2(c: Ctx) {
                   : 'Jeszcze nie zapytany'}
             </div>
           </span>
-          {tom ? (
-            <span className="pill p-green">Zgoda</span>
-          ) : (
-            <span className="pill p-gray">{c.s.askedTom ? 'Czeka' : '—'}</span>
-          )}
+          {tom ? <Badge>Zgoda</Badge> : <Badge>{c.s.askedTom ? 'Czeka' : '—'}</Badge>}
         </div>
       </div>
       <div className="list" style={{ marginTop: '14px' }}>
@@ -116,7 +115,7 @@ export function School(c: Ctx) {
                 </div>
               </span>
               {ex ? (
-                <span className="pill p-green">OK</span>
+                <Badge>OK</Badge>
               ) : (
                 <button
                   className="mini"
@@ -154,7 +153,7 @@ export function School(c: Ctx) {
         </div>
       )}
       {tab === 'frekwencja' && (
-        <div className="card" style={{ padding: '16px' }}>
+        <Card style={{ padding: '16px' }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline' }}>
             <Subtitle as="div">96%</Subtitle>
             <Muted>listopad</Muted>
@@ -167,18 +166,17 @@ export function School(c: Ctx) {
           <Muted style={{ marginTop: '8px' }}>
             1 nieobecność{ex ? ' (usprawiedliwiona)' : ''} · 0 spóźnień
           </Muted>
-        </div>
+        </Card>
       )}
       {tab === 'oceny' && (
-        <div className="card" style={{ padding: '16px' }}>
+        <Card style={{ padding: '16px' }}>
           <Muted>
             Ocena opisowa za I półrocze pojawi się w styczniu. W klasach 1–3 oceny też są opisowe.
           </Muted>
-          <div className="note" style={{ marginTop: '12px', background: 'var(--fill)' }}>
-            {I('sparkle', 18)}
-            <span>Jeśli chcesz, streścimy ocenę w trzech zdaniach.</span>
-          </div>
-        </div>
+          <Note icon="sparkle" style={{ marginTop: '12px', background: 'var(--fill)' }}>
+            Jeśli chcesz, streścimy ocenę w trzech zdaniach.
+          </Note>
+        </Card>
       )}
       <Caption style={{ marginTop: '12px' }}>
         Widzą oboje rodzice. Dane z dziennika elektronicznego szkoły.

@@ -1,3 +1,5 @@
+import { Card } from '@/components/ui/card';
+import { Note, NoteButton } from '@/components/ui/note';
 import { Display, Lead, Muted, Title } from '@/components/ui/typography';
 import { Actions, Button } from '@/components/ui/button';
 import { sx } from '@/lib/sx';
@@ -13,16 +15,14 @@ export function Easy(c: Ctx) {
       {c.s.easyApproved ? (
         ''
       ) : (
-        <button
-          className="note amber"
+        <NoteButton
+          icon="bell"
+          tone="amber"
           style={{ width: '100%', fontSize: '17px', padding: '16px', marginBottom: '14px' }}
           onClick={() => c.go('easy-approve')}
         >
-          {I('bell', 22)}
-          <span>
-            <b>Anna prosi o dostęp.</b> Dotknij, żeby zdecydować.
-          </span>
-        </button>
+          <b>Anna prosi o dostęp.</b> Dotknij, żeby zdecydować.
+        </NoteButton>
       )}
       <div className="tiles">
         <button className="tile" onClick={() => c.go('easy-doc')}>
@@ -56,7 +56,7 @@ export function EasyApprove(c: Ctx) {
       <Title style={{ fontSize: '38px' }}>
         {done ? 'Zgoda zapisana.' : 'Anna chce Panu pomagać w sprawach urzędowych.'}
       </Title>
-      <div className="card" style={{ padding: '18px', fontSize: '18px', lineHeight: '1.5' }}>
+      <Card style={{ padding: '18px', fontSize: '18px', lineHeight: '1.5' }}>
         <div style={{ fontWeight: '600', marginBottom: '6px' }}>Anna będzie mogła:</div>
         <div>✓ widzieć Pana terminy</div>
         <div>✓ czytać pisma z urzędów</div>
@@ -64,7 +64,7 @@ export function EasyApprove(c: Ctx) {
         <div style={{ fontWeight: '600', margin: '10px 0 6px' }}>Anna nie będzie mogła:</div>
         <div>✗ widzieć danych o zdrowiu</div>
         <div>✗ wysyłać niczego bez Pana zgody</div>
-      </div>
+      </Card>
       {done ? (
         <Actions>
           <Button onClick={() => c.go(c.s.persona === 'tata' ? 'easy' : 'member-tata')}>Wróć</Button>
@@ -106,13 +106,13 @@ export function EasyDoc(c: Ctx) {
   return (
     <div className="easy">
       <Title style={{ fontSize: '38px' }}>Pana dowód</Title>
-      <div className="card" style={{ padding: '20px', fontSize: '20px' }}>
+      <Card style={{ padding: '20px', fontSize: '20px' }}>
         <Muted style={{ fontSize: '16px' }}>Ważny do</Muted>
         <div style={{ fontWeight: '600', fontSize: '28px' }}>26 stycznia 2027</div>
-        <div className="note amber" style={{ marginTop: '12px', fontSize: '16px' }}>
+        <Note icon="info" className="mt-3 text-base">
           Za 63 dni. Anna pomoże złożyć wniosek o nowy.
-        </div>
-      </div>
+        </Note>
+      </Card>
       <Actions>
         <Button onClick={() => c.go('share-min')}>Pokaż do sprawdzenia</Button>
         <Button variant="secondary" onClick={() => c.go('easy')}>
@@ -210,7 +210,7 @@ export function EasyVoice(c: Ctx) {
         )}
       </p>
       {done && (
-        <div className="card v-a" style={{ padding: '20px', fontSize: '20px', lineHeight: '1.5' }}>
+        <Card className="v-a" style={{ padding: '20px', fontSize: '20px', lineHeight: '1.5' }}>
           Pana dowód jest ważny do <b>26 stycznia 2027</b>, czyli jeszcze 63 dni. Anna może pomóc złożyć
           wniosek o nowy.
           <Actions>
@@ -219,7 +219,7 @@ export function EasyVoice(c: Ctx) {
             </button>
             <Button onClick={() => c.go('easy-doc')}>Pokaż mój dowód</Button>
           </Actions>
-        </div>
+        </Card>
       )}
     </div>
   );

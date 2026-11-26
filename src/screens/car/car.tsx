@@ -1,3 +1,4 @@
+import { Badge } from '@/components/ui/badge';
 import { Eyebrow, Lead, Title } from '@/components/ui/typography';
 import { Actions, Button } from '@/components/ui/button';
 import { payWrap } from '@/screens/money/pay';
@@ -77,7 +78,7 @@ function CarFullBase(c: Ctx) {
             <div className="s">Parkowanie, ul. Długa, 18 listopada · do zapłaty do 25 listopada</div>
           </span>
           {c.s.paid ? (
-            <span className="pill p-green">Opłacony</span>
+            <Badge>Opłacony</Badge>
           ) : (
             <button
               className="mini"

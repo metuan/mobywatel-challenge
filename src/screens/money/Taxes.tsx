@@ -1,3 +1,5 @@
+import { Badge } from '@/components/ui/badge';
+import { Card } from '@/components/ui/card';
 import { Muted, Title } from '@/components/ui/typography';
 import { Hero } from '@/ui/illustrations';
 import { Row, Sec } from '@/ui/primitives';
@@ -9,7 +11,7 @@ function TaxesBase(c: Ctx) {
     <div>
       <Hero n="coin" />
       <Title>Podatki</Title>
-      <div className="card taxhero">
+      <Card className="taxhero">
         <Muted>PIT-37 za 2025 · Twój e-PIT · zwrot do 45 dni</Muted>
         <div className="big">1 284 zł</div>
         <Muted>zwrotu, wysłany 3 marca na konto •••• 4471</Muted>
@@ -19,7 +21,7 @@ function TaxesBase(c: Ctx) {
           <i className="on"></i>
         </div>
         <Muted>Złożony · przyjęty · zwrot wypłacony</Muted>
-      </div>
+      </Card>
       <Sec t="Opłaty lokalne" />
       <div className="list">
         <div className="row">
@@ -28,7 +30,7 @@ function TaxesBase(c: Ctx) {
             <div className="s">4. rata: 86 zł · termin 15 listopada</div>
           </span>
           {c.s.propPaid ? (
-            <span className="pill p-green">Opłacony</span>
+            <Badge>Opłacony</Badge>
           ) : (
             <button
               className="mini"

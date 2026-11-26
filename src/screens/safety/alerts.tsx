@@ -1,3 +1,5 @@
+import { Badge } from '@/components/ui/badge';
+import { Note } from '@/components/ui/note';
 import { Caption, Lead, Title } from '@/components/ui/typography';
 import { Actions, Button } from '@/components/ui/button';
 import { useState } from 'react';
@@ -104,9 +106,7 @@ function ShelterMap() {
 export function AlertShelter(c: Ctx) {
   return (
     <div>
-      <span className="pill p-red" style={{ marginTop: '8px' }}>
-        Alert RCB trwa · Kraków
-      </span>
+      <Badge style={{ marginTop: '8px' }}>Alert RCB trwa · Kraków</Badge>
       <Title>Idź do schronienia przy ul. Dekerta 24</Title>
       <div className="map">{ShelterMap()}</div>
       <div className="list" style={{ marginTop: '12px' }}>
@@ -124,10 +124,9 @@ export function AlertShelter(c: Ctx) {
           <div className="v">Korytarz bez okien, z dwiema ścianami między Tobą a ulicą</div>
         </div>
       </div>
-      <div className="note" style={{ marginTop: '12px' }}>
-        {I('wifi', 18)}
-        <span>Mapa i trasa są zapisane w telefonie. Działają bez internetu.</span>
-      </div>
+      <Note icon="wifi" style={{ marginTop: '12px' }}>
+        Mapa i trasa są zapisane w telefonie. Działają bez internetu.
+      </Note>
       <Actions>
         <Button onClick={() => c.go('alert-guide')}>Jestem na miejscu</Button>
       </Actions>
@@ -139,9 +138,7 @@ export function AlertGuide(c: Ctx) {
   const [reading, setReading] = useState(false);
   return (
     <div>
-      <span className="pill p-red" style={{ marginTop: '8px' }}>
-        Alert RCB trwa
-      </span>
+      <Badge style={{ marginTop: '8px' }}>Alert RCB trwa</Badge>
       <Title>Co robić teraz</Title>
       <Lead>Zasady z poradnika RCB. Alarm to syrena, której dźwięk rośnie i opada przez 3 minuty.</Lead>
       <button className="speak" style={{ width: '100%' }} onClick={() => setReading(!reading)}>
@@ -196,14 +193,14 @@ export function AlertClear(c: Ctx) {
             <div className="t">Tomasz, Zosia</div>
             <div className="s">Bezpieczni</div>
           </span>
-          <span className="pill p-green">OK</span>
+          <Badge>OK</Badge>
         </div>
         <div className="row">
           <span className="tx">
             <div className="t">Tata</div>
             <div className="s">Brak odpowiedzi od 15:42</div>
           </span>
-          <span className="pill p-amber">Sprawdź</span>
+          <Badge>Sprawdź</Badge>
         </div>
       </div>
       <div style={{ flex: '1', minHeight: '14px' }}></div>
@@ -251,7 +248,7 @@ export function AlertSafe(c: Ctx) {
             <div className="t">Ty</div>
             <div className="s">{sent ? 'Bezpieczna, schron Dekerta 24, 15:49' : 'Nie wysłano'}</div>
           </span>
-          {sent ? <span className="pill p-green">Bezpieczna</span> : <span className="pill p-gray">—</span>}
+          {sent ? <Badge>Bezpieczna</Badge> : <Badge>—</Badge>}
         </div>
         <div className="row">
           <span className="face-i" style={{ background: '#3d5a80' }}>
@@ -261,7 +258,7 @@ export function AlertSafe(c: Ctx) {
             <div className="t">Tomasz</div>
             <div className="s">Bezpieczny, Katowice, 15:46</div>
           </span>
-          <span className="pill p-green">Bezpieczny</span>
+          <Badge>Bezpieczny</Badge>
         </div>
         <div className="row">
           <span className="face-i" style={{ background: '#a8650a' }}>
@@ -271,7 +268,7 @@ export function AlertSafe(c: Ctx) {
             <div className="t">Zosia</div>
             <div className="s">Przedszkole nr 12: dzieci w schronie, 15:45</div>
           </span>
-          <span className="pill p-green">Bezpieczna</span>
+          <Badge>Bezpieczna</Badge>
         </div>
         <div className="row">
           <span className="face-i" style={{ background: '#1c7a4c' }}>

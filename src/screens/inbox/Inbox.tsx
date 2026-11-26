@@ -1,3 +1,4 @@
+import { Badge } from '@/components/ui/badge';
 import { Caption, Lead, Title } from '@/components/ui/typography';
 import { useState, type MouseEvent as ReactMouseEvent } from 'react';
 import { swipeRow } from '@/ui/controls';
@@ -116,11 +117,7 @@ export function Inbox(c: Ctx) {
                   <span className="tag-a sm">AI</span> {x.ai}
                 </span>
               )}
-              {x.tag && (
-                <span className="pill p-red" style={{ marginTop: '8px', alignSelf: 'flex-start' }}>
-                  {x.tag}
-                </span>
-              )}
+              {x.tag && <Badge style={{ marginTop: '8px', alignSelf: 'flex-start' }}>{x.tag}</Badge>}
             </button>
           </div>
         ))}

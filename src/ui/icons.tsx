@@ -57,19 +57,25 @@ export const P = {
 
 export type IconName = keyof typeof P;
 
-/** Inline SVG icon. */
-export const I = (n: IconName, s = 20) => (
-  <svg
-    width={s}
-    height={s}
-    viewBox="0 0 24 24"
-    fill="none"
-    stroke="currentColor"
-    strokeWidth="1.75"
-    strokeLinecap="round"
-    strokeLinejoin="round"
-    aria-hidden="true"
-  >
-    <path d={P[n]} />
-  </svg>
-);
+/** Inline SVG icon from the set above, drawn in the current text colour. */
+export function Icon({ name, size = 20, className }: { name: IconName; size?: number; className?: string }) {
+  return (
+    <svg
+      width={size}
+      height={size}
+      className={className}
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.75"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+    >
+      <path d={P[name]} />
+    </svg>
+  );
+}
+
+/** Shorthand used across the screens: I('bell', 18). */
+export const I = (n: IconName, s = 20) => <Icon name={n} size={s} />;

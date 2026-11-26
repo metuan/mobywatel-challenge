@@ -1,3 +1,5 @@
+import { Card } from '@/components/ui/card';
+import { Note } from '@/components/ui/note';
 import { Caption, Display, Eyebrow, Lead, Muted, Subtitle, Title } from '@/components/ui/typography';
 import { Actions, Button } from '@/components/ui/button';
 import { sx } from '@/lib/sx';
@@ -32,12 +34,9 @@ function DocIdBase(c: Ctx) {
           {show ? 'Ukryj PESEL' : 'Pokaż PESEL'}
         </Button>
       </Actions>
-      <div className="note" style={{ marginTop: '14px' }}>
-        {I('wifi', 18)}
-        <span>
-          Dokument jest zapisany w telefonie. Otworzysz go także bez internetu i po nieudanej aktualizacji.
-        </span>
-      </div>
+      <Note icon="wifi" style={{ marginTop: '14px' }}>
+        Dokument jest zapisany w telefonie. Otworzysz go także bez internetu i po nieudanej aktualizacji.
+      </Note>
     </div>
   );
 }
@@ -59,7 +58,7 @@ export function ShareMin(c: Ctx) {
         ))}
       </div>
       <div className="qr">{QR()}</div>
-      <div className="card" style={{ padding: '14px 16px' }}>
+      <Card style={{ padding: '14px 16px' }}>
         <Muted>Osoba, która sprawdza, zobaczy:</Muted>
         <div style={{ fontWeight: '600', fontSize: '18px' }}>
           {what === 'age'
@@ -71,7 +70,7 @@ export function ShareMin(c: Ctx) {
         <Caption as="div">
           {what === 'full' ? 'Użyj tylko w urzędzie, banku lub na poczcie.' : 'Bez imienia, PESEL i zdjęcia.'}
         </Caption>
-      </div>
+      </Card>
       <Caption style={{ marginTop: '10px' }}>
         Każde sprawdzenie trafia do historii „Kto sprawdzał moje dane”.
       </Caption>
@@ -119,7 +118,7 @@ export function Issued(c: Ctx) {
         Uczelnie, szkoły i urzędy wydają dokumenty prosto do aplikacji. Bez skanów i kopii „za zgodność”.
       </Lead>
       {!acc ? (
-        <div className="card" style={{ padding: '16px' }}>
+        <Card style={{ padding: '16px' }}>
           <Muted>Nowy dokument · dziś</Muted>
           <Subtitle as="div" style={{ margin: '4px 0 2px' }}>
             Dyplom ukończenia studiów
@@ -138,7 +137,7 @@ export function Issued(c: Ctx) {
               Dodaj
             </Button>
           </Actions>
-        </div>
+        </Card>
       ) : (
         <div className="diploma">
           <div className="dh">

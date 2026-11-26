@@ -1,3 +1,4 @@
+import { Badge } from '@/components/ui/badge';
 import { Display, Lead, Title } from '@/components/ui/typography';
 import { Actions, Button } from '@/components/ui/button';
 import { sx } from '@/lib/sx';
@@ -50,7 +51,7 @@ export function Plan(_c: Ctx) {
             <span className="tx">
               <div className="t">{t}</div>
             </span>
-            {!on && <span className="pill p-amber">Brakuje</span>}
+            {!on && <Badge>Brakuje</Badge>}
           </div>
         ))}
       </div>

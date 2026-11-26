@@ -111,11 +111,9 @@ body {
   display: grid;
 }
 /* grouped inset lists */
-.card,
 .list,
 .person,
 .tile,
-.note,
 .sug,
 .msg.ai,
 .levels div,
@@ -178,17 +176,9 @@ button.row:active {
   font-size: 17px;
   font-weight: 400;
 }
-.note {
-  color: var(--ink);
-  font-size: 15px;
-}
 .pill {
   font-size: 15px;
   font-weight: 400;
-}
-.pill::before {
-  width: 8px;
-  height: 8px;
 }
 /* buttons */
 .mini {

@@ -6,7 +6,6 @@
 .askdock::before {
   background: linear-gradient(rgb(255 255 255 / 0%), #fff 55%);
 }
-.card,
 .list {
   box-shadow: none;
   border: 1px solid var(--line);
@@ -16,10 +15,6 @@
   border: 1px solid var(--line);
 }
 .tile {
-  box-shadow: none;
-  border: 1px solid var(--line);
-}
-.note {
   box-shadow: none;
   border: 1px solid var(--line);
 }
