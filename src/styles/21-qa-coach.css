@@ -1,0 +1,350 @@
+/* --- QA pass: contrast, off-track cue, mstory on full screens --- */
+.rcb {
+  color: #fff;
+}
+.rcb .hd .tm {
+  color: rgb(255 255 255 / 82%);
+}
+.rcb .sig {
+  color: rgb(255 255 255 / 92%);
+}
+.rcb .hd .b {
+  background: rgb(255 255 255 / 20%);
+}
+.rcb.clear {
+  background-color: #1f2a24;
+}
+.note.red svg {
+  color: var(--red);
+  opacity: 1;
+}
+.bt-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  margin-top: 8px;
+  padding: 6px 12px 6px 9px;
+  border-radius: 999px;
+  border: 0;
+  background: #2f6bff;
+  color: #fff;
+  font: inherit;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+}
+.mstory.top {
+  top: 6px;
+  bottom: auto;
+  z-index: 40;
+}
+
+/* --- Motion pass (Apple fluid + Emil design-eng) --- */
+/* touch: no sticky hover lifts */
+@media (hover: none), (pointer: coarse) {
+  .mcard:hover .mimg .ill,
+  .wcard:hover,
+  .stack:not(.has-sel) .scard:hover {
+    transform: none;
+  }
+  .p12-bar button:hover span {
+    opacity: 0;
+  }
+}
+/* keyboard chapter jumps: instant, never animated */
+.screen.kbd,
+.screen.kbd * {
+  animation: none !important;
+}
+/* press feedback everywhere in the story chrome */
+@media (prefers-reduced-motion: no-preference) {
+  .pill,
+  .ms-next,
+  .ms-main,
+  .bt-dot,
+  .bt-back,
+  .tour button,
+  .how-btn,
+  .st-more button {
+    transition:
+      transform 0.16s var(--ease-out),
+      background-color 0.15s ease,
+      box-shadow 0.2s ease;
+  }
+  .pill:active,
+  .ms-next:active,
+  .ms-main:active,
+  .bt-dot:active,
+  .bt-back:active,
+  .tour button:active,
+  .how-btn:active,
+  .st-more button:active {
+    transform: scale(0.97);
+    transition-duration: 0.1s;
+  }
+  /* progress: state change reads, not teleports */
+  .p12-bar button {
+    transition:
+      background-color 0.3s var(--ease-out),
+      transform 0.16s var(--ease-out);
+  }
+  .p12-bar button span {
+    transition:
+      opacity 0.15s ease-out,
+      transform 0.15s var(--ease-out);
+  }
+  /* stepper: the dot morphs into its new state */
+  .bt-dot {
+    transition:
+      background-color 0.25s var(--ease-out),
+      color 0.25s var(--ease-out),
+      box-shadow 0.3s var(--ease-out),
+      transform 0.16s var(--ease-out);
+  }
+  .beats li p {
+    transition:
+      color 0.25s ease,
+      font-size 0.25s var(--ease-out);
+  }
+  .bt-act {
+    transition:
+      opacity 0.2s var(--ease-out),
+      transform 0.2s var(--ease-out);
+  }
+  @starting-style {
+    .bt-act {
+      opacity: 0;
+      transform: translateY(-4px);
+    }
+  }
+  /* guidance loops stop nagging after a few beats */
+  .st-arrow {
+    animation-iteration-count: 3 !important;
+  }
+  .st-nav .pill.ready {
+    animation-iteration-count: 3 !important;
+  }
+  /* sheet drag: let JS own the transform while dragging */
+  .sheet {
+    touch-action: pan-x;
+    will-change: transform;
+  }
+  /* chapter switch in the rail: soft blur bridges the swap */
+  .story {
+    animation: story-in 0.32s var(--ease-out) both;
+  }
+  @keyframes story-in {
+    from {
+      opacity: 0;
+      transform: translateY(6px);
+      filter: blur(2px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+      filter: none;
+    }
+  }
+  /* coach mark: calmer pulse, transform-free */
+  .coach {
+    animation-duration: 1.6s;
+  }
+}
+.sheet::before {
+  cursor: grab;
+  width: 40px;
+  height: 5px;
+  margin-bottom: 12px;
+}
+/* materials respect reduced transparency / more contrast */
+@media (prefers-reduced-transparency: reduce) {
+  .topbar,
+  .tabbar,
+  .mstory,
+  .sheet-bg,
+  .tour-bg,
+  .menu-bg,
+  .toast,
+  .notif,
+  .live {
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
+  }
+  .topbar {
+    background: var(--bg);
+  }
+  .tabbar {
+    background: #fff;
+  }
+  .tour-bg {
+    background: rgb(244 244 246 / 96%);
+  }
+}
+@media (prefers-contrast: more) {
+  .tabbar,
+  .topbar,
+  .sheet,
+  .tour {
+    box-shadow: 0 0 0 1px var(--ink);
+  }
+  .beats li p,
+  .st-ab p {
+    color: var(--ink);
+  }
+}
+/* type: tracking follows size */
+.st-t {
+  letter-spacing: -0.025em;
+  line-height: 1.08;
+  font-optical-sizing: auto;
+}
+.tv-h {
+  letter-spacing: -0.025em;
+  line-height: 1.08;
+}
+.beats li p,
+.st-hook {
+  letter-spacing: -0.005em;
+}
+.p12-k,
+.st-n {
+  letter-spacing: 0.005em;
+}
+
+/* --- Coach tip: says where to tap, follows the target --- */
+.coach-tip {
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 35;
+  pointer-events: none;
+  transition: opacity 0.15s ease-out;
+}
+.coach-tip span {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  transform: translateX(-50%);
+  white-space: nowrap;
+  background: #2f6bff;
+  color: #fff;
+  font-size: 13px;
+  font-weight: 600;
+  padding: 7px 12px;
+  border-radius: 999px;
+  box-shadow: 0 8px 20px -6px rgb(47 107 255 / 55%);
+}
+.coach-tip span::after {
+  content: '';
+  position: absolute;
+  left: 50%;
+  top: 100%;
+  margin-left: -6px;
+  border: 6px solid transparent;
+  border-top-color: #2f6bff;
+}
+.coach-tip.below span {
+  bottom: auto;
+  top: 0;
+}
+.coach-tip.below span::after {
+  top: auto;
+  bottom: 100%;
+  border-top-color: transparent;
+  border-bottom-color: #2f6bff;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .coach-tip span {
+    animation:
+      tip-in 0.22s cubic-bezier(0.23, 1, 0.32, 1) both,
+      tip-bob 1.6s ease-in-out 0.3s 3;
+  }
+  @keyframes tip-in {
+    from {
+      opacity: 0;
+      transform: translate(-50%, 6px) scale(0.95);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(-50%);
+    }
+  }
+  @keyframes tip-bob {
+    0%,
+    100% {
+      transform: translateX(-50%);
+    }
+    50% {
+      transform: translate(-50%, -4px);
+    }
+  }
+  .coach-tip.below span {
+    animation-name: tip-in-b, tip-bob-b;
+  }
+  @keyframes tip-in-b {
+    from {
+      opacity: 0;
+      transform: translate(-50%, -6px) scale(0.95);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(-50%);
+    }
+  }
+  @keyframes tip-bob-b {
+    0%,
+    100% {
+      transform: translateX(-50%);
+    }
+    50% {
+      transform: translate(-50%, 4px);
+    }
+  }
+}
+.bt-act {
+  width: 100%;
+  border: 0;
+  font: inherit;
+  cursor: pointer;
+  text-align: left;
+}
+.bt-do {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  flex: none;
+  font-weight: 600;
+  font-size: 13px;
+  padding: 5px 10px;
+  border-radius: 999px;
+  background: #2f6bff;
+  color: #fff;
+}
+.bt-do .st-arrow {
+  color: #fff;
+  font-size: 15px;
+}
+@media (hover: hover) and (pointer: fine) {
+  .bt-act:hover {
+    background: #f3f6ff;
+  }
+}
+.coach-tip {
+  z-index: 60;
+}
+.sheet .coach {
+  outline-offset: 3px;
+}
+/* chapter finished: the outline moves from the phone to "Dalej" */
+.st-nav .pill.ready,
+.ms-next.ready {
+  outline: 2px solid #2f6bff;
+  outline-offset: 3px;
+  box-shadow: 0 0 0 6px rgb(47 107 255 / 18%);
+}
+@media (prefers-reduced-motion: no-preference) {
+  .st-nav .pill.ready,
+  .ms-next.ready {
+    animation: coach 1.6s var(--out) infinite !important;
+  }
+}

@@ -1,0 +1,229 @@
+/* ---------- Cards and rows ---------- */
+.card,
+.list {
+  background: var(--surface);
+  border-radius: 26px;
+  box-shadow: var(--shadow);
+}
+.list {
+  overflow: hidden;
+  padding: 4px 0;
+}
+.row {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+  padding: 15px 18px;
+  width: 100%;
+  position: relative;
+}
+.row + .row::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 18px;
+  right: 18px;
+  height: 1px;
+  background: var(--hair);
+}
+.row .ic {
+  width: 24px;
+  display: grid;
+  place-items: center;
+  flex: none;
+  color: var(--ink2);
+}
+.row .tx {
+  flex: 1;
+  min-width: 0;
+}
+.row .t {
+  font-weight: 500;
+  letter-spacing: -0.01em;
+}
+.row .s {
+  font-size: 13.5px;
+  color: var(--muted);
+}
+.row .chev {
+  color: var(--faint);
+}
+button.row:hover {
+  background: #fafafb;
+}
+/* status: a dot and a word, never a filled lozenge */
+.pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12.5px;
+  font-weight: 500;
+  white-space: nowrap;
+  color: var(--muted);
+}
+.pill::before {
+  content: '';
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: currentcolor;
+  flex: none;
+}
+.p-red {
+  color: var(--red);
+}
+.p-amber {
+  color: var(--amber);
+}
+.p-green {
+  color: var(--green);
+}
+.p-navy {
+  color: var(--navy);
+}
+.p-gray {
+  color: var(--faint);
+}
+.mini {
+  background: var(--bg);
+  border-radius: 999px;
+  padding: 7px 12px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--ink);
+  display: inline-flex;
+  gap: 6px;
+  align-items: center;
+  white-space: nowrap;
+}
+.days {
+  font-family: var(--serif);
+  font-weight: 500;
+  font-size: 30px;
+  line-height: 1;
+  letter-spacing: -0.03em;
+  text-align: right;
+  min-width: 48px;
+}
+.days small {
+  display: block;
+  font-family: var(--sans);
+  font-size: 11px;
+  color: var(--faint);
+  letter-spacing: 0;
+  font-weight: 500;
+  margin-top: 3px;
+}
+
+/* hero card: soft aurora, like the reference demo frames */
+.aurora {
+  border-radius: 30px;
+  padding: 18px;
+  position: relative;
+  overflow: hidden;
+  background: #f3f3f6;
+}
+.aurora::before {
+  content: '';
+  position: absolute;
+  inset: -40%;
+  background:
+    radial-gradient(40% 35% at 20% 30%, rgb(120 140 255 / 38%), transparent 70%),
+    radial-gradient(35% 30% at 80% 25%, rgb(200 170 255 / 35%), transparent 70%),
+    radial-gradient(40% 35% at 60% 85%, rgb(255 190 200 / 30%), transparent 70%);
+  filter: blur(10px);
+}
+.aurora > * {
+  position: relative;
+}
+.aurora.warm::before {
+  background:
+    radial-gradient(40% 35% at 25% 30%, rgb(255 190 140 / 42%), transparent 70%),
+    radial-gradient(35% 35% at 80% 70%, rgb(255 160 180 / 35%), transparent 70%),
+    radial-gradient(30% 30% at 70% 20%, rgb(255 225 150 / 40%), transparent 70%);
+}
+.aurora.green::before {
+  background:
+    radial-gradient(40% 35% at 25% 30%, rgb(140 215 180 / 45%), transparent 70%),
+    radial-gradient(35% 35% at 80% 70%, rgb(150 200 255 / 35%), transparent 70%);
+}
+.aurora.rose::before {
+  background:
+    radial-gradient(40% 35% at 70% 30%, rgb(255 170 190 / 42%), transparent 70%),
+    radial-gradient(35% 35% at 20% 75%, rgb(190 170 255 / 38%), transparent 70%);
+}
+.tag {
+  display: inline-block;
+  background: var(--surface);
+  border-radius: 999px;
+  padding: 6px 12px;
+  font-size: 13px;
+  font-weight: 500;
+  box-shadow: var(--shadow-s);
+}
+.inner {
+  background: var(--surface);
+  border-radius: 20px;
+  box-shadow: var(--shadow);
+  margin-top: 14px;
+}
+
+.moments {
+  display: flex;
+  gap: 12px;
+  overflow-x: auto;
+  margin: 0 -18px;
+  padding: 4px 18px 16px;
+  scrollbar-width: none;
+  scroll-snap-type: x mandatory;
+}
+.moments::-webkit-scrollbar {
+  display: none;
+}
+.moment {
+  flex: 0 0 200px;
+  height: 220px;
+  border-radius: 28px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  scroll-snap-align: start;
+  position: relative;
+  overflow: hidden;
+  background: #f0f0f3;
+  box-shadow: var(--shadow-s);
+}
+.moment .h-m {
+  font-size: 26px;
+}
+.moment .tiny {
+  color: var(--ink2);
+}
+.mgrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+.mgrid .moment {
+  height: 170px;
+  flex: none;
+}
+
+.track {
+  padding: 16px 18px;
+}
+.steps {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 4px;
+  margin: 12px 0 8px;
+}
+.steps i {
+  height: 4px;
+  border-radius: 2px;
+  background: var(--track);
+}
+.steps i.on {
+  background: var(--navy);
+}

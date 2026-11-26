@@ -1,0 +1,579 @@
+/* ===== Motion uphill, 26 Nov ===== */
+/* M1: sheet content swaps crossfade */
+.sheet > div {
+  animation: shin 0.2s cubic-bezier(0.23, 1, 0.32, 1) both;
+}
+@keyframes shin {
+  from {
+    opacity: 0;
+    filter: blur(2px);
+  }
+  to {
+    opacity: 1;
+    filter: none;
+  }
+}
+.sheet {
+  overflow: hidden;
+}
+/* M3: segmented controls slide one indicator instead of swapping backgrounds */
+.seg.full,
+.seg8 {
+  position: relative;
+  isolation: isolate;
+}
+.seg.full button,
+.seg8 button {
+  position: relative;
+  z-index: 1;
+  background: transparent !important;
+  box-shadow: none !important;
+  transition: color 0.2s;
+}
+.seg.full::before,
+.seg8::before {
+  content: '';
+  position: absolute;
+  z-index: 0;
+  top: 3px;
+  bottom: 3px;
+  left: 3px;
+  width: calc((100% - 6px) / var(--n, 3));
+  border-radius: 9px;
+  background: var(--surface);
+  box-shadow: 0 1px 3px rgb(11 13 18 / 10%);
+  transform: translateX(calc(var(--k, 0) * 100%));
+  transition: transform 0.28s cubic-bezier(0.32, 0.72, 0, 1);
+}
+.seg8 {
+  --n: 2;
+}
+.seg.full:has(> button:nth-child(2):last-child) {
+  --n: 2;
+}
+.seg.full:has(> button:nth-child(4)) {
+  --n: 4;
+}
+:is(.seg.full, .seg8):has(> button:nth-child(2)[aria-pressed='true']) {
+  --k: 1;
+}
+:is(.seg.full, .seg8):has(> button:nth-child(3)[aria-pressed='true']) {
+  --k: 2;
+}
+:is(.seg.full, .seg8):has(> button:nth-child(4)[aria-pressed='true']) {
+  --k: 3;
+}
+:is(.seg.full, .seg8):not(:has(> button[aria-pressed='true']))::before {
+  opacity: 0;
+}
+/* M4: rolling digits */
+.num {
+  display: inline-flex;
+  font-variant-numeric: tabular-nums;
+}
+.dg {
+  display: inline-block;
+}
+.dg.roll {
+  animation: dgroll 0.36s cubic-bezier(0.23, 1, 0.32, 1) both;
+}
+@keyframes dgroll {
+  from {
+    transform: translateY(55%);
+    opacity: 0;
+    filter: blur(2px);
+  }
+  to {
+    transform: none;
+    opacity: 1;
+    filter: none;
+  }
+}
+/* M6: hold to confirm */
+.hold8 {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+  touch-action: none;
+  user-select: none;
+  -webkit-user-select: none;
+}
+.hold-fill {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: rgb(0 0 0 / 28%);
+  clip-path: inset(0 calc((1 - var(--p)) * 100%) 0 0);
+  transition: clip-path 0.2s cubic-bezier(0.23, 1, 0.32, 1);
+}
+.hold8.holding .hold-fill {
+  transition: none;
+}
+.hold8.holding {
+  transform: scale(0.985);
+}
+.lost8 .lk {
+  transition:
+    background 0.25s,
+    color 0.25s;
+}
+.lost8.done .lk {
+  background: var(--green-soft);
+  color: var(--ok);
+  animation: pop 0.32s var(--spring) calc(var(--i) * 60ms) both;
+}
+/* M7: skeleton to text without a hard cut; assistant words fade in */
+.v.in,
+.msg.in {
+  animation: txtin 0.3s cubic-bezier(0.23, 1, 0.32, 1) both;
+}
+@keyframes txtin {
+  from {
+    opacity: 0;
+    filter: blur(3px);
+    transform: translateY(3px);
+  }
+  to {
+    opacity: 1;
+    filter: none;
+    transform: none;
+  }
+}
+.tw8 {
+  animation: wordin 0.22s ease-out both;
+}
+@keyframes wordin {
+  from {
+    opacity: 0;
+    filter: blur(2px);
+  }
+  to {
+    opacity: 1;
+    filter: none;
+  }
+}
+/* M8: step bar fills the new segment */
+.progress i {
+  position: relative;
+  overflow: hidden;
+}
+.progress i.on.fresh {
+  background: var(--fill-2) !important;
+}
+.progress i.on.fresh::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--ink);
+  transform-origin: left;
+  animation: segfill 0.45s cubic-bezier(0.23, 1, 0.32, 1) 0.12s both;
+}
+@keyframes segfill {
+  from {
+    transform: scaleX(0);
+  }
+  to {
+    transform: none;
+  }
+}
+/* M9: checkboxes draw their tick and the box springs */
+.check {
+  transition:
+    background-color 0.18s,
+    border-color 0.18s,
+    transform 0.16s cubic-bezier(0.23, 1, 0.32, 1);
+}
+button.row:active .check {
+  transform: scale(0.9);
+}
+.check[aria-checked='true'] svg path {
+  stroke-dasharray: 24;
+  stroke-dashoffset: 24;
+  animation: tick 0.26s cubic-bezier(0.23, 1, 0.32, 1) 0.04s forwards;
+}
+@keyframes tick {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+.cons-row,
+.mail-w {
+  will-change: auto;
+}
+/* M10: frequency rules. Tabs are switched all the time, so a quick fade only; guidance pulses stop after 3 */
+@media (prefers-reduced-motion: no-preference) {
+  .screen.tab > div > * {
+    animation: none !important;
+  }
+  .screen.tab {
+    animation: tabfade 0.16s ease-out both !important;
+  }
+  .st-nav .pill.ready,
+  .ms-next.ready {
+    animation-iteration-count: 3 !important;
+  }
+}
+@keyframes tabfade {
+  from {
+    opacity: 0.4;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .dg.roll,
+  .tw8,
+  .v.in,
+  .msg.in,
+  .sheet > div {
+    animation: none !important;
+    filter: none;
+  }
+  .seg.full::before,
+  .seg8::before {
+    transition: none;
+  }
+  .progress i.on.fresh::after {
+    animation: none;
+  }
+  .check[aria-checked='true'] svg path {
+    animation: none;
+    stroke-dashoffset: 0;
+  }
+}
+.hold8 {
+  background: var(--red-soft) !important;
+  color: var(--red) !important;
+}
+.hold-fill {
+  z-index: 1;
+  display: grid;
+  place-items: center;
+  background: var(--red);
+  color: #fff;
+  font: inherit;
+  font-weight: inherit;
+}
+/* callouts nested inside a list row: align with the row text, no extra left inset */
+.row .tx .note,
+.grow .gtx .note {
+  padding: 10px 0 2px;
+  background: none !important;
+  gap: 10px;
+  align-items: center;
+}
+.row .tx .note > svg,
+.grow .gtx .note > svg {
+  width: 28px !important;
+  height: 28px !important;
+  padding: 6px;
+  margin-top: 0;
+}
+.row .tx .note > span,
+.grow .gtx .note > span {
+  padding-top: 0;
+  font-size: 13.5px;
+  line-height: 1.4;
+}
+.app.scrolled .topbar {
+  background: rgb(244 244 246 / 82%);
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  transition: box-shadow 0.2s;
+}
+/* scroll fix: one calm material under the status bar, no grey band, no logo/title overlap */
+.app.scrolled .topbar,
+.app.compact .topbar {
+  background: rgb(244 244 246 / 94%) !important;
+  backdrop-filter: blur(20px) saturate(160%) !important;
+  -webkit-backdrop-filter: blur(20px) saturate(160%) !important;
+  box-shadow: 0 0.5px 0 rgb(20 20 40 / 12%) !important;
+}
+.topbar .wm {
+  transition: opacity 0.12s var(--out);
+}
+.tb-title {
+  transition:
+    opacity 0.18s var(--out) 0.08s,
+    transform 0.22s var(--out) 0.08s;
+}
+.app:not(.compact) .tb-title {
+  transition:
+    opacity 0.1s var(--out),
+    transform 0.1s var(--out);
+}
+/* "Dotknij tutaj" always on top of its target and never cut off */
+.coach-tip span {
+  margin-left: var(--dx, 0);
+}
+.coach-tip span::after {
+  left: calc(50% - var(--dx, 0px));
+}
+.coach-tip {
+  z-index: 80;
+}
+.st-nav .pill.st-next.ready::before {
+  left: 50% !important;
+  top: auto !important;
+  bottom: calc(100% + 14px) !important;
+  transform: translateX(-50%) !important;
+  animation: tip-in 0.22s cubic-bezier(0.23, 1, 0.32, 1) both !important;
+  z-index: 30;
+}
+.st-nav .pill.st-next.ready::after {
+  left: 50% !important;
+  top: auto !important;
+  bottom: calc(100% + 2px) !important;
+  margin: 0 0 0 -6px !important;
+  border-color: transparent !important;
+  border-top-color: #2f6bff !important;
+  animation: tip-in-a 0.22s cubic-bezier(0.23, 1, 0.32, 1) both !important;
+  z-index: 30;
+}
+@keyframes tip-in-a {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+.story:has(.st-next.ready) .st-nav {
+  margin-top: 56px;
+}
+.ms-next.ready::before,
+.ms-next.ready::after {
+  animation: tip-in-a 0.22s cubic-bezier(0.23, 1, 0.32, 1) both !important;
+}
+.ms-next.ready::before {
+  right: -4px !important;
+  left: auto !important;
+  transform: none !important;
+}
+/* "Jak to zrobić?" guide */
+.how8 {
+  margin-top: 10px;
+  background: var(--surface);
+  border-radius: 20px;
+  padding: 16px 16px 14px;
+  box-shadow: var(--e-float);
+  animation: fadeUp 0.2s var(--out);
+}
+.how8-k {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12.5px;
+  font-weight: 600;
+  color: #5b5cf0;
+}
+.how8-q {
+  font-size: 17px;
+  font-weight: 700;
+  letter-spacing: -0.015em;
+  margin: 6px 0 10px;
+}
+.how8-s {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 9px;
+}
+.how8-s li {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  font-size: 14.5px;
+  line-height: 1.4;
+  color: var(--ink2);
+}
+.how8-s li i {
+  flex: none;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-style: normal;
+  font-size: 12px;
+  font-weight: 700;
+  background: var(--fill);
+  color: var(--ink);
+}
+@media (prefers-reduced-motion: no-preference) {
+  .how8-s li {
+    animation: fadeUp 0.22s var(--out) both;
+    animation-delay: calc(var(--i) * 50ms + 60ms);
+  }
+}
+.how8-go {
+  width: 100%;
+  margin-top: 14px;
+}
+.how8-list {
+  background: var(--surface);
+  border-radius: 18px;
+  overflow: hidden;
+}
+.how8-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  text-align: left;
+  padding: 12px 14px;
+  font-size: 15px;
+  font-weight: 500;
+  border-top: 0.5px solid var(--hair);
+}
+.how8-row:first-child {
+  border-top: 0;
+}
+.how8-row > span:nth-child(2) {
+  flex: 1;
+}
+.how8-row:active {
+  background: var(--fill);
+}
+.guide8 {
+  position: relative;
+  outline: 2px solid #2f6bff;
+  outline-offset: 3px;
+  box-shadow: 0 0 0 3px rgb(47 107 255 / 25%) !important;
+  border-radius: 14px;
+}
+.guide-tip {
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: 80;
+  pointer-events: none;
+  transition: opacity 0.15s ease-out;
+}
+.guide-tip span {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  margin-left: var(--dx, 0);
+  transform: translateX(-50%);
+  white-space: nowrap;
+  background: #2f6bff;
+  color: #fff;
+  font-size: 13px;
+  font-weight: 600;
+  padding: 7px 12px;
+  border-radius: 999px;
+  box-shadow: 0 8px 20px -6px rgb(47 107 255 / 55%);
+}
+.guide-tip span::after {
+  content: '';
+  position: absolute;
+  left: calc(50% - var(--dx, 0px));
+  top: 100%;
+  margin-left: -6px;
+  border: 6px solid transparent;
+  border-top-color: #2f6bff;
+}
+.guide-tip.below span {
+  bottom: auto;
+  top: 0;
+}
+.guide-tip.below span::after {
+  top: auto;
+  bottom: 100%;
+  border-top-color: transparent;
+  border-bottom-color: #2f6bff;
+}
+@media (prefers-reduced-motion: no-preference) {
+  .guide-tip span {
+    animation: tip-in 0.22s cubic-bezier(0.23, 1, 0.32, 1) both;
+  }
+  .guide-tip.below span {
+    animation-name: tip-in-b;
+  }
+}
+.srch8:has(input:not(:placeholder-shown)) ~ * {
+  display: none;
+}
+.grow.guide8,
+.row.guide8,
+.how8-row.guide8 {
+  outline-offset: -3px;
+  border-radius: 16px;
+}
+.how8-row .lead-i {
+  width: 30px;
+  height: 30px;
+  border-radius: 10px;
+}
+/* Dziś: search + inbox row under the greeting */
+.hdr9 {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  margin: 14px 0 16px;
+}
+.hdr9-s {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  height: 44px;
+  padding: 0 14px;
+  border-radius: 14px;
+  background: var(--surface);
+  box-shadow: inset 0 0 0 0.5px var(--hair);
+  color: var(--label2, #8a8f99);
+  font-size: 15px;
+  text-align: left;
+  transition: transform 0.16s var(--out);
+}
+.hdr9-s span {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.hdr9-i {
+  position: relative;
+  flex: none;
+  width: 44px;
+  height: 44px;
+  border-radius: 14px;
+  background: var(--surface);
+  display: grid;
+  place-items: center;
+  box-shadow: inset 0 0 0 0.5px var(--hair);
+  transition: transform 0.16s var(--out);
+}
+.hdr9-s:active,
+.hdr9-i:active {
+  transform: scale(0.97);
+}
+.hdr9-i b {
+  position: absolute;
+  top: -4px;
+  right: -4px;
+  min-width: 18px;
+  height: 18px;
+  padding: 0 5px;
+  border-radius: 9px;
+  background: var(--red);
+  color: #fff;
+  font-size: 11px;
+  font-weight: 700;
+  display: grid;
+  place-items: center;
+  box-shadow: 0 0 0 2px var(--bg);
+}
+/* reserve the tip's space up front so the Dalej button never jumps */
+.story:not(:has(.st-next.ready)) .st-done {
+  display: block !important;
+  visibility: hidden;
+}
+.story .st-nav,
+.story:has(.st-next.ready) .st-nav {
+  margin-top: 50px;
+}

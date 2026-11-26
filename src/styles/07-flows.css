@@ -1,0 +1,188 @@
+/* ---------- Flow pieces ---------- */
+.progress {
+  display: flex;
+  gap: 4px;
+  margin: 8px 0 2px;
+}
+.progress i {
+  flex: 1;
+  height: 3px;
+  border-radius: 2px;
+  background: var(--track);
+}
+.progress i.on {
+  background: var(--ink);
+}
+.field {
+  padding: 13px 18px;
+  position: relative;
+}
+.field + .field::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 18px;
+  right: 18px;
+  height: 1px;
+  background: var(--hair);
+}
+.field .l {
+  font-size: 12.5px;
+  color: var(--muted);
+}
+.field .v {
+  font-weight: 500;
+  letter-spacing: -0.01em;
+}
+.field .src {
+  font-size: 12px;
+  color: var(--faint);
+  display: flex;
+  gap: 5px;
+  align-items: center;
+  margin-top: 3px;
+}
+.toggle {
+  width: 48px;
+  height: 30px;
+  border-radius: 999px;
+  background: var(--track);
+  position: relative;
+  flex: none;
+  transition: background 0.15s;
+}
+.toggle::after {
+  content: '';
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: #fff;
+  transition: transform 0.15s;
+  box-shadow: 0 1px 3px rgb(0 0 0 / 20%);
+}
+.toggle[aria-checked='true'] {
+  background: var(--blue);
+}
+.toggle[aria-checked='true']::after {
+  transform: translateX(18px);
+}
+.check {
+  width: 24px;
+  height: 24px;
+  border-radius: 7px;
+  border: 1.5px solid #cfd2d8;
+  display: grid;
+  place-items: center;
+  flex: none;
+  color: #fff;
+}
+.check[aria-checked='true'] {
+  background: var(--blue);
+  border-color: var(--blue);
+}
+.org {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-size: 11px;
+  font-weight: 700;
+  color: #fff;
+  flex: none;
+  box-shadow: inset 0 0 0 2px rgb(255 255 255 / 35%);
+}
+.note {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  background: var(--surface);
+  box-shadow: var(--shadow-s);
+  border-radius: 18px;
+  padding: 13px 15px;
+  font-size: 13.5px;
+  color: var(--ink2);
+}
+.note.amber {
+  color: var(--ink2);
+}
+.note.amber svg {
+  color: var(--amber);
+}
+.note.green svg {
+  color: var(--green);
+}
+.note.red svg {
+  color: var(--red);
+}
+.done-mark {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: var(--green);
+  color: #fff;
+  display: grid;
+  place-items: center;
+  margin: 26px 0 4px;
+  box-shadow: var(--shadow-s);
+}
+
+/* confirm card */
+.sheet-bg {
+  position: absolute;
+  inset: 0;
+  background: rgb(236 236 240 / 65%);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  z-index: 40;
+  display: flex;
+  align-items: center;
+  padding: 18px;
+}
+.sheet {
+  background: var(--surface);
+  width: 100%;
+  border-radius: 28px;
+  padding: 22px 20px 18px;
+  box-shadow: var(--shadow);
+  max-height: 88%;
+  overflow: auto;
+}
+.sheet .q {
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+.sheet .fields {
+  border: 1px solid var(--hair);
+  border-radius: 18px;
+}
+.face {
+  width: 84px;
+  height: 84px;
+  border-radius: 26px;
+  background: var(--navy-soft);
+  display: grid;
+  place-items: center;
+  color: var(--navy);
+  margin: 10px auto 12px;
+}
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.06);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .face.scan {
+    animation: pulse 1s ease-in-out infinite;
+  }
+}

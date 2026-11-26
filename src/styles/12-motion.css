@@ -1,0 +1,318 @@
+/* ===== Motion (ease-out for entrances, short, interruptible; nothing on reduced motion) ===== */
+@media (prefers-reduced-motion: no-preference) {
+  .screen {
+    animation: scr-in 0.32s var(--ease-out) both;
+  }
+  .screen.back {
+    animation-name: scr-back;
+  }
+  @keyframes scr-in {
+    from {
+      opacity: 0;
+      transform: translateX(14px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+  @keyframes scr-back {
+    from {
+      opacity: 0;
+      transform: translateX(-14px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+  .screen.tab {
+    animation-name: fade-up;
+  }
+  @keyframes fade-up {
+    from {
+      opacity: 0;
+      transform: translateY(6px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+  .screen .list > *,
+  .screen .mrow > *,
+  .screen .mgrid2 > *,
+  .screen .people > *,
+  .screen .tiles > * {
+    animation: fade-up 0.42s var(--ease-out) both;
+  }
+  .screen .list > *:nth-child(2),
+  .screen .mrow > *:nth-child(2),
+  .screen .mgrid2 > *:nth-child(2),
+  .screen .people > *:nth-child(2),
+  .screen .tiles > *:nth-child(2) {
+    animation-delay: 0.04s;
+  }
+  .screen .list > *:nth-child(3),
+  .screen .mrow > *:nth-child(3),
+  .screen .mgrid2 > *:nth-child(3),
+  .screen .people > *:nth-child(3),
+  .screen .tiles > *:nth-child(3) {
+    animation-delay: 0.08s;
+  }
+  .screen .list > *:nth-child(n + 4),
+  .screen .mrow > *:nth-child(n + 4),
+  .screen .mgrid2 > *:nth-child(n + 4),
+  .screen .people > *:nth-child(n + 4),
+  .screen .tiles > *:nth-child(n + 4) {
+    animation-delay: 0.12s;
+  }
+  button,
+  .btn,
+  .mcard,
+  .row,
+  .notif,
+  .live {
+    transition:
+      transform 0.16s var(--ease-out),
+      background-color 0.2s,
+      color 0.2s,
+      box-shadow 0.2s;
+  }
+  .btn:active,
+  .mini:active,
+  .menu-btn:active,
+  .round:active,
+  .lk-btn:active,
+  .seg button:active {
+    transform: scale(0.97);
+  }
+  .mcard:active,
+  .notif:active,
+  .live:active,
+  .urgent:active {
+    transform: scale(0.985);
+  }
+  .mcard .mimg .ill {
+    transition: transform 0.5s var(--ease-out);
+  }
+  .mcard:hover .mimg .ill {
+    transform: translateY(-3px) scale(1.03);
+  }
+  .sheet-bg {
+    animation: fade 0.2s ease-out both;
+  }
+  .sheet {
+    animation: sheet-in 0.38s var(--ease-drawer) both;
+  }
+  @keyframes fade {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  @keyframes sheet-in {
+    from {
+      opacity: 0;
+      transform: translateY(24px) scale(0.98);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+  .menu-bg {
+    animation: fade 0.2s ease-out both;
+  }
+  .menu {
+    transform-origin: top right;
+    animation: menu-in 0.3s var(--ease-out) both;
+  }
+  @keyframes menu-in {
+    from {
+      opacity: 0;
+      transform: scale(0.94) translateY(-6px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+  .menu nav button {
+    animation: fade-up 0.36s var(--ease-out) both;
+  }
+  .menu nav button:nth-child(2) {
+    animation-delay: 0.025s;
+  }
+  .menu nav button:nth-child(3) {
+    animation-delay: 0.05s;
+  }
+  .menu nav button:nth-child(4) {
+    animation-delay: 0.075s;
+  }
+  .menu nav button:nth-child(5) {
+    animation-delay: 0.1s;
+  }
+  .menu nav button:nth-child(n + 6) {
+    animation-delay: 0.125s;
+  }
+  .toast {
+    animation: toast-in 0.34s var(--ease-out) both;
+  }
+  @keyframes toast-in {
+    from {
+      opacity: 0;
+      transform: translateY(12px) scale(0.98);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+  .notif {
+    animation: notif-in 0.55s var(--ease-spring) both;
+  }
+  .notif.big {
+    animation:
+      notif-in 0.55s var(--ease-spring) both,
+      buzz 0.42s 0.5s ease-in-out;
+  }
+  @keyframes notif-in {
+    from {
+      opacity: 0;
+      transform: translateY(-28px) scale(0.94);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+  @keyframes buzz {
+    0%,
+    100% {
+      transform: none;
+    }
+    20% {
+      transform: translateX(-4px);
+    }
+    40% {
+      transform: translateX(4px);
+    }
+    60% {
+      transform: translateX(-3px);
+    }
+    80% {
+      transform: translateX(2px);
+    }
+  }
+  .live {
+    animation: live-in 0.6s var(--ease-drawer) both;
+  }
+  @keyframes live-in {
+    from {
+      opacity: 0;
+      transform: scale(0.9);
+      filter: blur(4px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+      filter: none;
+    }
+  }
+  .lv-dot {
+    animation: ping 1.6s ease-out infinite;
+  }
+  @keyframes ping {
+    0% {
+      box-shadow: 0 0 0 0 rgb(255 77 94 / 60%);
+    }
+    100% {
+      box-shadow: 0 0 0 10px rgb(255 77 94 / 0%);
+    }
+  }
+  .rcb {
+    animation: notif-in 0.55s var(--ease-spring) both;
+  }
+  .rcb-app {
+    animation: fade-up 0.5s 0.25s var(--ease-out) both;
+  }
+  .done-mark {
+    animation: pop 0.5s 0.15s var(--ease-spring) both;
+  }
+  @keyframes pop {
+    from {
+      opacity: 0;
+      transform: scale(0.85);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+  .check svg path {
+    stroke-dasharray: 24;
+    animation: draw 0.26s var(--ease-out) both;
+  }
+  @keyframes draw {
+    from {
+      stroke-dashoffset: 24;
+    }
+    to {
+      stroke-dashoffset: 0;
+    }
+  }
+  .mpin {
+    animation: pin-in 0.5s var(--ease-spring) both;
+  }
+  @keyframes pin-in {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  .explain {
+    animation: fade-up 0.4s var(--ease-out) both;
+  }
+  .explain .tnode {
+    animation: fade-up 0.45s var(--ease-out) both;
+  }
+  .explain .tnode:nth-child(3) {
+    animation-delay: 0.05s;
+  }
+  .explain .tnode:nth-child(4) {
+    animation-delay: 0.1s;
+  }
+  .explain .tnode:nth-child(5) {
+    animation-delay: 0.15s;
+  }
+  .explain .tnode:nth-child(n + 6) {
+    animation-delay: 0.2s;
+  }
+  .hero-ill .ill {
+    animation: float-in 0.7s var(--ease-out) both;
+  }
+  @keyframes float-in {
+    from {
+      opacity: 0;
+      transform: translateY(10px) scale(0.96);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+  .toggle,
+  .toggle::after,
+  .check {
+    transition:
+      transform 0.2s var(--ease-out),
+      background-color 0.2s ease,
+      box-shadow 0.2s ease,
+      opacity 0.2s ease;
+  }
+}

@@ -1,0 +1,191 @@
+/* ---------- Stage (desktop) ---------- */
+.stage {
+  min-height: 100%;
+  display: grid;
+  grid-template-columns: minmax(320px, 520px) auto;
+  justify-content: center;
+  gap: 72px;
+  align-items: center;
+  padding-block: 48px;
+  padding-left: max(32px, env(safe-area-inset-left, 0px));
+  padding-right: max(32px, env(safe-area-inset-right, 0px));
+}
+.rail {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  min-width: 0;
+}
+.rail .mark {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-family: var(--serif);
+  font-weight: 500;
+  font-size: 22px;
+  letter-spacing: -0.02em;
+}
+.statement {
+  font-family: var(--serif);
+  font-weight: 500;
+  font-size: 44px;
+  line-height: 1.08;
+  letter-spacing: -0.035em;
+  margin: 0;
+  text-wrap: pretty;
+}
+.badge-i {
+  display: inline-grid;
+  place-items: center;
+  vertical-align: middle;
+  width: 1.05em;
+  height: 1.05em;
+  border-radius: 50%;
+  background: var(--surface);
+  box-shadow: var(--shadow-s);
+  margin: 0 0.06em;
+  position: relative;
+  top: -0.06em;
+}
+.badge-i.navy {
+  background: var(--navy);
+  color: #fff;
+}
+.badge-i svg {
+  width: 0.5em;
+  height: 0.5em;
+}
+.badge-stack {
+  display: inline-flex;
+  vertical-align: middle;
+  position: relative;
+  top: -0.06em;
+  margin: 0 0.08em;
+}
+.badge-stack span {
+  width: 4.04em;
+  height: 4.04em;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-family: var(--sans);
+  font-size: 0.26em;
+  font-weight: 700;
+  color: #fff;
+  box-shadow: 0 0 0 3px var(--bg);
+  margin-left: -0.7em;
+}
+.badge-stack span:first-child {
+  margin-left: 0;
+}
+.demo-k {
+  font-size: 13px;
+  font-weight: 600;
+  color: var(--ink);
+}
+.flows {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 6px 18px;
+}
+.flows button {
+  display: flex;
+  gap: 10px;
+  align-items: baseline;
+  padding: 6px 0;
+  font-size: 14px;
+  color: var(--ink2);
+}
+.flows button:hover {
+  color: var(--navy);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+.flows .fn {
+  font-family: var(--serif);
+  color: var(--faint);
+  font-size: 15px;
+  min-width: 14px;
+}
+.seg {
+  display: inline-flex;
+  background: var(--track);
+  border-radius: 999px;
+  padding: 4px;
+  gap: 2px;
+}
+.seg button {
+  padding: 8px 14px;
+  border-radius: 999px;
+  font-size: 13.5px;
+  font-weight: 500;
+  color: var(--muted);
+  white-space: nowrap;
+}
+.seg button[aria-pressed='true'] {
+  background: var(--surface);
+  color: var(--ink);
+  box-shadow: var(--shadow-s);
+}
+.seg.full {
+  display: flex;
+}
+.seg.full button {
+  flex: 1;
+  text-align: center;
+}
+.laurel {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 12.5px;
+  color: var(--muted);
+}
+.disclaimer {
+  font-size: 12px;
+  color: var(--faint);
+  max-width: 52ch;
+}
+
+.phone {
+  width: 392px;
+  height: 846px;
+  background: var(--bg);
+  border-radius: 52px;
+  position: relative;
+  overflow: hidden;
+  box-shadow:
+    0 0 0 10px #101318,
+    0 0 0 11px #2a2e36,
+    0 50px 90px -30px rgb(12 18 34 / 45%);
+}
+.phone .notch {
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 112px;
+  height: 32px;
+  background: #101318;
+  border-radius: 20px;
+  z-index: 60;
+}
+@media (max-width: 960px) {
+  .stage {
+    display: block;
+    padding: 0;
+  }
+  .rail {
+    display: none;
+  }
+  .phone {
+    width: 100%;
+    height: 100dvh;
+    border-radius: 0;
+    box-shadow: none;
+  }
+  .phone .notch,
+  .statusbar {
+    display: none !important;
+  }
+}

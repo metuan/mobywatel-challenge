@@ -1,0 +1,341 @@
+/* ===== v8.1 polish ===== */
+/* type: tighter, calmer */
+.h-xl {
+  font-size: 34px;
+  line-height: 38px;
+  letter-spacing: -0.035em;
+  font-weight: 680;
+}
+.today8 .h-xl {
+  margin-bottom: 20px;
+}
+.hi-d,
+.lbl {
+  font-size: 13px;
+  letter-spacing: -0.003em;
+}
+.lbl {
+  margin: 36px 4px 10px;
+  color: var(--ink-2);
+  font-weight: 500;
+}
+.gt {
+  font-weight: 500;
+}
+.gs {
+  color: var(--ink-2);
+}
+/* topbar: collapses like iOS large titles */
+.topbar {
+  background: transparent;
+  backdrop-filter: none;
+  -webkit-backdrop-filter: none;
+  transition:
+    background-color 0.2s,
+    box-shadow 0.2s;
+}
+.app.compact .topbar {
+  background: rgb(244 244 246 / 82%);
+  backdrop-filter: blur(24px) saturate(180%);
+  -webkit-backdrop-filter: blur(24px) saturate(180%);
+  box-shadow: 0 1px 0 var(--hair);
+}
+.tb-title {
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, 4px);
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: -0.015em;
+  opacity: 0;
+  transition:
+    opacity 0.2s,
+    transform 0.25s var(--out);
+  pointer-events: none;
+}
+.app.compact .tb-title {
+  opacity: 1;
+  transform: translate(-50%, 0);
+}
+.topbar .wm {
+  transition: opacity 0.2s;
+}
+.app.compact .topbar .wm {
+  opacity: 0;
+}
+.scroll {
+  margin-top: -52px;
+  padding-top: 56px;
+}
+.topbar {
+  z-index: 16;
+}
+.how-btn,
+.avatar-btn {
+  width: 32px;
+  height: 32px;
+  background: rgb(11 13 18 / 5%);
+  color: var(--ink);
+}
+/* tab bar: sliding ink-tinted pill */
+.tabbar {
+  padding: 0 6px;
+  background: rgb(255 255 255 / 72%);
+  box-shadow:
+    0 10px 30px -10px rgb(11 13 18 / 22%),
+    0 0 0 0.5px rgb(11 13 18 / 8%),
+    inset 0 1px 0 rgb(255 255 255 / 80%);
+}
+.tb-ind {
+  position: absolute;
+  left: 6px;
+  top: 6px;
+  bottom: 6px;
+  width: calc((100% - 12px) / 5);
+  border-radius: 999px;
+  background: rgb(11 13 18 / 6%);
+  transition: transform 0.42s var(--spring);
+  pointer-events: none;
+}
+.tabbar button {
+  position: relative;
+  z-index: 1;
+}
+.tabbar button[aria-current='page'] svg path {
+  fill-opacity: 0;
+}
+.tabbar button[aria-current='page'] span {
+  font-weight: 600;
+}
+/* document card: guilloche rosette, hologram, finer light */
+.doc {
+  isolation: isolate;
+}
+.rosette {
+  position: absolute;
+  right: -70px;
+  top: -40px;
+  width: 260px;
+  height: 260px;
+  fill: none;
+  stroke: rgb(255 255 255 / 7%);
+  stroke-width: 0.5;
+  z-index: -1;
+  pointer-events: none;
+}
+.doc > *:not(.rosette) {
+  position: relative;
+}
+.scard .rosette {
+  right: -90px;
+  top: -70px;
+  opacity: 0.8;
+}
+.holo {
+  position: absolute !important;
+  left: 42px;
+  top: 52px;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: conic-gradient(from calc(var(--sx, 0%) * 3.6deg), #c9d6ff, #f3d1f4, #d4f7e6, #fbe7c6, #c9d6ff);
+  opacity: 0.55;
+  mix-blend-mode: screen;
+  box-shadow: 0 0 0 1px rgb(255 255 255 / 18%);
+}
+.d-mid {
+  position: relative;
+}
+.doc {
+  box-shadow:
+    inset 0 0 0 1px rgb(255 255 255 / 8%),
+    inset 0 1px 0 rgb(255 255 255 / 14%),
+    0 1px 1px rgb(11 13 18 / 12%),
+    0 24px 48px -24px rgb(11 13 18 / 55%);
+}
+.d-name {
+  font-size: 21px;
+  letter-spacing: -0.025em;
+}
+.d-f b {
+  letter-spacing: 0.01em;
+}
+.d-chip {
+  background: rgb(255 255 255 / 10%);
+  box-shadow: inset 0 0 0 0.5px rgb(255 255 255 / 14%);
+  backdrop-filter: blur(8px);
+}
+/* quick actions: white discs on grey */
+.qa8 {
+  margin-top: 24px;
+}
+.qa8-i {
+  width: 56px;
+  height: 56px;
+  background: #fff;
+  box-shadow: 0 0 0 0.5px var(--hair);
+}
+.qa8 button {
+  font-size: 12px;
+  color: var(--ink-2);
+  gap: 9px;
+}
+/* cards: one radius, more air */
+.attn {
+  padding: 18px 18px 6px;
+}
+.attn-act {
+  padding: 12px 18px 18px;
+}
+.attn-act .pill {
+  height: 38px;
+}
+.w8 {
+  gap: 10px;
+}
+.w {
+  padding: 16px 16px 15px;
+  min-height: 138px;
+}
+.wk {
+  color: var(--ink-2);
+}
+.wico {
+  color: var(--ink-3);
+}
+.wv {
+  font-size: 30px;
+  line-height: 32px;
+  letter-spacing: -0.035em;
+}
+.grow {
+  padding: 12px 16px;
+}
+.grow + .grow::before {
+  left: 68px;
+}
+.lead-i {
+  background: var(--bg);
+}
+.mtile {
+  box-shadow: none;
+}
+.mtile .ill path[stroke-dasharray] {
+  display: none;
+}
+.mt-ill .ill {
+  width: 72px;
+  height: auto;
+}
+.mt-ill .ill g {
+  stroke-width: 1.35;
+}
+.av {
+  background: #e6e7eb;
+  font-weight: 600;
+}
+.fhead {
+  margin-top: -6px;
+}
+.st-city {
+  font-size: 34px;
+  letter-spacing: -0.035em;
+}
+.chips button {
+  height: 36px;
+  padding: 0 16px;
+}
+.chips button:not([aria-pressed='true']) {
+  background: #fff;
+  box-shadow: inset 0 0 0 0.5px var(--hair);
+}
+.search {
+  background: #fff;
+  box-shadow: inset 0 0 0 0.5px var(--hair);
+}
+/* entrance: content rises in sequence */
+@media (prefers-reduced-motion: no-preference) {
+  .screen.tab > div > * {
+    animation: rise 0.5s var(--out) both;
+  }
+  .screen.tab > div > *:nth-child(2) {
+    animation-delay: 0.03s;
+  }
+  .screen.tab > div > *:nth-child(3) {
+    animation-delay: 0.06s;
+  }
+  .screen.tab > div > *:nth-child(4) {
+    animation-delay: 0.09s;
+  }
+  .screen.tab > div > *:nth-child(5) {
+    animation-delay: 0.12s;
+  }
+  .screen.tab > div > *:nth-child(6) {
+    animation-delay: 0.15s;
+  }
+  .screen.tab > div > *:nth-child(n + 7) {
+    animation-delay: 0.18s;
+  }
+  @keyframes rise {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+  .screen.tab {
+    animation: none;
+  }
+  .holo {
+    transition: background 0.3s;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .tb-ind {
+    transition: none;
+  }
+}
+/* desktop polish */
+.top8 .wm {
+  font-size: 16px;
+}
+.rail .statement {
+  font-weight: 680;
+  letter-spacing: -0.045em;
+}
+.sub8 {
+  color: var(--ink-2);
+}
+.stage.wide .phone {
+  filter: drop-shadow(0 50px 40px rgb(11 13 18 / 8%));
+}
+.flipwrap .doc-back {
+  visibility: hidden;
+  transition:
+    transform 0.52s var(--out),
+    visibility 0s 0.26s;
+}
+.flipwrap.flipped .doc-back {
+  visibility: visible;
+  transition:
+    transform 0.52s var(--out),
+    visibility 0s 0.26s;
+}
+.flipwrap > .doc:first-child {
+  transition:
+    transform 0.52s var(--out),
+    visibility 0s 0.26s;
+}
+.flipwrap.flipped > .doc:first-child {
+  visibility: hidden;
+}
+.rosette {
+  right: -110px;
+  top: -80px;
+  width: 300px;
+  height: 300px;
+  stroke: rgb(255 255 255 / 5.5%);
+}
