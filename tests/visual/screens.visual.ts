@@ -15,8 +15,8 @@ for (const route of Object.keys(R)) {
     await page.evaluate(() => document.fonts.ready);
     const phone = page.locator('.phone').first();
     await expect(phone).toBeVisible();
-    // The coach mark arrives on a timer, so let it settle and keep its floating label out of the shot.
-    await page.waitForTimeout(1200);
+    // The coach mark and streamed answers arrive on timers, so let it settle and keep its floating label out of the shot.
+    await page.waitForTimeout(3000);
     await page.addStyleTag({ content: '.coach-tip { visibility: hidden !important; }' });
     await expect(phone).toHaveScreenshot(`${route}.png`, {
       animations: 'disabled',

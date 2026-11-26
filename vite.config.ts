@@ -1,4 +1,5 @@
 import { fileURLToPath, URL } from 'node:url';
+import react from '@vitejs/plugin-react';
 import { defineConfig } from 'vite';
 import { viteSingleFile } from 'vite-plugin-singlefile';
 
@@ -6,7 +7,7 @@ import { viteSingleFile } from 'vite-plugin-singlefile';
 // GitHub Pages, as a claude.ai artifact, and when opened straight from disk.
 export default defineConfig({
   base: './',
-  plugins: [viteSingleFile()],
+  plugins: [react(), viteSingleFile()],
   resolve: {
     alias: { '@': fileURLToPath(new URL('./src', import.meta.url)) },
   },

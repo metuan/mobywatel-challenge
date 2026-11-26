@@ -1,7 +1,8 @@
+import type { PointerEvent as ReactPointerEvent } from 'react';
 import { reducedMotion } from '@/lib/env';
 
 /* Hop 16: swipe from the left edge to go back, like every iOS app */
-export function edgeBack(e: PointerEvent, back: () => void) {
+export function edgeBack(e: ReactPointerEvent<HTMLElement>, back: () => void) {
   const sc = e.currentTarget as HTMLElement,
     r = sc.getBoundingClientRect();
   if (e.button > 0 || e.clientX - r.left > 22) return;
@@ -75,7 +76,7 @@ export function leave(card: Element | null, bg: Element | null, to: string, ms: 
 const rubber = (x: number, d = 300, c = 0.55) => (x * d * c) / (d + c * Math.abs(x));
 
 /** Drag a sheet down to dismiss it, with velocity projection like iOS. */
-export function sheetDrag(e: PointerEvent, close: () => void) {
+export function sheetDrag(e: ReactPointerEvent<HTMLElement>, close: () => void) {
   const s = e.currentTarget as HTMLElement;
   if (e.button > 0 || (e.target as Element).closest('button,input,a,label,.doc') || s.scrollTop > 0) return;
   const y0 = e.clientY;

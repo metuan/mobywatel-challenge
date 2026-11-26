@@ -1,4 +1,4 @@
-import { useEffect, useState } from '@/lib/preact';
+import { useEffect, useState } from 'react';
 
 /** Live clock for the document card, so a screenshot cannot pass for the real thing. */
 export const useClock = () => {
