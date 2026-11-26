@@ -41,7 +41,7 @@ export function Pjm(c: Ctx) {
             />
           </g>
         </svg>
-        <div className="absolute left-3 bottom-3 [color:#fff] text-[13px] flex gap-1.5 items-center [background:rgb(0_0_0_/_40%)] p-[4px_10px] rounded-[999px]">
+        <div className="absolute left-3 bottom-3 text-white text-[13px] flex gap-1.5 items-center [background:rgb(0_0_0_/_40%)] p-[4px_10px] rounded-[999px]">
           {on ? (
             <>
               <span className="w-2 h-2 rounded-[50%] [background:#ff4d5e] [box-shadow:0_0_0_0_rgb(255_77_94_/_60%)] motion-safe:animate-[ping_1.6s_ease-out_infinite]"></span>{' '}
@@ -54,7 +54,7 @@ export function Pjm(c: Ctx) {
       </div>
       <Actions>
         {on ? (
-          <Button className="bg-[#ff3b30]" onClick={() => setOn(false)}>
+          <Button className="bg-signal-red" onClick={() => setOn(false)}>
             Zakończ
           </Button>
         ) : (

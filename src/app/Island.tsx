@@ -33,7 +33,7 @@ export function Island({ c, route, full }: { c: Ctx; route: string; full: boolea
   return (
     <button
       className={
-        'notch [.phone_&]:absolute [.phone_&]:top-2.5 [.phone_&]:left-[50%] [.phone_&]:transform-[translateX(-50%)] [.phone_&]:w-28 [.phone_&]:h-8 [.phone_&]:[background:#101318] [.phone_&]:rounded-[20px] [.phone_&]:z-60 [@media(max-width:960px)]:[.phone_&]:hidden! [@media(max-width:960px)_and_(min-width:641px)]:[.stage.wide_.phone_&]:block! island [.phone_&.notch]:block [.phone_&.notch]:cursor-pointer [.phone_&.notch]:overflow-hidden [.phone_&.notch]:w-37.5 [.phone_&.notch]:[transition:width_0.42s_cubic-bezier(0.32,_0.72,_0,_1),_height_0.42s_cubic-bezier(0.32,_0.72,_0,_1),_border-radius_0.42s_cubic-bezier(0.32,_0.72,_0,_1)] [.phone_&.notch]:[color:#fff] [.phone_&.notch]:p-0 [&&.notch.open]:w-85 [&.notch.open]:h-26 [&.notch.open]:rounded-[34px]' +
+        'notch [.phone_&]:absolute [.phone_&]:top-2.5 [.phone_&]:left-[50%] [.phone_&]:transform-[translateX(-50%)] [.phone_&]:w-28 [.phone_&]:h-8 [.phone_&]:[background:#101318] [.phone_&]:rounded-[20px] [.phone_&]:z-60 [@media(max-width:960px)]:[.phone_&]:hidden! [@media(max-width:960px)_and_(min-width:641px)]:[.stage.wide_.phone_&]:block! island [.phone_&.notch]:block [.phone_&.notch]:cursor-pointer [.phone_&.notch]:overflow-hidden [.phone_&.notch]:w-37.5 [.phone_&.notch]:[transition:width_0.42s_cubic-bezier(0.32,_0.72,_0,_1),_height_0.42s_cubic-bezier(0.32,_0.72,_0,_1),_border-radius_0.42s_cubic-bezier(0.32,_0.72,_0,_1)] [.phone_&.notch]:text-white [.phone_&.notch]:p-0 [&&.notch.open]:w-85 [&.notch.open]:h-26 [&.notch.open]:rounded-[34px]' +
         (open ? ' open' : '')
       }
       aria-label={'Na żywo: ' + a.t}
@@ -45,7 +45,7 @@ export function Island({ c, route, full }: { c: Ctx; route: string; full: boolea
       }}
     >
       <span className="absolute inset-0 flex items-center justify-between p-[0_9px_0_12px] [transition:opacity_0.15s] [.notch.island.open_&]:opacity-[0]">
-        <span className="[color:#fff] opacity-[0.9] grid">{I(a.ic, 13)}</span>
+        <span className="text-white opacity-[0.9] grid">{I(a.ic, 13)}</span>
         <span className="is-r">
           <Ring v={a.v} max={1} size={18} w={2.5} color="#fff" />
         </span>
@@ -59,7 +59,7 @@ export function Island({ c, route, full }: { c: Ctx; route: string; full: boolea
           <span>{a.s}</span>
         </span>
         <span className="text-[15px] font-semibold [font-variant-numeric:tabular-nums]">{a.n}</span>
-        <span className="[grid-column:1/-1] h-1 [border-radius:4px] [background:rgb(255_255_255_/_18%)] overflow-hidden mt-2 [&_i]:block [&_i]:h-full [&_i]:[background:#fff] [&_i]:[border-radius:4px]">
+        <span className="[grid-column:1/-1] h-1 [border-radius:4px] [background:rgb(255_255_255_/_18%)] overflow-hidden mt-2 [&_i]:block [&_i]:h-full [&_i]:bg-white [&_i]:[border-radius:4px]">
           <i style={{ width: `${a.v * 100}%` }}></i>
         </span>
       </span>

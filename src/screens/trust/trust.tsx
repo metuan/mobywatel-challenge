@@ -42,7 +42,7 @@ export function AccessLog(c: Ctx) {
                 </Note>
               ) : (
                 <button
-                  className="link font-medium text-ink [text-decoration:underline] underline-offset-[3px] [&&]:decoration-(--hair-2) text-[13px] mt-1.5"
+                  className="link font-medium text-ink [text-decoration:underline] underline-offset-[3px] [&&]:decoration-hair-2 text-[13px] mt-1.5"
 
                   onClick={() => setFlag(i)}
                 >
@@ -65,7 +65,7 @@ export function AccessLog(c: Ctx) {
 export function Signin(c: Ctx) {
   return (
     <div className="text-center">
-      <div className="w-21 h-21 rounded-[26px] [background:var(--navy-soft)] grid place-items-center text-(--navy) m-[10px_auto_12px] motion-safe:[&.scan]:animate-[pulse_1s_ease-in-out_infinite] scan mt-[60px]">
+      <div className="w-21 h-21 rounded-[26px] bg-fill grid place-items-center text-ink m-[10px_auto_12px] motion-safe:[&.scan]:animate-[pulse_1s_ease-in-out_infinite] scan mt-[60px]">
         {I('eye', 40)}
       </div>
       <Title>Zaloguj się twarzą</Title>
@@ -142,7 +142,7 @@ export function Devices(c: Ctx) {
             <Badge>Wylogowany</Badge>
           ) : (
             <button
-              className="mini inline-flex gap-1.5 items-center whitespace-nowrap motion-safe:[&:active]:transform-[scale(0.97)] font-semibold text-[15px] p-[6px_14px] [background:var(--fill)] rounded-[999px] text-[#ff3b30]"
+              className="mini inline-flex gap-1.5 items-center whitespace-nowrap motion-safe:[&:active]:transform-[scale(0.97)] font-semibold text-[15px] p-[6px_14px] bg-fill rounded-[999px] text-signal-red"
 
               onClick={() =>
                 c.confirm({
@@ -188,19 +188,19 @@ export function Scam(c: Ctx) {
       <Title>Tarcza antyoszustwa</Title>
       <Lead>Wklej podejrzaną wiadomość. Sprawdzimy link na liście ostrzeżeń CERT Polska.</Lead>
       <div className="[background:#e9e9eb] rounded-[18px_18px_18px_4px] p-[10px_14px] text-[16px] max-w-[88%]">
-        <div className="text-[12px] text-(--label2) mb-1">SMS · +48 731 •••</div>Twoja paczka czeka. Dopłać
-        1,99 zł: inpost-dopłata.pl/x7
+        <div className="text-[12px] text-ink-2 mb-1">SMS · +48 731 •••</div>Twoja paczka czeka. Dopłać 1,99
+        zł: inpost-dopłata.pl/x7
       </div>
       {!chk ? (
         <Actions>
           <Button onClick={() => setChk(true)}>Sprawdź wiadomość</Button>
         </Actions>
       ) : (
-        <div className="verdict [background:#fff] rounded-[14px] p-4 mt-3.5 [border-left:4px_solid_#ff3b30]">
-          <div className="[.verdict_&]:flex [.verdict_&]:gap-1.5 [.verdict_&]:items-center [.verdict_&]:font-bold [.verdict_&]:text-[18px] [.verdict_&]:text-[#ff3b30] [.verdict_&]:mb-1.5">
+        <div className="verdict bg-white rounded-[14px] p-4 mt-3.5 [border-left:4px_solid_var(--signal-red)]">
+          <div className="[.verdict_&]:flex [.verdict_&]:gap-1.5 [.verdict_&]:items-center [.verdict_&]:font-bold [.verdict_&]:text-[18px] [.verdict_&]:text-signal-red [.verdict_&]:mb-1.5">
             {I('x', 18)} To oszustwo
           </div>
-          <Muted className="text-(--ink)">
+          <Muted className="text-ink">
             Ta strona jest na liście ostrzeżeń CERT Polska od 21 listopada. Firmy kurierskie nie proszą o
             dopłaty SMS-em z linkiem.
           </Muted>

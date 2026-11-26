@@ -94,17 +94,14 @@ export function Inbox(c: Ctx) {
       />
       <div className="mail">
         {shown.map(x => (
-          <div
-            className="relative rounded-[20px] overflow-hidden [background:var(--ink)] will-change-auto"
-            key={x.k}
-          >
-            <span className="absolute inset-0 flex items-center justify-end gap-2 pr-5.5 [color:#fff] text-[13px] font-semibold [opacity:calc(0.4_+_var(--sw,_0)_*_0.6)]">
+          <div className="relative rounded-[20px] overflow-hidden bg-ink will-change-auto" key={x.k}>
+            <span className="absolute inset-0 flex items-center justify-end gap-2 pr-5.5 text-white text-[13px] font-semibold [opacity:calc(0.4_+_var(--sw,_0)_*_0.6)]">
               {I('archive', 20)}
               <span>Archiwum</span>
             </span>
             <button
               className={
-                'mail-i relative w-full text-left flex flex-col gap-0.75 [background:var(--surface)] p-[14px_16px] rounded-[20px] [touch-action:pan-y] [transition:transform_0.26s_cubic-bezier(0.32,_0.72,_0,_1)] [&.drag]:[transition:none]' +
+                'mail-i relative w-full text-left flex flex-col gap-0.75 bg-surface p-[14px_16px] rounded-[20px] [touch-action:pan-y] [transition:transform_0.26s_cubic-bezier(0.32,_0.72,_0,_1)] [&.drag]:[transition:none]' +
                 (x.unread ? ' new' : '')
               }
               onPointerDown={e => swipeRow(e, () => arch(x))}
@@ -112,7 +109,7 @@ export function Inbox(c: Ctx) {
             >
               <span className="flex justify-between gap-2.5 text-[12.5px] text-ink-2">
                 <span className="flex items-center gap-1.5 min-w-0 whitespace-nowrap overflow-hidden text-ellipsis">
-                  {x.unread && <i className="w-2 h-2 rounded-[50%] [background:#2f6bff] flex-none"></i>}
+                  {x.unread && <i className="w-2 h-2 rounded-[50%] bg-signal-blue flex-none"></i>}
                   {x.from}
                 </span>
                 <span className="mail-d">{x.d}</span>
@@ -123,7 +120,7 @@ export function Inbox(c: Ctx) {
               <span className="text-[13.5px] text-ink-2">{x.s}</span>
               {x.ai && (
                 <span className="mt-1.5 text-[13px] leading-[1.35] text-ink [background:linear-gradient(135deg,_rgb(47_107_255_/_7%),_rgb(122_77_255_/_7%))] rounded-[10px] p-[8px_10px]">
-                  <span className="rounded-[999px] [background:none]! p-0 text-[12px] inline-flex items-center gap-1.25 [&::before]:[content:''] [&::before]:w-1.5 [&::before]:h-1.5 [&::before]:rounded-[50%] [&::before]:[background:var(--ink-3)]! text-ink-2! font-medium [.sys_&]:inline-flex [.sys_&]:items-center [.sys_&]:rounded-[999px] [.sys_&]:gap-1 [.sys_&]:ml-2 [.sys_&]:text-[11px] [.sys_&]:tracking-[0.06em] [.sys_&]:align-[1px] [.sys_&]:[box-shadow:0_4px_10px_-4px_rgb(76_90_255_/_60%)] [.sys_&]:[background:linear-gradient(135deg,_#2f6bff,_#7a4dff)]! [.sys_&]:[color:#fff]! [.sys_&]:p-[3px_9px_3px_7px]! [.sys_&]:font-bold! [.sys_&::before]:[content:''] [.sys_&::before]:inline-block! [.sys_&::before]:w-2.5 [.sys_&::before]:h-2.5 [.sys_&::before]:[-webkit-mask:url(data:image/svg+xml,%3Csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20viewBox=%270%200%2024%2024%27%3E%3Cpath%20d=%27M12%202l2.2%206.3L20.5%2010l-6.3%202.2L12%2018.5l-2.2-6.3L3.5%2010l6.3-1.7z%27/%3E%3C/svg%3E)_center/contain_no-repeat] [.sys_&::before]:[mask:url(data:image/svg+xml,%3Csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20viewBox=%270%200%2024%2024%27%3E%3Cpath%20d=%27M12%202l2.2%206.3L20.5%2010l-6.3%202.2L12%2018.5l-2.2-6.3L3.5%2010l6.3-1.7z%27/%3E%3C/svg%3E)_center/contain_no-repeat] [.sys_&::before]:[background:#fff]! [.sys_&::before]:[box-shadow:none]! [.sys_&::before]:rounded-none! [&.sm]:text-[9.5px]! [&&.sm]:p-[1px_6px]! [&.sm]:align-[1px] [&.sm]:[background:linear-gradient(135deg,_#2f6bff,_#7a4dff)]! [&.sm]:[color:#fff]! [&.sm]:rounded-[999px] [&&.sm::before]:hidden! sm">
+                  <span className="rounded-[999px] [background:none]! p-0 text-[12px] inline-flex items-center gap-1.25 [&::before]:[content:''] [&::before]:w-1.5 [&::before]:h-1.5 [&::before]:rounded-[50%] [&::before]:bg-ink-3! text-ink-2! font-medium [.sys_&]:inline-flex [.sys_&]:items-center [.sys_&]:rounded-[999px] [.sys_&]:gap-1 [.sys_&]:ml-2 [.sys_&]:text-[11px] [.sys_&]:tracking-[0.06em] [.sys_&]:align-[1px] [.sys_&]:[box-shadow:0_4px_10px_-4px_rgb(76_90_255_/_60%)] [.sys_&]:[background:linear-gradient(135deg,_var(--signal-blue),_var(--signal-violet))]! [.sys_&]:text-white! [.sys_&]:p-[3px_9px_3px_7px]! [.sys_&]:font-bold! [.sys_&::before]:[content:''] [.sys_&::before]:inline-block! [.sys_&::before]:w-2.5 [.sys_&::before]:h-2.5 [.sys_&::before]:[-webkit-mask:url(data:image/svg+xml,%3Csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20viewBox=%270%200%2024%2024%27%3E%3Cpath%20d=%27M12%202l2.2%206.3L20.5%2010l-6.3%202.2L12%2018.5l-2.2-6.3L3.5%2010l6.3-1.7z%27/%3E%3C/svg%3E)_center/contain_no-repeat] [.sys_&::before]:[mask:url(data:image/svg+xml,%3Csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20viewBox=%270%200%2024%2024%27%3E%3Cpath%20d=%27M12%202l2.2%206.3L20.5%2010l-6.3%202.2L12%2018.5l-2.2-6.3L3.5%2010l6.3-1.7z%27/%3E%3C/svg%3E)_center/contain_no-repeat] [.sys_&::before]:bg-white! [.sys_&::before]:[box-shadow:none]! [.sys_&::before]:rounded-none! [&.sm]:text-[9.5px]! [&&.sm]:p-[1px_6px]! [&.sm]:align-[1px] [&.sm]:[background:linear-gradient(135deg,_var(--signal-blue),_var(--signal-violet))]! [&.sm]:text-white! [&.sm]:rounded-[999px] [&&.sm::before]:hidden! sm">
                     AI
                   </span>{' '}
                   {x.ai}

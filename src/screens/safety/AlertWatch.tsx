@@ -93,7 +93,7 @@ export function AlertWatch(c: Ctx) {
   };
   return (
     <div
-      className="wt8 absolute inset-0 z-30 [background:#050608] [color:#fff] flex flex-col items-center p-[64px_20px_26px]"
+      className="wt8 absolute inset-0 z-30 [background:#050608] text-white flex flex-col items-center p-[64px_20px_26px]"
       ref={root}
       role="region"
       aria-label="Zegarek prowadzi do schronienia"
@@ -168,7 +168,7 @@ export function AlertWatch(c: Ctx) {
           <div
             key={ping}
             className={
-              'wt-hap absolute top-[50%] flex items-center pointer-events-none [&.l]:-left-1.5 [&.l]:flex-row-reverse [&.r]:-right-1.5 [&_i]:absolute [&_i]:top-[50%] [&_i]:w-22.5 [&_i]:h-22.5 [&_i]:-mt-11.25 [&_i]:rounded-[50%] [&_i]:[border:2px_solid_rgb(255_255_255_/_60%)] [&_i]:opacity-[0] [&.l_i]:-left-2.5 [&.r_i]:-right-2.5 [&_span]:absolute [&_span]:top-25 [&_span]:whitespace-nowrap [&_span]:text-[12px] [&_span]:font-semibold [&_span]:tracking-[0.02em] [&_span]:[background:rgb(255_255_255_/_10%)] [&_span]:p-[4px_9px] [&_span]:rounded-[999px] [&_span]:[color:#fff] [&.l_span]:left-0 [&.r_span]:right-0 motion-safe:[&_i]:[animation:hap_1s_cubic-bezier(0.23,_1,_0.32,_1)_both] motion-safe:[&_i:nth-child(2)]:[animation-delay:0.18s] motion-safe:[&_span]:[animation:fade-up_0.3s_cubic-bezier(0.23,_1,_0.32,_1)_both] ' +
+              'wt-hap absolute top-[50%] flex items-center pointer-events-none [&.l]:-left-1.5 [&.l]:flex-row-reverse [&.r]:-right-1.5 [&_i]:absolute [&_i]:top-[50%] [&_i]:w-22.5 [&_i]:h-22.5 [&_i]:-mt-11.25 [&_i]:rounded-[50%] [&_i]:[border:2px_solid_rgb(255_255_255_/_60%)] [&_i]:opacity-[0] [&.l_i]:-left-2.5 [&.r_i]:-right-2.5 [&_span]:absolute [&_span]:top-25 [&_span]:whitespace-nowrap [&_span]:text-[12px] [&_span]:font-semibold [&_span]:tracking-[0.02em] [&_span]:bg-d-hair [&_span]:p-[4px_9px] [&_span]:rounded-[999px] [&_span]:text-white [&.l_span]:left-0 [&.r_span]:right-0 motion-safe:[&_i]:[animation:hap_1s_cubic-bezier(0.23,_1,_0.32,_1)_both] motion-safe:[&_i:nth-child(2)]:[animation-delay:0.18s] motion-safe:[&_span]:[animation:fade-up_0.3s_cubic-bezier(0.23,_1,_0.32,_1)_both] ' +
               leg.side
             }
           >

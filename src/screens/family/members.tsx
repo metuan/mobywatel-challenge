@@ -153,7 +153,7 @@ export function MemberTomasz(_c: Ctx) {
           'Plan kryzysowy i status „Jestem bezpieczna”',
         ].map(t => (
           <ListRow>
-            <ListRowIcon className="bg-(--green-soft) text-(--green)">{I('check', 18)}</ListRowIcon>
+            <ListRowIcon className="bg-green-soft text-green">{I('check', 18)}</ListRowIcon>
             <ListRowContent>
               <ListRowTitle>{t}</ListRowTitle>
             </ListRowContent>

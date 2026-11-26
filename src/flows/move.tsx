@@ -71,7 +71,7 @@ export function Move2(c: Ctx) {
             aria-checked={on[k]}
             onClick={() => setOn({ ...on, [k]: !on[k] })}
           >
-            <span className="org grid place-items-center flex-none font-semibold tracking-[0.02em] [box-shadow:none] w-9 h-9 text-[10.5px] [background:var(--fill)]! text-ink! rounded-[50%]!">
+            <span className="org grid place-items-center flex-none font-semibold tracking-[0.02em] [box-shadow:none] w-9 h-9 text-[10.5px] bg-fill! text-ink! rounded-[50%]!">
               {ini}
             </span>
             <ListRowContent>
@@ -111,7 +111,7 @@ export function Move3(c: Ctx) {
       <Title>Sprawdź przed wysłaniem</Title>
       {sel.meld && (
         <>
-          <div className="flex justify-between items-baseline [&_h3]:m-0 [&_button]:underline-offset-[3px] [&_button]:[text-decoration:none] [&_h3]:[font-family:var(--disp)] [&_h3]:text-[14px] [&_h3]:font-medium [&_h3]:text-ink-2 [&_h3]:tracking-[-0.006em] m-[32px_4px_8px] [&_button]:text-ink [&_button]:text-[14px] [&_button]:font-medium">
+          <div className="flex justify-between items-baseline [&_h3]:m-0 [&_button]:underline-offset-[3px] [&_button]:[text-decoration:none] [&_h3]:font-sans [&_h3]:text-[14px] [&_h3]:font-medium [&_h3]:text-ink-2 [&_h3]:tracking-[-0.006em] m-[32px_4px_8px] [&_button]:text-ink [&_button]:text-[14px] [&_button]:font-medium">
             <h3>Zameldowanie</h3>
           </div>
           <List>
@@ -134,7 +134,7 @@ export function Move3(c: Ctx) {
       )}
       {sel.gp && (
         <>
-          <div className="flex justify-between items-baseline [&_h3]:m-0 [&_button]:underline-offset-[3px] [&_button]:[text-decoration:none] [&_h3]:[font-family:var(--disp)] [&_h3]:text-[14px] [&_h3]:font-medium [&_h3]:text-ink-2 [&_h3]:tracking-[-0.006em] m-[32px_4px_8px] [&_button]:text-ink [&_button]:text-[14px] [&_button]:font-medium">
+          <div className="flex justify-between items-baseline [&_h3]:m-0 [&_button]:underline-offset-[3px] [&_button]:[text-decoration:none] [&_h3]:font-sans [&_h3]:text-[14px] [&_h3]:font-medium [&_h3]:text-ink-2 [&_h3]:tracking-[-0.006em] m-[32px_4px_8px] [&_button]:text-ink [&_button]:text-[14px] [&_button]:font-medium">
             <h3>Lekarz rodzinny</h3>
           </div>
           <List>
@@ -148,7 +148,7 @@ export function Move3(c: Ctx) {
       )}
       {sel.vote && (
         <>
-          <div className="flex justify-between items-baseline [&_h3]:m-0 [&_button]:underline-offset-[3px] [&_button]:[text-decoration:none] [&_h3]:[font-family:var(--disp)] [&_h3]:text-[14px] [&_h3]:font-medium [&_h3]:text-ink-2 [&_h3]:tracking-[-0.006em] m-[32px_4px_8px] [&_button]:text-ink [&_button]:text-[14px] [&_button]:font-medium">
+          <div className="flex justify-between items-baseline [&_h3]:m-0 [&_button]:underline-offset-[3px] [&_button]:[text-decoration:none] [&_h3]:font-sans [&_h3]:text-[14px] [&_h3]:font-medium [&_h3]:text-ink-2 [&_h3]:tracking-[-0.006em] m-[32px_4px_8px] [&_button]:text-ink [&_button]:text-[14px] [&_button]:font-medium">
             <h3>Wybory</h3>
           </div>
           <List>
@@ -162,7 +162,7 @@ export function Move3(c: Ctx) {
       )}
       {sel.car && (
         <>
-          <div className="flex justify-between items-baseline [&_h3]:m-0 [&_button]:underline-offset-[3px] [&_button]:[text-decoration:none] [&_h3]:[font-family:var(--disp)] [&_h3]:text-[14px] [&_h3]:font-medium [&_h3]:text-ink-2 [&_h3]:tracking-[-0.006em] m-[32px_4px_8px] [&_button]:text-ink [&_button]:text-[14px] [&_button]:font-medium">
+          <div className="flex justify-between items-baseline [&_h3]:m-0 [&_button]:underline-offset-[3px] [&_button]:[text-decoration:none] [&_h3]:font-sans [&_h3]:text-[14px] [&_h3]:font-medium [&_h3]:text-ink-2 [&_h3]:tracking-[-0.006em] m-[32px_4px_8px] [&_button]:text-ink [&_button]:text-[14px] [&_button]:font-medium">
             <h3>Samochód</h3>
           </div>
           <List>
@@ -204,7 +204,7 @@ export function MoveDone(c: Ctx) {
   return (
     <div>
       <Hero n="move" />
-      <div className="w-15 h-15 rounded-[50%] [color:#fff] grid place-items-center m-[26px_0_4px] [box-shadow:var(--shadow-s)] border-(--app)! motion-safe:animate-[pop_0.5s_0.15s_var(--ease-spring)_both] [background:var(--ink)] mt-[-34px] ml-4 relative [border:4px_solid_#fff]">
+      <div className="w-15 h-15 rounded-[50%] text-white grid place-items-center m-[26px_0_4px] [box-shadow:var(--shadow-s)] border-bg! motion-safe:animate-[pop_0.5s_0.15s_var(--ease-spring)_both] bg-ink mt-[-34px] ml-4 relative [border:4px_solid_#fff]">
         {I('check', 28)}
       </div>
       <Title>Wysłane. Resztą zajmiemy się razem.</Title>

@@ -73,14 +73,14 @@ export function Lock(c: Ctx) {
       </svg>
       <div className="text-center relative [&_>_span]:opacity-[0.8]">
         <span>{I('lock', 14)}</span>
-        <div className="leading-none mt-0.5 [font-variant-numeric:tabular-nums] text-[80px] [font-family:var(--disp)] font-semibold tracking-[-0.02em]">
+        <div className="leading-none mt-0.5 [font-variant-numeric:tabular-nums] text-[80px] font-sans font-semibold tracking-[-0.02em]">
           {n >= 2 ? '15:43' : '15:41'}
         </div>
         <div className="text-[15px] opacity-[0.85] m-[4px_0_14px] font-medium">wtorek, 24 listopada</div>
       </div>
       {live && (
         <button
-          className="relative block w-full [background:rgb(10_12_18_/_78%)] [-webkit-backdrop-filter:blur(18px)] rounded-3xl p-[12px_14px] [color:#fff] mb-2 motion-safe:[transition:transform_0.16s_var(--ease-out),_background-color_0.2s,_color_0.2s,_box-shadow_0.2s] motion-safe:[&:active]:transform-[scale(0.985)] motion-safe:animate-[live-in_0.6s_var(--ease-drawer)_both] [@media(prefers-reduced-transparency:reduce)]:[-webkit-backdrop-filter:none]!"
+          className="relative block w-full [background:rgb(10_12_18_/_78%)] [-webkit-backdrop-filter:blur(18px)] rounded-3xl p-[12px_14px] text-white mb-2 motion-safe:[transition:transform_0.16s_var(--ease-out),_background-color_0.2s,_color_0.2s,_box-shadow_0.2s] motion-safe:[&:active]:transform-[scale(0.985)] motion-safe:animate-[live-in_0.6s_var(--ease-drawer)_both] [@media(prefers-reduced-transparency:reduce)]:[-webkit-backdrop-filter:none]!"
           onClick={() => c.go('family-map')}
         >
           <div className="lv-h flex items-center gap-2 text-[13px]">
@@ -111,7 +111,7 @@ export function Lock(c: Ctx) {
             className={
               'notif block w-full text-left [background:rgb(245_245_247_/_78%)] [-webkit-backdrop-filter:blur(20px)_saturate(1.4)] text-ink rounded-[22px] p-[11px_14px_12px] [&.big]:[background:rgb(255_255_255_/_94%)] motion-safe:[transition:transform_0.16s_var(--ease-out),_background-color_0.2s,_color_0.2s,_box-shadow_0.2s] motion-safe:[&:active]:transform-[scale(0.985)] motion-safe:animate-[notif-in_0.55s_var(--ease-spring)_both] motion-safe:[&.big]:[animation:notif-in_0.55s_var(--ease-spring)_both,_buzz_0.42s_0.5s_ease-in-out] [@media(prefers-reduced-transparency:reduce)]:[-webkit-backdrop-filter:none]!' +
               (x.big
-                ? ' big [.taxhero_&]:text-[40px] [.taxhero_&]:font-bold [.taxhero_&]:tracking-[-0.03em] [.taxhero_&]:text-[#34c759] [.taxhero_&]:m-[4px_0_0]'
+                ? ' big [.taxhero_&]:text-[40px] [.taxhero_&]:font-bold [.taxhero_&]:tracking-[-0.03em] [.taxhero_&]:text-signal-green [.taxhero_&]:m-[4px_0_0]'
                 : '')
             }
             onClick={() => x.go && c.go(x.go)}
@@ -130,7 +130,7 @@ export function Lock(c: Ctx) {
               {x.b}
             </div>
             {x.act && (
-              <div className="[.notif_&]:mt-2 [.notif_&]:[border-top:1px_solid_rgb(0_0_0_/_8%)] [.notif_&]:pt-2 [.notif_&]:text-[13.5px] [.notif_&]:font-semibold [.notif_&]:text-(--blue) [.notif_&_span]:inline-flex [.notif_&_span]:gap-1.5 [.notif_&_span]:items-center">
+              <div className="[.notif_&]:mt-2 [.notif_&]:[border-top:1px_solid_rgb(0_0_0_/_8%)] [.notif_&]:pt-2 [.notif_&]:text-[13.5px] [.notif_&]:font-semibold [.notif_&]:text-ink [.notif_&_span]:inline-flex [.notif_&_span]:gap-1.5 [.notif_&_span]:items-center">
                 <span>
                   {I('phone', 14)} {x.act}
                 </span>
@@ -147,13 +147,13 @@ export function Lock(c: Ctx) {
       <div className="flex-1"></div>
       <div className="flex justify-between gap-2.5 relative">
         <button
-          className="lk-btn inline-flex gap-1.5 items-center [background:rgb(255_255_255_/_18%)] [-webkit-backdrop-filter:blur(14px)] [color:#fff] rounded-[999px] p-[10px_14px] text-[13px] font-medium motion-safe:[&:active]:transform-[scale(0.97)]"
+          className="lk-btn inline-flex gap-1.5 items-center [background:rgb(255_255_255_/_18%)] [-webkit-backdrop-filter:blur(14px)] text-white rounded-[999px] p-[10px_14px] text-[13px] font-medium motion-safe:[&:active]:transform-[scale(0.97)]"
           onClick={replay}
         >
           {I('route', 15)} Odtwórz od nowa
         </button>
         <button
-          className="lk-btn inline-flex gap-1.5 items-center [background:rgb(255_255_255_/_18%)] [-webkit-backdrop-filter:blur(14px)] [color:#fff] rounded-[999px] p-[10px_14px] text-[13px] font-medium motion-safe:[&:active]:transform-[scale(0.97)]"
+          className="lk-btn inline-flex gap-1.5 items-center [background:rgb(255_255_255_/_18%)] [-webkit-backdrop-filter:blur(14px)] text-white rounded-[999px] p-[10px_14px] text-[13px] font-medium motion-safe:[&:active]:transform-[scale(0.97)]"
           onClick={() => c.go('alert-red')}
         >
           Otwórz aplikację

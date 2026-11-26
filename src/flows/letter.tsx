@@ -40,7 +40,7 @@ export function Letter1(c: Ctx) {
             snap ? 'border-[#1c7a4c]' : 'border-white/70',
           )}
         ></div>
-        {snap && <div className="absolute bottom-4 text-[#fff] text-[13px]">Czytam pismo…</div>}
+        {snap && <div className="absolute bottom-4 text-white text-[13px]">Czytam pismo…</div>}
       </div>
       <Actions>
         <Button onClick={() => setSnap(true)}>{I('camera', 18)} Zrób zdjęcie</Button>
@@ -121,7 +121,7 @@ export function Letter2(c: Ctx) {
       <Eyebrow>Wyjaśnienie pisma</Eyebrow>
       <Title>Urząd skarbowy prosi o wyjaśnienie korekty PIT-37.</Title>
       {k < 4 && (
-        <div className="inline-flex items-center gap-2 text-[13px] font-medium p-[6px_12px] rounded-[999px] [color:#fff] [background:linear-gradient(135deg,_#2f6bff,_#7a4dff)] m-[2px_0_10px] [box-shadow:0_4px_12px_-6px_rgb(76_90_255_/_70%)] [&_span]:animate-[fadeUp_0.25s_var(--out)]">
+        <div className="inline-flex items-center gap-2 text-[13px] font-medium p-[6px_12px] rounded-[999px] text-white [background:linear-gradient(135deg,_var(--signal-blue),_var(--signal-violet))] m-[2px_0_10px] [box-shadow:0_4px_12px_-6px_rgb(76_90_255_/_70%)] [&_span]:animate-[fadeUp_0.25s_var(--out)]">
           {I('sparkle', 14)}{' '}
           <span>
             {['Czytam pismo…', 'Szukam przepisu…', 'Sprawdzam termin…', 'Piszę prostym językiem…'][k]}
@@ -147,9 +147,9 @@ export function Letter2(c: Ctx) {
       </List>
       {k >= 4 && (
         <>
-          <div className="msg p-[12px_15px] rounded-[22px] text-[15px] [&&.ai]:self-start [&.ai]:[border:0] [&.ai]:rounded-[22px]! [&.ai]:[box-shadow:none]! [&&.ai]:[background:#fff] ai in [&.v]:[animation:txtin_0.3s_cubic-bezier(0.23,_1,_0.32,_1)_both] [&.msg]:[animation:txtin_0.3s_cubic-bezier(0.23,_1,_0.32,_1)_both] motion-reduce:[&.v]:animate-none! motion-reduce:[&.v]:filter-none motion-reduce:[&.msg]:animate-none! motion-reduce:[&.msg]:filter-none max-w-[100%] mt-3">
+          <div className="msg p-[12px_15px] rounded-[22px] text-[15px] [&&.ai]:self-start [&.ai]:[border:0] [&.ai]:rounded-[22px]! [&.ai]:[box-shadow:none]! [&&.ai]:bg-white ai in [&.v]:[animation:txtin_0.3s_cubic-bezier(0.23,_1,_0.32,_1)_both] [&.msg]:[animation:txtin_0.3s_cubic-bezier(0.23,_1,_0.32,_1)_both] motion-reduce:[&.v]:animate-none! motion-reduce:[&.v]:filter-none motion-reduce:[&.msg]:animate-none! motion-reduce:[&.msg]:filter-none max-w-[100%] mt-3">
             <Muted as="span">Źródła</Muted>
-            <div className="[.msg_&]:flex [.msg_&]:flex-wrap [.msg_&]:gap-1.5 [.msg_&]:mt-2.5 [.msg_&_span]:text-[12px] [.msg_&_span]:[background:var(--bg)] [.msg_&_span]:rounded-[999px] [.msg_&_span]:p-[4px_10px] [.msg_&_span]:text-(--ink2) [.msg_&_span]:inline-flex [.msg_&_span]:gap-1.25 [.msg_&_span]:items-center [&.in]:animate-[fadeUp_0.25s_var(--out)]">
+            <div className="[.msg_&]:flex [.msg_&]:flex-wrap [.msg_&]:gap-1.5 [.msg_&]:mt-2.5 [.msg_&_span]:text-[12px] [.msg_&_span]:bg-bg [.msg_&_span]:rounded-[999px] [.msg_&_span]:p-[4px_10px] [.msg_&_span]:text-(--ink2) [.msg_&_span]:inline-flex [.msg_&_span]:gap-1.25 [.msg_&_span]:items-center [&.in]:animate-[fadeUp_0.25s_var(--out)]">
               <span>Ordynacja podatkowa, art. 155</span>
               <span>podatki.gov.pl: korekta zeznania</span>
             </div>

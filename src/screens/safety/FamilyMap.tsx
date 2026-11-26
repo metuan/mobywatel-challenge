@@ -17,7 +17,7 @@ export function FamilyMap(c: Ctx) {
     <div>
       <Badge className="mt-2">Alert RCB trwa · Kraków</Badge>
       <Title>Gdzie jest rodzina</Title>
-      <div className="overflow-hidden [border:0] rounded-[22px]! [box-shadow:none]! [background:#fff] relative">
+      <div className="overflow-hidden [border:0] rounded-[22px]! [box-shadow:none]! bg-white relative">
         <svg viewBox="0 0 350 260" width="100%" role="img" aria-label="Mapa: położenie rodziny">
           <rect width="350" height="260" fill="#eef0ea" />
           <path
@@ -129,7 +129,7 @@ export function FamilyMap(c: Ctx) {
             <ListRowDescription>Sandomierz · poza strefą alarmu · nie odpowiada</ListRowDescription>
           </ListRowContent>
           <button
-            className="mini inline-flex gap-1.5 items-center whitespace-nowrap motion-safe:[&:active]:transform-[scale(0.97)] font-semibold text-[15px] p-[6px_14px] [background:var(--fill)] text-ink rounded-[999px]"
+            className="mini inline-flex gap-1.5 items-center whitespace-nowrap motion-safe:[&:active]:transform-[scale(0.97)] font-semibold text-[15px] p-[6px_14px] bg-fill text-ink rounded-[999px]"
             onClick={() => c.go('easy-call')}
           >
             {I('phone', 14)} Zadzwoń

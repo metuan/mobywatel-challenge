@@ -152,8 +152,8 @@ export function Issued(c: Ctx) {
           <div className="[.diploma_&]:text-[26px] [.diploma_&]:font-bold [.diploma_&]:tracking-[-0.02em] [.diploma_&]:m-[18px_0_4px]">
             Anna Nowicka
           </div>
-          <div className="[.diploma_&]:text-(--label2)">Magister pielęgniarstwa · 2016</div>
-          <div className="[.diploma_&]:flex [.diploma_&]:gap-1.5 [.diploma_&]:items-center [.diploma_&]:text-[#34c759] [.diploma_&]:text-[13px] [.diploma_&]:font-semibold [.diploma_&]:mt-3.5">
+          <div className="[.diploma_&]:text-ink-2">Magister pielęgniarstwa · 2016</div>
+          <div className="[.diploma_&]:flex [.diploma_&]:gap-1.5 [.diploma_&]:items-center [.diploma_&]:text-signal-green [.diploma_&]:text-[13px] [.diploma_&]:font-semibold [.diploma_&]:mt-3.5">
             {I('check', 14)} Podpisany przez wystawcę
           </div>
         </div>
@@ -229,14 +229,14 @@ function DocsBase(c: Ctx) {
               {ROSETTE}
               <div className="flex justify-between items-center [.eu-eu_&]:pr-24 [.stack.w2_&]:min-h-6">
                 <span className="text-[15px] font-semibold tracking-[-0.01em]">{t}</span>
-                <span className="h-6 p-[0_10px] rounded-[999px] text-[12px] font-medium inline-flex items-center [color:#fff] [background:rgb(255_255_255_/_10%)] [box-shadow:inset_0_0_0_0.5px_rgb(255_255_255_/_14%)] [backdrop-filter:blur(8px)]">
+                <span className="h-6 p-[0_10px] rounded-[999px] text-[12px] font-medium inline-flex items-center text-white bg-d-hair [box-shadow:inset_0_0_0_0.5px_rgb(255_255_255_/_14%)] [backdrop-filter:blur(8px)]">
                   {b}
                 </span>
               </div>
               {front && (
                 <>
                   <div className="mt-4.5">
-                    <div className="text-[24px] font-semibold tracking-[-0.02em] [color:#fff] leading-[1.15]">
+                    <div className="text-[24px] font-semibold tracking-[-0.02em] text-white leading-[1.15]">
                       {s2}
                     </div>
                     <div className="text-[12.5px] [color:rgb(255_255_255_/_62%)] mt-1 [font-variant-numeric:tabular-nums]">
@@ -244,11 +244,11 @@ function DocsBase(c: Ctx) {
                     </div>
                   </div>
                   <div className="flex justify-between items-center [.scard_&]:mt-auto">
-                    <span className="d-rp inline-flex items-center text-[12px] font-medium text-(--d-ink)">
+                    <span className="d-rp inline-flex items-center text-[12px] font-medium text-d-ink">
                       <i className="w-4 h-2.75 rounded-[3px] mr-2 [background:linear-gradient(#fff_50%,_var(--red)_50%)] [box-shadow:0_0_0_0.5px_rgb(11_13_18_/_22%)] inline-block flex-none [.d-rp_&]:w-3.5 [.d-rp_&]:h-2.5 [.d-rp_&]:mr-1.75 [.d-rp_&]:[box-shadow:none]"></i>
                       Rzeczpospolita Polska
                     </span>
-                    <span className="h-6 p-[0_10px] rounded-[999px] text-[12px] font-medium inline-flex items-center [color:#fff] [background:rgb(255_255_255_/_10%)] [box-shadow:inset_0_0_0_0.5px_rgb(255_255_255_/_14%)] [backdrop-filter:blur(8px)]">
+                    <span className="h-6 p-[0_10px] rounded-[999px] text-[12px] font-medium inline-flex items-center text-white bg-d-hair [box-shadow:inset_0_0_0_0.5px_rgb(255_255_255_/_14%)] [backdrop-filter:blur(8px)]">
                       {tone === 'id' ? 'Pokaż kod QR' : 'Otwórz'}
                     </span>
                   </div>
@@ -263,13 +263,13 @@ function DocsBase(c: Ctx) {
           <div style={{ height: `${208 + 7 * (n - 2) + 14}px` }}></div>
           <div className="w2-acts flex gap-2 mt-3.5">
             <button
-              className="pill whitespace-nowrap h-13 rounded-[999px] [background:var(--ink)] [color:#fff] text-[16px] font-semibold p-[0_22px] inline-flex items-center justify-center gap-2 [border:0] [box-shadow:none] [.attn-act_&]:text-[14px] [.attn-act_&]:p-[0_16px] [.attn-act_&]:h-9.5 [.st-nav_&]:h-11 [.st-nav_&]:text-[15px] [.st-nav_&]:p-[0_18px] [.st-nav_&:disabled]:opacity-[0.35] [.tour-btns_&]:h-11.5 [.tour-btns_&]:text-[15px] [@media(max-width:640px)]:[.tour-btns_&]:h-11 [@media(max-width:640px)]:[.tour-btns_&]:p-[0_16px] motion-safe:[transition:transform_0.16s_var(--ease-out),_background-color_0.15s_ease,_box-shadow_0.2s_ease] motion-safe:[&:active]:transform-[scale(0.97)] motion-safe:[&:active]:[transition-duration:0.1s] [.st-nav_&.ready]:[outline:2px_solid_#2f6bff] [.st-nav_&.ready]:outline-offset-[3px] [.st-nav_&.ready]:[box-shadow:0_0_0_6px_rgb(47_107_255_/_18%)] motion-safe:[.st-nav_&.ready]:animate-[coach_1.6s_var(--out)_infinite]! [.w2-acts_&]:flex-1 [.w2-acts_&]:justify-center motion-safe:[.st-nav_&.ready]:[animation-iteration-count:3]!"
+              className="pill whitespace-nowrap h-13 rounded-[999px] bg-ink text-white text-[16px] font-semibold p-[0_22px] inline-flex items-center justify-center gap-2 [border:0] [box-shadow:none] [.attn-act_&]:text-[14px] [.attn-act_&]:p-[0_16px] [.attn-act_&]:h-9.5 [.st-nav_&]:h-11 [.st-nav_&]:text-[15px] [.st-nav_&]:p-[0_18px] [.st-nav_&:disabled]:opacity-[0.35] [.tour-btns_&]:h-11.5 [.tour-btns_&]:text-[15px] [@media(max-width:640px)]:[.tour-btns_&]:h-11 [@media(max-width:640px)]:[.tour-btns_&]:p-[0_16px] motion-safe:[transition:transform_0.16s_var(--ease-out),_background-color_0.15s_ease,_box-shadow_0.2s_ease] motion-safe:[&:active]:transform-[scale(0.97)] motion-safe:[&:active]:[transition-duration:0.1s] [.st-nav_&.ready]:[outline:2px_solid_var(--signal-blue)] [.st-nav_&.ready]:outline-offset-[3px] [.st-nav_&.ready]:[box-shadow:0_0_0_6px_rgb(47_107_255_/_18%)] motion-safe:[.st-nav_&.ready]:animate-[coach_1.6s_var(--out)_infinite]! [.w2-acts_&]:flex-1 [.w2-acts_&]:justify-center motion-safe:[.st-nav_&.ready]:[animation-iteration-count:3]!"
               onClick={() => c.go(cards[sel][2])}
             >
               {cards[sel][3] === 'id' ? 'Pokaż kod QR' : 'Otwórz'}
             </button>
             <button
-              className="pill whitespace-nowrap h-13 rounded-[999px] [background:var(--ink)] [color:#fff] text-[16px] font-semibold p-[0_22px] inline-flex items-center justify-center gap-2 [border:0] [box-shadow:none] [.attn-act_&]:text-[14px] [.attn-act_&]:p-[0_16px] [.attn-act_&]:h-9.5 [.st-nav_&]:h-11 [.st-nav_&]:text-[15px] [.st-nav_&]:p-[0_18px] [.st-nav_&:disabled]:opacity-[0.35] [.tour-btns_&]:h-11.5 [.tour-btns_&]:text-[15px] [@media(max-width:640px)]:[.tour-btns_&]:h-11 [@media(max-width:640px)]:[.tour-btns_&]:p-[0_16px] motion-safe:[transition:transform_0.16s_var(--ease-out),_background-color_0.15s_ease,_box-shadow_0.2s_ease] motion-safe:[&:active]:transform-[scale(0.97)] motion-safe:[&:active]:[transition-duration:0.1s] [.st-nav_&.ready]:[outline:2px_solid_#2f6bff] [.st-nav_&.ready]:outline-offset-[3px] [.st-nav_&.ready]:[box-shadow:0_0_0_6px_rgb(47_107_255_/_18%)] motion-safe:[.st-nav_&.ready]:animate-[coach_1.6s_var(--out)_infinite]! [.w2-acts_&]:flex-1 [.w2-acts_&]:justify-center motion-safe:[.st-nav_&.ready]:[animation-iteration-count:3]! [&.pill]:[background:var(--fill)] [&.pill]:text-ink [.st-nav_&.pill]:w-11 [.st-nav_&.pill]:p-0"
+              className="pill whitespace-nowrap h-13 rounded-[999px] bg-ink text-white text-[16px] font-semibold p-[0_22px] inline-flex items-center justify-center gap-2 [border:0] [box-shadow:none] [.attn-act_&]:text-[14px] [.attn-act_&]:p-[0_16px] [.attn-act_&]:h-9.5 [.st-nav_&]:h-11 [.st-nav_&]:text-[15px] [.st-nav_&]:p-[0_18px] [.st-nav_&:disabled]:opacity-[0.35] [.tour-btns_&]:h-11.5 [.tour-btns_&]:text-[15px] [@media(max-width:640px)]:[.tour-btns_&]:h-11 [@media(max-width:640px)]:[.tour-btns_&]:p-[0_16px] motion-safe:[transition:transform_0.16s_var(--ease-out),_background-color_0.15s_ease,_box-shadow_0.2s_ease] motion-safe:[&:active]:transform-[scale(0.97)] motion-safe:[&:active]:[transition-duration:0.1s] [.st-nav_&.ready]:[outline:2px_solid_var(--signal-blue)] [.st-nav_&.ready]:outline-offset-[3px] [.st-nav_&.ready]:[box-shadow:0_0_0_6px_rgb(47_107_255_/_18%)] motion-safe:[.st-nav_&.ready]:animate-[coach_1.6s_var(--out)_infinite]! [.w2-acts_&]:flex-1 [.w2-acts_&]:justify-center motion-safe:[.st-nav_&.ready]:[animation-iteration-count:3]! [&.pill]:bg-fill [&.pill]:text-ink [.st-nav_&.pill]:w-11 [.st-nav_&.pill]:p-0"
               onClick={() => setSel(-1)}
             >
               Pokaż wszystkie

@@ -26,7 +26,7 @@ function TodayBase(c: Ctx) {
           ] as [IconName, string, string][]
         ).map(([ic, t, r]) => (
           <button onClick={() => c.go(r)}>
-            <span className="rounded-[50%] grid place-items-center w-14 h-14 [background:#fff] [box-shadow:0_0_0_0.5px_var(--hair)]">
+            <span className="rounded-[50%] grid place-items-center w-14 h-14 bg-white [box-shadow:0_0_0_0.5px_var(--hair)]">
               {I(ic, 22)}
             </span>
             <span>{t}</span>
@@ -34,7 +34,7 @@ function TodayBase(c: Ctx) {
         ))}
       </div>
       <Label t="Wymaga uwagi" />
-      <div className="flex gap-3.5 items-center [background:#fff] rounded-[22px_22px_0_0] p-[18px_18px_6px]">
+      <div className="flex gap-3.5 items-center bg-white rounded-[22px_22px_0_0] p-[18px_18px_6px]">
         <Ring v={12} max={30} color="var(--red)" size={48}>
           <b className="text-red!">12</b>
           <small>dni</small>
@@ -46,15 +46,15 @@ function TodayBase(c: Ctx) {
           <ListItemDescription as="div">KR 4F21 · polisa do 6 grudnia</ListItemDescription>
         </div>
       </div>
-      <div className="attn-act flex gap-2 [background:#fff] rounded-[0_0_22px_22px] p-[12px_18px_18px]">
+      <div className="attn-act flex gap-2 bg-white rounded-[0_0_22px_22px] p-[12px_18px_18px]">
         <button
-          className="pill whitespace-nowrap h-13 rounded-[999px] [background:var(--ink)] [color:#fff] text-[16px] font-semibold p-[0_22px] inline-flex items-center justify-center gap-2 [border:0] [box-shadow:none] [.attn-act_&]:text-[14px] [.attn-act_&]:p-[0_16px] [.attn-act_&]:h-9.5 [.st-nav_&]:h-11 [.st-nav_&]:text-[15px] [.st-nav_&]:p-[0_18px] [.st-nav_&:disabled]:opacity-[0.35] [.tour-btns_&]:h-11.5 [.tour-btns_&]:text-[15px] [@media(max-width:640px)]:[.tour-btns_&]:h-11 [@media(max-width:640px)]:[.tour-btns_&]:p-[0_16px] motion-safe:[transition:transform_0.16s_var(--ease-out),_background-color_0.15s_ease,_box-shadow_0.2s_ease] motion-safe:[&:active]:transform-[scale(0.97)] motion-safe:[&:active]:[transition-duration:0.1s] [.st-nav_&.ready]:[outline:2px_solid_#2f6bff] [.st-nav_&.ready]:outline-offset-[3px] [.st-nav_&.ready]:[box-shadow:0_0_0_6px_rgb(47_107_255_/_18%)] motion-safe:[.st-nav_&.ready]:animate-[coach_1.6s_var(--out)_infinite]! [.w2-acts_&]:flex-1 [.w2-acts_&]:justify-center motion-safe:[.st-nav_&.ready]:[animation-iteration-count:3]!"
+          className="pill whitespace-nowrap h-13 rounded-[999px] bg-ink text-white text-[16px] font-semibold p-[0_22px] inline-flex items-center justify-center gap-2 [border:0] [box-shadow:none] [.attn-act_&]:text-[14px] [.attn-act_&]:p-[0_16px] [.attn-act_&]:h-9.5 [.st-nav_&]:h-11 [.st-nav_&]:text-[15px] [.st-nav_&]:p-[0_18px] [.st-nav_&:disabled]:opacity-[0.35] [.tour-btns_&]:h-11.5 [.tour-btns_&]:text-[15px] [@media(max-width:640px)]:[.tour-btns_&]:h-11 [@media(max-width:640px)]:[.tour-btns_&]:p-[0_16px] motion-safe:[transition:transform_0.16s_var(--ease-out),_background-color_0.15s_ease,_box-shadow_0.2s_ease] motion-safe:[&:active]:transform-[scale(0.97)] motion-safe:[&:active]:[transition-duration:0.1s] [.st-nav_&.ready]:[outline:2px_solid_var(--signal-blue)] [.st-nav_&.ready]:outline-offset-[3px] [.st-nav_&.ready]:[box-shadow:0_0_0_6px_rgb(47_107_255_/_18%)] motion-safe:[.st-nav_&.ready]:animate-[coach_1.6s_var(--out)_infinite]! [.w2-acts_&]:flex-1 [.w2-acts_&]:justify-center motion-safe:[.st-nav_&.ready]:[animation-iteration-count:3]!"
           onClick={() => c.go('car')}
         >
           Przedłuż OC
         </button>
         <button
-          className="pill whitespace-nowrap h-13 rounded-[999px] [background:var(--ink)] [color:#fff] text-[16px] font-semibold p-[0_22px] inline-flex items-center justify-center gap-2 [border:0] [box-shadow:none] [.attn-act_&]:text-[14px] [.attn-act_&]:p-[0_16px] [.attn-act_&]:h-9.5 [.st-nav_&]:h-11 [.st-nav_&]:text-[15px] [.st-nav_&]:p-[0_18px] [.st-nav_&:disabled]:opacity-[0.35] [.tour-btns_&]:h-11.5 [.tour-btns_&]:text-[15px] [@media(max-width:640px)]:[.tour-btns_&]:h-11 [@media(max-width:640px)]:[.tour-btns_&]:p-[0_16px] motion-safe:[transition:transform_0.16s_var(--ease-out),_background-color_0.15s_ease,_box-shadow_0.2s_ease] motion-safe:[&:active]:transform-[scale(0.97)] motion-safe:[&:active]:[transition-duration:0.1s] [.st-nav_&.ready]:[outline:2px_solid_#2f6bff] [.st-nav_&.ready]:outline-offset-[3px] [.st-nav_&.ready]:[box-shadow:0_0_0_6px_rgb(47_107_255_/_18%)] motion-safe:[.st-nav_&.ready]:animate-[coach_1.6s_var(--out)_infinite]! [.w2-acts_&]:flex-1 [.w2-acts_&]:justify-center motion-safe:[.st-nav_&.ready]:[animation-iteration-count:3]! [&.pill]:[background:var(--fill)] [&.pill]:text-ink [.st-nav_&.pill]:w-11 [.st-nav_&.pill]:p-0"
+          className="pill whitespace-nowrap h-13 rounded-[999px] bg-ink text-white text-[16px] font-semibold p-[0_22px] inline-flex items-center justify-center gap-2 [border:0] [box-shadow:none] [.attn-act_&]:text-[14px] [.attn-act_&]:p-[0_16px] [.attn-act_&]:h-9.5 [.st-nav_&]:h-11 [.st-nav_&]:text-[15px] [.st-nav_&]:p-[0_18px] [.st-nav_&:disabled]:opacity-[0.35] [.tour-btns_&]:h-11.5 [.tour-btns_&]:text-[15px] [@media(max-width:640px)]:[.tour-btns_&]:h-11 [@media(max-width:640px)]:[.tour-btns_&]:p-[0_16px] motion-safe:[transition:transform_0.16s_var(--ease-out),_background-color_0.15s_ease,_box-shadow_0.2s_ease] motion-safe:[&:active]:transform-[scale(0.97)] motion-safe:[&:active]:[transition-duration:0.1s] [.st-nav_&.ready]:[outline:2px_solid_var(--signal-blue)] [.st-nav_&.ready]:outline-offset-[3px] [.st-nav_&.ready]:[box-shadow:0_0_0_6px_rgb(47_107_255_/_18%)] motion-safe:[.st-nav_&.ready]:animate-[coach_1.6s_var(--out)_infinite]! [.w2-acts_&]:flex-1 [.w2-acts_&]:justify-center motion-safe:[.st-nav_&.ready]:[animation-iteration-count:3]! [&.pill]:bg-fill [&.pill]:text-ink [.st-nav_&.pill]:w-11 [.st-nav_&.pill]:p-0"
           onClick={() => c.go('car')}
         >
           Szczegóły
@@ -62,7 +62,7 @@ function TodayBase(c: Ctx) {
       </div>
       <div className="grid grid-cols-[1fr_1fr] mt-3 gap-2.5">
         <button
-          className="motion-safe:[&:active]:duration-[0.12s] relative [background:#fff] rounded-[22px] flex flex-col text-left text-ink p-[16px_16px_15px] min-h-34.5 [transition:background-color_0.12s,_transform_0.16s_var(--out)] [&:active]:transform-[scale(0.97)]"
+          className="motion-safe:[&:active]:duration-[0.12s] relative bg-white rounded-[22px] flex flex-col text-left text-ink p-[16px_16px_15px] min-h-34.5 [transition:background-color_0.12s,_transform_0.16s_var(--out)] [&:active]:transform-[scale(0.97)]"
           onClick={() => c.go('p800')}
         >
           <span className="text-[12px] font-medium pr-6.5 leading-4 text-ink-2">800+ na Zosię</span>
@@ -73,7 +73,7 @@ function TodayBase(c: Ctx) {
           <span className="text-[13px] text-ink-2 mt-0.75 leading-4.25">Wypłata 28 listopada</span>
         </button>
         <button
-          className="motion-safe:[&:active]:duration-[0.12s] relative [background:#fff] rounded-[22px] flex flex-col text-left text-ink p-[16px_16px_15px] min-h-34.5 [transition:background-color_0.12s,_transform_0.16s_var(--out)] [&:active]:transform-[scale(0.97)]"
+          className="motion-safe:[&:active]:duration-[0.12s] relative bg-white rounded-[22px] flex flex-col text-left text-ink p-[16px_16px_15px] min-h-34.5 [transition:background-color_0.12s,_transform_0.16s_var(--out)] [&:active]:transform-[scale(0.97)]"
           onClick={() => c.go(s.moved ? 'move-done' : 'case-meld')}
         >
           <span className="text-[12px] font-medium pr-6.5 leading-4 text-ink-2">
@@ -84,7 +84,7 @@ function TodayBase(c: Ctx) {
             {s.moved ? 2 : 3}
             <small> z 4</small>
           </span>
-          <span className="h-0.75 rounded-xs [background:var(--fill-2)] mt-2 overflow-hidden [&_i]:block [&_i]:h-full [&_i]:[background:var(--ink)] [&_i]:rounded-xs">
+          <span className="h-0.75 rounded-xs bg-fill-2 mt-2 overflow-hidden [&_i]:block [&_i]:h-full [&_i]:bg-ink [&_i]:rounded-xs">
             <i style={{ width: `${(s.moved ? 2 : 3) * 25}%` }}></i>
           </span>
           <span className="text-[13px] text-ink-2 mt-0.75 leading-4.25">
@@ -92,7 +92,7 @@ function TodayBase(c: Ctx) {
           </span>
         </button>
         <button
-          className="motion-safe:[&:active]:duration-[0.12s] relative [background:#fff] rounded-[22px] flex flex-col text-left text-ink p-[16px_16px_15px] min-h-34.5 [transition:background-color_0.12s,_transform_0.16s_var(--out)] [&:active]:transform-[scale(0.97)]"
+          className="motion-safe:[&:active]:duration-[0.12s] relative bg-white rounded-[22px] flex flex-col text-left text-ink p-[16px_16px_15px] min-h-34.5 [transition:background-color_0.12s,_transform_0.16s_var(--out)] [&:active]:transform-[scale(0.97)]"
           onClick={() => c.go('family')}
         >
           <span className="text-[12px] font-medium pr-6.5 leading-4 text-ink-2">Bliscy</span>
@@ -103,7 +103,7 @@ function TodayBase(c: Ctx) {
           <span className="text-[13px] text-ink-2 mt-0.75 leading-4.25">Tata: nowa e-recepta</span>
         </button>
         <button
-          className="motion-safe:[&:active]:duration-[0.12s] relative [background:#fff] rounded-[22px] flex flex-col text-left text-ink p-[16px_16px_15px] min-h-34.5 [transition:background-color_0.12s,_transform_0.16s_var(--out)] [&:active]:transform-[scale(0.97)]"
+          className="motion-safe:[&:active]:duration-[0.12s] relative bg-white rounded-[22px] flex flex-col text-left text-ink p-[16px_16px_15px] min-h-34.5 [transition:background-color_0.12s,_transform_0.16s_var(--out)] [&:active]:transform-[scale(0.97)]"
           onClick={() => c.go(s.visit ? 'visit-4' : 'visit-1')}
         >
           <span className="text-[12px] font-medium pr-6.5 leading-4 text-ink-2">Zosia, kardiolog</span>
@@ -141,14 +141,14 @@ export function Today(c: Ctx) {
   const bar = (
     <div className="flex gap-2.5 items-center m-[14px_0_16px]">
       <button
-        className="flex-1 min-w-0 flex items-center gap-2 h-11 p-[0_14px] rounded-[14px] [background:var(--surface)] [box-shadow:inset_0_0_0_0.5px_var(--hair)] [color:var(--label2,_#8a8f99)] text-[15px] text-left [transition:transform_0.16s_var(--out)] [&_span]:overflow-hidden [&_span]:whitespace-nowrap [&_span]:text-ellipsis [&:active]:transform-[scale(0.97)]"
+        className="flex-1 min-w-0 flex items-center gap-2 h-11 p-[0_14px] rounded-[14px] bg-surface [box-shadow:inset_0_0_0_0.5px_var(--hair)] [color:var(--label2,_#8a8f99)] text-[15px] text-left [transition:transform_0.16s_var(--out)] [&_span]:overflow-hidden [&_span]:whitespace-nowrap [&_span]:text-ellipsis [&:active]:transform-[scale(0.97)]"
         onClick={() => c.go('search')}
       >
         {I('search', 18)}
         <span>Szukaj albo zapytaj</span>
       </button>
       <button
-        className="relative flex-none w-11 h-11 rounded-[14px] [background:var(--surface)] grid place-items-center [box-shadow:inset_0_0_0_0.5px_var(--hair)] [transition:transform_0.16s_var(--out)] [&:active]:transform-[scale(0.97)] [&_b]:absolute [&_b]:-top-1 [&_b]:-right-1 [&_b]:min-w-4.5 [&_b]:h-4.5 [&_b]:p-[0_5px] [&_b]:rounded-[9px] [&_b]:[background:var(--red)] [&_b]:[color:#fff] [&_b]:text-[11px] [&_b]:font-bold [&_b]:grid [&_b]:place-items-center [&_b]:[box-shadow:0_0_0_2px_var(--bg)]"
+        className="relative flex-none w-11 h-11 rounded-[14px] bg-surface grid place-items-center [box-shadow:inset_0_0_0_0.5px_var(--hair)] [transition:transform_0.16s_var(--out)] [&:active]:transform-[scale(0.97)] [&_b]:absolute [&_b]:-top-1 [&_b]:-right-1 [&_b]:min-w-4.5 [&_b]:h-4.5 [&_b]:p-[0_5px] [&_b]:rounded-[9px] [&_b]:bg-red [&_b]:text-white [&_b]:text-[11px] [&_b]:font-bold [&_b]:grid [&_b]:place-items-center [&_b]:[box-shadow:0_0_0_2px_var(--bg)]"
         aria-label={'Skrzynka, nowe: ' + n}
         onClick={() => c.go('inbox')}
       >

@@ -26,21 +26,21 @@ export function EuWallet(_c: Ctx) {
         className={
           'eu-flip relative h-50 [perspective:1200px] m-[6px_0_4px]' +
           (side
-            ? ' on [.progress_i&]:[background:var(--ink)] [.steps_i&]:[background:var(--ink)] [.st-ab_>_div&&]:[background:#fff] [.st-ab_&_p]:text-ink [.tour-dots_i&]:w-5.5 [.tour-dots_i&]:[background:var(--ink)] [.call-keys_button&_span]:[background:#fff] [.call-keys_button&_span]:text-[#0b0d12]'
+            ? ' on [.progress_i&]:bg-ink [.steps_i&]:bg-ink [.st-ab_>_div&&]:bg-white [.st-ab_&_p]:text-ink [.tour-dots_i&]:w-5.5 [.tour-dots_i&]:bg-ink [.call-keys_button&_span]:bg-white [.call-keys_button&_span]:text-ink'
             : '')
         }
       >
         <div className="absolute! inset-0 w-full! h-full! [-webkit-backface-visibility:hidden] [transition:transform_0.8s_cubic-bezier(0.32,_0.72,_0,_1)] flex flex-col justify-between p-[18px_20px]! text-left overflow-hidden [.eu-flip.on_&]:transform-[rotateY(-180deg)] doc tone-id">
           <div className="flex justify-between items-center [.eu-eu_&]:pr-24 [.stack.w2_&]:min-h-6">
-            <span className="d-rp inline-flex items-center text-[12px] font-medium text-(--d-ink)">
+            <span className="d-rp inline-flex items-center text-[12px] font-medium text-d-ink">
               <i className="w-4 h-2.75 rounded-[3px] mr-2 [background:linear-gradient(#fff_50%,_var(--red)_50%)] [box-shadow:0_0_0_0.5px_rgb(11_13_18_/_22%)] inline-block flex-none [.d-rp_&]:w-3.5 [.d-rp_&]:h-2.5 [.d-rp_&]:mr-1.75 [.d-rp_&]:[box-shadow:none]"></i>
               Rzeczpospolita Polska
             </span>
             <span className="text-[13px] font-medium text-d-ink-2">Dowód osobisty</span>
           </div>
-          <div className="text-[24px] font-[650] [color:#fff] tracking-[-0.02em] relative">Anna Nowicka</div>
+          <div className="text-[24px] font-[650] text-white tracking-[-0.02em] relative">Anna Nowicka</div>
           <div className="flex justify-between items-center [.scard_&]:mt-auto">
-            <span className="h-6 p-[0_10px] rounded-[999px] text-[12px] font-medium inline-flex items-center [color:#fff] [background:rgb(255_255_255_/_10%)] [box-shadow:inset_0_0_0_0.5px_rgb(255_255_255_/_14%)] [backdrop-filter:blur(8px)]">
+            <span className="h-6 p-[0_10px] rounded-[999px] text-[12px] font-medium inline-flex items-center text-white bg-d-hair [box-shadow:inset_0_0_0_0.5px_rgb(255_255_255_/_14%)] [backdrop-filter:blur(8px)]">
               mDowód
             </span>
           </div>
@@ -56,14 +56,14 @@ export function EuWallet(_c: Ctx) {
             ))}
           </svg>
           <div className="flex justify-between items-center [.eu-eu_&]:pr-24 [.stack.w2_&]:min-h-6">
-            <span className="d-rp inline-flex items-center text-[12px] font-medium text-(--d-ink)">
+            <span className="d-rp inline-flex items-center text-[12px] font-medium text-d-ink">
               Unia Europejska
             </span>
             <span className="text-[13px] font-medium text-d-ink-2">EU Digital Identity</span>
           </div>
-          <div className="text-[24px] font-[650] [color:#fff] tracking-[-0.02em] relative">Anna Nowicka</div>
+          <div className="text-[24px] font-[650] text-white tracking-[-0.02em] relative">Anna Nowicka</div>
           <div className="flex justify-between items-center [.scard_&]:mt-auto">
-            <span className="h-6 p-[0_10px] rounded-[999px] text-[12px] font-medium inline-flex items-center [color:#fff] [background:rgb(255_255_255_/_10%)] [box-shadow:inset_0_0_0_0.5px_rgb(255_255_255_/_14%)] [backdrop-filter:blur(8px)]">
+            <span className="h-6 p-[0_10px] rounded-[999px] text-[12px] font-medium inline-flex items-center text-white bg-d-hair [box-shadow:inset_0_0_0_0.5px_rgb(255_255_255_/_14%)] [backdrop-filter:blur(8px)]">
               PL · EUDI
             </span>
             <span className="text-[11px] [font-variant-numeric:tabular-nums] text-d-ink-2 inline-flex items-center gap-1.5 [&_i]:w-1.5 [&_i]:h-1.5 [&_i]:rounded-[50%] [&_i]:[background:#34c27a]">
@@ -73,7 +73,7 @@ export function EuWallet(_c: Ctx) {
         </div>
       </div>
       <Label t="Wypożyczalnia prosi o 3 informacje" />
-      <div className="flex flex-wrap gap-2 [&_span]:inline-flex [&_span]:items-center [&_span]:gap-1.5 [&_span]:[background:#fff] [&_span]:rounded-[999px] [&_span]:p-[8px_12px] [&_span]:text-[13.5px] [&_span]:font-medium [&_span]:[transition:background-color_0.3s_ease,_color_0.3s_ease] [&_span_svg]:text-ink-3 [&_span.ok]:[background:var(--ink)] [&_span.ok]:[color:#fff] [&_span.ok_svg]:[color:#fff]">
+      <div className="flex flex-wrap gap-2 [&_span]:inline-flex [&_span]:items-center [&_span]:gap-1.5 [&_span]:bg-white [&_span]:rounded-[999px] [&_span]:p-[8px_12px] [&_span]:text-[13.5px] [&_span]:font-medium [&_span]:[transition:background-color_0.3s_ease,_color_0.3s_ease] [&_span_svg]:text-ink-3 [&_span.ok]:bg-ink [&_span.ok]:text-white [&_span.ok_svg]:text-white">
         {['Imię i nazwisko', 'Prawo jazdy kat. B', 'Ukończone 25 lat'].map(t => (
           <span className={sent ? 'ok' : ''}>
             {I('check', 14)}

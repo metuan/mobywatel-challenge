@@ -22,7 +22,7 @@ import type { IconName } from '@/ui/icons';
 import type { Child } from '@/types';
 
 export const Sec = ({ t, more, go }: { t: Child; more?: Child; go?: () => void }) => (
-  <div className="flex justify-between items-baseline [&_h3]:m-0 [&_button]:underline-offset-[3px] [&_button]:[text-decoration:none] [&_h3]:[font-family:var(--disp)] [&_h3]:text-[14px] [&_h3]:font-medium [&_h3]:text-ink-2 [&_h3]:tracking-[-0.006em] m-[32px_4px_8px] [&_button]:text-ink [&_button]:text-[14px] [&_button]:font-medium">
+  <div className="flex justify-between items-baseline [&_h3]:m-0 [&_button]:underline-offset-[3px] [&_button]:[text-decoration:none] [&_h3]:font-sans [&_h3]:text-[14px] [&_h3]:font-medium [&_h3]:text-ink-2 [&_h3]:tracking-[-0.006em] m-[32px_4px_8px] [&_button]:text-ink [&_button]:text-[14px] [&_button]:font-medium">
     <h3>{t}</h3>
     {more && <button onClick={go}>{more}</button>}
   </div>
@@ -60,10 +60,10 @@ export const Progress = ({ n, of }: { n: number; of: number }) => (
       <i
         className={
           (i < n
-            ? 'on [.progress_i&]:[background:var(--ink)] [.steps_i&]:[background:var(--ink)] [.st-ab_>_div&&]:[background:#fff] [.st-ab_&_p]:text-ink [.tour-dots_i&]:w-5.5 [.tour-dots_i&]:[background:var(--ink)] [.call-keys_button&_span]:[background:#fff] [.call-keys_button&_span]:text-[#0b0d12]'
+            ? 'on [.progress_i&]:bg-ink [.steps_i&]:bg-ink [.st-ab_>_div&&]:bg-white [.st-ab_&_p]:text-ink [.tour-dots_i&]:w-5.5 [.tour-dots_i&]:bg-ink [.call-keys_button&_span]:bg-white [.call-keys_button&_span]:text-ink'
             : '') +
           (i === n - 1 && n > 1
-            ? ' [.progress_i&.on]:[background:var(--fill-2)]! [.progress_i&.on::after]:[content:""] [.progress_i&.on::after]:absolute [.progress_i&.on::after]:inset-0 [.progress_i&.on::after]:[background:var(--ink)] [.progress_i&.on::after]:origin-[left] [.progress_i&.on::after]:[animation:segfill_0.45s_cubic-bezier(0.23,_1,_0.32,_1)_0.12s_both] motion-reduce:[.progress_i&.on::after]:animate-none'
+            ? ' [.progress_i&.on]:bg-fill-2! [.progress_i&.on::after]:[content:""] [.progress_i&.on::after]:absolute [.progress_i&.on::after]:inset-0 [.progress_i&.on::after]:bg-ink [.progress_i&.on::after]:origin-[left] [.progress_i&.on::after]:[animation:segfill_0.45s_cubic-bezier(0.23,_1,_0.32,_1)_0.12s_both] motion-reduce:[.progress_i&.on::after]:animate-none'
             : '')
         }
       ></i>
@@ -101,7 +101,7 @@ export const Ring = ({
     p = Math.max(0, Math.min(1, v / max));
   return (
     <span
-      className="relative inline-grid place-items-center flex-none [&_svg]:absolute [&_svg]:inset-0 [.hw-col.ph_&]:w-9 [.hw-col.ph_&]:h-3.5 [.hw-col.ph_&]:rounded-[7px] [.hw-col.ph_&]:[background:var(--fill-2)] [.hw-col.ph_&]:[outline:2px_solid_#2f6bff] [.hw-col.ph_&]:outline-offset-[3px] motion-safe:[.hw-col.ph_&]:animate-[coach_1.4s_var(--out)_infinite] [.is-r_&_svg_circle:first-child]:[stroke:rgb(255_255_255_/_25%)]"
+      className="relative inline-grid place-items-center flex-none [&_svg]:absolute [&_svg]:inset-0 [.hw-col.ph_&]:w-9 [.hw-col.ph_&]:h-3.5 [.hw-col.ph_&]:rounded-[7px] [.hw-col.ph_&]:bg-fill-2 [.hw-col.ph_&]:[outline:2px_solid_var(--signal-blue)] [.hw-col.ph_&]:outline-offset-[3px] motion-safe:[.hw-col.ph_&]:animate-[coach_1.4s_var(--out)_infinite] [.is-r_&_svg_circle:first-child]:[stroke:rgb(255_255_255_/_25%)]"
       style={{ width: size, height: size }}
     >
       <svg width={size} height={size}>
@@ -144,7 +144,7 @@ const AV: [string, string][] = [
 
 export const Av = ({ i, size = 40, dot }: { i: string; size?: number; dot?: string }) => (
   <span
-    className="av [.lfam_&]:w-9 [.lfam_&]:h-9 [.lfam_&]:rounded-[50%] [.lfam_&]:grid [.lfam_&]:place-items-center [.lfam_&]:text-[11.5px] [.lfam_&]:font-bold [.lfam_&]:relative rounded-[50%] text-ink grid place-items-center flex-none relative [letter-spacing:0] [.avstack_&]:[box-shadow:0_0_0_2px_var(--surface)] [.avstack_&]:-ml-2 [.avstack_&:first-child]:ml-0 [.avstack_&]:[background:#dcdee3] [.fhead_&]:[background:#dcdee3] [background:#e6e7eb] font-semibold [.tv-person_&]:[background:#fff] [.tv-person_&]:[box-shadow:0_0_0_0.5px_var(--hair-2),_0_8px_20px_-10px_rgb(11_13_18_/_25%)] [.tv-person:first-child_&]:[background:var(--ink)] [.tv-person:first-child_&]:[color:#fff] [.sg-twist_&]:flex-none [.call-av_&]:relative [.call-av_&]:z-1 [.call-av_&]:[background:#2a3140]! [.call-av_&]:[color:#fff]! [.call-av_&]:text-[40px]! [.sg-twist_>_span&]:flex-none [.sg-twist_>_span&]:grid [.sg-twist_>_span&]:flex-row [.sg-twist_>_span&]:gap-0 [.sg-twist_>_span&]:self-center"
+    className="av [.lfam_&]:w-9 [.lfam_&]:h-9 [.lfam_&]:rounded-[50%] [.lfam_&]:grid [.lfam_&]:place-items-center [.lfam_&]:text-[11.5px] [.lfam_&]:font-bold [.lfam_&]:relative rounded-[50%] text-ink grid place-items-center flex-none relative [letter-spacing:0] [.avstack_&]:[box-shadow:0_0_0_2px_var(--surface)] [.avstack_&]:-ml-2 [.avstack_&:first-child]:ml-0 [.avstack_&]:[background:#dcdee3] [.fhead_&]:[background:#dcdee3] [background:#e6e7eb] font-semibold [.tv-person_&]:bg-white [.tv-person_&]:[box-shadow:0_0_0_0.5px_var(--hair-2),_0_8px_20px_-10px_rgb(11_13_18_/_25%)] [.tv-person:first-child_&]:bg-ink [.tv-person:first-child_&]:text-white [.sg-twist_&]:flex-none [.call-av_&]:relative [.call-av_&]:z-1 [.call-av_&]:[background:#2a3140]! [.call-av_&]:text-white! [.call-av_&]:text-[40px]! [.sg-twist_>_span&]:flex-none [.sg-twist_>_span&]:grid [.sg-twist_>_span&]:flex-row [.sg-twist_>_span&]:gap-0 [.sg-twist_>_span&]:self-center"
     style={{ width: size, height: size, fontSize: Math.round(size * 0.34) }}
   >
     {i}
@@ -159,7 +159,7 @@ export const Av = ({ i, size = 40, dot }: { i: string; size?: number; dot?: stri
 );
 
 export const AvStack = ({ size = 28, list = AV }: { size?: number; list?: [string, string?][] }) => (
-  <span className="avstack [&_span]:rounded-[50%] [&_span]:[color:#fff] [&_span]:text-[10px] [&_span]:font-bold [&_span]:grid [&_span]:place-items-center [&_span]:[box-shadow:0_0_0_2.5px_#fff] [&_span]:-ml-2 [&_span:first-child]:ml-0 inline-flex">
+  <span className="avstack [&_span]:rounded-[50%] [&_span]:text-white [&_span]:text-[10px] [&_span]:font-bold [&_span]:grid [&_span]:place-items-center [&_span]:[box-shadow:0_0_0_2.5px_#fff] [&_span]:-ml-2 [&_span:first-child]:ml-0 inline-flex">
     {list.map(([i]) => (
       <Av i={i} size={size} />
     ))}
@@ -167,7 +167,7 @@ export const AvStack = ({ size = 28, list = AV }: { size?: number; list?: [strin
 );
 
 export const LeadIcon = ({ ic }: { ic: IconName }) => (
-  <span className="w-10 h-10 rounded-[50%] grid place-items-center flex-none text-ink [background:var(--bg)] [&.ai]:[background:linear-gradient(135deg,_#2f6bff,_#7a4dff)] [&.ai]:[color:#fff] [.how8-row_&]:w-7.5 [.how8-row_&]:h-7.5 [.how8-row_&]:rounded-[10px]">
+  <span className="w-10 h-10 rounded-[50%] grid place-items-center flex-none text-ink bg-bg [&.ai]:[background:linear-gradient(135deg,_var(--signal-blue),_var(--signal-violet))] [&.ai]:text-white [.how8-row_&]:w-7.5 [.how8-row_&]:h-7.5 [.how8-row_&]:rounded-[10px]">
     {I(ic, 20)}
   </span>
 );
@@ -233,7 +233,7 @@ export const Tile = ({
   onClick?: () => void;
 }) => (
   <button
-    className="mtile motion-safe:[&:active]:duration-[0.12s] flex-[0_0_148px] h-42 snap-start [background:#fff] rounded-[22px] p-[12px_14px_14px] flex flex-col text-left text-ink [box-shadow:none] [.mgrid_&]:h-44 [transition:background-color_0.12s,_transform_0.16s_var(--out)] [&:active]:transform-[scale(0.97)]"
+    className="mtile motion-safe:[&:active]:duration-[0.12s] flex-[0_0_148px] h-42 snap-start bg-white rounded-[22px] p-[12px_14px_14px] flex flex-col text-left text-ink [box-shadow:none] [.mgrid_&]:h-44 [transition:background-color_0.12s,_transform_0.16s_var(--out)] [&:active]:transform-[scale(0.97)]"
     onClick={onClick}
   >
     <span className="mt-ill flex-1 grid place-items-center">{ILL(n, 76)}</span>
@@ -248,15 +248,15 @@ export const Tile = ({
 
 export const AppIcon = ({ k }: { k: string }) =>
   k === 'rcb' ? (
-    <span className="w-5.5 h-5.5 rounded-[6px] grid place-items-center flex-none [&.mob]:[background:#fff] [&.mob]:[box-shadow:inset_0_0_0_1px_rgb(0_0_0_/_8%)] bg-[#d42a3e] text-[#fff]">
+    <span className="w-5.5 h-5.5 rounded-[6px] grid place-items-center flex-none [&.mob]:bg-white [&.mob]:[box-shadow:inset_0_0_0_1px_rgb(0_0_0_/_8%)] bg-[#d42a3e] text-white">
       {I('bell', 15)}
     </span>
   ) : k === 'imgw' ? (
-    <span className="w-5.5 h-5.5 rounded-[6px] grid place-items-center flex-none [&.mob]:[background:#fff] [&.mob]:[box-shadow:inset_0_0_0_1px_rgb(0_0_0_/_8%)] bg-[#2b6cb0] text-[#fff]">
+    <span className="w-5.5 h-5.5 rounded-[6px] grid place-items-center flex-none [&.mob]:bg-white [&.mob]:[box-shadow:inset_0_0_0_1px_rgb(0_0_0_/_8%)] bg-[#2b6cb0] text-white">
       {I('sun', 15)}
     </span>
   ) : (
-    <span className="w-5.5 h-5.5 rounded-[6px] grid place-items-center flex-none [&.mob]:[background:#fff] [&.mob]:[box-shadow:inset_0_0_0_1px_rgb(0_0_0_/_8%)] mob">
+    <span className="w-5.5 h-5.5 rounded-[6px] grid place-items-center flex-none [&.mob]:bg-white [&.mob]:[box-shadow:inset_0_0_0_1px_rgb(0_0_0_/_8%)] mob">
       <span className="rounded-[3px] mr-2 [background:linear-gradient(#fff_50%,_var(--red)_50%)] [box-shadow:0_0_0_0.5px_rgb(11_13_18_/_22%)] inline-block flex-none [.d-rp_&]:mr-1.75 [.d-rp_&]:[box-shadow:none] w-4 h-[11px]"></span>
     </span>
   );

@@ -24,11 +24,11 @@ export function Sign1(c: Ctx) {
     <div>
       <Eyebrow>Rynek Główny · sobota, 11:20</Eyebrow>
       <Title>Podpis bez kartki i długopisu</Title>
-      <div className="[background:#fff] rounded-[20px] p-[16px_18px] mt-1">
+      <div className="bg-white rounded-[20px] p-[16px_18px] mt-1">
         <div className="text-[12.5px] text-ink-3 font-medium">{BILL.k}</div>
         <div className="text-[19px] font-[650] tracking-[-0.01em] m-[4px_0_2px]">{BILL.t}</div>
         <div className="text-[13.5px] text-ink-2">{BILL.who}</div>
-        <div className="h-1.5 rounded-[3px] [background:var(--fill-2)] m-[14px_0_8px] overflow-hidden [&_i]:block [&_i]:h-full [&_i]:[background:var(--ink)] [&_i]:rounded-[3px] [&_i]:[transition:width_0.8s_cubic-bezier(0.23,_1,_0.32,_1)] [&.big]:h-2 [&&.big]:mt-1.5">
+        <div className="h-1.5 rounded-[3px] bg-fill-2 m-[14px_0_8px] overflow-hidden [&_i]:block [&_i]:h-full [&_i]:bg-ink [&_i]:rounded-[3px] [&_i]:[transition:width_0.8s_cubic-bezier(0.23,_1,_0.32,_1)] [&.big]:h-2 [&&.big]:mt-1.5">
           <i style={{ width: `${(BILL.n / BILL.goal) * 100}%` }}></i>
         </div>
         <div className="text-[13px] text-ink-2 [&_b]:text-ink">
@@ -146,7 +146,7 @@ export function SignList(c: Ctx) {
       </Caption>
       <Label t="Tego samego dnia w Sandomierzu" />
       <button
-        className="sg-twist flex gap-3 w-full text-left [background:#fff] [border:0] rounded-[18px] p-[14px_16px] [font:inherit] text-ink cursor-pointer [&_>_span]:flex-1 [&_>_span]:flex [&_>_span]:flex-col [&_>_span]:gap-0.5 [&_b]:font-semibold [&_>_span_>_span]:text-[13.5px] [&_>_span_>_span]:text-ink-2 items-center [box-shadow:0_0_0_0.5px_var(--hair)] [&_>_svg]:flex-none [&_>_svg]:text-ink-3"
+        className="sg-twist flex gap-3 w-full text-left bg-white [border:0] rounded-[18px] p-[14px_16px] [font:inherit] text-ink cursor-pointer [&_>_span]:flex-1 [&_>_span]:flex [&_>_span]:flex-col [&_>_span]:gap-0.5 [&_b]:font-semibold [&_>_span_>_span]:text-[13.5px] [&_>_span_>_span]:text-ink-2 items-center [box-shadow:0_0_0_0.5px_var(--hair)] [&_>_svg]:flex-none [&_>_svg]:text-ink-3"
         onClick={() => c.go('easy-sign', 'tata')}
       >
         <Av i="S" size={40} />
@@ -222,7 +222,7 @@ export function Sign3(c: Ctx) {
   return (
     <div>
       <Eyebrow>Głos · podpisano</Eyebrow>
-      <div className="pl-map relative m-[4px_-4px_0] [&_svg]:w-full [&_svg]:h-auto [&_svg]:block [&.v2]:relative [&.v2]:[background:var(--surface)] [&.v2]:rounded-3xl [&.v2]:p-[18px_14px_12px] [&.v2]:[box-shadow:0_0_0_0.5px_var(--hair)] [&.v2_svg]:block [&.v2_svg]:w-full [&.v2_svg]:h-auto v2">
+      <div className="pl-map relative m-[4px_-4px_0] [&_svg]:w-full [&_svg]:h-auto [&_svg]:block [&.v2]:relative [&.v2]:bg-surface [&.v2]:rounded-3xl [&.v2]:p-[18px_14px_12px] [&.v2]:[box-shadow:0_0_0_0.5px_var(--hair)] [&.v2_svg]:block [&.v2_svg]:w-full [&.v2_svg]:h-auto v2">
         <svg viewBox="0 0 300 278" role="img" aria-label="Mapa Polski: gdzie ludzie podpisali projekt">
           {GRID.map(([x, y, v]) => (
             <circle
@@ -237,7 +237,7 @@ export function Sign3(c: Ctx) {
             className={
               'me-dot' +
               (lit
-                ? ' on [.progress_i&]:[background:var(--ink)] [.steps_i&]:[background:var(--ink)] [.st-ab_>_div&&]:[background:#fff] [.st-ab_&_p]:text-ink [.tour-dots_i&]:w-5.5 [.tour-dots_i&]:[background:var(--ink)] [.call-keys_button&_span]:[background:#fff] [.call-keys_button&_span]:text-[#0b0d12]'
+                ? ' on [.progress_i&]:bg-ink [.steps_i&]:bg-ink [.st-ab_>_div&&]:bg-white [.st-ab_&_p]:text-ink [.tour-dots_i&]:w-5.5 [.tour-dots_i&]:bg-ink [.call-keys_button&_span]:bg-white [.call-keys_button&_span]:text-ink'
                 : '')
             }
             transform={`translate(${KRK2[0].toFixed(1)} ${KRK2[1].toFixed(1)})`}
@@ -260,16 +260,16 @@ export function Sign3(c: Ctx) {
         </svg>
         <div
           className={
-            'absolute [transform:translate(-50%,_calc(-100%_-_26px))] whitespace-nowrap [background:var(--ink)] [color:#fff] text-[12px] font-semibold p-[6px_10px] rounded-[999px] opacity-[0] [transition:opacity_0.25s,_transform_0.35s_var(--out)] pointer-events-none [&.on]:opacity-[1] [&.on]:[transform:translate(-50%,_calc(-100%_-_14px))]' +
+            'absolute [transform:translate(-50%,_calc(-100%_-_26px))] whitespace-nowrap bg-ink text-white text-[12px] font-semibold p-[6px_10px] rounded-[999px] opacity-[0] [transition:opacity_0.25s,_transform_0.35s_var(--out)] pointer-events-none [&.on]:opacity-[1] [&.on]:[transform:translate(-50%,_calc(-100%_-_14px))]' +
             (lit
-              ? ' on [.progress_i&]:[background:var(--ink)] [.steps_i&]:[background:var(--ink)] [.st-ab_>_div&&]:[background:#fff] [.st-ab_&_p]:text-ink [.tour-dots_i&]:w-5.5 [.tour-dots_i&]:[background:var(--ink)] [.call-keys_button&_span]:[background:#fff] [.call-keys_button&_span]:text-[#0b0d12]'
+              ? ' on [.progress_i&]:bg-ink [.steps_i&]:bg-ink [.st-ab_>_div&&]:bg-white [.st-ab_&_p]:text-ink [.tour-dots_i&]:w-5.5 [.tour-dots_i&]:bg-ink [.call-keys_button&_span]:bg-white [.call-keys_button&_span]:text-ink'
               : '')
           }
           style={{ left: `${(KRK2[0] / 3).toFixed(1)}%`, top: `${(KRK2[1] / 2.78).toFixed(1)}%` }}
         >
           Twój podpis · Kraków
         </div>
-        <div className="pl-leg flex justify-between text-[11.5px] text-ink-3 mt-2 p-[0_4px] [&_span]:flex [&_span]:items-center [&_span]:gap-1 [&_i]:w-1.5 [&_i]:h-1.5 [&_i]:rounded-[50%] [&_i]:[background:var(--ink)]">
+        <div className="pl-leg flex justify-between text-[11.5px] text-ink-3 mt-2 p-[0_4px] [&_span]:flex [&_span]:items-center [&_span]:gap-1 [&_i]:w-1.5 [&_i]:h-1.5 [&_i]:rounded-[50%] [&_i]:bg-ink">
           <span>
             <i className="[.pl-leg_&]:opacity-[0.15]"></i>mniej
           </span>
@@ -287,7 +287,7 @@ export function Sign3(c: Ctx) {
           z {fmt(BILL.goal)} · zostało {BILL.left} dni
         </span>
       </div>
-      <div className="h-1.5 rounded-[3px] [background:var(--fill-2)] m-[14px_0_8px] overflow-hidden [&_i]:block [&_i]:h-full [&_i]:[background:var(--ink)] [&_i]:rounded-[3px] [&_i]:[transition:width_0.8s_cubic-bezier(0.23,_1,_0.32,_1)] [&.big]:h-2 [&&.big]:mt-1.5 big [.taxhero_&]:text-[40px] [.taxhero_&]:font-bold [.taxhero_&]:tracking-[-0.03em] [.taxhero_&]:text-[#34c759] [.taxhero_&]:m-[4px_0_0]">
+      <div className="h-1.5 rounded-[3px] bg-fill-2 m-[14px_0_8px] overflow-hidden [&_i]:block [&_i]:h-full [&_i]:bg-ink [&_i]:rounded-[3px] [&_i]:[transition:width_0.8s_cubic-bezier(0.23,_1,_0.32,_1)] [&.big]:h-2 [&&.big]:mt-1.5 big [.taxhero_&]:text-[40px] [.taxhero_&]:font-bold [.taxhero_&]:tracking-[-0.03em] [.taxhero_&]:text-signal-green [.taxhero_&]:m-[4px_0_0]">
         <i style={{ width: `${(n / BILL.goal) * 100}%` }}></i>
       </div>
       <Note icon="shield" className="mt-3.5">

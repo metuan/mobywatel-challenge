@@ -81,7 +81,7 @@ export function Matters(c: Ctx) {
     <div>
       <Display>Sprawy</Display>
       <Search c={c} ph="Czego potrzebujesz?" />
-      <div className="chips flex gap-2 overflow-x-auto m-[12px_-20px_0] p-[0_20px] scrollbar-none [&::-webkit-scrollbar]:hidden [&_button]:flex-none [&_button]:rounded-[999px] [&_button]:[background:var(--fill)] [&_button]:text-ink [&_button]:text-[14px] [&_button]:font-medium [&_button]:h-9 [&_button]:p-[0_16px] [&_button[aria-pressed='true']]:[background:var(--ink)] [&_button[aria-pressed='true']]:[color:#fff] [&&_button:not([aria-pressed='true'])]:[background:#fff] [&_button:not([aria-pressed='true'])]:[box-shadow:inset_0_0_0_0.5px_var(--hair)]">
+      <div className="chips flex gap-2 overflow-x-auto m-[12px_-20px_0] p-[0_20px] scrollbar-none [&::-webkit-scrollbar]:hidden [&_button]:flex-none [&_button]:rounded-[999px] [&_button]:bg-fill [&_button]:text-ink [&_button]:text-[14px] [&_button]:font-medium [&_button]:h-9 [&_button]:p-[0_16px] [&_button[aria-pressed='true']]:bg-ink [&_button[aria-pressed='true']]:text-white [&&_button:not([aria-pressed='true'])]:bg-white [&_button:not([aria-pressed='true'])]:[box-shadow:inset_0_0_0_0.5px_var(--hair)]">
         {cats.map(([k, t]) => (
           <button aria-pressed={cat === k} onClick={() => setCat(k)}>
             {t}

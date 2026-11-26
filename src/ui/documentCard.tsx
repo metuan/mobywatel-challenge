@@ -143,7 +143,7 @@ export function DocCard({
       >
         {ROSETTE}
         <div className="flex justify-between items-center [.eu-eu_&]:pr-24 [.stack.w2_&]:min-h-6">
-          <span className="d-rp inline-flex items-center text-[12px] font-medium text-(--d-ink)">
+          <span className="d-rp inline-flex items-center text-[12px] font-medium text-d-ink">
             <i className="w-4 h-2.75 rounded-[3px] mr-2 [background:linear-gradient(#fff_50%,_var(--red)_50%)] [box-shadow:0_0_0_0.5px_rgb(11_13_18_/_22%)] inline-block flex-none [.d-rp_&]:w-3.5 [.d-rp_&]:h-2.5 [.d-rp_&]:mr-1.75 [.d-rp_&]:[box-shadow:none]"></i>
             Rzeczpospolita Polska
           </span>
@@ -167,7 +167,7 @@ export function DocCard({
           </div>
         </div>
         <div className="flex justify-between items-center [.scard_&]:mt-auto">
-          <span className="h-6 p-[0_10px] rounded-[999px] text-[12px] font-medium inline-flex items-center [color:#fff] [background:rgb(255_255_255_/_10%)] [box-shadow:inset_0_0_0_0.5px_rgb(255_255_255_/_14%)] [backdrop-filter:blur(8px)]">
+          <span className="h-6 p-[0_10px] rounded-[999px] text-[12px] font-medium inline-flex items-center text-white bg-d-hair [box-shadow:inset_0_0_0_0.5px_rgb(255_255_255_/_14%)] [backdrop-filter:blur(8px)]">
             mDowód
           </span>
           <span className="text-[11px] [font-variant-numeric:tabular-nums] text-d-ink-2 inline-flex items-center gap-1.5 [&_i]:w-1.5 [&_i]:h-1.5 [&_i]:rounded-[50%] [&_i]:[background:#34c27a]">
@@ -182,7 +182,7 @@ export function DocCard({
         tabIndex={0}
         onClick={() => setFlip(false)}
       >
-        <div className="[background:#fff] rounded-[12px] p-2 flex-none leading-0">
+        <div className="bg-white rounded-[12px] p-2 flex-none leading-0">
           <QRCode size={118} />
         </div>
         <div className="qr-tx">
@@ -193,7 +193,7 @@ export function DocCard({
             Kod ważny {Math.floor(left / 60)}:{String(left % 60).padStart(2, '0')}. Zobaczysz, kto sprawdza,
             zanim pokażesz dane.
           </div>
-          <span className="h-6 p-[0_10px] rounded-[999px] text-[12px] font-medium inline-flex items-center [color:#fff] [background:rgb(255_255_255_/_10%)] [box-shadow:inset_0_0_0_0.5px_rgb(255_255_255_/_14%)] [backdrop-filter:blur(8px)] mt-3">
+          <span className="h-6 p-[0_10px] rounded-[999px] text-[12px] font-medium inline-flex items-center text-white bg-d-hair [box-shadow:inset_0_0_0_0.5px_rgb(255_255_255_/_14%)] [backdrop-filter:blur(8px)] mt-3">
             Dotknij, aby wrócić
           </span>
         </div>

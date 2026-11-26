@@ -22,17 +22,17 @@ import { stashBox } from '@/lib/morph';
 export function AlertRed(c: Ctx) {
   return (
     <div
-      className="absolute inset-0 z-30 flex flex-col p-[58px_14px_22px] [color:#fff] overflow-y-auto [background:#0f1012] [&.clear]:[background:#0f1012]"
+      className="absolute inset-0 z-30 flex flex-col p-[58px_14px_22px] text-white overflow-y-auto [background:#0f1012] [&.clear]:[background:#0f1012]"
       role="alertdialog"
       aria-label="Alert RCB"
     >
-      <div className="text-center leading-none m-[8px_0_4px] opacity-[0.95] text-[72px] [font-family:var(--disp)] font-semibold tracking-[-0.02em]">
+      <div className="text-center leading-none m-[8px_0_4px] opacity-[0.95] text-[72px] font-sans font-semibold tracking-[-0.02em]">
         15:42
       </div>
       <div className="text-center text-[14px] opacity-[0.7] mb-4.5">wtorek, 24 listopada</div>
       <div className="rcb">
         <div className="hd [.rcb_&]:flex [.rcb_&]:items-center [.rcb_&]:gap-2 [.rcb_&]:text-[12.5px] [.rcb_&]:font-semibold [.rcb_&]:tracking-[0.02em]">
-          <span className="[.road_&]:[border-bottom:1px_solid_var(--hair)] [.road_&]:p-[13px_0] [.rcb_.hd_&]:w-5.5 [.rcb_.hd_&]:h-5.5 [.rcb_.hd_&]:rounded-[6px] [.rcb_.hd_&]:[color:#fff] [.rcb_.hd_&]:grid [.rcb_.hd_&]:place-items-center [.rcb.clear_.hd_&]:[background:var(--green)] [.rcb_.hd_&]:[background:rgb(255_255_255_/_20%)]">
+          <span className="[.road_&]:[border-bottom:1px_solid_var(--hair)] [.road_&]:p-[13px_0] [.rcb_.hd_&]:w-5.5 [.rcb_.hd_&]:h-5.5 [.rcb_.hd_&]:rounded-[6px] [.rcb_.hd_&]:text-white [.rcb_.hd_&]:grid [.rcb_.hd_&]:place-items-center [.rcb.clear_.hd_&]:bg-green [.rcb_.hd_&]:[background:rgb(255_255_255_/_20%)]">
             {I('bell', 14)}
           </span>
           ALERT RCB · ALERT EKSTREMALNY
@@ -51,7 +51,7 @@ export function AlertRed(c: Ctx) {
           {I('check', 14)} Telefon sprawdził, że to prawdziwy alert RCB
         </div>
       </div>
-      <div className="rcb-app [background:#fff] text-ink p-[6px_0] mt-2.5 motion-safe:animate-[fade-up_0.5s_0.25s_var(--ease-out)_both] rounded-2xl">
+      <div className="rcb-app bg-white text-ink p-[6px_0] mt-2.5 motion-safe:animate-[fade-up_0.5s_0.25s_var(--ease-out)_both] rounded-2xl">
         <div className="[.rcb-app_&]:flex [.rcb-app_&]:gap-2 [.rcb-app_&]:items-center [.rcb-app_&]:text-[12px] [.rcb-app_&]:text-ink-2 [.rcb-app_&]:p-[8px_16px_2px] flex justify-between items-center [&_button]:inline-flex [&_button]:items-center [&_button]:gap-0.5 [&_button]:text-ink [&_button]:font-medium [&_button]:text-[14px] text-[13px] tracking-[-0.003em] m-[36px_4px_10px] text-ink-2 font-medium">
           <span className="w-4 h-2.75 rounded-[3px] mr-2 [background:linear-gradient(#fff_50%,_var(--red)_50%)] [box-shadow:0_0_0_0.5px_rgb(11_13_18_/_22%)] inline-block flex-none [.d-rp_&]:w-3.5 [.d-rp_&]:h-2.5 [.d-rp_&]:mr-1.75 [.d-rp_&]:[box-shadow:none]"></span>
           mObywatel dodaje do tego alertu
@@ -135,7 +135,7 @@ export function AlertShelter(c: Ctx) {
     <div>
       <Badge className="mt-2">Alert RCB trwa · Kraków</Badge>
       <Title>Idź do schronienia przy ul. Dekerta 24</Title>
-      <div className="overflow-hidden [border:0] rounded-[22px]! [box-shadow:none]! [background:#fff]">
+      <div className="overflow-hidden [border:0] rounded-[22px]! [box-shadow:none]! bg-white">
         {ShelterMap()}
       </div>
       <List className="mt-3">
@@ -171,12 +171,12 @@ export function AlertGuide(c: Ctx) {
       <Title>Co robić teraz</Title>
       <Lead>Zasady z poradnika RCB. Alarm to syrena, której dźwięk rośnie i opada przez 3 minuty.</Lead>
       <button
-        className="flex gap-2.5 items-center justify-center [background:var(--navy)] [color:#fff] rounded-[999px] p-4.5 text-[18px] font-medium w-full"
+        className="flex gap-2.5 items-center justify-center bg-ink text-white rounded-[999px] p-4.5 text-[18px] font-medium w-full"
         onClick={() => setReading(!reading)}
       >
         {I(reading ? 'pause' : 'speaker', 22)} {reading ? 'Zatrzymaj odczyt' : 'Odczytaj na głos'}
       </button>
-      <div className="road grid grid-cols-[auto_1fr] gap-[0_16px] [&_.n]:text-(--faint) [&_.n]:pt-3 [&_.n]:[font-family:var(--disp)] [&_.n]:font-bold [&_.n]:text-[20px] mt-2.5">
+      <div className="road grid grid-cols-[auto_1fr] gap-[0_16px] [&_.n]:text-ink-3 [&_.n]:pt-3 [&_.n]:font-sans [&_.n]:font-bold [&_.n]:text-[20px] mt-2.5">
         {[
           'Zostań w schronieniu do odwołania alarmu.',
           'Trzymaj się z dala od okien i drzwi zewnętrznych.',
@@ -186,7 +186,7 @@ export function AlertGuide(c: Ctx) {
         ].map((t, i) => (
           <>
             <div className="n">{i + 1}</div>
-            <div className="[.road_&]:[border-bottom:1px_solid_var(--hair)] [.road_&]:p-[13px_0] [.rcb_.hd_&]:w-5.5 [.rcb_.hd_&]:h-5.5 [.rcb_.hd_&]:rounded-[6px] [.rcb_.hd_&]:[color:#fff] [.rcb_.hd_&]:grid [.rcb_.hd_&]:place-items-center [.rcb.clear_.hd_&]:[background:var(--green)] [.rcb_.hd_&]:[background:rgb(255_255_255_/_20%)]">
+            <div className="[.road_&]:[border-bottom:1px_solid_var(--hair)] [.road_&]:p-[13px_0] [.rcb_.hd_&]:w-5.5 [.rcb_.hd_&]:h-5.5 [.rcb_.hd_&]:rounded-[6px] [.rcb_.hd_&]:text-white [.rcb_.hd_&]:grid [.rcb_.hd_&]:place-items-center [.rcb.clear_.hd_&]:bg-green [.rcb_.hd_&]:[background:rgb(255_255_255_/_20%)]">
               {t}
             </div>
           </>
@@ -205,17 +205,17 @@ export function AlertGuide(c: Ctx) {
 export function AlertClear(c: Ctx) {
   return (
     <div
-      className="absolute inset-0 z-30 flex flex-col p-[58px_14px_22px] [color:#fff] overflow-y-auto [background:#0f1012] [&.clear]:[background:#0f1012] clear [&.rcb]:border-t-(--green) [&.rcb]:bg-[#1f2a24]"
+      className="absolute inset-0 z-30 flex flex-col p-[58px_14px_22px] text-white overflow-y-auto [background:#0f1012] [&.clear]:[background:#0f1012] clear [&.rcb]:border-t-green [&.rcb]:bg-[#1f2a24]"
       role="alertdialog"
       aria-label="Odwołanie alarmu"
     >
-      <div className="text-center leading-none m-[8px_0_4px] opacity-[0.95] text-[72px] [font-family:var(--disp)] font-semibold tracking-[-0.02em]">
+      <div className="text-center leading-none m-[8px_0_4px] opacity-[0.95] text-[72px] font-sans font-semibold tracking-[-0.02em]">
         16:21
       </div>
       <div className="text-center text-[14px] opacity-[0.7] mb-4.5">wtorek, 24 listopada</div>
-      <div className="rcb clear [&.rcb]:border-t-(--green) [&.rcb]:bg-[#1f2a24]">
+      <div className="rcb clear [&.rcb]:border-t-green [&.rcb]:bg-[#1f2a24]">
         <div className="hd [.rcb_&]:flex [.rcb_&]:items-center [.rcb_&]:gap-2 [.rcb_&]:text-[12.5px] [.rcb_&]:font-semibold [.rcb_&]:tracking-[0.02em]">
-          <span className="[.road_&]:[border-bottom:1px_solid_var(--hair)] [.road_&]:p-[13px_0] [.rcb_.hd_&]:w-5.5 [.rcb_.hd_&]:h-5.5 [.rcb_.hd_&]:rounded-[6px] [.rcb_.hd_&]:[color:#fff] [.rcb_.hd_&]:grid [.rcb_.hd_&]:place-items-center [.rcb.clear_.hd_&]:[background:var(--green)] [.rcb_.hd_&]:[background:rgb(255_255_255_/_20%)]">
+          <span className="[.road_&]:[border-bottom:1px_solid_var(--hair)] [.road_&]:p-[13px_0] [.rcb_.hd_&]:w-5.5 [.rcb_.hd_&]:h-5.5 [.rcb_.hd_&]:rounded-[6px] [.rcb_.hd_&]:text-white [.rcb_.hd_&]:grid [.rcb_.hd_&]:place-items-center [.rcb.clear_.hd_&]:bg-green [.rcb_.hd_&]:[background:rgb(255_255_255_/_20%)]">
             {I('check', 14)}
           </span>
           ALERT RCB
@@ -234,7 +234,7 @@ export function AlertClear(c: Ctx) {
           {I('check', 14)} Telefon sprawdził, że to prawdziwy alert RCB
         </div>
       </div>
-      <div className="rcb-app [background:#fff] text-ink p-[6px_0] mt-2.5 motion-safe:animate-[fade-up_0.5s_0.25s_var(--ease-out)_both] rounded-2xl">
+      <div className="rcb-app bg-white text-ink p-[6px_0] mt-2.5 motion-safe:animate-[fade-up_0.5s_0.25s_var(--ease-out)_both] rounded-2xl">
         <div className="[.rcb-app_&]:flex [.rcb-app_&]:gap-2 [.rcb-app_&]:items-center [.rcb-app_&]:text-[12px] [.rcb-app_&]:text-ink-2 [.rcb-app_&]:p-[8px_16px_2px] flex justify-between items-center [&_button]:inline-flex [&_button]:items-center [&_button]:gap-0.5 [&_button]:text-ink [&_button]:font-medium [&_button]:text-[14px] text-[13px] tracking-[-0.003em] m-[36px_4px_10px] text-ink-2 font-medium">
           <span className="w-4 h-2.75 rounded-[3px] mr-2 [background:linear-gradient(#fff_50%,_var(--red)_50%)] [box-shadow:0_0_0_0.5px_rgb(11_13_18_/_22%)] inline-block flex-none [.d-rp_&]:w-3.5 [.d-rp_&]:h-2.5 [.d-rp_&]:mr-1.75 [.d-rp_&]:[box-shadow:none]"></span>
           Twoja rodzina
@@ -324,7 +324,7 @@ export function AlertSafe(c: Ctx) {
             <ListRowDescription>Brak odpowiedzi od 15:42</ListRowDescription>
           </ListRowContent>
           <button
-            className="mini inline-flex gap-1.5 items-center whitespace-nowrap motion-safe:[&:active]:transform-[scale(0.97)] font-semibold text-[15px] p-[6px_14px] [background:var(--fill)] text-ink rounded-[999px]"
+            className="mini inline-flex gap-1.5 items-center whitespace-nowrap motion-safe:[&:active]:transform-[scale(0.97)] font-semibold text-[15px] p-[6px_14px] bg-fill text-ink rounded-[999px]"
             onClick={() => c.go('easy-call')}
           >
             {I('phone', 14)} Zadzwoń

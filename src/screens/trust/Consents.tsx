@@ -63,7 +63,7 @@ export function Consents(c: Ctx) {
   return (
     <div className="cons">
       <Title>Moje zgody</Title>
-      <div className="flex gap-4 items-center [background:var(--surface)] rounded-[20px] p-4.5 mt-1.5 [box-shadow:0_0_0_0.5px_var(--hair)] [&_>_div]:flex [&_>_div]:flex-col [&_>_div]:items-center [&_>_div]:min-w-16 [&_b]:text-[34px] [&_b]:leading-none [&_b]:font-[650] [&_b]:tracking-[-0.03em] [&_b]:[font-variant-numeric:tabular-nums] [&_span]:text-[12px] [&_span]:text-ink-2 [&_span]:text-center [&_span]:leading-[1.2] [&_span]:mt-1 [&_p]:m-0 [&_p]:text-[13.5px] [&_p]:leading-[1.4] [&_p]:text-ink-2">
+      <div className="flex gap-4 items-center bg-surface rounded-[20px] p-4.5 mt-1.5 [box-shadow:0_0_0_0.5px_var(--hair)] [&_>_div]:flex [&_>_div]:flex-col [&_>_div]:items-center [&_>_div]:min-w-16 [&_b]:text-[34px] [&_b]:leading-none [&_b]:font-[650] [&_b]:tracking-[-0.03em] [&_b]:[font-variant-numeric:tabular-nums] [&_span]:text-[12px] [&_span]:text-ink-2 [&_span]:text-center [&_span]:leading-[1.2] [&_span]:mt-1 [&_p]:m-0 [&_p]:text-[13.5px] [&_p]:leading-[1.4] [&_p]:text-ink-2">
         <div>
           <b>
             <Num v={active} />
@@ -86,7 +86,7 @@ export function Consents(c: Ctx) {
                   {x.av ? (
                     <Av i={x.av} size={36} />
                   ) : (
-                    <span className="w-10 h-10 rounded-[50%] grid place-items-center flex-none text-ink [background:var(--bg)] [&.ai]:[background:linear-gradient(135deg,_#2f6bff,_#7a4dff)] [&.ai]:[color:#fff] [.how8-row_&]:w-7.5 [.how8-row_&]:h-7.5 [.how8-row_&]:rounded-[10px]">
+                    <span className="w-10 h-10 rounded-[50%] grid place-items-center flex-none text-ink bg-bg [&.ai]:[background:linear-gradient(135deg,_var(--signal-blue),_var(--signal-violet))] [&.ai]:text-white [.how8-row_&]:w-7.5 [.how8-row_&]:h-7.5 [.how8-row_&]:rounded-[10px]">
                       {x.ic && I(x.ic, 18)}
                     </span>
                   )}
@@ -96,7 +96,7 @@ export function Consents(c: Ctx) {
                       {x.ai && (
                         <>
                           {' '}
-                          <span className="rounded-[999px] [background:none]! p-0 text-[12px] inline-flex items-center gap-1.25 [&::before]:[content:''] [&::before]:w-1.5 [&::before]:h-1.5 [&::before]:rounded-[50%] [&::before]:[background:var(--ink-3)]! text-ink-2! font-medium [.sys_&]:inline-flex [.sys_&]:items-center [.sys_&]:rounded-[999px] [.sys_&]:gap-1 [.sys_&]:ml-2 [.sys_&]:text-[11px] [.sys_&]:tracking-[0.06em] [.sys_&]:align-[1px] [.sys_&]:[box-shadow:0_4px_10px_-4px_rgb(76_90_255_/_60%)] [.sys_&]:[background:linear-gradient(135deg,_#2f6bff,_#7a4dff)]! [.sys_&]:[color:#fff]! [.sys_&]:p-[3px_9px_3px_7px]! [.sys_&]:font-bold! [.sys_&::before]:[content:''] [.sys_&::before]:inline-block! [.sys_&::before]:w-2.5 [.sys_&::before]:h-2.5 [.sys_&::before]:[-webkit-mask:url(data:image/svg+xml,%3Csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20viewBox=%270%200%2024%2024%27%3E%3Cpath%20d=%27M12%202l2.2%206.3L20.5%2010l-6.3%202.2L12%2018.5l-2.2-6.3L3.5%2010l6.3-1.7z%27/%3E%3C/svg%3E)_center/contain_no-repeat] [.sys_&::before]:[mask:url(data:image/svg+xml,%3Csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20viewBox=%270%200%2024%2024%27%3E%3Cpath%20d=%27M12%202l2.2%206.3L20.5%2010l-6.3%202.2L12%2018.5l-2.2-6.3L3.5%2010l6.3-1.7z%27/%3E%3C/svg%3E)_center/contain_no-repeat] [.sys_&::before]:[background:#fff]! [.sys_&::before]:[box-shadow:none]! [.sys_&::before]:rounded-none! [&.sm]:text-[9.5px]! [&&.sm]:p-[1px_6px]! [&.sm]:align-[1px] [&.sm]:[background:linear-gradient(135deg,_#2f6bff,_#7a4dff)]! [&.sm]:[color:#fff]! [&.sm]:rounded-[999px] [&&.sm::before]:hidden! sm">
+                          <span className="rounded-[999px] [background:none]! p-0 text-[12px] inline-flex items-center gap-1.25 [&::before]:[content:''] [&::before]:w-1.5 [&::before]:h-1.5 [&::before]:rounded-[50%] [&::before]:bg-ink-3! text-ink-2! font-medium [.sys_&]:inline-flex [.sys_&]:items-center [.sys_&]:rounded-[999px] [.sys_&]:gap-1 [.sys_&]:ml-2 [.sys_&]:text-[11px] [.sys_&]:tracking-[0.06em] [.sys_&]:align-[1px] [.sys_&]:[box-shadow:0_4px_10px_-4px_rgb(76_90_255_/_60%)] [.sys_&]:[background:linear-gradient(135deg,_var(--signal-blue),_var(--signal-violet))]! [.sys_&]:text-white! [.sys_&]:p-[3px_9px_3px_7px]! [.sys_&]:font-bold! [.sys_&::before]:[content:''] [.sys_&::before]:inline-block! [.sys_&::before]:w-2.5 [.sys_&::before]:h-2.5 [.sys_&::before]:[-webkit-mask:url(data:image/svg+xml,%3Csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20viewBox=%270%200%2024%2024%27%3E%3Cpath%20d=%27M12%202l2.2%206.3L20.5%2010l-6.3%202.2L12%2018.5l-2.2-6.3L3.5%2010l6.3-1.7z%27/%3E%3C/svg%3E)_center/contain_no-repeat] [.sys_&::before]:[mask:url(data:image/svg+xml,%3Csvg%20xmlns=%27http://www.w3.org/2000/svg%27%20viewBox=%270%200%2024%2024%27%3E%3Cpath%20d=%27M12%202l2.2%206.3L20.5%2010l-6.3%202.2L12%2018.5l-2.2-6.3L3.5%2010l6.3-1.7z%27/%3E%3C/svg%3E)_center/contain_no-repeat] [.sys_&::before]:bg-white! [.sys_&::before]:[box-shadow:none]! [.sys_&::before]:rounded-none! [&.sm]:text-[9.5px]! [&&.sm]:p-[1px_6px]! [&.sm]:align-[1px] [&.sm]:[background:linear-gradient(135deg,_var(--signal-blue),_var(--signal-violet))]! [&.sm]:text-white! [&.sm]:rounded-[999px] [&&.sm::before]:hidden! sm">
                             AI
                           </span>
                         </>
@@ -108,7 +108,7 @@ export function Consents(c: Ctx) {
                     >
                       {x.left === 0 ? 'Wygasła' : x.until}
                       {x.left ? (
-                        <i className="flex-1 max-w-22.5 h-0.75 rounded-[3px] [background:var(--fill-2)] overflow-hidden [&_i]:block [&_i]:h-full [&_i]:[background:var(--ink)]">
+                        <i className="flex-1 max-w-22.5 h-0.75 rounded-[3px] bg-fill-2 overflow-hidden [&_i]:block [&_i]:h-full [&_i]:bg-ink">
                           <i style={{ width: `${Math.min(100, (x.left ?? 0) / 3.65)}%` }}></i>
                         </i>
                       ) : (
@@ -117,7 +117,7 @@ export function Consents(c: Ctx) {
                     </span>
                   </span>
                   <button
-                    className="mini inline-flex gap-1.5 items-center whitespace-nowrap motion-safe:[&:active]:transform-[scale(0.97)] font-semibold text-[15px] p-[6px_14px] [background:var(--fill)] text-ink rounded-[999px]"
+                    className="mini inline-flex gap-1.5 items-center whitespace-nowrap motion-safe:[&:active]:transform-[scale(0.97)] font-semibold text-[15px] p-[6px_14px] bg-fill text-ink rounded-[999px]"
                     onClick={e => {
                       const row = (e.currentTarget as HTMLElement).closest<HTMLElement>('.cons-row');
                       collapseOut(row, () => revoke(x));

@@ -25,7 +25,7 @@ export function PaySheet({
 }) {
   return (
     <div className="pay8 text-center [&.done]:p-[18px_0_26px]">
-      <div className="[.sheet_&]:mb-2.5 [.sheet_&]:text-(--label2) [.sheet_&]:font-semibold [.sheet_&]:text-[13px] [.sheet_&]:normal-case! [.sheet_&]:[letter-spacing:0]! [.pay8_&&]:mb-1.5">
+      <div className="[.sheet_&]:mb-2.5 [.sheet_&]:text-ink-2 [.sheet_&]:font-semibold [.sheet_&]:text-[13px] [.sheet_&]:normal-case! [.sheet_&]:[letter-spacing:0]! [.pay8_&&]:mb-1.5">
         Płatność przez ePłatności
       </div>
       <div className="text-[44px] font-[650] tracking-[-0.035em] leading-[1.1] [font-variant-numeric:tabular-nums] [&.sm]:text-[26px] [&.sm]:mt-3">
@@ -36,10 +36,10 @@ export function PaySheet({
         <br />
         <span>{sheet.to}</span>
       </div>
-      <div className="pay-m flex flex-col mt-4.5 [background:var(--fill)] rounded-[18px] p-1 text-left [&_button]:flex [&_button]:items-center [&_button]:gap-3 [&_button]:p-[10px_12px] [&_button]:rounded-[14px] [&_button]:[transition:background_0.2s] [&_button[aria-pressed='true']]:[background:var(--surface)] [&_button[aria-pressed='true']]:[box-shadow:0_1px_3px_rgb(11_13_18_/_8%)]">
+      <div className="pay-m flex flex-col mt-4.5 bg-fill rounded-[18px] p-1 text-left [&_button]:flex [&_button]:items-center [&_button]:gap-3 [&_button]:p-[10px_12px] [&_button]:rounded-[14px] [&_button]:[transition:background_0.2s] [&_button[aria-pressed='true']]:bg-surface [&_button[aria-pressed='true']]:[box-shadow:0_1px_3px_rgb(11_13_18_/_8%)]">
         {METHODS.map(([ic, t, s], i) => (
           <button aria-pressed={sheet.m === i} onClick={() => setSheet({ ...sheet, m: i })}>
-            <span className="w-10 h-10 rounded-[50%] grid place-items-center flex-none text-ink [background:var(--bg)] [&.ai]:[background:linear-gradient(135deg,_#2f6bff,_#7a4dff)] [&.ai]:[color:#fff] [.how8-row_&]:w-7.5 [.how8-row_&]:h-7.5 [.how8-row_&]:rounded-[10px]">
+            <span className="w-10 h-10 rounded-[50%] grid place-items-center flex-none text-ink bg-bg [&.ai]:[background:linear-gradient(135deg,_var(--signal-blue),_var(--signal-violet))] [&.ai]:text-white [.how8-row_&]:w-7.5 [.how8-row_&]:h-7.5 [.how8-row_&]:rounded-[10px]">
               {I(ic, 18)}
             </span>
             <ListItemContent>
@@ -75,7 +75,7 @@ export function PayDone({ sheet, close }: { sheet: Sheet; close: () => void }) {
   }, []);
   return (
     <div className="pay8 text-center [&.done]:p-[18px_0_26px] done">
-      <div className="w-16 h-16 m-[0_auto] rounded-[50%] [background:var(--ok)] [color:#fff] grid place-items-center animate-[pop_0.4s_var(--spring)]">
+      <div className="w-16 h-16 m-[0_auto] rounded-[50%] bg-green text-white grid place-items-center animate-[pop_0.4s_var(--spring)]">
         {I('check', 30)}
       </div>
       <div className="text-[44px] font-[650] tracking-[-0.035em] leading-[1.1] [font-variant-numeric:tabular-nums] [&.sm]:text-[26px] [&.sm]:mt-3 sm">

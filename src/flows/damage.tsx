@@ -21,7 +21,7 @@ export function Damage1(c: Ctx) {
       <div className="grid grid-cols-[1fr_1fr] gap-2">
         {[0, 1, 2, 3].map(i =>
           i < n ? (
-            <div className="ph [aspect-ratio:1/1] rounded-[12px] overflow-hidden relative [background:#fff] [&_span]:absolute [&_span]:left-2 [&_span]:bottom-2 [&_span]:text-[11px] [&_span]:[color:#fff] [&_span]:[background:rgb(0_0_0_/_45%)] [&_span]:rounded-[6px] [&_span]:p-[2px_6px]">
+            <div className="ph [aspect-ratio:1/1] rounded-[12px] overflow-hidden relative bg-white [&_span]:absolute [&_span]:left-2 [&_span]:bottom-2 [&_span]:text-[11px] [&_span]:text-white [&_span]:[background:rgb(0_0_0_/_45%)] [&_span]:rounded-[6px] [&_span]:p-[2px_6px]">
               <svg viewBox="0 0 100 100" width="100%" height="100%">
                 <rect width="100" height="100" fill={['#c9c4bb', '#b7b1a6', '#d2ccc2', '#bfb9ae'][i]} />
                 <path
@@ -40,7 +40,7 @@ export function Damage1(c: Ctx) {
             </div>
           ) : (
             <button
-              className="ph [aspect-ratio:1/1] rounded-[12px] overflow-hidden relative [background:#fff] [&_span]:absolute [&_span]:left-2 [&_span]:bottom-2 [&_span]:text-[11px] [&_span]:[color:#fff] [&_span]:[background:rgb(0_0_0_/_45%)] [&_span]:rounded-[6px] [&_span]:p-[2px_6px] add [&.ph]:grid [&.ph]:place-items-center [&.ph]:content-center [&.ph]:gap-1.5 [&.ph]:text-(--tint) [&.ph]:text-[14px] [&.ph]:font-semibold [&.ph]:[border:1.5px_dashed_#c7c7cc] [&.ph]:[background:transparent] [&.ph_span]:static [&.ph_span]:[background:none] [&.ph_span]:text-(--tint) [&.ph_span]:text-[14px]"
+              className="ph [aspect-ratio:1/1] rounded-[12px] overflow-hidden relative bg-white [&_span]:absolute [&_span]:left-2 [&_span]:bottom-2 [&_span]:text-[11px] [&_span]:text-white [&_span]:[background:rgb(0_0_0_/_45%)] [&_span]:rounded-[6px] [&_span]:p-[2px_6px] add [&.ph]:grid [&.ph]:place-items-center [&.ph]:content-center [&.ph]:gap-1.5 [&.ph]:text-ink [&.ph]:text-[14px] [&.ph]:font-semibold [&.ph]:[border:1.5px_dashed_#c7c7cc] [&.ph]:bg-transparent [&.ph_span]:static [&.ph_span]:[background:none] [&.ph_span]:text-ink [&.ph_span]:text-[14px]"
               onClick={() => {
                 setN(n + 1);
                 c.set({ dmgPhotos: n + 1 });
@@ -134,9 +134,9 @@ export function Damage3(c: Ctx) {
           <ListRow>
             <span
               className={
-                '[.timeline_&]:w-3 [.timeline_&]:h-3 [.timeline_&]:rounded-[50%] [.timeline_&]:[border:2px_solid_#c7c7cc] [.timeline_&]:flex-none [.timeline_&.on]:[background:#34c759] [.timeline_&.on]:border-[#34c759]' +
+                '[.timeline_&]:w-3 [.timeline_&]:h-3 [.timeline_&]:rounded-[50%] [.timeline_&]:[border:2px_solid_#c7c7cc] [.timeline_&]:flex-none [.timeline_&.on]:bg-signal-green [.timeline_&.on]:border-signal-green' +
                 (d
-                  ? ' on [.progress_i&]:[background:var(--ink)] [.steps_i&]:[background:var(--ink)] [.st-ab_>_div&&]:[background:#fff] [.st-ab_&_p]:text-ink [.tour-dots_i&]:w-5.5 [.tour-dots_i&]:[background:var(--ink)] [.call-keys_button&_span]:[background:#fff] [.call-keys_button&_span]:text-[#0b0d12]'
+                  ? ' on [.progress_i&]:bg-ink [.steps_i&]:bg-ink [.st-ab_>_div&&]:bg-white [.st-ab_&_p]:text-ink [.tour-dots_i&]:w-5.5 [.tour-dots_i&]:bg-ink [.call-keys_button&_span]:bg-white [.call-keys_button&_span]:text-ink'
                   : '')
               }
             ></span>
