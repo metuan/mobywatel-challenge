@@ -1,72 +1,13 @@
 /* ===== v4 layout: explainer left, demo list right ===== */
-.stage.wide {
-  grid-template-columns: minmax(300px, 440px) auto minmax(190px, 250px);
-  gap: 64px;
-  align-items: center;
-}
-.rail {
-  gap: 26px;
-}
-.statement {
-  font-size: 34px;
-  line-height: 1.1;
-}
-.explain .tech {
-  background: transparent;
-  border: 0;
-  padding: 0;
-}
-.explain .tech h3 {
-  font-size: 30px;
-}
-.explain .tnode .dot {
-  background: var(--bg);
-}
-.explain .tnode:not(:last-child)::before {
-  background: #dcdce2;
-}
-.explain .legend {
-  border-color: #dcdce2;
-}
-.side {
-  max-height: none;
-  overflow: visible;
-  display: flex;
-  flex-direction: column;
-}
 .side .flows {
-  display: flex;
-  flex-direction: column;
   gap: 0;
-  margin-top: 10px;
-  border-top: 1px solid #dcdce2;
 }
 .side .flows button {
-  padding: 10px 0;
-  border-bottom: 1px solid #dcdce2;
-  font-size: 14px;
-  align-items: center;
   transition: color 0.15s;
-}
-.side .flows button[aria-current='step'] {
-  color: var(--ink);
-  font-weight: 600;
-}
-.side .flows button[aria-current='step'] .fn {
-  color: var(--red);
-}
-.side .flows .fn {
-  font-family: var(--sans);
-  font-size: 11.5px;
-  font-weight: 600;
-  letter-spacing: 0.04em;
-  min-width: 22px;
 }
 @media (max-width: 1279px) {
   .stage.wide {
-    grid-template-columns: minmax(300px, 480px) auto;
     grid-template-areas: 'rail phone' 'side phone';
-    gap: 24px 56px;
   }
   .stage.wide .rail {
     grid-area: rail;
@@ -77,11 +18,10 @@
   }
   .stage.wide .side {
     grid-area: side;
-    display: flex;
-    align-self: start;
+    display: block;
+    grid-column: 1/-1;
   }
   .side .flows {
-    display: grid;
     grid-template-columns: 1fr 1fr;
     column-gap: 18px;
   }

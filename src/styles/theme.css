@@ -1,0 +1,125 @@
+/*
+ * shadcn/ui theme, mapped onto the ink-on-paper tokens in 00-tokens.css.
+ * Components use these names (bg-background, text-muted-foreground, ...), never raw hex values.
+ */
+:root {
+  --radius: 14px;
+  --background: var(--bg);
+  --foreground: var(--ink);
+  --card: var(--surface);
+  --card-foreground: var(--ink);
+  --popover: var(--surface);
+  --popover-foreground: var(--ink);
+  --primary: var(--ink);
+  --primary-foreground: #fff;
+  --secondary: var(--fill);
+  --secondary-foreground: var(--ink);
+  --muted: var(--fill);
+  --muted-foreground: var(--ink-2);
+  --accent: var(--fill);
+  --accent-foreground: var(--ink);
+  --destructive: var(--red);
+  --destructive-foreground: #fff;
+  --success: var(--ok);
+  --warning: var(--warn);
+  --border: var(--hair-2);
+  --input: var(--hair-2);
+  --ring: var(--ink);
+}
+
+@theme inline {
+  --font-sans: var(--sans);
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-success: var(--success);
+  --color-warning: var(--warning);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  /* Raw palette for the few places that need it (status tints, dark document surfaces) */
+  --color-ink: var(--ink);
+  --color-ink-2: var(--ink-2);
+  --color-ink-3: var(--ink-3);
+  --color-fill: var(--fill);
+  --color-fill-2: var(--fill-2);
+  --color-hair: var(--hair);
+  --color-surface: var(--surface);
+  --color-red: var(--red);
+  --color-red-soft: var(--red-soft);
+  --color-green: var(--ok);
+  --color-green-soft: var(--green-soft);
+  --color-amber: var(--warn);
+  --color-amber-soft: var(--amber-soft);
+  --color-d-0: var(--d-0);
+  --color-d-1: var(--d-1);
+  --color-d-2: var(--d-2);
+  --color-d-ink-2: var(--d-ink-2);
+
+  --radius-sm: calc(var(--radius) - 6px);
+  --radius-md: calc(var(--radius) - 4px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+
+  --shadow-card: var(--shadow);
+  --shadow-card-sm: var(--shadow-s);
+  --shadow-float: var(--e-float);
+
+  --ease-out: var(--ease-out);
+  --ease-drawer: var(--ease-drawer);
+  --ease-spring: var(--ease-spring);
+
+  --animate-overlay-in: overlay-in 0.2s ease-out both;
+  --animate-sheet-up: sheet-up 0.42s var(--ease-drawer) both;
+  --animate-swap-in: swap-in 0.2s cubic-bezier(0.23, 1, 0.32, 1) both;
+
+  @keyframes overlay-in {
+    from {
+      opacity: 0;
+    }
+  }
+  @keyframes sheet-up {
+    from {
+      transform: translateY(100%);
+    }
+  }
+  @keyframes swap-in {
+    from {
+      opacity: 0;
+      filter: blur(2px);
+    }
+  }
+}
+
+/* Children fade up one after another when a list appears. */
+@utility stagger {
+  @media (prefers-reduced-motion: no-preference) {
+    & > * {
+      animation: fade-up 0.42s var(--ease-out) both;
+    }
+    & > :nth-child(2) {
+      animation-delay: 0.04s;
+    }
+    & > :nth-child(3) {
+      animation-delay: 0.08s;
+    }
+    & > :nth-child(n + 4) {
+      animation-delay: 0.12s;
+    }
+  }
+}

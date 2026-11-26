@@ -1,0 +1,36 @@
+name: Update screenshot baselines
+
+# Renders the baselines in the same image as the CI check and commits them to the branch.
+# Run it from the Actions tab, or push a commit whose message contains [update baselines].
+on:
+  workflow_dispatch:
+  push:
+    branches-ignore: [main]
+
+permissions:
+  contents: write
+
+jobs:
+  update:
+    if: github.event_name == 'workflow_dispatch' || contains(github.event.head_commit.message, '[update baselines]')
+    runs-on: ubuntu-latest
+    container: mcr.microsoft.com/playwright:v1.63.0-noble
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+      - run: npm ci
+      - run: npm run test:visual -- --update-snapshots=all
+        env:
+          HOME: /root
+      - name: Commit the new baselines
+        run: |
+          git config --global --add safe.directory "$GITHUB_WORKSPACE"
+          git config user.name "github-actions[bot]"
+          git config user.email "41898283+github-actions[bot]@users.noreply.github.com"
+          git add tests/visual/__screenshots__
+          git diff --cached --quiet && exit 0
+          git commit -m "Update screenshot baselines"
+          git push

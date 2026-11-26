@@ -1,27 +1,40 @@
-/* Order matters: later layers refine earlier ones. */
+/*
+ * Cascade order: Tailwind theme and base, then the legacy stylesheets, then components and utilities.
+ * Utilities sit above the legacy layer, so a Tailwind class always wins over an old rule,
+ * the same way the inline styles it replaces did.
+ */
+@layer theme, base, legacy, components, utilities;
+
+@import 'tailwindcss/theme.css' layer(theme);
+@import 'tailwindcss/utilities.css' layer(utilities);
+@import 'tw-animate-css';
 @import './00-tokens.css';
-@import './01-reset.css';
-@import './02-stage.css';
-@import './03-shell.css';
-@import './04-type.css';
-@import './05-cards.css';
-@import './06-buttons.css';
-@import './07-flows.css';
-@import './08-screens.css';
-@import './09-calm-surfaces.css';
-@import './10-desktop-rails.css';
-@import './11-lock-screen.css';
-@import './12-motion.css';
-@import './13-paper.css';
-@import './14-native-ios.css';
-@import './15-features.css';
-@import './16-tabs.css';
-@import './17-atrament.css';
-@import './18-atrament-polish.css';
-@import './19-story.css';
-@import './20-responsive.css';
-@import './21-qa-coach.css';
-@import './22-nearby-voice-eu-watch.css';
-@import './23-screens-v2.css';
-@import './24-review-fixes.css';
-@import './25-motion-v2.css';
+@import './theme.css';
+@import '../components/ui/list.css' layer(components);
+
+/* Legacy stylesheets, being folded into components. Order matters: later files refine earlier ones. */
+@import './01-reset.css' layer(legacy);
+@import './02-stage.css' layer(legacy);
+@import './03-shell.css' layer(legacy);
+@import './04-type.css' layer(legacy);
+@import './05-cards.css' layer(legacy);
+@import './06-buttons.css' layer(legacy);
+@import './07-flows.css' layer(legacy);
+@import './08-screens.css' layer(legacy);
+@import './09-calm-surfaces.css' layer(legacy);
+@import './10-desktop-rails.css' layer(legacy);
+@import './11-lock-screen.css' layer(legacy);
+@import './12-motion.css' layer(legacy);
+@import './13-paper.css' layer(legacy);
+@import './14-native-ios.css' layer(legacy);
+@import './15-features.css' layer(legacy);
+@import './16-tabs.css' layer(legacy);
+@import './17-atrament.css' layer(legacy);
+@import './18-atrament-polish.css' layer(legacy);
+@import './19-story.css' layer(legacy);
+@import './20-responsive.css' layer(legacy);
+@import './21-qa-coach.css' layer(legacy);
+@import './22-nearby-voice-eu-watch.css' layer(legacy);
+@import './23-screens-v2.css' layer(legacy);
+@import './24-review-fixes.css' layer(legacy);
+@import './25-motion-v2.css' layer(legacy);

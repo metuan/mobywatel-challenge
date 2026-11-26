@@ -27,11 +27,7 @@
   opacity: 0.8;
 }
 .lk-clock {
-  font-family: var(--serif);
-  font-size: 78px;
   line-height: 1;
-  letter-spacing: -0.03em;
-  font-weight: 500;
   margin-top: 2px;
   font-variant-numeric: tabular-nums;
 }

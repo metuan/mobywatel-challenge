@@ -1,9 +1,9 @@
-import type { ComponentChildren, VNode } from 'preact';
+import type { ReactElement, ReactNode } from 'react';
 import type { IconName } from '@/ui/icons';
 
 /** Whatever a template can render. */
-export type Child = ComponentChildren;
-export type View = VNode | VNode[] | string | null;
+export type Child = ReactNode;
+export type View = ReactElement | ReactElement[] | string | null;
 
 export type Persona = 'anna' | 'tata';
 /** Offices notified about a change of address. */

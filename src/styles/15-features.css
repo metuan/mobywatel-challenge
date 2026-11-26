@@ -1,16 +1,4 @@
 /* ===== features ===== */
-.small-flows button {
-  padding: 8px 0;
-  font-size: 13.5px;
-}
-.newtag {
-  font-size: 11px;
-  font-weight: 600;
-  color: var(--tint);
-  background: rgb(10 88 208 / 10%);
-  border-radius: 6px;
-  padding: 2px 6px;
-}
 .icecard {
   background: #fff;
   border-radius: 16px;
@@ -300,11 +288,4 @@
   font-size: 13px;
   font-weight: 600;
   margin-top: 14px;
-}
-.statement {
-  font-size: 34px;
-}
-.row .it {
-  font-size: 12px;
-  font-weight: 700;
 }
