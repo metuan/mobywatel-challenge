@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { I } from '@/ui/icons';
 import { Ring } from '@/ui/primitives';
 import type { IconName } from '@/ui/icons';
@@ -7,7 +7,12 @@ import type { Ctx } from '@/types';
 /* Hop 14: the Dynamic Island carries the case you are waiting for */
 export function Island({ c, route, full }: { c: Ctx; route: string; full: boolean }) {
   const [open, setOpen] = useState(false);
-  useEffect(() => setOpen(false), [route]);
+  // Moving to another screen folds the island back.
+  const [openOn, setOpenOn] = useState(route);
+  if (openOn !== route) {
+    setOpenOn(route);
+    setOpen(false);
+  }
   const s = c.s;
   if (full || s.persona === 'tata')
     return (
