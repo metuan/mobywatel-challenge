@@ -1222,7 +1222,6 @@
   z-index: 30;
 }
 .st-nav .pill.st-next.ready::after {
-  border-right-color: #2f6bff;
   left: 50% !important;
   top: auto !important;
   bottom: calc(100% + 2px) !important;
