@@ -59,15 +59,8 @@ export function Move2(c: Ctx) {
         Asystent znalazł 4 miejsca, gdzie Twój adres musi się zmienić. Odznacz to, czego nie chcesz teraz
         załatwiać.
       </Lead>
-      <Card style={{ padding: '6px 0' }}>
-        <div
-          style={{
-            display: 'flex',
-            justifyContent: 'space-between',
-            alignItems: 'center',
-            padding: '12px 18px 6px',
-          }}
-        >
+      <Card className="py-1.5 px-0">
+        <div className="flex justify-between items-center pt-3 pr-4.5 pb-1.5 pl-4.5">
           <Muted as="span">ul. Długa 12/4, Kraków</Muted>
           <Muted as="span">{n} z 4</Muted>
         </div>
@@ -89,7 +82,7 @@ export function Move2(c: Ctx) {
           </ListRow>
         ))}
       </Card>
-      <Note icon="sparkle" style={{ marginTop: '12px' }}>
+      <Note icon="sparkle" className="mt-3">
         Asystent może się mylić. W następnym kroku zobaczysz każde pole i jego źródło.
       </Note>
       <Actions>
@@ -209,12 +202,7 @@ export function MoveDone(c: Ctx) {
   return (
     <div>
       <Hero n="move" />
-      <div
-        className="done-mark"
-        style={{ marginTop: '-34px', marginLeft: '16px', position: 'relative', border: '4px solid #fff' }}
-      >
-        {I('check', 28)}
-      </div>
+      <div className="done-mark mt-[-34px] ml-4 relative [border:4px_solid_#fff]">{I('check', 28)}</div>
       <Title>Wysłane. Resztą zajmiemy się razem.</Title>
       <List>
         <Row

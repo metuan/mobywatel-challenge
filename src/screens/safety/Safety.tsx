@@ -1,3 +1,4 @@
+import { cn } from '@/lib/utils';
 import { Field, FieldLabel, FieldValue } from '@/components/ui/field';
 import {
   List,
@@ -13,7 +14,6 @@ import {
 import { Badge } from '@/components/ui/badge';
 import { Display, Lead, Title } from '@/components/ui/typography';
 import { Actions, Button } from '@/components/ui/button';
-import { sx } from '@/lib/sx';
 import { useState } from 'react';
 import { I } from '@/ui/icons';
 import { Av, GRow, Label, Sec, Toggle } from '@/ui/primitives';
@@ -57,7 +57,7 @@ export function Plan(_c: Ctx) {
           ['Apteczka', false],
         ].map(([t, on]) => (
           <ListRow>
-            <ListRowIcon style={sx(on ? 'background:var(--green-soft);color:var(--green)' : '')}>
+            <ListRowIcon className={cn(on && 'bg-green-soft text-green')}>
               {on ? I('check', 18) : ''}
             </ListRowIcon>
             <ListRowContent>
@@ -140,7 +140,7 @@ export function Safety(c: Ctx) {
         </div>
         <i className="st-flood"></i>
       </div>
-      <button className="pill wide" style={{ marginTop: '12px' }} onClick={alarm}>
+      <button className="pill wide mt-3" onClick={alarm}>
         Zobacz, jak przychodzi Alert RCB
       </button>
       <div className="w8">
@@ -153,9 +153,7 @@ export function Safety(c: Ctx) {
         <button className="w" onClick={() => c.go('ice')}>
           <span className="wk">Karta ratunkowa</span>
           <span className="wico">{I('heart', 20)}</span>
-          <span className="wv" style={{ fontSize: '22px' }}>
-            A Rh+
-          </span>
+          <span className="wv text-[22px]">A Rh+</span>
           <span className="ws">Widoczna na ekranie blokady</span>
         </button>
         <button className="w" onClick={() => c.go('plan')}>
@@ -203,7 +201,7 @@ export function Safety(c: Ctx) {
       <div className="w8">
         <div className="w">
           <span className="wk">Alarm</span>
-          <svg viewBox="0 0 120 30" width="100%" height="30" style={{ marginTop: 'auto' }}>
+          <svg viewBox="0 0 120 30" width="100%" height="30" className="mt-auto">
             <path
               d="M0 15 Q7.5 0 15 15 T30 15 T45 15 T60 15 T75 15 T90 15 T105 15 T120 15"
               stroke="var(--ink)"
@@ -215,7 +213,7 @@ export function Safety(c: Ctx) {
         </div>
         <div className="w">
           <span className="wk">Odwołanie</span>
-          <svg viewBox="0 0 120 30" width="100%" height="30" style={{ marginTop: 'auto' }}>
+          <svg viewBox="0 0 120 30" width="100%" height="30" className="mt-auto">
             <path d="M0 15H120" stroke="var(--ink)" strokeWidth="1.75" />
           </svg>
           <span className="ws">Dźwięk ciągły, 3 min</span>

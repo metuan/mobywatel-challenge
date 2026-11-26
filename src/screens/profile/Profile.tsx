@@ -9,7 +9,6 @@ import {
 } from '@/components/ui/list';
 import { Card } from '@/components/ui/card';
 import { Caption, Muted, Subtitle } from '@/components/ui/typography';
-import { sx } from '@/lib/sx';
 import { I } from '@/ui/icons';
 import { Label, Row, Sec, Toggle } from '@/ui/primitives';
 import type { Ctx } from '@/types';
@@ -17,7 +16,7 @@ import type { Ctx } from '@/types';
 function ProfileBase(c: Ctx) {
   return (
     <div>
-      <div style={{ display: 'flex', gap: '12px', alignItems: 'center', marginTop: '8px' }}>
+      <div className="flex gap-3 items-center mt-2">
         <ListRowAvatar className="size-[52px]">AN</ListRowAvatar>
         <div>
           <Subtitle as="h1">Anna Nowicka</Subtitle>
@@ -113,7 +112,7 @@ function TextSize(c: Ctx) {
             <i></i>
           </button>
         ))}
-        <span className="fs-fill" style={sx(`width:${(steps.indexOf(v) / 3) * 100}%`)}></span>
+        <span className="fs-fill" style={{ width: `${(steps.indexOf(v) / 3) * 100}%` }}></span>
       </div>
       <span className="fs-a lg">A</span>
     </div>
@@ -125,9 +124,9 @@ export function Profile(c: Ctx) {
     <div>
       {ProfileBase(c)}
       <Label t="Wielkość tekstu" />
-      <Card style={{ padding: '16px 18px' }}>
+      <Card className="py-4 px-4.5">
         <TextSize {...c} />
-        <Caption style={{ margin: '10px 0 0' }}>Zmiana działa od razu na każdym ekranie.</Caption>
+        <Caption className="mt-2.5 mr-0 mb-0 ml-0">Zmiana działa od razu na każdym ekranie.</Caption>
       </Card>
     </div>
   );

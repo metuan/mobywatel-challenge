@@ -1,5 +1,5 @@
+import type { CSSProperties } from 'react';
 import { Button } from '@/components/ui/button';
-import { sx } from '@/lib/sx';
 import { norm, reducedMotion } from '@/lib/env';
 import { I } from '@/ui/icons';
 import type { Ctx } from '@/types';
@@ -195,7 +195,7 @@ export function HowCard({ c, h }: { c: Ctx; h: HowTo }) {
       <div className="how8-q">{h.q}</div>
       <ol className="how8-s">
         {h.s.map((t, i) => (
-          <li key={i} style={sx(`--i:${i}`)}>
+          <li key={i} style={{ '--i': i } as CSSProperties}>
             <i>{i + 1}</i>
             <span>{t}</span>
           </li>

@@ -1,9 +1,9 @@
+import type { CSSProperties } from 'react';
 import { List, ListItemDescription, ListItemTitle } from '@/components/ui/list';
 import { Badge } from '@/components/ui/badge';
 import { Card } from '@/components/ui/card';
 import { Note } from '@/components/ui/note';
 import { Caption, Eyebrow, Title } from '@/components/ui/typography';
-import { sx } from '@/lib/sx';
 import { I } from '@/ui/icons';
 import { Hero } from '@/ui/illustrations';
 import { GRow, Label, Ring, Row } from '@/ui/primitives';
@@ -17,7 +17,7 @@ export function Benefits(c: Ctx) {
       <Note icon="lock" tone="amber">
         Sprawdzamy to tylko za Twoją zgodą, na podstawie danych o rodzinie. Nic nie składamy bez Ciebie.
       </Note>
-      <List style={{ marginTop: '12px' }}>
+      <List className="mt-3">
         <Row
           icon="coin"
           t="800+ na drugie dziecko"
@@ -67,7 +67,7 @@ export function P800(c: Ctx) {
         <div className="bars">
           {M.map((m, i) => (
             <span className={i < 5 ? 'paid' : i === 5 ? 'next' : ''}>
-              <i style={sx(`--i:${i}`)}></i>
+              <i style={{ '--i': i } as CSSProperties}></i>
               <small>{m}</small>
             </span>
           ))}
@@ -87,7 +87,7 @@ export function P800(c: Ctx) {
           </List>
         </>
       ) : (
-        <List style={{ marginTop: '12px' }}>
+        <List className="mt-3">
           <GRow
             ic="baby"
             t="Urodziło się dziecko?"
@@ -96,7 +96,7 @@ export function P800(c: Ctx) {
           />
         </List>
       )}
-      <Caption style={{ marginTop: '12px' }}>Nie musisz logować się do ZUS ani do banku.</Caption>
+      <Caption className="mt-3">Nie musisz logować się do ZUS ani do banku.</Caption>
     </div>
   );
 }
@@ -122,7 +122,7 @@ export function Vacc(c: Ctx) {
               <ListItemTitle as="div">{t}</ListItemTitle>
               <ListItemDescription as="div">{s}</ListItemDescription>
               {st === 'due' && (
-                <button className="pill" style={{ marginTop: '10px' }} onClick={() => c.go('visit-1')}>
+                <button className="pill mt-2.5" onClick={() => c.go('visit-1')}>
                   Umów szczepienie
                 </button>
               )}

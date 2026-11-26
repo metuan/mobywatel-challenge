@@ -1,6 +1,5 @@
 import { List, ListItemDescription, ListItemTitle } from '@/components/ui/list';
 import { Display } from '@/components/ui/typography';
-import { sx } from '@/lib/sx';
 import { DocCard } from '@/ui/documentCard';
 import { I } from '@/ui/icons';
 import { AvStack, GRow, Label, Num, Ring, Tile } from '@/ui/primitives';
@@ -68,7 +67,7 @@ function TodayBase(c: Ctx) {
             <small> z 4</small>
           </span>
           <span className="wbar">
-            <i style={sx(`width:${(s.moved ? 2 : 3) * 25}%`)}></i>
+            <i style={{ width: `${(s.moved ? 2 : 3) * 25}%` }}></i>
           </span>
           <span className="ws">{s.moved ? 'Urząd potwierdzi do 27.11' : 'Odbiór od 2 grudnia'}</span>
         </button>
@@ -83,9 +82,7 @@ function TodayBase(c: Ctx) {
         <button className="w" onClick={() => c.go(s.visit ? 'visit-4' : 'visit-1')}>
           <span className="wk">Zosia, kardiolog</span>
           <span className="wico">{I('steth', 20)}</span>
-          <span className="wv" style={{ fontSize: '22px' }}>
-            {s.visit ? '15 gru' : 'Skierowanie'}
-          </span>
+          <span className="wv text-[22px]">{s.visit ? '15 gru' : 'Skierowanie'}</span>
           <span className="ws">{s.visit ? '10:30 · Prokocim' : 'Wybierz termin'}</span>
         </button>
       </div>

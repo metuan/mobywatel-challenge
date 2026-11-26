@@ -61,7 +61,7 @@ export function Consent2(c: Ctx) {
           {tom ? <Badge>Zgoda</Badge> : <Badge>{c.s.askedTom ? 'Czeka' : '—'}</Badge>}
         </ListRow>
       </List>
-      <List style={{ marginTop: '14px' }}>
+      <List className="mt-3.5">
         <Field>
           <FieldLabel>Wizyta w urzędzie</FieldLabel>
           <FieldValue>Tylko zdjęcie. Dzieci do 12 lat nie oddają odcisków palców</FieldValue>
@@ -90,17 +90,15 @@ export function School(c: Ctx) {
   const [ex, setEx] = useState(c.s.excused || false);
   return (
     <div>
-      <div style={{ display: 'flex', gap: '12px', alignItems: 'center', marginTop: '4px' }}>
+      <div className="flex gap-3 items-center mt-1">
         <ListRowAvatar>ZN</ListRowAvatar>
         <div>
-          <div className="t" style={{ fontWeight: '600', fontSize: '17px' }}>
-            Zosia · zerówka
-          </div>
+          <div className="t font-semibold text-[17px]">Zosia · zerówka</div>
           <Muted>Szkoła Podstawowa nr 9, Kraków</Muted>
         </div>
       </div>
       <Title>Szkoła</Title>
-      <div className="seg full" style={{ marginBottom: '14px' }}>
+      <div className="seg full mb-3.5">
         {['dziś', 'frekwencja', 'oceny'].map(t => (
           <button aria-pressed={tab === t} onClick={() => setTab(t)}>
             {t[0].toUpperCase() + t.slice(1)}
@@ -159,8 +157,8 @@ export function School(c: Ctx) {
         </div>
       )}
       {tab === 'frekwencja' && (
-        <Card style={{ padding: '16px' }}>
-          <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline' }}>
+        <Card className="p-4">
+          <div className="flex justify-between items-baseline">
             <Subtitle as="div">96%</Subtitle>
             <Muted>listopad</Muted>
           </div>
@@ -169,24 +167,20 @@ export function School(c: Ctx) {
               <i className={i === 15 ? (ex ? 'ex' : 'ab') : ''}></i>
             ))}
           </div>
-          <Muted style={{ marginTop: '8px' }}>
-            1 nieobecność{ex ? ' (usprawiedliwiona)' : ''} · 0 spóźnień
-          </Muted>
+          <Muted className="mt-2">1 nieobecność{ex ? ' (usprawiedliwiona)' : ''} · 0 spóźnień</Muted>
         </Card>
       )}
       {tab === 'oceny' && (
-        <Card style={{ padding: '16px' }}>
+        <Card className="p-4">
           <Muted>
             Ocena opisowa za I półrocze pojawi się w styczniu. W klasach 1–3 oceny też są opisowe.
           </Muted>
-          <Note icon="sparkle" style={{ marginTop: '12px', background: 'var(--fill)' }}>
+          <Note icon="sparkle" className="mt-3 bg-(--fill)">
             Jeśli chcesz, streścimy ocenę w trzech zdaniach.
           </Note>
         </Card>
       )}
-      <Caption style={{ marginTop: '12px' }}>
-        Widzą oboje rodzice. Dane z dziennika elektronicznego szkoły.
-      </Caption>
+      <Caption className="mt-3">Widzą oboje rodzice. Dane z dziennika elektronicznego szkoły.</Caption>
     </div>
   );
 }

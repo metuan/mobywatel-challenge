@@ -1,4 +1,3 @@
-import { sx } from '@/lib/sx';
 import { useEffect, useState } from 'react';
 import { I } from '@/ui/icons';
 import { Ring } from '@/ui/primitives';
@@ -53,7 +52,7 @@ export function Island({ c, route, full }: { c: Ctx; route: string; full: boolea
         </span>
         <span className="is-n">{a.n}</span>
         <span className="is-bar">
-          <i style={sx(`width:${a.v * 100}%`)}></i>
+          <i style={{ width: `${a.v * 100}%` }}></i>
         </span>
       </span>
     </button>

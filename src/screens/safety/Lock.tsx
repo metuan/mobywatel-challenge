@@ -1,4 +1,3 @@
-import { sx } from '@/lib/sx';
 import { Fam } from '@/screens/family/Family';
 import { useTicker } from '@/ui/hooks';
 import { I } from '@/ui/icons';
@@ -88,7 +87,7 @@ export function Lock(c: Ctx) {
             <Fam who="tata" st={n >= 6 ? 'Brak odp.' : '…'} tone={n >= 6 ? 'warn' : 'wait'} />
           </div>
           <div className="lv-bar">
-            <i style={sx('width:' + (25 + (n >= 4 ? 25 : 0) + (n >= 5 ? 25 : 0)) + '%')}></i>
+            <i style={{ width: `${25 + (n >= 4 ? 25 : 0) + (n >= 5 ? 25 : 0)}%` }}></i>
           </div>
           <div className="lv-f">
             {n >= 5 ? '3 z 4 osób bezpiecznych' : 'Zbieramy status rodziny…'} · stuknij, aby zobaczyć mapę
@@ -120,7 +119,7 @@ export function Lock(c: Ctx) {
           </div>
         )}
       </div>
-      <div style={{ flex: '1' }}></div>
+      <div className="flex-1"></div>
       <div className="lk-foot">
         <button className="lk-btn" onClick={replay}>
           {I('route', 15)} Odtwórz od nowa

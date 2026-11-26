@@ -16,7 +16,7 @@ function TaxesBase(c: Ctx) {
         <Muted>PIT-37 za 2025 · Twój e-PIT · zwrot do 45 dni</Muted>
         <div className="big">1 284 zł</div>
         <Muted>zwrotu, wysłany 3 marca na konto •••• 4471</Muted>
-        <div className="steps" style={{ gridTemplateColumns: 'repeat(3,1fr)' }}>
+        <div className="steps grid-cols-[repeat(3,1fr)]">
           <i className="on"></i>
           <i className="on"></i>
           <i className="on"></i>

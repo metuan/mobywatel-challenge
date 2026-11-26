@@ -1,3 +1,4 @@
+import { cn } from '@/lib/utils';
 import { Field, FieldLabel, FieldValue } from '@/components/ui/field';
 import { List } from '@/components/ui/list';
 import { Card } from '@/components/ui/card';
@@ -21,53 +22,25 @@ export function Letter1(c: Ctx) {
     <div>
       <Hero n="letter" />
       <Title>Zrób zdjęcie pisma</Title>
-      <div
-        style={{
-          background: '#1b1e24',
-          borderRadius: '20px',
-          height: '420px',
-          display: 'grid',
-          placeItems: 'center',
-          position: 'relative',
-          overflow: 'hidden',
-        }}
-      >
-        <div
-          style={{
-            width: '220px',
-            height: '300px',
-            background: '#f6f5f0',
-            borderRadius: '4px',
-            padding: '18px',
-            transform: 'rotate(-2deg)',
-            fontSize: '7px',
-            color: '#444',
-            lineHeight: '1.6',
-          }}
-        >
-          <div style={{ fontWeight: '700', fontSize: '8px' }}>URZĄD SKARBOWY KRAKÓW-PODGÓRZE</div>
+      <div className="relative grid h-[420px] place-items-center overflow-hidden rounded-[20px] bg-[#1b1e24]">
+        <div className="h-[300px] w-[220px] -rotate-2 rounded-[4px] bg-[#f6f5f0] p-[18px] text-[7px]/[1.6] text-[#444]">
+          <div className="font-bold text-[8px]">URZĄD SKARBOWY KRAKÓW-PODGÓRZE</div>
           <div>ul. Wadowicka 10</div>
           <br />
-          <div style={{ fontWeight: '700' }}>WEZWANIE</div>
+          <div className="font-bold">WEZWANIE</div>
           <div>
             Na podstawie art. 155 § 1 Ordynacji podatkowej wzywa się Panią do złożenia wyjaśnień dotyczących
             korekty zeznania PIT-37 za rok 2025…
           </div>
-          <div style={{ marginTop: '6px' }}>{'▬ '.repeat(40)}</div>
+          <div className="mt-1.5">{'▬ '.repeat(40)}</div>
         </div>
         <div
-          style={{
-            position: 'absolute',
-            inset: '40px 50px',
-            border: `2px solid ${snap ? '#1c7a4c' : 'rgba(255,255,255,.7)'}`,
-            borderRadius: '14px',
-          }}
+          className={cn(
+            'absolute inset-x-[50px] inset-y-10 rounded-[14px] border-2',
+            snap ? 'border-[#1c7a4c]' : 'border-white/70',
+          )}
         ></div>
-        {snap && (
-          <div style={{ position: 'absolute', bottom: '16px', color: '#fff', fontSize: '13px' }}>
-            Czytam pismo…
-          </div>
-        )}
+        {snap && <div className="absolute bottom-4 text-[#fff] text-[13px]">Czytam pismo…</div>}
       </div>
       <Actions>
         <Button onClick={() => setSnap(true)}>{I('camera', 18)} Zrób zdjęcie</Button>
@@ -81,22 +54,22 @@ export function Letter3(c: Ctx) {
     <div>
       <Eyebrow>Podgląd odpowiedzi</Eyebrow>
       <Title>Wyjaśnienie do urzędu</Title>
-      <Card style={{ padding: '16px', fontSize: '14px', lineHeight: '1.6' }}>
-        <p style={{ margin: '0 0 8px' }}>W sprawie: pisma z 19.11.2026, PIT-37 za 2025 r.</p>
-        <p style={{ margin: '0 0 8px' }}>
+      <Card className="p-4 text-[14px] leading-[1.6]">
+        <p className="mt-0 mr-0 mb-2 ml-0">W sprawie: pisma z 19.11.2026, PIT-37 za 2025 r.</p>
+        <p className="mt-0 mr-0 mb-2 ml-0">
           Poprawiłam zeznanie, bo w pierwszej wersji zapomniałam o uldze na dziecko (Zofia Nowicka, PESEL
           200307•••••). Dołączam zaświadczenie.
         </p>
-        <p style={{ margin: '0' }}>Anna Nowicka</p>
+        <p className="m-0">Anna Nowicka</p>
       </Card>
-      <List style={{ marginTop: '10px' }}>
+      <List className="mt-2.5">
         <Field>
           <FieldLabel>Załącznik</FieldLabel>
           <FieldValue>Zaświadczenie o uldze na dziecko (z rejestru, bez skanowania)</FieldValue>
         </Field>
       </List>
       {c.s.letterSent ? (
-        <Note icon="check" tone="green" style={{ marginTop: '14px' }}>
+        <Note icon="check" tone="green" className="mt-3.5">
           Wysłano przez e-Doręczenia. Urzędowe potwierdzenie odbioru jest zapisane w sprawie.
         </Note>
       ) : (
@@ -172,7 +145,7 @@ export function Letter2(c: Ctx) {
       </List>
       {k >= 4 && (
         <>
-          <div className="msg ai in" style={{ maxWidth: '100%', marginTop: '12px' }}>
+          <div className="msg ai in max-w-[100%] mt-3">
             <Muted as="span">Źródła</Muted>
             <div className="srcs">
               <span>Ordynacja podatkowa, art. 155</span>

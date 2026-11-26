@@ -1,7 +1,7 @@
+import type { CSSProperties } from 'react';
 import { Actions, Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 import type { PointerEvent as ReactPointerEvent } from 'react';
-import { sx } from '@/lib/sx';
 import { useEffect, useRef, useState } from 'react';
 import { buzz, fire, reducedMotion } from '@/lib/env';
 import { coachTip } from '@/story/coach';
@@ -224,7 +224,7 @@ export function HoldBtn({
     <Button
       variant="destructive"
       className={cn('hold8', p > 0 && p < 1 && 'holding')}
-      style={sx(`--p:${p}`)}
+      style={{ '--p': p } as CSSProperties}
       onPointerDown={start}
       onPointerUp={stop}
       onPointerLeave={stop}

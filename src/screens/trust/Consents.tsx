@@ -1,6 +1,5 @@
 import { List, ListItemDescription, ListItemTitle } from '@/components/ui/list';
 import { Title } from '@/components/ui/typography';
-import { sx } from '@/lib/sx';
 import { useState } from 'react';
 import { collapseOut } from '@/ui/controls';
 import { I } from '@/ui/icons';
@@ -97,7 +96,7 @@ export function Consents(c: Ctx) {
                       {x.left === 0 ? 'Wygasła' : x.until}
                       {x.left ? (
                         <i className="cr-bar">
-                          <i style={sx(`width:${Math.min(100, x.left / 3.65)}%`)}></i>
+                          <i style={{ width: `${Math.min(100, (x.left ?? 0) / 3.65)}%` }}></i>
                         </i>
                       ) : (
                         ''

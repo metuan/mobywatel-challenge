@@ -1,3 +1,4 @@
+import { cn } from '@/lib/utils';
 import {
   List,
   ListItem,
@@ -13,7 +14,6 @@ import {
 } from '@/components/ui/list';
 import { Note } from '@/components/ui/note';
 import { Display, Eyebrow, Title } from '@/components/ui/typography';
-import { sx } from '@/lib/sx';
 import { useState } from 'react';
 import { Search } from '@/screens/search/Search';
 import { I } from '@/ui/icons';
@@ -35,7 +35,7 @@ export function CaseMeld(_c: Ctx) {
       <List>
         {st.map(([t, s], i) => (
           <ListRow>
-            <ListRowIcon style={sx(i < 3 ? 'background:var(--green-soft);color:var(--green)' : '')}>
+            <ListRowIcon className={cn(i < 3 && 'bg-green-soft text-green')}>
               {i < 3 ? I('check', 18) : <b>4</b>}
             </ListRowIcon>
             <ListRowContent>
@@ -45,7 +45,7 @@ export function CaseMeld(_c: Ctx) {
           </ListRow>
         ))}
       </List>
-      <Note icon="bell" style={{ marginTop: '14px' }}>
+      <Note icon="bell" className="mt-3.5">
         Dostaniesz powiadomienie, gdy dokument będzie gotowy. Nie musisz dzwonić do urzędu.
       </Note>
     </div>
@@ -93,7 +93,7 @@ export function Matters(c: Ctx) {
         {prog.map(([t, n, r, s2]) => (
           <ListItem as="button" onClick={() => c.go(r)}>
             <Ring v={n} max={4} size={40}>
-              <b style={{ fontSize: '11px' }}>{n}/4</b>
+              <b className="text-[11px]">{n}/4</b>
             </Ring>
             <ListItemContent>
               <ListItemTitle>{t}</ListItemTitle>

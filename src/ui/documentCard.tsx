@@ -164,16 +164,12 @@ export function DocCard({
           <QRCode size={118} />
         </div>
         <div className="qr-tx">
-          <div className="d-name" style={{ fontSize: '17px' }}>
-            Pokaż kod do zeskanowania
-          </div>
+          <div className="d-name text-[17px]">Pokaż kod do zeskanowania</div>
           <div className="qr-s">
             Kod ważny {Math.floor(left / 60)}:{String(left % 60).padStart(2, '0')}. Zobaczysz, kto sprawdza,
             zanim pokażesz dane.
           </div>
-          <span className="d-chip" style={{ marginTop: '12px' }}>
-            Dotknij, aby wrócić
-          </span>
+          <span className="d-chip mt-3">Dotknij, aby wrócić</span>
         </div>
       </div>
     </div>

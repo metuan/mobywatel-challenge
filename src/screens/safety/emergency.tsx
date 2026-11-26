@@ -58,7 +58,7 @@ export function Ice(c: Ctx) {
           </div>
         </div>
       </div>
-      <List style={{ marginTop: '14px' }}>
+      <List className="mt-3.5">
         <ListRow>
           <ListRowTile tone="red">{I('lock', 18)}</ListRowTile>
           <ListRowContent>
@@ -89,7 +89,7 @@ export function Ice(c: Ctx) {
           <ListRowChevron size={18} />
         </ListRow>
       </List>
-      <Caption style={{ marginTop: '12px' }}>
+      <Caption className="mt-3">
         Alergie i leki pobieramy z Internetowego Konta Pacjenta za Twoją zgodą. Grupę krwi i kontakty
         wpisujesz sama.
       </Caption>
@@ -101,15 +101,11 @@ export function MedicalId(c: Ctx) {
   return (
     <div className="lock medlock" role="region" aria-label="Ekran blokady: identyfikator medyczny">
       <div className="lk-top">
-        <div className="lk-date" style={{ marginTop: '6px' }}>
-          Ekran blokady · widok ratownika
-        </div>
+        <div className="lk-date mt-1.5">Ekran blokady · widok ratownika</div>
       </div>
       <div className="med">
         <div className="med-h">
-          <span className="ice-star" style={{ background: '#ff3b30' }}>
-            {I('plus', 16)}
-          </span>
+          <span className="ice-star bg-[#ff3b30]">{I('plus', 16)}</span>
           <b>Identyfikator medyczny</b>
         </div>
         <div className="med-n">Anna Nowicka, 34</div>
@@ -131,14 +127,12 @@ export function MedicalId(c: Ctx) {
         </div>
         <div className="med-f">Dane bez PESEL i adresu. Udostępnione przez właścicielkę telefonu.</div>
       </div>
-      <div style={{ flex: '1' }}></div>
+      <div className="flex-1"></div>
       <div className="lk-foot">
         <button className="lk-btn" onClick={c.back}>
           {I('left', 15)} Wróć do karty
         </button>
-        <button className="lk-btn" style={{ background: '#ff3b30' }}>
-          {I('phone', 15)} 112
-        </button>
+        <button className="lk-btn bg-[#ff3b30]">{I('phone', 15)} 112</button>
       </div>
     </div>
   );

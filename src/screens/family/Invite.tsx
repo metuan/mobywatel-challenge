@@ -20,7 +20,7 @@ export function Invite(c: Ctx) {
         <Eyebrow>Krok 2 z 2</Eyebrow>
         <Title>Pokaż ten kod osobie, którą zapraszasz</Title>
         <div className="qr">{QR()}</div>
-        <Muted as="p" style={{ textAlign: 'center' }}>
+        <Muted as="p" className="text-center">
           Kod działa 10 minut. Zapraszana osoba potwierdza go swoim mDowodem.
         </Muted>
         <Actions>

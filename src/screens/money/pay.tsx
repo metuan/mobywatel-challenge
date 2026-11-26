@@ -50,7 +50,7 @@ export function PaySheet({
         </Button>
         <Button onClick={() => setSheet({ ...sheet, stage: 1 })}>Zapłać {sheet.amt}</Button>
       </Actions>
-      <Caption style={{ textAlign: 'center', marginTop: '10px' }}>
+      <Caption className="text-center mt-2.5">
         Potwierdzasz twarzą. Pieniądze trafiają prosto do urzędu.
       </Caption>
     </div>

@@ -57,8 +57,8 @@ export function AlertRed(c: Ctx) {
           <ListRowChevron size={18} />
         </ListRow>
       </div>
-      <div style={{ flex: '1', minHeight: '14px' }}></div>
-      <Actions style={{ marginTop: '12px' }}>
+      <div className="flex-1 min-h-3.5"></div>
+      <Actions className="mt-3">
         <Button
           variant="inverse"
           onClick={() => {
@@ -117,10 +117,10 @@ function ShelterMap() {
 export function AlertShelter(c: Ctx) {
   return (
     <div>
-      <Badge style={{ marginTop: '8px' }}>Alert RCB trwa · Kraków</Badge>
+      <Badge className="mt-2">Alert RCB trwa · Kraków</Badge>
       <Title>Idź do schronienia przy ul. Dekerta 24</Title>
       <div className="map">{ShelterMap()}</div>
-      <List style={{ marginTop: '12px' }}>
+      <List className="mt-3">
         <Field>
           <FieldLabel>Odległość</FieldLabel>
           <FieldValue>240 m · około 3 minuty pieszo</FieldValue>
@@ -135,7 +135,7 @@ export function AlertShelter(c: Ctx) {
           <FieldValue>Korytarz bez okien, z dwiema ścianami między Tobą a ulicą</FieldValue>
         </Field>
       </List>
-      <Note icon="wifi" style={{ marginTop: '12px' }}>
+      <Note icon="wifi" className="mt-3">
         Mapa i trasa są zapisane w telefonie. Działają bez internetu.
       </Note>
       <Actions>
@@ -149,13 +149,13 @@ export function AlertGuide(c: Ctx) {
   const [reading, setReading] = useState(false);
   return (
     <div>
-      <Badge style={{ marginTop: '8px' }}>Alert RCB trwa</Badge>
+      <Badge className="mt-2">Alert RCB trwa</Badge>
       <Title>Co robić teraz</Title>
       <Lead>Zasady z poradnika RCB. Alarm to syrena, której dźwięk rośnie i opada przez 3 minuty.</Lead>
-      <button className="speak" style={{ width: '100%' }} onClick={() => setReading(!reading)}>
+      <button className="speak w-full" onClick={() => setReading(!reading)}>
         {I(reading ? 'pause' : 'speaker', 22)} {reading ? 'Zatrzymaj odczyt' : 'Odczytaj na głos'}
       </button>
-      <div className="road" style={{ marginTop: '10px' }}>
+      <div className="road mt-2.5">
         {[
           'Zostań w schronieniu do odwołania alarmu.',
           'Trzymaj się z dala od okien i drzwi zewnętrznych.',
@@ -214,8 +214,8 @@ export function AlertClear(c: Ctx) {
           <Badge>Sprawdź</Badge>
         </ListRow>
       </div>
-      <div style={{ flex: '1', minHeight: '14px' }}></div>
-      <Actions style={{ marginTop: '12px' }}>
+      <div className="flex-1 min-h-3.5"></div>
+      <Actions className="mt-3">
         <Button variant="inverse" onClick={() => c.go('alert-safe')}>
           Zobacz status rodziny
         </Button>
@@ -237,7 +237,7 @@ export function AlertSafe(c: Ctx) {
     <div>
       <Title>{sent ? 'Rodzina wie, że jesteś bezpieczna.' : 'Daj znać rodzinie'}</Title>
       {!sent && (
-        <Actions style={{ marginTop: '6px' }}>
+        <Actions className="mt-1.5">
           <Button variant="success" onClick={send}>
             {I('check', 22)} Jestem bezpieczna
           </Button>
@@ -288,9 +288,7 @@ export function AlertSafe(c: Ctx) {
           </button>
         </ListRow>
       </List>
-      <Caption style={{ marginTop: '12px' }}>
-        Status widzą tylko osoby z Twojej rodziny. Znika po 72 godzinach.
-      </Caption>
+      <Caption className="mt-3">Status widzą tylko osoby z Twojej rodziny. Znika po 72 godzinach.</Caption>
     </div>
   );
 }

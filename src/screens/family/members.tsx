@@ -1,3 +1,4 @@
+import { cn } from '@/lib/utils';
 import {
   List,
   ListRow,
@@ -10,7 +11,6 @@ import { Badge } from '@/components/ui/badge';
 import { Note } from '@/components/ui/note';
 import { Caption, Muted, Subtitle } from '@/components/ui/typography';
 import { Actions, Button } from '@/components/ui/button';
-import { sx } from '@/lib/sx';
 import { I } from '@/ui/icons';
 import { Row, Sec } from '@/ui/primitives';
 import type { Ctx } from '@/types';
@@ -18,7 +18,7 @@ import type { Ctx } from '@/types';
 export function MemberZosia(c: Ctx) {
   return (
     <div>
-      <div style={{ display: 'flex', gap: '12px', alignItems: 'center', marginTop: '8px' }}>
+      <div className="flex gap-3 items-center mt-2">
         <ListRowAvatar className="size-[52px]">ZN</ListRowAvatar>
         <div>
           <Subtitle as="h1">Zofia Nowicka</Subtitle>
@@ -71,7 +71,7 @@ export function MemberZosia(c: Ctx) {
       <List>
         <Row icon="coin" t="800+" s="Wypłata 28 listopada" onClick={() => c.go('p800')} />
       </List>
-      <Caption style={{ marginTop: '14px' }}>Widzą: Ty i Tomasz (oboje rodzice).</Caption>
+      <Caption className="mt-3.5">Widzą: Ty i Tomasz (oboje rodzice).</Caption>
     </div>
   );
 }
@@ -79,14 +79,14 @@ export function MemberZosia(c: Ctx) {
 export function MemberTata(c: Ctx) {
   return (
     <div>
-      <div style={{ display: 'flex', gap: '12px', alignItems: 'center', marginTop: '8px' }}>
+      <div className="flex gap-3 items-center mt-2">
         <ListRowAvatar className="size-[52px]">SN</ListRowAvatar>
         <div>
           <Subtitle as="h1">Stanisław Nowicki</Subtitle>
           <Muted>Tata, 71 lat, Sandomierz</Muted>
         </div>
       </div>
-      <Note icon="check" tone="green" style={{ marginTop: '16px' }}>
+      <Note icon="check" tone="green" className="mt-4">
         Tata zatwierdził Twój dostęp 24 listopada 2026, w trybie prostym na swoim telefonie. Może go cofnąć w
         każdej chwili.
       </Note>
@@ -100,7 +100,7 @@ export function MemberTata(c: Ctx) {
           ['Wysyłać wnioski bez jego zgody', false],
         ].map(([t, on]) => (
           <ListRow>
-            <ListRowIcon style={sx(on ? 'background:var(--green-soft);color:var(--green)' : '')}>
+            <ListRowIcon className={cn(on && 'bg-green-soft text-green')}>
               {I(on ? 'check' : 'x', 18)}
             </ListRowIcon>
             <ListRowContent>
@@ -138,7 +138,7 @@ export function MemberTata(c: Ctx) {
 export function MemberTomasz(_c: Ctx) {
   return (
     <div>
-      <div style={{ display: 'flex', gap: '12px', alignItems: 'center', marginTop: '8px' }}>
+      <div className="flex gap-3 items-center mt-2">
         <ListRowAvatar className="size-[52px]">TN</ListRowAvatar>
         <div>
           <Subtitle as="h1">Tomasz Nowicki</Subtitle>
@@ -153,16 +153,14 @@ export function MemberTomasz(_c: Ctx) {
           'Plan kryzysowy i status „Jestem bezpieczna”',
         ].map(t => (
           <ListRow>
-            <ListRowIcon style={{ background: 'var(--green-soft)', color: 'var(--green)' }}>
-              {I('check', 18)}
-            </ListRowIcon>
+            <ListRowIcon className="bg-(--green-soft) text-(--green)">{I('check', 18)}</ListRowIcon>
             <ListRowContent>
               <ListRowTitle>{t}</ListRowTitle>
             </ListRowContent>
           </ListRow>
         ))}
       </List>
-      <Muted as="p" style={{ marginTop: '12px' }}>
+      <Muted as="p" className="mt-3">
         Każdy z Was zachowuje własne dokumenty, finanse i zdrowie. Nie są wspólne.
       </Muted>
     </div>

@@ -12,7 +12,6 @@ import {
   ListRowIcon,
   ListRowTitle,
 } from '@/components/ui/list';
-import { sx } from '@/lib/sx';
 import { useEffect, useRef, useState } from 'react';
 import { reducedMotion } from '@/lib/env';
 import { I } from '@/ui/icons';
@@ -94,7 +93,7 @@ export const Ring = ({
     L = 2 * Math.PI * r,
     p = Math.max(0, Math.min(1, v / max));
   return (
-    <span className="ring-meter" style={sx(`width:${size}px;height:${size}px`)}>
+    <span className="ring-meter" style={{ width: size, height: size }}>
       <svg width={size} height={size}>
         <circle cx={size / 2} cy={size / 2} r={r} stroke="var(--fill-2)" strokeWidth={w} fill="none" />
         <circle
@@ -131,7 +130,7 @@ const AV: [string, string][] = [
 ];
 
 export const Av = ({ i, size = 40, dot }: { i: string; size?: number; dot?: string }) => (
-  <span className="av" style={sx(`width:${size}px;height:${size}px;font-size:${Math.round(size * 0.34)}px`)}>
+  <span className="av" style={{ width: size, height: size, fontSize: Math.round(size * 0.34) }}>
     {i}
     {dot && <i className={'avd ' + dot}></i>}
   </span>
@@ -207,16 +206,12 @@ export const Tile = ({
 
 export const AppIcon = ({ k }: { k: string }) =>
   k === 'rcb' ? (
-    <span className="nicon" style={{ background: '#d42a3e', color: '#fff' }}>
-      {I('bell', 15)}
-    </span>
+    <span className="nicon bg-[#d42a3e] text-[#fff]">{I('bell', 15)}</span>
   ) : k === 'imgw' ? (
-    <span className="nicon" style={{ background: '#2b6cb0', color: '#fff' }}>
-      {I('sun', 15)}
-    </span>
+    <span className="nicon bg-[#2b6cb0] text-[#fff]">{I('sun', 15)}</span>
   ) : (
     <span className="nicon mob">
-      <span className="flag" style={{ width: '16px', height: '11px' }}></span>
+      <span className="flag w-4 h-[11px]"></span>
     </span>
   );
 

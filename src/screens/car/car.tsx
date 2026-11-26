@@ -41,7 +41,7 @@ function CarFullBase(c: Ctx) {
     <div>
       <Hero n="car" />
       <Title>Toyota Yaris</Title>
-      <Lead style={{ marginTop: '-6px' }}>KR 4F21 · 2019 · benzyna</Lead>
+      <Lead className="-mt-1.5">KR 4F21 · 2019 · benzyna</Lead>
       <div className="stats">
         <div>
           <div className="l">OC</div>

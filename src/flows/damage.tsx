@@ -2,7 +2,6 @@ import { Field, FieldLabel, FieldValue } from '@/components/ui/field';
 import { List, ListRow, ListRowContent, ListRowDescription, ListRowTitle } from '@/components/ui/list';
 import { Eyebrow, Lead, Title } from '@/components/ui/typography';
 import { Actions, Button } from '@/components/ui/button';
-import { sx } from '@/lib/sx';
 import { useState } from 'react';
 import { I } from '@/ui/icons';
 import { Hero } from '@/ui/illustrations';
@@ -53,7 +52,7 @@ export function Damage1(c: Ctx) {
         )}
       </div>
       <Actions>
-        <Button disabled={n === 0} style={sx(n === 0 ? 'opacity:.4' : '')} onClick={() => c.go('damage-2')}>
+        <Button disabled={n === 0} className="disabled:opacity-40" onClick={() => c.go('damage-2')}>
           Dalej
         </Button>
       </Actions>
@@ -68,7 +67,7 @@ export function Damage2(c: Ctx) {
       <Eyebrow>Zgłoszenie szkód · krok 2 z 3</Eyebrow>
       <Progress n={2} of={3} />
       <Title>Co zostało uszkodzone?</Title>
-      <div className="seg full" style={{ marginBottom: '14px' }}>
+      <div className="seg full mb-3.5">
         {[
           ['dom', 'Mieszkanie'],
           ['auto', 'Samochód'],

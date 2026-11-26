@@ -1,4 +1,4 @@
-import { sx } from '@/lib/sx';
+import type { CSSProperties } from 'react';
 import { useEffect, useState } from 'react';
 import { OFFICES, PEOPLE } from '@/data/household';
 import { DocCard } from '@/ui/documentCard';
@@ -48,7 +48,7 @@ export function Tour({
         <div className="tv" key="0">
           <div className="tv-art fam">
             {PEOPLE.map(([i, n, r], j) => (
-              <div className="tv-person" style={sx(`animation-delay:${j * 70}ms`)}>
+              <div className="tv-person" style={{ animationDelay: `${j * 70}ms` }}>
                 <Av i={i} size={j === 0 ? 72 : 56} />
                 <b>{n}</b>
                 <span>{r}</span>
@@ -65,7 +65,9 @@ export function Tour({
         <div className="tv" key="1">
           <div className="tv-art scatter">
             {OFFICES.map((o, j) => (
-              <span style={sx(`--r:${((j * 37) % 13) - 6}deg;--d:${j * 40}ms`)}>{o}</span>
+              <span style={{ '--r': `${((j * 37) % 13) - 6}deg`, '--d': `${j * 40}ms` } as CSSProperties}>
+                {o}
+              </span>
             ))}
           </div>
           <div className="tv-k">Ich tydzień</div>

@@ -18,7 +18,7 @@ export function Baby1(c: Ctx) {
       <Hero n="baby" />
       <Title>Gratulacje! Zgłośmy narodziny.</Title>
       <Note icon="doc">Szpital Uniwersytecki zgłosił urodzenie 15 listopada. Masz czas do 6 grudnia.</Note>
-      <List style={{ marginTop: '12px' }}>
+      <List className="mt-3">
         <Field>
           <FieldLabel>Imię dziecka</FieldLabel>
           <FieldValue>Julia</FieldValue>
@@ -111,13 +111,13 @@ export function Baby3(c: Ctx) {
         </Actions>
       )}
       {stage === 1 && (
-        <Note icon="bell" tone="amber" style={{ marginTop: '14px' }}>
+        <Note icon="bell" tone="amber" className="mt-3.5">
           Tomasz dostał prośbę. Czekamy, aż potwierdzi…
         </Note>
       )}
       {stage === 2 && (
         <div>
-          <Note icon="check" tone="green" style={{ marginTop: '14px' }}>
+          <Note icon="check" tone="green" className="mt-3.5">
             Tomasz potwierdził na swoim telefonie o 15:31.
           </Note>
           <Actions>
@@ -147,12 +147,7 @@ export function BabyDone(c: Ctx) {
   return (
     <div>
       <Hero n="baby" />
-      <div
-        className="done-mark"
-        style={{ marginTop: '-34px', marginLeft: '16px', position: 'relative', border: '4px solid #fff' }}
-      >
-        {I('check', 28)}
-      </div>
+      <div className="done-mark mt-[-34px] ml-4 relative [border:4px_solid_#fff]">{I('check', 28)}</div>
       <Title>Witaj, Julio.</Title>
       <List>
         <Row

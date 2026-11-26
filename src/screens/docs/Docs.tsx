@@ -11,7 +11,6 @@ import { Card } from '@/components/ui/card';
 import { Note } from '@/components/ui/note';
 import { Caption, Display, Eyebrow, Lead, Muted, Subtitle, Title } from '@/components/ui/typography';
 import { Actions, Button } from '@/components/ui/button';
-import { sx } from '@/lib/sx';
 import { useLayoutEffect, useState } from 'react';
 import { reducedMotion } from '@/lib/env';
 import { DRAWER } from '@/ui/controls';
@@ -27,13 +26,11 @@ function DocIdBase(c: Ctx) {
   return (
     <div>
       <DocCard c={c} />
-      <List style={{ marginTop: '12px' }}>
+      <List className="mt-3">
         <ListItem>
           <ListItemContent>
             <ListItemDescription>PESEL</ListItemDescription>
-            <ListItemTitle style={{ fontVariantNumeric: 'tabular-nums' }}>
-              {show ? '92031412345' : '92031•••••'}
-            </ListItemTitle>
+            <ListItemTitle className="tabular-nums">{show ? '92031412345' : '92031•••••'}</ListItemTitle>
           </ListItemContent>
         </ListItem>
       </List>
@@ -43,7 +40,7 @@ function DocIdBase(c: Ctx) {
           {show ? 'Ukryj PESEL' : 'Pokaż PESEL'}
         </Button>
       </Actions>
-      <Note icon="wifi" style={{ marginTop: '14px' }}>
+      <Note icon="wifi" className="mt-3.5">
         Dokument jest zapisany w telefonie. Otworzysz go także bez internetu i po nieudanej aktualizacji.
       </Note>
     </div>
@@ -55,7 +52,7 @@ export function ShareMin(c: Ctx) {
   return (
     <div>
       <Title>Pokaż tylko to, co trzeba</Title>
-      <div className="seg full" style={{ marginBottom: '8px' }}>
+      <div className="seg full mb-2">
         {[
           ['age', 'Pełnoletność'],
           ['city', 'Miasto'],
@@ -67,9 +64,9 @@ export function ShareMin(c: Ctx) {
         ))}
       </div>
       <div className="qr">{QR()}</div>
-      <Card style={{ padding: '14px 16px' }}>
+      <Card className="py-3.5 px-4">
         <Muted>Osoba, która sprawdza, zobaczy:</Muted>
-        <div style={{ fontWeight: '600', fontSize: '18px' }}>
+        <div className="font-semibold text-[18px]">
           {what === 'age'
             ? 'Osoba pełnoletnia: TAK'
             : what === 'city'
@@ -80,9 +77,7 @@ export function ShareMin(c: Ctx) {
           {what === 'full' ? 'Użyj tylko w urzędzie, banku lub na poczcie.' : 'Bez imienia, PESEL i zdjęcia.'}
         </Caption>
       </Card>
-      <Caption style={{ marginTop: '10px' }}>
-        Każde sprawdzenie trafia do historii „Kto sprawdzał moje dane”.
-      </Caption>
+      <Caption className="mt-2.5">Każde sprawdzenie trafia do historii „Kto sprawdzał moje dane”.</Caption>
       <Actions>
         <Button variant="secondary" onClick={() => c.go('eu')}>
           {I('card', 18)} Za granicą: portfel UE
@@ -127,13 +122,13 @@ export function Issued(c: Ctx) {
         Uczelnie, szkoły i urzędy wydają dokumenty prosto do aplikacji. Bez skanów i kopii „za zgodność”.
       </Lead>
       {!acc ? (
-        <Card style={{ padding: '16px' }}>
+        <Card className="p-4">
           <Muted>Nowy dokument · dziś</Muted>
-          <Subtitle as="div" style={{ margin: '4px 0 2px' }}>
+          <Subtitle as="div" className="mt-1 mr-0 mb-0.5 ml-0">
             Dyplom ukończenia studiów
           </Subtitle>
           <Muted>Uniwersytet Jagielloński · Pielęgniarstwo, magister</Muted>
-          <Actions row style={{ marginTop: '14px' }}>
+          <Actions row className="mt-3.5">
             <Button variant="secondary" onClick={() => c.toast('Odrzucono')}>
               Odrzuć
             </Button>
@@ -202,7 +197,7 @@ function DocsBase(c: Ctx) {
       <Display>Dokumenty</Display>
       <div
         className={'stack w2' + (sel >= 0 ? ' has-sel' : '')}
-        style={sx(sel >= 0 ? '' : `height:${PEEK * (n - 1) + FRONT}px`)}
+        style={sel >= 0 ? undefined : { height: PEEK * (n - 1) + FRONT }}
       >
         {cards.map(([t, s2, r, tone, b], i) => {
           const isSel = sel === i,
@@ -211,9 +206,11 @@ function DocsBase(c: Ctx) {
           return (
             <button
               className={'scard doc tone-' + tone + (isSel ? ' sel' : '') + (front ? ' front' : '')}
-              style={sx(
-                `transform:translateY(${y}px)${sel >= 0 && !isSel ? ' scale(' + (1 - 0.02 * (n - 1 - (i - (i > sel ? 1 : 0)))) + ')' : ''};z-index:${isSel ? 50 : i + 1};transition-delay:${isSel ? 0 : i * 25}ms`,
-              )}
+              style={{
+                transform: `translateY(${y}px)${sel >= 0 && !isSel ? ' scale(' + (1 - 0.02 * (n - 1 - (i - (i > sel ? 1 : 0)))) + ')' : ''}`,
+                zIndex: isSel ? 50 : i + 1,
+                transitionDelay: `${isSel ? 0 : i * 25}ms`,
+              }}
               onClick={() => (isSel ? c.go(r) : setSel(i))}
             >
               {ROSETTE}
@@ -260,7 +257,7 @@ function DocsBase(c: Ctx) {
         <GRow ic="pin" t="Pokaż tylko miasto" s="Bez dokładnego adresu" onClick={() => c.go('share-min')} />
         <GRow ic="list" t="Kto sprawdzał moje dane" v="4 w listopadzie" onClick={() => c.go('access-log')} />
       </List>
-      <List style={{ marginTop: '12px' }}>
+      <List className="mt-3">
         <ListItem as="button" onClick={() => c.go('lost')}>
           <LeadIcon ic="lock" />
           <ListItemContent>

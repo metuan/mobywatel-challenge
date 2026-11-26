@@ -1,3 +1,4 @@
+import { cn } from '@/lib/utils';
 import { Field, FieldLabel, FieldValue } from '@/components/ui/field';
 import {
   List,
@@ -10,7 +11,6 @@ import {
 import { Card } from '@/components/ui/card';
 import { Caption, Eyebrow, Title } from '@/components/ui/typography';
 import { Actions, Button } from '@/components/ui/button';
-import { sx } from '@/lib/sx';
 import { useState } from 'react';
 import { I } from '@/ui/icons';
 import { Hero } from '@/ui/illustrations';
@@ -40,9 +40,7 @@ export function Visit1(c: Ctx) {
       <Actions>
         <Button onClick={() => c.go('visit-2')}>Zarezerwuj wizytę</Button>
       </Actions>
-      <Caption style={{ marginTop: '10px' }}>
-        Przez system rejestracji NFZ. Nie musisz przepisywać kodu.
-      </Caption>
+      <Caption className="mt-2.5">Przez system rejestracji NFZ. Nie musisz przepisywać kodu.</Caption>
     </div>
   );
 }
@@ -59,7 +57,7 @@ export function Visit2(c: Ctx) {
     <div>
       <Eyebrow>Wybierz termin</Eyebrow>
       <Title>Najbliższe terminy</Title>
-      <div className="seg full" style={{ marginBottom: '12px' }}>
+      <div className="seg full mb-3">
         <button aria-pressed="true">Najszybciej</button>
         <button aria-pressed="false" onClick={() => c.toast('Sortowanie po odległości w pełnej wersji')}>
           Najbliżej
@@ -71,7 +69,7 @@ export function Visit2(c: Ctx) {
       <List>
         {slots.map(([d, p, km], i) => (
           <ListRow as="button" onClick={() => setPick(i)} aria-pressed={pick === i}>
-            <ListRowIcon style={sx(pick === i ? 'background:var(--navy);color:#fff' : '')}>
+            <ListRowIcon className={cn(pick === i && 'bg-ink text-white')}>
               {pick === i ? I('check', 18) : ''}
             </ListRowIcon>
             <ListRowContent>
@@ -155,12 +153,7 @@ export function Visit4(c: Ctx) {
   return (
     <div>
       <Hero n="doctor" />
-      <div
-        className="done-mark"
-        style={{ marginTop: '-34px', marginLeft: '16px', position: 'relative', border: '4px solid #fff' }}
-      >
-        {I('check', 28)}
-      </div>
+      <div className="done-mark mt-[-34px] ml-4 relative [border:4px_solid_#fff]">{I('check', 28)}</div>
       <Title>Wizyta Zosi: {c.s.visit || '15 grudnia, 10:30'}</Title>
       <List>
         <ListRow>

@@ -1,5 +1,4 @@
 import { Actions, Button } from '@/components/ui/button';
-import { sx } from '@/lib/sx';
 import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { buzz, fire, reducedMotion } from '@/lib/env';
 import { I } from '@/ui/icons';
@@ -127,7 +126,7 @@ export function AlertWatch(c: Ctx) {
               </div>
             ) : (
               <div className="wt-in">
-                <span className="wt-arrow" style={sx(`transform:rotate(${leg.a}deg)`)}>
+                <span className="wt-arrow" style={{ transform: `rotate(${leg.a}deg)` }}>
                   <svg
                     width="64"
                     height="64"
@@ -160,7 +159,7 @@ export function AlertWatch(c: Ctx) {
           ? 'Zegarek stuknął trzy razy długo: jesteś na miejscu.'
           : 'Dwa stuknięcia: w lewo. Trzy: w prawo. Bez patrzenia na ekran.'}
       </div>
-      <div style={{ flex: '1' }}></div>
+      <div className="flex-1"></div>
       {arrived && (
         <Actions className="wt-actions">
           <Button variant="inverse" onClick={open}>

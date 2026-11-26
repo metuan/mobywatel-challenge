@@ -7,7 +7,6 @@ import {
   ListItemTitle,
 } from '@/components/ui/list';
 import { Display } from '@/components/ui/typography';
-import { sx } from '@/lib/sx';
 import { I } from '@/ui/icons';
 import { Av, AvStack, GRow, Label, LeadIcon } from '@/ui/primitives';
 import type { Ctx } from '@/types';
@@ -81,7 +80,7 @@ export function Fam({
   }[who];
   return (
     <div className="lfam">
-      <span className="av" style={sx('background:' + p[1])}>
+      <span className="av" style={{ background: p[1] }}>
         {p[0]}
         <i className={'st ' + tone}></i>
       </span>

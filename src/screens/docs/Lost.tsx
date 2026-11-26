@@ -1,8 +1,8 @@
+import type { CSSProperties } from 'react';
 import { cn } from '@/lib/utils';
 import { List, ListRow, ListRowContent, ListRowIcon, ListRowTitle } from '@/components/ui/list';
 import { Caption, Lead, Title } from '@/components/ui/typography';
 import { Actions } from '@/components/ui/button';
-import { sx } from '@/lib/sx';
 import { useState } from 'react';
 import { HoldBtn } from '@/ui/controls';
 import { I } from '@/ui/icons';
@@ -31,7 +31,7 @@ export function Lost(c: Ctx) {
       </Lead>
       <List className={cn('lost8', done && 'done')}>
         {items.map((t, i) => (
-          <ListRow style={sx(`--i:${i}`)}>
+          <ListRow style={{ '--i': i } as CSSProperties}>
             <ListRowIcon className="lk">{done ? I('check', 18) : I('lock', 18)}</ListRowIcon>
             <ListRowContent>
               <ListRowTitle>{t}</ListRowTitle>
@@ -64,7 +64,7 @@ export function Lost(c: Ctx) {
               }
             />
           </Actions>
-          <Caption style={{ textAlign: 'center', marginTop: '8px' }}>
+          <Caption className="text-center mt-2">
             Przytrzymaj przycisk przez sekundę. Krótkie dotknięcie pokaże podsumowanie.
           </Caption>
         </>

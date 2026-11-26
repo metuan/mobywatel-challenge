@@ -2,7 +2,6 @@ import { List, ListItem, ListItemDescription, ListItemTitle } from '@/components
 import { Note } from '@/components/ui/note';
 import { Caption, Eyebrow, Lead, Title } from '@/components/ui/typography';
 import { Actions, Button } from '@/components/ui/button';
-import { sx } from '@/lib/sx';
 import { useEffect, useState } from 'react';
 import { GRID, KRK2 } from '@/flows/sign/map';
 import { buzz, fire, fmt, reducedMotion } from '@/lib/env';
@@ -30,7 +29,7 @@ export function Sign1(c: Ctx) {
         <div className="b8-t">{BILL.t}</div>
         <div className="b8-s">{BILL.who}</div>
         <div className="b8-bar">
-          <i style={sx(`width:${(BILL.n / BILL.goal) * 100}%`)}></i>
+          <i style={{ width: `${(BILL.n / BILL.goal) * 100}%` }}></i>
         </div>
         <div className="b8-n">
           <b>{fmt(BILL.n)}</b> z {fmt(BILL.goal)} podpisów · zostało {BILL.left} dni
@@ -79,7 +78,7 @@ export function Sign2(c: Ctx) {
           </span>
         </ListItem>
       </List>
-      <Note icon="info" style={{ marginTop: '14px' }}>
+      <Note icon="info" className="mt-3.5">
         To poparcie projektu, nie głos w wyborach.
       </Note>
       <Actions>
@@ -141,7 +140,7 @@ export function SignList(c: Ctx) {
           </span>
         </ListItem>
       </List>
-      <Caption style={{ marginTop: '12px' }}>
+      <Caption className="mt-3">
         Partie i komitety nie mogą wysyłać Ci powiadomień. Podpisujesz tylko to, czego sama szukasz albo co
         ktoś poda Ci osobiście.
       </Caption>
@@ -163,13 +162,13 @@ export function EasySign(c: Ctx) {
   return (
     <div className="easy">
       <div className="es-ic">{I('shield', 34)}</div>
-      <Title style={{ fontSize: '34px', lineHeight: '38px' }}>Ktoś podpisał się za Pana</Title>
-      <Lead style={{ fontSize: '19px', lineHeight: '27px' }}>
+      <Title className="text-[34px]/[38px] in-[.easy]:leading-[38px]">Ktoś podpisał się za Pana</Title>
+      <Lead className="text-[19px]/[27px]">
         Pana PESEL jest na liście poparcia komitetu wyborczego „Nowa Fala”. Lista wpłynęła 22 listopada.
       </Lead>
       {rep ? (
         <>
-          <Note icon="check" tone="green" style={{ fontSize: '17px' }}>
+          <Note icon="check" tone="green" className="text-[17px]/[1.45]">
             Zgłoszone do Państwowej Komisji Wyborczej. Ten podpis nie zostanie policzony. Anna dostała
             informację.
           </Note>
@@ -181,7 +180,7 @@ export function EasySign(c: Ctx) {
         </>
       ) : (
         <>
-          <p style={{ fontSize: '20px', fontWeight: '600', margin: '18px 0 0' }}>Czy to Pan podpisał?</p>
+          <p className="text-[20px] font-semibold mt-4.5 mr-0 mb-0 ml-0">Czy to Pan podpisał?</p>
           <Actions>
             <Button
               onClick={() => {
@@ -239,7 +238,7 @@ export function Sign3(c: Ctx) {
         </svg>
         <div
           className={'pl-tag2' + (lit ? ' on' : '')}
-          style={sx(`left:${(KRK2[0] / 3).toFixed(1)}%;top:${(KRK2[1] / 2.78).toFixed(1)}%`)}
+          style={{ left: `${(KRK2[0] / 3).toFixed(1)}%`, top: `${(KRK2[1] / 2.78).toFixed(1)}%` }}
         >
           Twój podpis · Kraków
         </div>
@@ -262,9 +261,9 @@ export function Sign3(c: Ctx) {
         </span>
       </div>
       <div className="b8-bar big">
-        <i style={sx(`width:${(n / BILL.goal) * 100}%`)}></i>
+        <i style={{ width: `${(n / BILL.goal) * 100}%` }}></i>
       </div>
-      <Note icon="shield" style={{ marginTop: '14px' }}>
+      <Note icon="shield" className="mt-3.5">
         Komitet widzi tylko: „1 ważny podpis, Kraków”. Na papierze Twoje imię, PESEL i adres leżałyby na
         podkładce dla każdego, kto zrobi zdjęcie.
       </Note>

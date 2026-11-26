@@ -75,7 +75,7 @@ export function Inbox(c: Ctx) {
   return (
     <div className="inbox8">
       <Title>Skrzynka</Title>
-      <Lead style={{ marginBottom: '12px' }}>
+      <Lead className="mb-3">
         Pisma ze wszystkich urzędów w jednym miejscu. Pod każdym krótkie wyjaśnienie.
       </Lead>
       <div className="seg8">
@@ -117,7 +117,7 @@ export function Inbox(c: Ctx) {
                   <span className="tag-a sm">AI</span> {x.ai}
                 </span>
               )}
-              {x.tag && <Badge style={{ marginTop: '8px', alignSelf: 'flex-start' }}>{x.tag}</Badge>}
+              {x.tag && <Badge className="mt-2 self-start">{x.tag}</Badge>}
             </button>
           </div>
         ))}
@@ -129,7 +129,7 @@ export function Inbox(c: Ctx) {
           </div>
         )}
       </div>
-      <Caption style={{ marginTop: '12px' }}>Przesuń pismo w lewo, żeby je zarchiwizować.</Caption>
+      <Caption className="mt-3">Przesuń pismo w lewo, żeby je zarchiwizować.</Caption>
     </div>
   );
 }

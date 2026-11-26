@@ -27,7 +27,7 @@ export function AccessLog(c: Ctx) {
       <Lead>Listopad 2026. Każde sprawdzenie Twoich dokumentów lub rejestrów.</Lead>
       <List>
         {LOG.map((l, i) => (
-          <ListRow style={{ alignItems: 'flex-start' }}>
+          <ListRow className="items-start">
             <ListRowIcon>{I('eye', 18)}</ListRowIcon>
             <ListRowContent>
               <ListRowTitle>{l.who}</ListRowTitle>
@@ -36,14 +36,14 @@ export function AccessLog(c: Ctx) {
                 {l.when} · {l.how}
               </Caption>
               {flag === i ? (
-                <Note icon="check" tone="red" compact style={{ marginTop: '8px' }}>
+                <Note icon="check" tone="red" compact className="mt-2">
                   Zgłosiliśmy to do CERT Polska i do instytucji, która sprawdzała dane. Odpowiedź w ciągu 7
                   dni.
                 </Note>
               ) : (
                 <button
-                  className="link"
-                  style={{ fontSize: '13px', marginTop: '6px' }}
+                  className="link text-[13px] mt-1.5"
+
                   onClick={() => setFlag(i)}
                 >
                   To nie ja
@@ -64,10 +64,8 @@ export function AccessLog(c: Ctx) {
 
 export function Signin(c: Ctx) {
   return (
-    <div style={{ textAlign: 'center' }}>
-      <div className="face scan" style={{ marginTop: '60px' }}>
-        {I('eye', 40)}
-      </div>
+    <div className="text-center">
+      <div className="face scan mt-[60px]">{I('eye', 40)}</div>
       <Title>Zaloguj się twarzą</Title>
       <Lead>
         Bez kodów i haseł. Klucz dostępu działa tylko na stronach i w aplikacjach rządowych, więc fałszywa
@@ -85,7 +83,7 @@ export function Signin(c: Ctx) {
 export function Offline(c: Ctx) {
   return (
     <div>
-      <div className="offline" style={{ margin: '8px -20px 0' }}>
+      <div className="offline mt-2 -mr-5 mb-0 -ml-5">
         {I('wifi', 16)} Aktualizacja się nie powiodła. Nie masz internetu, ale najważniejsze rzeczy działają.
       </div>
       <Title>Twoje dokumenty są bezpieczne.</Title>
@@ -105,7 +103,7 @@ export function Offline(c: Ctx) {
       <Actions>
         <Button>Spróbuj zaktualizować ponownie</Button>
       </Actions>
-      <Muted as="p" style={{ marginTop: '10px' }}>
+      <Muted as="p" className="mt-2.5">
         Masz telefon z Androidem 8? Miesiąc przed końcem wsparcia aplikacja Cię ostrzeże i powie, co zrobić.
       </Muted>
     </div>
@@ -142,8 +140,8 @@ export function Devices(c: Ctx) {
             <Badge>Wylogowany</Badge>
           ) : (
             <button
-              className="mini"
-              style={{ color: '#ff3b30' }}
+              className="mini text-[#ff3b30]"
+
               onClick={() =>
                 c.confirm({
                   t: 'Wylogować iPhone 11?',
@@ -172,7 +170,7 @@ export function Devices(c: Ctx) {
           </ListRowContent>
         </ListRow>
       </List>
-      <Note icon="bell" style={{ marginTop: '14px' }}>
+      <Note icon="bell" className="mt-3.5">
         Dostaniesz powiadomienie przy każdym nowym logowaniu. Jeśli to nie Ty, wylogujesz je jednym ruchem.
       </Note>
     </div>
@@ -197,11 +195,11 @@ export function Scam(c: Ctx) {
       ) : (
         <div className="verdict">
           <div className="vh">{I('x', 18)} To oszustwo</div>
-          <Muted style={{ color: 'var(--ink)' }}>
+          <Muted className="text-(--ink)">
             Ta strona jest na liście ostrzeżeń CERT Polska od 21 listopada. Firmy kurierskie nie proszą o
             dopłaty SMS-em z linkiem.
           </Muted>
-          <Actions row style={{ marginTop: '12px' }}>
+          <Actions row className="mt-3">
             <Button variant="secondary" onClick={() => c.toast('Usunięte')}>
               Usuń
             </Button>
@@ -209,7 +207,7 @@ export function Scam(c: Ctx) {
           </Actions>
         </div>
       )}
-      <List style={{ marginTop: '14px' }}>
+      <List className="mt-3.5">
         <ListRow>
           <ListRowTile tone="green">{I('check', 18)}</ListRowTile>
           <ListRowContent>

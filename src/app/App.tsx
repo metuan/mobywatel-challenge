@@ -1,7 +1,8 @@
+import { cn } from '@/lib/utils';
+import type { CSSProperties } from 'react';
 import { Field, FieldValue } from '@/components/ui/field';
 import { Caption, Subtitle } from '@/components/ui/typography';
 import { Actions, Button } from '@/components/ui/button';
-import { sx } from '@/lib/sx';
 import { useEffect, useRef, useState } from 'react';
 import { edgeBack, leave, sheetDrag } from '@/app/gestures';
 import { Island } from '@/app/Island';
@@ -314,7 +315,7 @@ export function App() {
       <div className={'app' + (compact ? ' compact' : '')}>
         <div className="statusbar">
           <span>15:40</span>
-          <span style={{ display: 'flex', gap: '6px', alignItems: 'center' }}>{I('wifi', 15)} 82%</span>
+          <span className="flex gap-1.5 items-center">{I('wifi', 15)} 82%</span>
         </div>
         {FULL.has(route) ? (
           <Wrap key={route} f={Screen} c={c} d="full" />
@@ -366,7 +367,7 @@ export function App() {
             <div
               className="scroll"
               ref={scrollRef}
-              style={sx(s.fs && s.fs !== 1 ? `--fs:${s.fs}` : '')}
+              style={s.fs && s.fs !== 1 ? ({ '--fs': s.fs } as CSSProperties) : undefined}
               onPointerDown={e => !isTab && edgeBack(e, back)}
               onScroll={e => {
                 const el = e.currentTarget as HTMLElement;
@@ -382,14 +383,14 @@ export function App() {
               <nav className="tabbar" aria-label="Główne">
                 <i
                   className="tb-ind"
-                  style={sx(
-                    `transform:translateX(${
+                  style={{
+                    transform: `translateX(${
                       Math.max(
                         0,
                         TABS.findIndex(t => t[0] === curTab),
                       ) * 100
                     }%)`,
-                  )}
+                  }}
                 ></i>
                 {TABS.map(([r, t, ic]) => (
                   <button
@@ -530,22 +531,18 @@ export function App() {
               ) : sheet.stage === 0 ? (
                 <div>
                   <div className="q">Czy te dane są poprawne?</div>
-                  <Subtitle
-                    style={sx(sheet.big ? 'font-size:30px;margin-bottom:12px' : 'margin-bottom:12px')}
-                  >
-                    {sheet.t}
-                  </Subtitle>
+                  <Subtitle className={cn('mb-3', sheet.big && 'text-[30px]')}>{sheet.t}</Subtitle>
                   <div className="rounded-[22px] bg-white">
                     {(sheet.items || []).map(i => (
-                      <Field style={sx(sheet.big ? 'font-size:18px' : '')}>
-                        <FieldValue style={{ display: 'flex', gap: '10px', alignItems: 'flex-start' }}>
-                          <span style={{ color: 'var(--blue)', marginTop: '2px' }}>{I('check', 16)}</span>
+                      <Field className={cn(sheet.big && 'text-lg')}>
+                        <FieldValue className="flex gap-2.5 items-start">
+                          <span className="text-(--blue) mt-0.5">{I('check', 16)}</span>
                           <span>{i}</span>
                         </FieldValue>
                       </Field>
                     ))}
                   </div>
-                  <Caption style={{ marginTop: '12px' }}>
+                  <Caption className="mt-3">
                     Potwierdzasz twarzą lub kodem PIN. To jest Twój podpis. Nic nie zostanie wysłane
                     wcześniej.
                   </Caption>

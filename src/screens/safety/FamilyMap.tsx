@@ -15,9 +15,9 @@ import type { Ctx } from '@/types';
 export function FamilyMap(c: Ctx) {
   return (
     <div>
-      <Badge style={{ marginTop: '8px' }}>Alert RCB trwa · Kraków</Badge>
+      <Badge className="mt-2">Alert RCB trwa · Kraków</Badge>
       <Title>Gdzie jest rodzina</Title>
-      <div className="map" style={{ position: 'relative' }}>
+      <div className="map relative">
         <svg viewBox="0 0 350 260" width="100%" role="img" aria-label="Mapa: położenie rodziny">
           <rect width="350" height="260" fill="#eef0ea" />
           <path
@@ -49,7 +49,7 @@ export function FamilyMap(c: Ctx) {
               AN
             </text>
           </g>
-          <g className="mpin" style={{ animationDelay: '.12s' }} transform="translate(262 205)">
+          <g className="mpin [animation-delay:.12s]" transform="translate(262 205)">
             <circle r="15" fill="#b0533f" stroke="#fff" strokeWidth="3" />
             <text y="4" textAnchor="middle" fontSize="10" fontWeight="700" fill="#fff" fontFamily="Inter">
               ZN
@@ -91,7 +91,7 @@ export function FamilyMap(c: Ctx) {
           </g>
         </svg>
       </div>
-      <List style={{ marginTop: '12px' }}>
+      <List className="mt-3">
         <ListRow>
           <ListRowAvatar>AN</ListRowAvatar>
           <ListRowContent>
@@ -127,7 +127,7 @@ export function FamilyMap(c: Ctx) {
           </button>
         </ListRow>
       </List>
-      <Note icon="lock" style={{ marginTop: '12px' }}>
+      <Note icon="lock" className="mt-3">
         Lokalizację widzi tylko rodzina i tylko w czasie alarmu. Udostępnianie wyłącza się samo po odwołaniu.
       </Note>
     </div>

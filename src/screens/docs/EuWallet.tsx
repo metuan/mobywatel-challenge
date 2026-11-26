@@ -63,7 +63,7 @@ export function EuWallet(_c: Ctx) {
           </span>
         ))}
       </div>
-      <Caption style={{ margin: '8px 0 14px' }}>Nie udostępniasz: adresu, PESEL ani daty urodzenia.</Caption>
+      <Caption className="mt-2 mr-0 mb-3.5 ml-0">Nie udostępniasz: adresu, PESEL ani daty urodzenia.</Caption>
       <TapShare
         them="Rent-a-car Lisboa"
         sub="Anna przykłada telefon do terminala przy ladzie."
@@ -71,7 +71,7 @@ export function EuWallet(_c: Ctx) {
         onDone={() => setSent(true)}
       />
       {sent && (
-        <Note icon="check" tone="green" style={{ marginTop: '10px' }}>
+        <Note icon="check" tone="green" className="mt-2.5">
           Udostępniono 3 informacje. Wypożyczalnia nie dostała PESEL ani adresu. Wpis jest w „Kto sprawdzał
           moje dane”.
         </Note>

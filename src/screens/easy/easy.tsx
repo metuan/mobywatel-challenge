@@ -1,8 +1,8 @@
+import type { CSSProperties } from 'react';
 import { Card } from '@/components/ui/card';
 import { Note, NoteButton } from '@/components/ui/note';
 import { Display, Lead, Muted, Title } from '@/components/ui/typography';
 import { Actions, Button } from '@/components/ui/button';
-import { sx } from '@/lib/sx';
 import { useEffect, useState } from 'react';
 import { I } from '@/ui/icons';
 import { Av } from '@/ui/primitives';
@@ -18,7 +18,7 @@ export function Easy(c: Ctx) {
         <NoteButton
           icon="bell"
           tone="amber"
-          style={{ width: '100%', fontSize: '17px', padding: '16px', marginBottom: '14px' }}
+          className="w-full text-[17px]/[1.45] p-4 mb-3.5"
           onClick={() => c.go('easy-approve')}
         >
           <b>Anna prosi o dostęp.</b> Dotknij, żeby zdecydować.
@@ -39,8 +39,8 @@ export function Easy(c: Ctx) {
         </button>
       </div>
       <button
-        className="speak"
-        style={{ width: '100%', marginTop: '14px' }}
+        className="speak w-full mt-3.5"
+
         onClick={() => c.go('easy-voice')}
       >
         {I('mic', 24)} Powiedz, czego potrzebujesz
@@ -53,15 +53,15 @@ export function EasyApprove(c: Ctx) {
   const done = c.s.easyApproved;
   return (
     <div className="easy">
-      <Title style={{ fontSize: '38px' }}>
+      <Title className="text-[38px]">
         {done ? 'Zgoda zapisana.' : 'Anna chce Panu pomagać w sprawach urzędowych.'}
       </Title>
-      <Card style={{ padding: '18px', fontSize: '18px', lineHeight: '1.5' }}>
-        <div style={{ fontWeight: '600', marginBottom: '6px' }}>Anna będzie mogła:</div>
+      <Card className="p-4.5 text-[18px] leading-[1.5]">
+        <div className="font-semibold mb-1.5">Anna będzie mogła:</div>
         <div>✓ widzieć Pana terminy</div>
         <div>✓ czytać pisma z urzędów</div>
         <div>✓ przygotowywać wnioski</div>
-        <div style={{ fontWeight: '600', margin: '10px 0 6px' }}>Anna nie będzie mogła:</div>
+        <div className="font-semibold mt-2.5 mr-0 mb-1.5 ml-0">Anna nie będzie mogła:</div>
         <div>✗ widzieć danych o zdrowiu</div>
         <div>✗ wysyłać niczego bez Pana zgody</div>
       </Card>
@@ -105,10 +105,10 @@ export function EasyApprove(c: Ctx) {
 export function EasyDoc(c: Ctx) {
   return (
     <div className="easy">
-      <Title style={{ fontSize: '38px' }}>Pana dowód</Title>
-      <Card style={{ padding: '20px', fontSize: '20px' }}>
-        <Muted style={{ fontSize: '16px' }}>Ważny do</Muted>
-        <div style={{ fontWeight: '600', fontSize: '28px' }}>26 stycznia 2027</div>
+      <Title className="text-[38px]">Pana dowód</Title>
+      <Card className="p-5 text-[20px]">
+        <Muted className="text-[16px]">Ważny do</Muted>
+        <div className="font-semibold text-[28px]">26 stycznia 2027</div>
         <Note icon="info" className="mt-3 text-base/[1.45]">
           Za 63 dni. Anna pomoże złożyć wniosek o nowy.
         </Note>
@@ -196,7 +196,9 @@ export function EasyVoice(c: Ctx) {
     <div className="easy voice8">
       <div className={'wave ' + (done ? 'stop' : '')}>
         {Array.from({ length: 28 }, (_, i) => (
-          <i style={sx(`--d:${(i * 73) % 600}ms;--h:${18 + ((i * 37) % 46)}px`)}></i>
+          <i
+            style={{ '--d': `${(i * 73) % 600}ms`, '--h': `${18 + ((i * 37) % 46)}px` } as CSSProperties}
+          ></i>
         ))}
       </div>
       <p className="v-q">
@@ -210,7 +212,7 @@ export function EasyVoice(c: Ctx) {
         )}
       </p>
       {done && (
-        <Card className="v-a" style={{ padding: '20px', fontSize: '20px', lineHeight: '1.5' }}>
+        <Card className="v-a p-5 text-[20px] leading-[1.5]">
           Pana dowód jest ważny do <b>26 stycznia 2027</b>, czyli jeszcze 63 dni. Anna może pomóc złożyć
           wniosek o nowy.
           <Actions>
@@ -234,8 +236,8 @@ export function EasyRx(c: Ctx) {
   ];
   return (
     <div className="easy">
-      <Title style={{ fontSize: '34px', lineHeight: '1.1' }}>Pana recepty</Title>
-      <Lead style={{ fontSize: '18px' }}>Dotknij recepty i pokaż ekran w aptece.</Lead>
+      <Title className="text-[34px] leading-[1.1]">Pana recepty</Title>
+      <Lead className="text-[18px]/[1.45]">Dotknij recepty i pokaż ekran w aptece.</Lead>
       <div className="rx8">
         {RX.map(([t, k, how, d], i) => (
           <button

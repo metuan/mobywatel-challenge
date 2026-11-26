@@ -89,9 +89,9 @@ export function Assistant(c: Ctx) {
     endRef.current && endRef.current.scrollIntoView({ block: 'end' });
   }, [msgs, busy]);
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '12px' }}>
+    <div className="flex flex-col gap-3">
       <Title>Asystent</Title>
-      <p className="ai-warn" style={{ textAlign: 'left', margin: '0' }}>
+      <p className="ai-warn text-left m-0">
         Odpowiadam na podstawie stron gov.pl i Twoich danych. Mogę się mylić. Niczego nie wysyłam bez Twojego
         „Potwierdź”.
       </p>
@@ -125,8 +125,8 @@ export function Assistant(c: Ctx) {
                   </div>
                   {m.ai.act && (
                     <Button
-                      className="animate-[fadeUp_0.25s_var(--out)]"
-                      style={{ marginTop: '10px', padding: '11px' }}
+                      className="animate-[fadeUp_0.25s_var(--out)] mt-2.5 p-[11px]"
+
                       onClick={() => c.go(m.ai.act![1])}
                     >
                       {m.ai.act[0]}
@@ -149,7 +149,7 @@ export function Assistant(c: Ctx) {
         )}
       </div>
       <div ref={endRef}></div>
-      <div className="askbar" style={{ marginTop: '6px' }}>
+      <div className="askbar mt-1.5">
         <input
           id="ask2"
           value={q}

@@ -47,14 +47,14 @@ export function Pjm(c: Ctx) {
       </div>
       <Actions>
         {on ? (
-          <Button style={{ background: '#ff3b30' }} onClick={() => setOn(false)}>
+          <Button className="bg-[#ff3b30]" onClick={() => setOn(false)}>
             Zakończ
           </Button>
         ) : (
           <Button onClick={() => setOn(true)}>{I('camera', 18)} Połącz z tłumaczem</Button>
         )}
       </Actions>
-      <List style={{ marginTop: '14px' }}>
+      <List className="mt-3.5">
         <ListRow>
           <ListRowContent>
             <ListRowTitle>Przycisk PJM na każdym ekranie</ListRowTitle>
