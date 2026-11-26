@@ -2,19 +2,23 @@ import { html } from '@/lib/preact';
 import { DocCard } from '@/ui/documentCard';
 import { I } from '@/ui/icons';
 import { AvStack, GRow, Label, Num, Ring, Tile } from '@/ui/primitives';
+import type { Ctx } from '@/types';
+import type { IconName } from '@/ui/icons';
 
-function TodayBase(c) {
+function TodayBase(c: Ctx) {
   const s = c.s;
   return html`<div class="today8">
     <div class="hi"><div class="hi-d">Wtorek, 24 listopada</div><h1 class="h-xl">Dzień dobry, Anno</h1></div>${c.bar || ''}
     <${DocCard} c=${c}/>
     <div class="qa8">
-      ${[
-        ['qr', 'Pokaż', 'share-min'],
-        ['camera', 'Skanuj', 'letter-1'],
-        ['mic', 'Zapytaj', 'assistant'],
-        ['coin', 'Zapłać', 'taxes'],
-      ].map(
+      ${(
+        [
+          ['qr', 'Pokaż', 'share-min'],
+          ['camera', 'Skanuj', 'letter-1'],
+          ['mic', 'Zapytaj', 'assistant'],
+          ['coin', 'Zapłać', 'taxes'],
+        ] as [IconName, string, string][]
+      ).map(
         ([ic, t, r]) =>
           html`<button onClick=${() => c.go(r)}><span class="qa8-i">${I(ic, 22)}</span><span>${t}</span></button>`,
       )}
@@ -50,7 +54,7 @@ function TodayBase(c) {
   </div>`;
 }
 
-export function Today(c) {
+export function Today(c: Ctx) {
   const n = c.s.mail ? c.s.mail.filter(x => x.unread).length : 2;
   /* search + inbox sit in their own row under the greeting, so nothing crowds the title (Karl, 26 Nov) */
   const bar = html`<div class="hdr9"><button class="hdr9-s" onClick=${() => c.go('search')}>${I('search', 18)}<span>Szukaj albo zapytaj</span></button>

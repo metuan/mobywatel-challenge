@@ -2,8 +2,10 @@ import { html, useState } from '@/lib/preact';
 import { I } from '@/ui/icons';
 import { Hero } from '@/ui/illustrations';
 import { Sec } from '@/ui/primitives';
+import type { Ctx } from '@/types';
+import { stashBox } from '@/lib/morph';
 
-export function AlertRed(c) {
+export function AlertRed(c: Ctx) {
   return html`<div class="rcb-screen" role="alertdialog" aria-label="Alert RCB">
     <div class="rcb-clock">15:42</div><div class="rcb-date">wtorek, 24 listopada</div>
     <div class="rcb">
@@ -20,11 +22,7 @@ export function AlertRed(c) {
     <div style="flex:1;min-height:14px"></div>
     <div class="actions" style="margin-top:12px">
       <button class="btn" onClick=${() => {
-        const el = document.querySelector('.phone .rcb-app');
-        if (el) {
-          const q = el.getBoundingClientRect();
-          window.__morph = { left: q.left, top: q.top, width: q.width, height: q.height };
-        }
+        stashBox('shelter', document.querySelector('.phone .rcb-app'));
         c.go('alert-watch');
       }}>${I('route', 18)} Prowadź do schronienia</button>
       <button class="btn ghost" onClick=${() => c.go('alert-guide')}>${I('speaker', 18)} Co robić teraz (odczytaj)</button>
@@ -45,7 +43,7 @@ function ShelterMap() {
   </svg>`;
 }
 
-export function AlertShelter(c) {
+export function AlertShelter(c: Ctx) {
   return html`<div>
     <span class="pill p-red" style="margin-top:8px">Alert RCB trwa · Kraków</span>
     <h1 class="h-l">Idź do schronienia przy ul. Dekerta 24</h1>
@@ -60,7 +58,7 @@ export function AlertShelter(c) {
   </div>`;
 }
 
-export function AlertGuide(c) {
+export function AlertGuide(c: Ctx) {
   const [reading, setReading] = useState(false);
   return html`<div>
     <span class="pill p-red" style="margin-top:8px">Alert RCB trwa</span>
@@ -77,7 +75,7 @@ export function AlertGuide(c) {
   </div>`;
 }
 
-export function AlertClear(c) {
+export function AlertClear(c: Ctx) {
   return html`<div class="rcb-screen clear" role="alertdialog" aria-label="Odwołanie alarmu">
     <div class="rcb-clock">16:21</div><div class="rcb-date">wtorek, 24 listopada</div>
     <div class="rcb clear">
@@ -97,7 +95,7 @@ export function AlertClear(c) {
   </div>`;
 }
 
-export function AlertSafe(c) {
+export function AlertSafe(c: Ctx) {
   const [sent, setSent] = useState(c.s.safe);
   const send = () => {
     setSent(true);
@@ -122,7 +120,7 @@ export function AlertSafe(c) {
   </div>`;
 }
 
-function AlertDamage(c) {
+function AlertDamage(c: Ctx) {
   return html`<div><p class="stepk">Po zdarzeniu</p><h1 class="h-l">Zgłoś szkody</h1>
     <${Hero} n="shelter" bg="sand"/>
     <p class="lead">Zrób zdjęcia. Dodamy lokalizację i datę. Komisja z gminy umówi oględziny.</p>

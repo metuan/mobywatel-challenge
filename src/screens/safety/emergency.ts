@@ -1,9 +1,10 @@
 import { html, useState } from '@/lib/preact';
 import { I } from '@/ui/icons';
 import { Toggle } from '@/ui/primitives';
+import type { Ctx } from '@/types';
 
 /* 1 + 3: Karta ratunkowa i identyfikator medyczny */
-export function Ice(c) {
+export function Ice(c: Ctx) {
   const [lock, setLock] = useState(c.s.medLock !== false);
   return html`<div>
     <p class="stepk">Karta ratunkowa</p><h1 class="h-l">Na wypadek, gdy nie możesz mówić</h1>
@@ -20,7 +21,9 @@ export function Ice(c) {
         <div class="ice-p"><span>Stanisław Nowicki · tata</span><span class="mini">${I('phone', 14)} Zadzwoń</span></div></div>
     </div>
     <div class="list" style="margin-top:14px">
-      <div class="row"><span class="it" style="background:#ff3b30!important">${I('lock', 18)}</span><span class="tx"><div class="t">Pokaż na ekranie blokady</div><div class="s">Ratownik zobaczy kartę bez odblokowania telefonu</div></span><${Toggle} on=${lock} label="Pokaż na ekranie blokady" set=${v => {
+      <div class="row"><span class="it" style="background:#ff3b30!important">${I('lock', 18)}</span><span class="tx"><div class="t">Pokaż na ekranie blokady</div><div class="s">Ratownik zobaczy kartę bez odblokowania telefonu</div></span><${Toggle} on=${lock} label="Pokaż na ekranie blokady" set=${(
+        v: boolean,
+      ) => {
         setLock(v);
         c.set({ medLock: v });
       }}/></div>
@@ -31,7 +34,7 @@ export function Ice(c) {
   </div>`;
 }
 
-export function MedicalId(c) {
+export function MedicalId(c: Ctx) {
   return html`<div class="lock medlock" role="region" aria-label="Ekran blokady: identyfikator medyczny">
     <div class="lk-top"><div class="lk-date" style="margin-top:6px">Ekran blokady · widok ratownika</div></div>
     <div class="med">

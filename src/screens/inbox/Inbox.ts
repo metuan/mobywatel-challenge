@@ -1,9 +1,10 @@
 import { html, useState } from '@/lib/preact';
 import { swipeRow } from '@/ui/controls';
 import { I } from '@/ui/icons';
+import type { Ctx, MailItem } from '@/types';
 
 /* Hop 11: one inbox for letters from every office (e-Doręczenia), swipe to archive */
-const MAIL0 = [
+export const MAIL0: MailItem[] = [
   {
     k: 'us',
     from: 'Urząd Skarbowy Kraków-Podgórze',
@@ -51,20 +52,20 @@ const MAIL0 = [
   },
 ];
 
-export function Inbox(c) {
+export function Inbox(c: Ctx) {
   const [list, setList] = useState(c.s.mail || MAIL0);
   const [f, setF] = useState('all');
-  const save = l => {
+  const save = (l: MailItem[]) => {
     setList(l);
     c.set({ mail: l, inboxNew: l.filter(x => x.unread).length });
   };
-  const arch = x => {
+  const arch = (x: MailItem) => {
     const prev = list;
     save(list.filter(y => y.k !== x.k));
     c.toast({ t: 'Przeniesiono do archiwum', undo: () => save(prev) });
   };
-  const open = (e, x) => {
-    if (e.currentTarget.dataset.swiped) return;
+  const open = (e: MouseEvent, x: MailItem) => {
+    if ((e.currentTarget as HTMLElement).dataset.swiped) return;
     save(list.map(y => (y.k === x.k ? { ...y, unread: false } : y)));
     c.go(x.r);
   };
@@ -78,7 +79,7 @@ export function Inbox(c) {
     ].map(([k, t]) => html`<button aria-pressed=${f === k} onClick=${() => setF(k)}>${t}</button>`)}</div>
     <div class="mail">${shown.map(
       x => html`<div class="mail-w" key=${x.k}><span class="mail-bg">${I('archive', 20)}<span>Archiwum</span></span>
-      <button class=${'mail-i' + (x.unread ? ' new' : '')} onPointerDown=${e => swipeRow(e, () => arch(x))} onClick=${e => open(e, x)}>
+      <button class=${'mail-i' + (x.unread ? ' new' : '')} onPointerDown=${(e: PointerEvent) => swipeRow(e, () => arch(x))} onClick=${(e: MouseEvent) => open(e, x)}>
         <span class="mail-top"><span class="mail-from">${x.unread && html`<i class="udot"></i>`}${x.from}</span><span class="mail-d">${x.d}</span></span>
         <span class="mail-t">${x.t}</span><span class="mail-s">${x.s}</span>
         ${x.ai && html`<span class="mail-ai"><span class="tag-a sm">AI</span> ${x.ai}</span>`}

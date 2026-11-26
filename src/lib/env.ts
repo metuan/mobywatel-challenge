@@ -1,29 +1,28 @@
-export const buzz = p => {
-  try {
-    navigator.vibrate && navigator.vibrate(p);
-  } catch (e) {}
-};
+/** Small browser helpers shared across screens. */
 
-export const rmo = () => {
+/** True when the visitor asked the OS for less motion; every animation checks this first. */
+export const reducedMotion = (): boolean => {
   try {
     return matchMedia('(prefers-reduced-motion: reduce)').matches;
-  } catch (e) {
+  } catch {
     return false;
   }
 };
 
+/** Haptic tick on phones that support it. */
+export const buzz = (pattern: number | number[]) => {
+  try {
+    navigator.vibrate?.(pattern);
+  } catch {
+    /* not supported */
+  }
+};
+
+/** Ask the story coach to look for the next thing to tap (after content appears late). */
 export const fire = () => setTimeout(() => window.dispatchEvent(new Event('coach')), 60);
 
-export const fmt = n => n.toLocaleString('pl-PL').replace(/,/g, ' ');
+/** Polish number formatting with a space as the thousands separator. */
+export const fmt = (n: number) => n.toLocaleString('pl-PL').replace(/,/g, ' ');
 
-const wait = ms => new Promise(r => setTimeout(r, ms));
-
-export const norm = s => s.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/ł/g, 'l');
-
-export const RM = () => {
-  try {
-    return matchMedia('(prefers-reduced-motion: reduce)').matches;
-  } catch (e) {
-    return false;
-  }
-};
+/** Lowercase and strip Polish diacritics, for forgiving search. */
+export const norm = (s: string) => s.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/ł/g, 'l');

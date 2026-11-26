@@ -1,8 +1,9 @@
 import { html, useState } from '@/lib/preact';
 import { I } from '@/ui/icons';
 import { Av, GRow, Label, Sec, Toggle } from '@/ui/primitives';
+import type { Ctx } from '@/types';
 
-export function Plan(c) {
+export function Plan(c: Ctx) {
   return html`<div>
     <h1 class="h-l">Plan rodziny na sytuację kryzysową</h1>
     <p class="lead">Ustalony razem z Tomaszem. Działa bez internetu.</p>
@@ -29,7 +30,7 @@ export function Plan(c) {
   </div>`;
 }
 
-export function Places(c) {
+export function Places(c: Ctx) {
   return html`<div><h1 class="h-l">Obserwowane miejsca</h1>
     <p class="lead">Alerty dla Twojej lokalizacji przychodzą zawsze. Alerty dla tych miejsc są oznaczone ich nazwą, żeby ich nie pomylić.</p>
     <div class="list">${[
@@ -43,7 +44,7 @@ export function Places(c) {
     <div class="actions"><button class="btn ghost">${I('plus', 18)} Dodaj miejsce</button></div></div>`;
 }
 
-export function Safety(c) {
+export function Safety(c: Ctx) {
   const [flood, setFlood] = useState(false);
   const alarm = () => {
     setFlood(true);

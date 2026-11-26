@@ -2,8 +2,9 @@ import { html, useState } from '@/lib/preact';
 import { HoldBtn } from '@/ui/controls';
 import { I } from '@/ui/icons';
 import { Row, Sec } from '@/ui/primitives';
+import type { Ctx } from '@/types';
 
-export function Lost(c) {
+export function Lost(c: Ctx) {
   const [done, setDone] = useState(false);
   const items = [
     'mDowód i dowód osobisty',

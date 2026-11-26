@@ -2,8 +2,9 @@ import { html } from '@/lib/preact';
 import { I } from '@/ui/icons';
 import { Hero } from '@/ui/illustrations';
 import { GRow, Label, Ring, Row } from '@/ui/primitives';
+import type { Ctx } from '@/types';
 
-export function Benefits(c) {
+export function Benefits(c: Ctx) {
   return html`<div><${Hero} n="coin" bg="yellow"/><h1 class="h-l">Świadczenia, które mogą Ci przysługiwać</h1>
     <div class="note amber">${I('lock', 18)}<span>Sprawdzamy to tylko za Twoją zgodą, na podstawie danych o rodzinie. Nic nie składamy bez Ciebie.</span></div>
     <div class="list" style="margin-top:12px">
@@ -14,7 +15,7 @@ export function Benefits(c) {
 }
 
 /* Hop 8: 800+ with a payment history and countdown */
-export function P800(c) {
+export function P800(c: Ctx) {
   const M = ['cze', 'lip', 'sie', 'wrz', 'paź', 'lis', 'gru', 'sty', 'lut', 'mar', 'kwi', 'maj'];
   return html`<div class="p8">
     <p class="stepk">Świadczenie dla Zosi</p><h1 class="h-l">800+</h1>
@@ -34,7 +35,7 @@ export function P800(c) {
 }
 
 /* Hop 9: vaccinations as a timeline */
-export function Vacc(c) {
+export function Vacc(c: Ctx) {
   const V = [
     ['6 lat', 'MMR, dawka 2', 'Zalecane do 31 grudnia', 'due'],
     ['6 lat', 'DTaP, dawka 5', 'Wykonane 12 września 2026', 'ok'],

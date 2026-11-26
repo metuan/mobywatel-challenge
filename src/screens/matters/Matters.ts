@@ -2,8 +2,9 @@ import { html, useState } from '@/lib/preact';
 import { Search } from '@/screens/search/Search';
 import { I } from '@/ui/icons';
 import { Label, Ring, Tile } from '@/ui/primitives';
+import type { Ctx } from '@/types';
 
-export function CaseMeld(c) {
+export function CaseMeld(c: Ctx) {
   const st = [
     ['Wniosek złożony', '14 listopada'],
     ['Opłata 54,50 zł', 'Zapłacono 14 listopada'],
@@ -17,7 +18,7 @@ export function CaseMeld(c) {
   </div>`;
 }
 
-export function Matters(c) {
+export function Matters(c: Ctx) {
   const [cat, setCat] = useState('all');
   const cats = [
     ['all', 'Wszystkie'],
@@ -36,10 +37,11 @@ export function Matters(c) {
     ['Pismo z urzędu', 'Zrób zdjęcie, wyjaśnimy', 'letter-1', 'letter', 'dom'],
   ];
   const shown = items.filter(x => cat === 'all' || x[4] === cat);
-  const prog = [
+  type Progress = [string, number, string, string];
+  const prog: Progress[] = [
     ['Dowód rejestracyjny', 3, 'case-meld', 'Odbiór od 2 grudnia'],
-    ...(c.s.moved ? [['Przeprowadzka', 2, 'move-done', 'Urząd potwierdzi do 27.11']] : []),
-    ...(c.s.babyDone ? [['Nowe dziecko', 3, 'baby-done', '800+ w drodze']] : []),
+    ...(c.s.moved ? [['Przeprowadzka', 2, 'move-done', 'Urząd potwierdzi do 27.11'] as Progress] : []),
+    ...(c.s.babyDone ? [['Nowe dziecko', 3, 'baby-done', '800+ w drodze'] as Progress] : []),
   ];
   return html`<div>
     <h1 class="h-xl">Sprawy</h1>

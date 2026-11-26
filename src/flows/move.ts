@@ -2,8 +2,10 @@ import { html, useState } from '@/lib/preact';
 import { I } from '@/ui/icons';
 import { Hero } from '@/ui/illustrations';
 import { Progress, Row, Src } from '@/ui/primitives';
+import type { Ctx } from '@/types';
+import type { MoveSelection } from '@/types';
 
-export function Move1(c) {
+export function Move1(c: Ctx) {
   return html`<div>
     <p class="stepk">Przeprowadzka · krok 1 z 4</p><${Progress} n=${1} of=${4}/>
     <${Hero} n="move" bg="sand"/>
@@ -17,8 +19,8 @@ export function Move1(c) {
   </div>`;
 }
 
-export function Move2(c) {
-  const [on, setOn] = useState({ meld: true, gp: true, vote: true, car: true });
+export function Move2(c: Ctx) {
+  const [on, setOn] = useState<MoveSelection>({ meld: true, gp: true, vote: true, car: true });
   const items = [
     ['meld', 'Urząd Miasta Krakowa', 'Zameldowanie na pobyt stały, 3 osoby', 'UM', '#3b5bab'],
     ['gp', 'Narodowy Fundusz Zdrowia', 'Lekarz rodzinny: Przychodnia Długa, 300 m', 'NFZ', '#1c7a4c'],
@@ -53,7 +55,7 @@ export function Move2(c) {
   </div>`;
 }
 
-export function Move3(c) {
+export function Move3(c: Ctx) {
   const sel = c.s.moveSel || { meld: true, gp: true, vote: true, car: true };
   const n = Object.values(sel).filter(Boolean).length;
   return html`<div>
@@ -85,7 +87,7 @@ export function Move3(c) {
   </div>`;
 }
 
-export function MoveDone(c) {
+export function MoveDone(c: Ctx) {
   return html`<div>
     <${Hero} n="move" bg="mint"/>
     <div class="done-mark" style="margin-top:-34px;margin-left:16px;position:relative;border:4px solid #fff">${I('check', 28)}</div>

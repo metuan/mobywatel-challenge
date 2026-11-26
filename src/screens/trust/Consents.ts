@@ -2,9 +2,10 @@ import { html, useState } from '@/lib/preact';
 import { collapseOut } from '@/ui/controls';
 import { I } from '@/ui/icons';
 import { Av, Label, Num } from '@/ui/primitives';
+import type { ConsentItem, Ctx } from '@/types';
 
 /* Hop 4: consents as a trust ledger with undo */
-const CONS0 = [
+export const CONS0: ConsentItem[] = [
   {
     k: 'tomasz',
     who: 'Tomasz Nowicki',
@@ -44,13 +45,13 @@ const CONS0 = [
   },
 ];
 
-export function Consents(c) {
+export function Consents(c: Ctx) {
   const [list, setList] = useState(c.s.cons || CONS0);
-  const save = l => {
+  const save = (l: ConsentItem[]) => {
     setList(l);
     c.set({ cons: l });
   };
-  const revoke = x => {
+  const revoke = (x: ConsentItem) => {
     const prev = list;
     save(list.filter(y => y.k !== x.k));
     c.toast({ t: 'Cofnięto: ' + x.who, undo: () => save(prev) });
@@ -67,11 +68,11 @@ export function Consents(c) {
           .filter(x => x.group === g)
           .map(
             x => html`<div class="cons-row" key=${x.k}>
-      ${x.av ? html`<${Av} i=${x.av} size=${36}/>` : html`<span class="lead-i">${I(x.ic, 18)}</span>`}
+      ${x.av ? html`<${Av} i=${x.av} size=${36}/>` : html`<span class="lead-i">${x.ic && I(x.ic, 18)}</span>`}
       <span class="cr-tx"><span class="gt">${x.who}${x.ai && html` <span class="tag-a sm">AI</span>`}</span><span class="gs">${x.what}</span>
         <span class="cr-until ${x.left === 0 ? 'off' : ''}">${x.left === 0 ? 'Wygasła' : x.until}${x.left ? html`<i class="cr-bar"><i style=${`width:${Math.min(100, x.left / 3.65)}%`}></i></i>` : ''}</span></span>
-      <button class="mini" onClick=${e => {
-        const row = e.currentTarget.closest('.cons-row');
+      <button class="mini" onClick=${(e: MouseEvent) => {
+        const row = (e.currentTarget as HTMLElement).closest<HTMLElement>('.cons-row');
         collapseOut(row, () => revoke(x));
       }}>${x.left === 0 ? 'Usuń' : 'Cofnij'}</button></div>`,
           )}</div>`,

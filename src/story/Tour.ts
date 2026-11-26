@@ -4,13 +4,21 @@ import { DocCard } from '@/ui/documentCard';
 import { I } from '@/ui/icons';
 import { Av } from '@/ui/primitives';
 
-export function Tour({ mode, onStart, onClose }) {
+export function Tour({
+  mode,
+  onStart,
+  onClose,
+}: {
+  mode: 'intro' | 'outro';
+  onStart: () => void;
+  onClose: () => void;
+}) {
   const outro = mode === 'outro';
   const N = outro ? 1 : 4;
   const [k, setK] = useState(0);
   const next = () => (k < N - 1 ? setK(k + 1) : onStart());
   useEffect(() => {
-    const f = e => {
+    const f = (e: KeyboardEvent) => {
       e.stopImmediatePropagation();
       if (e.key === 'ArrowRight' || e.key === 'Enter') next();
       if (e.key === 'ArrowLeft' && k > 0) setK(k - 1);

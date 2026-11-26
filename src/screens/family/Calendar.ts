@@ -1,9 +1,10 @@
 import { html } from '@/lib/preact';
 import { I } from '@/ui/icons';
+import type { Ctx } from '@/types';
 
 /* 6. Family calendar: a date tile on the left, the same shape for every row, red only for what is urgent */
-export function Calendar(c) {
-  const items = [
+export function Calendar(c: Ctx) {
+  const items: [string, string, string, string, number, string, number?][] = [
     ['28', 'lis', 'Wypłata 800+', 'Zosia', 4, 'p800'],
     ['6', 'gru', 'OC Toyota Yaris', 'Ty i Tomasz', 12, 'car', 1],
     ['15', 'gru', 'Kardiolog', 'Zosia', 21, 'visit-1'],

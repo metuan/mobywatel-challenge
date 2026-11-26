@@ -2,7 +2,8 @@ import { html } from '@/lib/preact';
 import { TABOF } from '@/app/routes';
 import { TECH } from '@/tech/techData';
 
-export function TechPanel({ route }) {
+/** Explains, step by step, which public systems the current screen relies on. */
+export function TechPanel({ route }: { route: string }) {
   const t = TECH[route] || TECH[TABOF(route)] || TECH.today;
   return html`<div class="tech">
     <div class="eyebrow">Jak to działa na tym ekranie</div>

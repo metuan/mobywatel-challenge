@@ -1,5 +1,6 @@
 import { useEffect, useState } from '@/lib/preact';
 
+/** Live clock for the document card, so a screenshot cannot pass for the real thing. */
 export const useClock = () => {
   const [t, setT] = useState(() => 7);
   useEffect(() => {
@@ -11,7 +12,8 @@ export const useClock = () => {
   return `15:${String(m).padStart(2, '0')}:${String(sec).padStart(2, '0')}`;
 };
 
-export function useTicker(max, ms) {
+/** Counts 0..max, one step every `ms`; used to stage notifications. */
+export function useTicker(max: number, ms: number): [step: number, replay: () => void] {
   const [n, setN] = useState(0);
   useEffect(() => {
     if (n >= max) return;

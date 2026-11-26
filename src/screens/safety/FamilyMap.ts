@@ -1,7 +1,8 @@
 import { html } from '@/lib/preact';
 import { I } from '@/ui/icons';
+import type { Ctx } from '@/types';
 
-export function FamilyMap(c) {
+export function FamilyMap(c: Ctx) {
   return html`<div>
     <span class="pill p-red" style="margin-top:8px">Alert RCB trwa · Kraków</span>
     <h1 class="h-l">Gdzie jest rodzina</h1>

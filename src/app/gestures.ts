@@ -1,17 +1,17 @@
-import { RM } from '@/lib/env';
+import { reducedMotion } from '@/lib/env';
 
 /* Hop 16: swipe from the left edge to go back, like every iOS app */
-export function edgeBack(e, back) {
-  const sc = e.currentTarget,
+export function edgeBack(e: PointerEvent, back: () => void) {
+  const sc = e.currentTarget as HTMLElement,
     r = sc.getBoundingClientRect();
   if (e.button > 0 || e.clientX - r.left > 22) return;
-  const scr = sc.querySelector('.screen');
+  const scr = sc.querySelector<HTMLElement>('.screen');
   if (!scr) return;
   const x0 = e.clientX;
   let dx = 0,
     on = false;
   const W = r.width;
-  const mv = ev => {
+  const mv = (ev: PointerEvent) => {
     const d = ev.clientX - x0;
     if (!on) {
       if (d < 8) return;
@@ -53,8 +53,9 @@ export function edgeBack(e, back) {
 
 const EASE_DRAWER = 'cubic-bezier(.32,.72,0,1)';
 
-export function leave(card, bg, to, ms, done) {
-  if (!card || RM()) {
+/** Animate a sheet or dialog out, then run `done`. */
+export function leave(card: Element | null, bg: Element | null, to: string, ms: number, done: () => void) {
+  if (!card || reducedMotion()) {
     done();
     return;
   }
@@ -70,16 +71,18 @@ export function leave(card, bg, to, ms, done) {
   setTimeout(done, ms - 10);
 }
 
-const rubber = (x, d = 300, c = 0.55) => (x * d * c) / (d + c * Math.abs(x));
+/** Rubber-band resistance when a sheet is dragged past its edge. */
+const rubber = (x: number, d = 300, c = 0.55) => (x * d * c) / (d + c * Math.abs(x));
 
-export function sheetDrag(e, close) {
-  const s = e.currentTarget;
-  if (e.button > 0 || e.target.closest('button,input,a,label,.doc') || s.scrollTop > 0) return;
+/** Drag a sheet down to dismiss it, with velocity projection like iOS. */
+export function sheetDrag(e: PointerEvent, close: () => void) {
+  const s = e.currentTarget as HTMLElement;
+  if (e.button > 0 || (e.target as Element).closest('button,input,a,label,.doc') || s.scrollTop > 0) return;
   const y0 = e.clientY;
   let dy = 0,
     on = false;
-  const hist = [[e.timeStamp, 0]];
-  const mv = ev => {
+  const hist: [number, number][] = [[e.timeStamp, 0]];
+  const mv = (ev: PointerEvent) => {
     const d = ev.clientY - y0;
     if (!on) {
       if (Math.abs(d) < 10) return;

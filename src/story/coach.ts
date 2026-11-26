@@ -1,14 +1,14 @@
 import { BEATS, beatOf } from '@/story/chapters';
 
 /* coach mark: highlight what to tap on the current beat */
-const COACHED = new WeakSet(),
-  USED = new Set();
+const COACHED = new WeakSet<Element>(),
+  USED = new Set<string>();
 
 /* apply once per frame and only on a real change, so the tip never blinks when coach() re-runs */
 let readyWant = false,
   readyRaf = 0;
 
-const setReady = v => {
+const setReady = (v: boolean) => {
   readyWant = v;
   cancelAnimationFrame(readyRaf);
   readyRaf = requestAnimationFrame(() =>
@@ -20,7 +20,8 @@ const setReady = v => {
 
 let tipRaf = 0;
 
-export function coachTip(ph, el) {
+/** Floating "Dotknij tutaj" label that follows the highlighted element. Pass nulls to remove it. */
+export function coachTip(ph: HTMLElement | null, el?: Element | null) {
   cancelAnimationFrame(tipRaf);
   document.querySelectorAll('.coach-tip').forEach(t => t.remove());
   if (!ph || !el) return;
@@ -43,8 +44,8 @@ export function coachTip(ph, el) {
       bot = (r.bottom - pr.top) / sx;
     const below = top < 56;
     tip.classList.toggle('below', below);
-    const sp = tip.firstChild,
-      w = sp.offsetWidth || 110,
+    const sp = tip.firstChild as HTMLElement | null,
+      w = sp?.offsetWidth || 110,
       W = ph.offsetWidth,
       m = 10;
     const cx = Math.min(Math.max(x, w / 2 + m), W - w / 2 - m);
@@ -57,9 +58,10 @@ export function coachTip(ph, el) {
   tick();
 }
 
-let coachTimers = [];
+let coachTimers: ReturnType<typeof setTimeout>[] = [];
 
-export function coach(i, route, retry) {
+/** Highlight what to tap for the current beat; marks "next chapter" ready on the last beat. */
+export function coach(i: number, route: string, retry?: boolean): boolean {
   if (!retry) {
     coachTimers.forEach(clearTimeout);
     coachTimers = [];
@@ -72,23 +74,23 @@ export function coach(i, route, retry) {
     if (b && beatOf(i, route) === BEATS[i].length - 1) setReady(true);
     return false;
   }
-  const ph = document.querySelector('.phone');
+  const ph = document.querySelector<HTMLElement>('.phone');
   if (!ph) return false;
-  const ok = x =>
-    x &&
+  const ok = (x: HTMLElement | null | undefined): x is HTMLElement =>
+    !!x &&
     !x.closest('.mstory,.story,.sheet-bg,.tabbar') &&
     !COACHED.has(x) &&
-    !x.disabled &&
+    !(x as HTMLButtonElement).disabled &&
     x.offsetParent !== null;
-  const find = sel => {
+  const find = (sel: string | undefined): HTMLElement | null | undefined => {
     if (!sel) return null;
     if (sel[0] === '~')
-      return [...ph.querySelectorAll('button,a,[role=button],.link')].find(
-        x => ok(x) && x.textContent.includes(sel.slice(1)),
+      return [...ph.querySelectorAll<HTMLElement>('button,a,[role=button],.link')].find(
+        x => ok(x) && (x.textContent || '').includes(sel.slice(1)),
       );
-    return [...ph.querySelectorAll(sel)].find(ok);
+    return [...ph.querySelectorAll<HTMLElement>(sel)].find(ok);
   };
-  const sheetBtn = [...ph.querySelectorAll('.sheet-bg .actions .btn:not(.soft)')].find(
+  const sheetBtn = [...ph.querySelectorAll<HTMLElement>('.sheet-bg .actions .btn:not(.soft)')].find(
     x => x.offsetParent !== null && !COACHED.has(x),
   );
   if (sheetBtn) {
@@ -105,8 +107,8 @@ export function coach(i, route, retry) {
   if (ph.querySelector('.sheet-bg'))
     return false; /* a sheet is open with nothing to tap: never point behind it */
   const sels = (Array.isArray(b[3]) ? b[3] : [b[3]]).filter(Boolean);
-  let el = null,
-    used = null;
+  let el: HTMLElement | null | undefined = null,
+    used: string | null | undefined = null;
   for (let k = 0; k < sels.length && !el; k++) {
     if (k < sels.length - 1 && USED.has(route + '|' + sels[k])) continue;
     el = find(sels[k]);
@@ -125,12 +127,13 @@ export function coach(i, route, retry) {
     el.scrollIntoView({ block: 'center', behavior: 'smooth' });
   } catch (e) {}
   coachTip(ph, el);
-  const off = ev => {
+  const target = el;
+  const off = (ev: Event) => {
     ph.removeEventListener('pointerdown', off, true);
-    el.classList.remove('coach');
+    target.classList.remove('coach');
     coachTip(null);
-    if (el.contains(ev.target)) {
-      COACHED.add(el);
+    if (target.contains(ev.target as Node | null)) {
+      COACHED.add(target);
       if (used) USED.add(route + '|' + used);
     }
     const still = () =>

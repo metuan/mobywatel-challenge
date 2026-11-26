@@ -1,8 +1,21 @@
 import { html } from '@/lib/preact';
 import { BEATS, CHAPTERS, beatOf } from '@/story/chapters';
 import { I } from '@/ui/icons';
+import type { Persona } from '@/types';
 
-export function StoryPanel({ i, route, go, step, lastBeat = 0 }) {
+export function StoryPanel({
+  i,
+  route,
+  go,
+  step,
+  lastBeat = 0,
+}: {
+  i: number;
+  route: string;
+  go: (r: string, p?: Persona) => void;
+  step: (d: number) => void;
+  lastBeat?: number;
+}) {
   const ch = CHAPTERS[i],
     beats = BEATS[i];
   const here = beatOf(i, route),
@@ -31,7 +44,7 @@ export function StoryPanel({ i, route, go, step, lastBeat = 0 }) {
   </div>`;
 }
 
-export function Progress12({ i, goChap }) {
+export function Progress12({ i, goChap }: { i: number; goChap: (k: number) => void }) {
   return html`<div class="p12"><div class="p12-k"><span>Rozdział ${i + 1} z ${CHAPTERS.length}</span></div>
     <div class="p12-bar">${CHAPTERS.map((ch, j) => html`<button class=${j < i ? 'done' : j === i ? 'now' : ''} onClick=${() => goChap(j)} title=${ch.t} aria-label=${'Rozdział ' + (j + 1) + ': ' + ch.t}><span>${ch.t}</span></button>`)}</div></div>`;
 }

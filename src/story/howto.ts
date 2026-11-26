@@ -1,9 +1,20 @@
 import { html } from '@/lib/preact';
-import { RM, norm } from '@/lib/env';
+import { norm, reducedMotion } from '@/lib/env';
 import { I } from '@/ui/icons';
+import type { Ctx } from '@/types';
 
 /* "Jak to zrobić?": search answers how-to questions in plain steps, then "Pokaż mi" points at the real button */
-export const HOWTO = [
+/** A "Jak to zrobić?" answer: matched by `k`, shown as steps, and able to point at the right button. */
+export interface HowTo {
+  k: RegExp;
+  q: string;
+  r: string;
+  find?: string;
+  sel?: string;
+  s: string[];
+}
+
+export const HOWTO: HowTo[] = [
   {
     k: /wiek(?!sz)|18|pelnolet|alkohol|piwo|dorosl/,
     q: 'Jak pokazać, że mam 18 lat?',
@@ -97,18 +108,18 @@ export const HOWTO = [
   },
 ];
 
-export const howFor = q => {
+export const howFor = (q: string) => {
   const n = norm(q.trim());
   return n.length > 2 ? HOWTO.find(h => h.k.test(n) || norm(h.q).includes(n)) : null;
 };
 
 let guideRaf = 0;
 
-function guideTip(el) {
+function guideTip(el: HTMLElement) {
   cancelAnimationFrame(guideRaf);
   document.querySelectorAll('.guide-tip').forEach(t => t.remove());
   document.querySelectorAll('.guide8').forEach(e => e.classList.remove('guide8'));
-  const ph = document.querySelector('.phone');
+  const ph = document.querySelector<HTMLElement>('.phone');
   if (!ph || !el) return;
   el.classList.add('guide8');
   const tip = document.createElement('div');
@@ -140,7 +151,7 @@ function guideTip(el) {
       bot = (r.bottom - pr.top) / sx;
     const below = top < 56;
     tip.classList.toggle('below', below);
-    const w = tip.firstChild.offsetWidth || 110,
+    const w = (tip.firstChild as HTMLElement | null)?.offsetWidth || 110,
       W = ph.offsetWidth,
       cx = Math.min(Math.max(x, w / 2 + 10), W - w / 2 - 10);
     tip.style.setProperty('--dx', Math.round(cx - x) + 'px');
@@ -151,27 +162,29 @@ function guideTip(el) {
   tick();
 }
 
-export function showMe(c, h) {
+/** Go to the screen for a how-to answer and point at the button it talks about. */
+export function showMe(c: Ctx, h: HowTo) {
   c.go(h.r);
   let n = 0;
   const look = () => {
     const ph = document.querySelector('.phone .scroll');
-    let el = null;
+    let el: HTMLElement | null | undefined = null;
     if (ph)
       el = h.sel
-        ? ph.querySelector(h.sel)
-        : [...ph.querySelectorAll('button, a, [role=button]')].find(b =>
-            b.innerText.replace(/\s+/g, ' ').includes(h.find),
+        ? ph.querySelector<HTMLElement>(h.sel)
+        : [...ph.querySelectorAll<HTMLElement>('button, a, [role=button]')].find(b =>
+            b.innerText.replace(/\s+/g, ' ').includes(h.find || ''),
           );
     if (el) {
-      el.scrollIntoView({ block: 'center', behavior: RM() ? 'auto' : 'smooth' });
-      setTimeout(() => guideTip(el), RM() ? 0 : 380);
+      el.scrollIntoView({ block: 'center', behavior: reducedMotion() ? 'auto' : 'smooth' });
+      const found = el;
+      setTimeout(() => guideTip(found), reducedMotion() ? 0 : 380);
     } else if (n++ < 12) setTimeout(look, 150);
   };
   setTimeout(look, 360);
 }
 
-export function HowCard({ c, h }) {
+export function HowCard({ c, h }: { c: Ctx; h: HowTo }) {
   return html`<div class="how8" key=${h.q}>
     <div class="how8-k">${I('sparkle', 14)}<span>Jak to zrobić</span></div>
     <div class="how8-q">${h.q}</div>

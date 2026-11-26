@@ -2,8 +2,9 @@ import { html } from '@/lib/preact';
 import { payWrap } from '@/screens/money/pay';
 import { Hero } from '@/ui/illustrations';
 import { Row, Sec } from '@/ui/primitives';
+import type { Ctx } from '@/types';
 
-function Car(c) {
+function Car(c: Ctx) {
   return html`<div><${Hero} n="car" bg="sky"/><h1 class="h-l">Toyota Yaris, KR 4F21</h1>
     <div class="list">
       <${Row} icon="shield" t="OC" s="Kończy się 6 grudnia" right=${html`<span class="pill p-red">12 dni</span>`} onClick=${() => c.toast('Pokażemy oferty OC. Wybór i zakup po Twojej stronie.')}/>
@@ -13,7 +14,7 @@ function Car(c) {
     <div class="actions"><button class="btn ghost" onClick=${() => c.go('car-sell')}>Sprzedaję ten samochód</button></div></div>`;
 }
 
-export function CarSell(c) {
+export function CarSell(c: Ctx) {
   return html`<div><p class="stepk">Ważny moment</p><h1 class="h-l">Sprzedaż samochodu</h1>
     <p class="lead">Jedna sprawa w aplikacji zamiast trzech wizyt w urzędach. Kupujący potwierdza w swojej aplikacji.</p>
     <div class="road">${['Wpisz numer PESEL lub NIP kupującego', 'Kupujący potwierdza zakup w swojej aplikacji', 'Zgłaszamy sprzedaż auta w starostwie', 'Przenosimy lub wypowiadamy OC'].map((t, i) => html`<div class="n">${i + 1}</div><div class="b">${t}</div>`)}</div>
@@ -21,7 +22,7 @@ export function CarSell(c) {
 }
 
 /* 6: Mój samochód (rozbudowany) */
-function CarFullBase(c) {
+function CarFullBase(c: Ctx) {
   return html`<div>
     <${Hero} n="car"/>
     <h1 class="h-l">Toyota Yaris</h1>
@@ -57,11 +58,12 @@ function CarFullBase(c) {
   </div>`;
 }
 
-export function CarFull(c) {
+export function CarFull(c: Ctx) {
   return CarFullBase(
     payWrap(
       c,
-      o => /mandat/i.test(o.t) && { amt: '200 zł', t: 'Mandat nr KR 0021934', to: 'Straż Miejska Kraków' },
+      o =>
+        /mandat/i.test(o.t || '') && { amt: '200 zł', t: 'Mandat nr KR 0021934', to: 'Straż Miejska Kraków' },
     ),
   );
 }

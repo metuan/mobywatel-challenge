@@ -1,15 +1,25 @@
 import { html, useEffect } from '@/lib/preact';
 import { coachTip } from '@/story/coach';
 import { I } from '@/ui/icons';
+import type { IconName } from '@/ui/icons';
+import type { Ctx, Sheet, SheetRequest } from '@/types';
 
 /* Hop 18: one payment sheet for every fee and fine */
-const METHODS = [
+const METHODS: [IconName, string, string][] = [
   ['blik', 'BLIK', 'Kod z aplikacji banku'],
   ['card2', 'Karta •• 4471', 'Zapisana w mObywatelu'],
   ['coin', 'Przelew z banku', 'PKO BP, Pekao, mBank i inne'],
 ];
 
-export function PaySheet({ sheet, setSheet, close }) {
+export function PaySheet({
+  sheet,
+  setSheet,
+  close,
+}: {
+  sheet: Sheet;
+  setSheet: (s: Sheet) => void;
+  close: () => void;
+}) {
   return html`<div class="pay8">
     <div class="q">Płatność przez ePłatności</div>
     <div class="pay-amt">${sheet.amt}</div>
@@ -20,7 +30,7 @@ export function PaySheet({ sheet, setSheet, close }) {
   </div>`;
 }
 
-export function PayDone({ sheet, close }) {
+export function PayDone({ sheet, close }: { sheet: Sheet; close: () => void }) {
   useEffect(() => {
     coachTip(null);
     const a = setTimeout(close, 2200);
@@ -34,9 +44,10 @@ export function PayDone({ sheet, close }) {
     <div class="pay-to">${sheet.t}<br/><span>Potwierdzenie jest w Skrzynce</span></div></div>`;
 }
 
-export const payWrap = (c, map) => ({
+/** Turn selected confirmations into payments (a fine becomes an ePłatności sheet). */
+export const payWrap = (c: Ctx, map: (o: SheetRequest) => SheetRequest | false | null | undefined): Ctx => ({
   ...c,
-  confirm: o => {
+  confirm: (o: SheetRequest) => {
     const m = map(o);
     m ? c.pay({ ...m, done: o.done }) : c.confirm(o);
   },

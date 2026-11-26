@@ -1,21 +1,33 @@
 import { html, useEffect, useRef, useState } from '@/lib/preact';
-import { RM, buzz, fire, rmo } from '@/lib/env';
+import { buzz, fire, reducedMotion } from '@/lib/env';
 import { coachTip } from '@/story/coach';
 import { I } from '@/ui/icons';
 
 /* Zbliż telefony: two phones meet top to top, a ripple of light passes, one haptic click */
-export function TapShare({ them, sub, label = 'Zbliż telefony', done, onDone }) {
+export function TapShare({
+  them,
+  sub,
+  label = 'Zbliż telefony',
+  done,
+  onDone,
+}: {
+  them: string;
+  sub?: string;
+  label?: string;
+  done?: boolean;
+  onDone?: () => void;
+}) {
   const [st, setSt] = useState(done ? 2 : 0);
   useEffect(() => {
     if (st !== 1) return;
-    const a = setTimeout(() => buzz(18), rmo() ? 0 : 640);
+    const a = setTimeout(() => buzz(18), reducedMotion() ? 0 : 640);
     const b = setTimeout(
       () => {
         setSt(2);
         fire();
         onDone && onDone();
       },
-      rmo() ? 200 : 1900,
+      reducedMotion() ? 200 : 1900,
     );
     return () => {
       clearTimeout(a);
@@ -34,9 +46,9 @@ export function TapShare({ them, sub, label = 'Zbliż telefony', done, onDone })
 }
 
 /* 1. One confirmation loader for the whole app: a face scan that draws, steps that tick, then a check */
-export function Confirming({ steps }) {
+export function Confirming({ steps }: { steps?: string[] }) {
   const S = steps || ['Potwierdzam, że to Ty', 'Podpisuję', 'Wysyłam'];
-  const [k, setK] = useState(RM() ? S.length : 0);
+  const [k, setK] = useState(reducedMotion() ? S.length : 0);
   useEffect(() => {
     coachTip(null);
     document.querySelectorAll('.coach').forEach(e => e.classList.remove('coach'));
@@ -58,8 +70,8 @@ export const OUT = 'cubic-bezier(.23,1,.32,1)',
   DRAWER = 'cubic-bezier(.32,.72,0,1)';
 
 /* M2: removed rows collapse instead of vanishing, so the list does not jump */
-export function collapseOut(el, done) {
-  if (!el || RM()) {
+export function collapseOut(el: HTMLElement | null, done: () => void) {
+  if (!el || reducedMotion()) {
     done();
     return;
   }
@@ -82,12 +94,13 @@ export function collapseOut(el, done) {
   setTimeout(done, 210);
 }
 
-export function swipeRow(e, onDone) {
-  const el = e.currentTarget,
+/** Swipe a list row left to dismiss it. */
+export function swipeRow(e: PointerEvent, onDone: () => void) {
+  const el = e.currentTarget as HTMLElement,
     x0 = e.clientX;
   let dx = 0,
     on = false;
-  const mv = ev => {
+  const mv = (ev: PointerEvent) => {
     const d = ev.clientX - x0;
     if (!on) {
       if (Math.abs(d) < 8) return;
@@ -97,7 +110,7 @@ export function swipeRow(e, onDone) {
     }
     dx = Math.min(0, d);
     el.style.transform = `translateX(${dx}px)`;
-    el.parentElement.style.setProperty('--sw', Math.min(1, -dx / 120));
+    el.parentElement?.style.setProperty('--sw', String(Math.min(1, -dx / 120)));
   };
   const up = () => {
     el.removeEventListener('pointermove', mv);
@@ -110,7 +123,7 @@ export function swipeRow(e, onDone) {
       setTimeout(() => collapseOut(el.parentElement, onDone), 160);
     } else {
       el.style.transform = '';
-      el.parentElement.style.setProperty('--sw', 0);
+      el.parentElement?.style.setProperty('--sw', '0');
     }
     el.dataset.swiped = '1';
     setTimeout(() => delete el.dataset.swiped, 50);
@@ -121,16 +134,27 @@ export function swipeRow(e, onDone) {
 }
 
 /* M6: hold to confirm a destructive, all-at-once action */
-export function HoldBtn({ label, holdLabel, ms = 1200, onDone, onTap }) {
+export function HoldBtn({
+  label,
+  holdLabel,
+  ms = 1200,
+  onDone,
+  onTap,
+}: {
+  label: string;
+  holdLabel: string;
+  ms?: number;
+  onDone: () => void;
+  onTap: () => void;
+}) {
   const [p, setP] = useState(0);
-  const t = useRef(null),
-    raf = useRef(0),
+  const raf = useRef(0),
     held = useRef(false);
-  const start = e => {
+  const start = (e: PointerEvent) => {
     if (e.button > 0) return;
     held.current = false;
     const t0 = performance.now();
-    const tick = now => {
+    const tick = (now: number) => {
       const k = Math.min(1, (now - t0) / ms);
       setP(k);
       if (k >= 1) {
@@ -148,7 +172,7 @@ export function HoldBtn({ label, holdLabel, ms = 1200, onDone, onTap }) {
     if (!held.current && p > 0) setP(0);
   };
   return html`<button class=${'btn red hold8' + (p > 0 && p < 1 ? ' holding' : '')} style=${`--p:${p}`} onPointerDown=${start} onPointerUp=${stop} onPointerLeave=${stop} onPointerCancel=${stop}
-    onClick=${e => {
+    onClick=${(e: MouseEvent) => {
       if (e.detail === 0) onTap();
       else if (!held.current && p === 0) onTap();
     }}>

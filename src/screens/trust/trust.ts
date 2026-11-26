@@ -3,9 +3,10 @@ import { LOG } from '@/data/household';
 import { I } from '@/ui/icons';
 import { Hero } from '@/ui/illustrations';
 import { Row } from '@/ui/primitives';
+import type { Ctx } from '@/types';
 
-export function AccessLog(c) {
-  const [flag, setFlag] = useState(null);
+export function AccessLog(c: Ctx) {
+  const [flag, setFlag] = useState<number | null>(null);
   return html`<div>
     <${Hero} n="lock" bg="sky"/>
     <h1 class="h-l">Kto sprawdzał moje dane</h1>
@@ -27,7 +28,7 @@ export function AccessLog(c) {
   </div>`;
 }
 
-export function Signin(c) {
+export function Signin(c: Ctx) {
   return html`<div style="text-align:center">
     <div class="face scan" style="margin-top:60px">${I('eye', 40)}</div>
     <h1 class="h-l">Zaloguj się twarzą</h1>
@@ -36,7 +37,7 @@ export function Signin(c) {
     <p class="tiny">Wzorowane na Singpass (Singapur).</p></div>`;
 }
 
-export function Offline(c) {
+export function Offline(c: Ctx) {
   return html`<div>
     <div class="offline" style="margin:8px -20px 0">${I('wifi', 16)} Aktualizacja się nie powiodła. Nie masz internetu, ale najważniejsze rzeczy działają.</div>
     <h1 class="h-l">Twoje dokumenty są bezpieczne.</h1>
@@ -51,7 +52,7 @@ export function Offline(c) {
 }
 
 /* 8: Urządzenia i sesje */
-export function Devices(c) {
+export function Devices(c: Ctx) {
   const [lost, setLost] = useState(c.s.lost || false);
   return html`<div>
     <h1 class="h-l">Urządzenia i sesje</h1>
@@ -83,7 +84,7 @@ export function Devices(c) {
 }
 
 /* 9: Tarcza antyoszustwa */
-export function Scam(c) {
+export function Scam(c: Ctx) {
   const [chk, setChk] = useState(false);
   return html`<div>
     <${Hero} n="lock"/>

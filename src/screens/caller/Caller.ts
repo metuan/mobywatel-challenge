@@ -1,8 +1,9 @@
 import { html, useEffect, useState } from '@/lib/preact';
 import { I } from '@/ui/icons';
+import type { Ctx } from '@/types';
 
 /* Hop 13: "Kto do mnie dzwoni?" checks a caller who claims to be an office */
-export function Caller(c) {
+export function Caller(c: Ctx) {
   const [st, setSt] = useState(0); /* 0 ringing, 1 checked */
   useEffect(() => {
     const a = setTimeout(() => setSt(1), 1500);

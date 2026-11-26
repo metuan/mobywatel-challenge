@@ -71,11 +71,13 @@ const ILLS = {
 };
 
 /* outline pass: draws an ink stroke around every filled shape for the hand-made look */
+export type IllustrationName = keyof typeof ILLS;
+
 export const ILL = (
-  n,
+  n: IllustrationName,
   w = 120,
 ) => html`<svg class="ill" width=${w} height=${w * 0.8} viewBox="0 0 120 96" aria-hidden="true">
   <path d="M14 88h92" stroke="#0B0D12" stroke-width="1.25" stroke-linecap="round" stroke-dasharray="0 0 70 6 3 200"/>
   <g stroke="#0B0D12" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">${ILLS[n]}</g></svg>`;
 
-export const Hero = ({ n }) => html`<div class="spot">${ILL(n, 84)}</div>`;
+export const Hero = ({ n }: { n: IllustrationName }) => html`<div class="spot">${ILL(n, 84)}</div>`;

@@ -2,8 +2,9 @@ import { html, useEffect, useState } from '@/lib/preact';
 import { I } from '@/ui/icons';
 import { Hero } from '@/ui/illustrations';
 import { Progress, Row, Src, Toggle } from '@/ui/primitives';
+import type { Ctx } from '@/types';
 
-export function Baby1(c) {
+export function Baby1(c: Ctx) {
   return html`<div>
     <p class="stepk">Nowe dziecko · krok 1 z 4</p><${Progress} n=${1} of=${4}/>
     <${Hero} n="baby" bg="rose"/>
@@ -19,8 +20,8 @@ export function Baby1(c) {
   </div>`;
 }
 
-export function Baby2(c) {
-  const [on, setOn] = useState({ p800: true, nfz: true, pass: false });
+export function Baby2(c: Ctx) {
+  const [on, setOn] = useState<Record<string, boolean>>({ p800: true, nfz: true, pass: false });
   return html`<div>
     <p class="stepk">Nowe dziecko · krok 2 z 4</p><${Progress} n=${2} of=${4}/>
     <h1 class="h-l">Co załatwić od razu?</h1>
@@ -32,14 +33,14 @@ export function Baby2(c) {
         ['pass', 'Paszport', 'Gdy planujecie podróż'],
       ].map(
         ([k, t, s]) =>
-          html`<div class="row"><span class="tx"><div class="t">${t}</div><div class="s">${s}</div></span><${Toggle} on=${on[k]} label=${t} set=${v => setOn({ ...on, [k]: v })}/></div>`,
+          html`<div class="row"><span class="tx"><div class="t">${t}</div><div class="s">${s}</div></span><${Toggle} on=${on[k]} label=${t} set=${(v: boolean) => setOn({ ...on, [k]: v })}/></div>`,
       )}
     </div>
     <div class="actions"><button class="btn" onClick=${() => c.go('baby-3')}>Pokaż podgląd</button></div>
   </div>`;
 }
 
-export function Baby3(c) {
+export function Baby3(c: Ctx) {
   const [stage, setStage] = useState(0);
   useEffect(() => {
     if (stage === 1) {
@@ -74,7 +75,7 @@ export function Baby3(c) {
   </div>`;
 }
 
-export function BabyDone(c) {
+export function BabyDone(c: Ctx) {
   return html`<div>
     <${Hero} n="baby" bg="mint"/>
     <div class="done-mark" style="margin-top:-34px;margin-left:16px;position:relative;border:4px solid #fff">${I('check', 28)}</div>

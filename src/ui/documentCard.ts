@@ -1,5 +1,6 @@
 import { html, useEffect, useRef, useState } from '@/lib/preact';
 import { useClock } from '@/ui/hooks';
+import type { Ctx } from '@/types';
 
 export function QR() {
   const cells = [];
@@ -25,11 +26,11 @@ const QRCode = ({ size = 132 }) => {
     cells = [];
   let seed = 7;
   const rnd = () => (seed = (seed * 9301 + 49297) % 233280) / 233280;
-  const finder = (x, y) => (x < 7 && y < 7) || (x >= n - 7 && y < 7) || (x < 7 && y >= n - 7);
+  const finder = (x: number, y: number) => (x < 7 && y < 7) || (x >= n - 7 && y < 7) || (x < 7 && y >= n - 7);
   for (let y = 0; y < n; y++)
     for (let x = 0; x < n; x++)
       if (!finder(x, y) && rnd() > 0.52) cells.push(html`<rect x=${x} y=${y} width="1" height="1"/>`);
-  const F = (x, y) =>
+  const F = (x: number, y: number) =>
     html`<g><rect x=${x} y=${y} width="7" height="7" rx="1.6"/><rect x=${x + 1} y=${y + 1} width="5" height="5" rx="1" fill="#fff"/><rect x=${x + 2} y=${y + 2} width="3" height="3" rx=".6"/></g>`;
   return html`<svg width=${size} height=${size} viewBox=${`-1 -1 ${n + 2} ${n + 2}`} fill="#0B0D12" shape-rendering="crispEdges">${cells}${F(0, 0)}${F(n - 7, 0)}${F(0, n - 7)}</svg>`;
 };
@@ -41,18 +42,26 @@ export const ROSETTE = html`<svg class="rosette" viewBox="-100 -100 200 200" ari
 
 const Holo = () => html`<span class="holo" aria-hidden="true"></span>`;
 
-export function DocCard({ c, tone = 'id', interactive = true }) {
+export function DocCard({
+  c,
+  tone = 'id',
+  interactive = true,
+}: {
+  c?: Ctx;
+  tone?: string;
+  interactive?: boolean;
+}) {
   const [flip, setFlip] = useState(false);
   const [left, setLeft] = useState(179);
   const clock = useClock();
-  const ref = useRef(null);
+  const ref = useRef<HTMLButtonElement>(null);
   useEffect(() => {
     if (!flip) return;
     setLeft(179);
     const i = setInterval(() => setLeft(x => Math.max(0, x - 1)), 1000);
     return () => clearInterval(i);
   }, [flip]);
-  const move = e => {
+  const move = (e: PointerEvent) => {
     const el = ref.current;
     if (!el) return;
     const r = el.getBoundingClientRect();

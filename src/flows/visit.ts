@@ -2,8 +2,9 @@ import { html, useState } from '@/lib/preact';
 import { I } from '@/ui/icons';
 import { Hero } from '@/ui/illustrations';
 import { Row, Toggle } from '@/ui/primitives';
+import type { Ctx } from '@/types';
 
-export function Visit1(c) {
+export function Visit1(c: Ctx) {
   return html`<div>
     <p class="stepk">e-Skierowanie · Zosia</p>
     <${Hero} n="doctor" bg="rose"/>
@@ -18,7 +19,7 @@ export function Visit1(c) {
   </div>`;
 }
 
-export function Visit2(c) {
+export function Visit2(c: Ctx) {
   const [pick, setPick] = useState(0);
   const [wait, setWait] = useState(true);
   const slots = [
@@ -42,7 +43,7 @@ export function Visit2(c) {
   </div>`;
 }
 
-export function Visit3(c) {
+export function Visit3(c: Ctx) {
   const s = c.s.visitPick || ['15 grudnia, 10:30', 'Szpital Dziecięcy, Prokocim'];
   return html`<div>
     <p class="stepk">Podgląd</p><h1 class="h-l">Sprawdź rezerwację</h1>
@@ -65,7 +66,7 @@ export function Visit3(c) {
   </div>`;
 }
 
-export function Visit4(c) {
+export function Visit4(c: Ctx) {
   return html`<div>
     <${Hero} n="doctor" bg="mint"/>
     <div class="done-mark" style="margin-top:-34px;margin-left:16px;position:relative;border:4px solid #fff">${I('check', 28)}</div>

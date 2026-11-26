@@ -1,9 +1,10 @@
 import { html } from '@/lib/preact';
 import { Hero } from '@/ui/illustrations';
 import { Row, Sec } from '@/ui/primitives';
+import type { Ctx } from '@/types';
 
 /* 7: Podatki */
-function TaxesBase(c) {
+function TaxesBase(c: Ctx) {
   return html`<div>
     <${Hero} n="coin"/>
     <h1 class="h-l">Podatki</h1>
@@ -30,8 +31,8 @@ function TaxesBase(c) {
   </div>`;
 }
 
-export function Taxes(c) {
-  const c2 = {
+export function Taxes(c: Ctx) {
+  const c2: Ctx = {
     ...c,
     set: p => {
       if (p && p.propPaid && !c.s.propPaid) {
@@ -46,7 +47,7 @@ export function Taxes(c) {
         });
       } else c.set(p);
     },
-    toast: t => (/Opłacono 86/.test(t) ? null : c.toast(t)),
+    toast: t => (typeof t === 'string' && /Opłacono 86/.test(t) ? null : c.toast(t)),
   };
   return TaxesBase(c2);
 }

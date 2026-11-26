@@ -1,14 +1,16 @@
 import { html, useEffect, useState } from '@/lib/preact';
 import { I } from '@/ui/icons';
 import { Ring } from '@/ui/primitives';
+import type { IconName } from '@/ui/icons';
+import type { Ctx } from '@/types';
 
 /* Hop 14: the Dynamic Island carries the case you are waiting for */
-export function Island({ c, route, full }) {
+export function Island({ c, route, full }: { c: Ctx; route: string; full: boolean }) {
   const [open, setOpen] = useState(false);
   useEffect(() => setOpen(false), [route]);
   const s = c.s;
   if (full || s.persona === 'tata') return html`<div class="notch"></div>`;
-  const a = s.visit
+  const a: { t: string; s: string; n: string; v: number; r: string; ic: IconName } = s.visit
     ? {
         t: 'Zosia, kardiolog',
         s: '15 grudnia, 10:30 · Prokocim',

@@ -1,8 +1,9 @@
 import { html } from '@/lib/preact';
 import { I } from '@/ui/icons';
 import { Row, Sec } from '@/ui/primitives';
+import type { Ctx } from '@/types';
 
-export function MemberZosia(c) {
+export function MemberZosia(c: Ctx) {
   return html`<div>
     <div style="display:flex;gap:12px;align-items:center;margin-top:8px"><span class="face-i" style="background:#a8650a;width:52px;height:52px">ZN</span><div><h1 class="h-m">Zofia Nowicka</h1><div class="small">6 lat, PESEL 200307•••••</div></div></div>
     <${Sec} t="Dokumenty"/>
@@ -24,7 +25,7 @@ export function MemberZosia(c) {
   </div>`;
 }
 
-export function MemberTata(c) {
+export function MemberTata(c: Ctx) {
   return html`<div>
     <div style="display:flex;gap:12px;align-items:center;margin-top:8px"><span class="face-i" style="background:#1c7a4c;width:52px;height:52px">SN</span><div><h1 class="h-m">Stanisław Nowicki</h1><div class="small">Tata, 71 lat, Sandomierz</div></div></div>
     <div class="note green" style="margin-top:16px">${I('check', 18)}<span>Tata zatwierdził Twój dostęp 24 listopada 2026, w trybie prostym na swoim telefonie. Może go cofnąć w każdej chwili.</span></div>
@@ -50,7 +51,7 @@ export function MemberTata(c) {
   </div>`;
 }
 
-export function MemberTomasz(c) {
+export function MemberTomasz(c: Ctx) {
   return html`<div>
     <div style="display:flex;gap:12px;align-items:center;margin-top:8px"><span class="face-i" style="background:#3d5a80;width:52px;height:52px">TN</span><div><h1 class="h-m">Tomasz Nowicki</h1><div class="small">Partner</div></div></div>
     <${Sec} t="Wspólne"/>

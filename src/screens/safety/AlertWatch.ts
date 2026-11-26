@@ -1,27 +1,30 @@
 import { html, useEffect, useLayoutEffect, useRef, useState } from '@/lib/preact';
-import { buzz, fire, rmo } from '@/lib/env';
+import { buzz, fire, reducedMotion } from '@/lib/env';
 import { I } from '@/ui/icons';
+import type { Ctx } from '@/types';
+import { takeBox } from '@/lib/morph';
 
-const LEGS = [
+/** Walking directions to the shelter; `taps` is how the watch buzzes before a turn. */
+const LEGS: { a?: number; d?: number; t?: string; taps?: number; side?: 'l' | 'r'; end?: boolean }[] = [
   { a: 0, d: 240, t: 'Prosto ulicą Długą' },
   { a: 90, d: 140, t: 'W prawo w Dekerta', taps: 3, side: 'r' },
   { a: -90, d: 40, t: 'W lewo, do bramy nr 24', taps: 2, side: 'l' },
   { end: true },
 ];
 
-export function AlertWatch(c) {
+export function AlertWatch(c: Ctx) {
   const [k, setK] = useState(0);
   const [dist, setDist] = useState(240);
   const [ping, setPing] = useState(0);
-  const face = useRef(null),
-    root = useRef(null);
+  const face = useRef<HTMLDivElement>(null),
+    root = useRef<HTMLDivElement>(null);
   /* shared-element morph from the red shelter card */
   useLayoutEffect(() => {
     const f = face.current,
-      from = window.__morph;
-    window.__morph = null;
-    if (!f || !from || rmo()) return;
-    const ph = document.querySelector('.phone');
+      from = takeBox('shelter');
+    if (!f || !from || reducedMotion()) return;
+    const ph = document.querySelector<HTMLElement>('.phone');
+    if (!ph) return;
     const pr = ph.getBoundingClientRect();
     const sx = pr.width / ph.offsetWidth || 1;
     const to = f.getBoundingClientRect();
@@ -47,7 +50,10 @@ export function AlertWatch(c) {
       buzz(Array.from({ length: leg.taps * 2 - 1 }, (_, i) => (i % 2 ? 90 : 45)));
     }
     const end = LEGS[k + 1].d || 0;
-    const tick = setInterval(() => setDist(d => Math.max(end, d - 5)), 2300 / Math.max(1, (leg.d - end) / 5));
+    const tick = setInterval(
+      () => setDist(d => Math.max(end, d - 5)),
+      2300 / Math.max(1, ((leg.d || 0) - end) / 5),
+    );
     const nx = setTimeout(
       () => {
         setK(k + 1);
@@ -70,7 +76,7 @@ export function AlertWatch(c) {
   const C = 2 * Math.PI * 104;
   const open = () => {
     const f = face.current;
-    if (!f || rmo()) {
+    if (!f || reducedMotion()) {
       c.go('alert-guide');
       return;
     }

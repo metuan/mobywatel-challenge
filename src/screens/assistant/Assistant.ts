@@ -1,9 +1,21 @@
 import { html, useEffect, useRef, useState } from '@/lib/preact';
-import { RM } from '@/lib/env';
+import { reducedMotion } from '@/lib/env';
 import { I } from '@/ui/icons';
 import { Typed } from '@/ui/primitives';
+import type { Ctx } from '@/types';
 
-const INTENTS = [
+/** A canned assistant answer, picked by matching the question against `k`. */
+interface Answer {
+  k?: RegExp;
+  a: string;
+  src: string[];
+  act?: [label: string, route: string];
+}
+
+type Message =
+  { me: string; ai?: undefined; typing?: undefined } | { me?: undefined; ai: Answer; typing: boolean };
+
+const INTENTS: (Answer & { k: RegExp })[] = [
   {
     k: /(przeprowadz|melduj|zamelduj|adres)/i,
     a: 'Przy przeprowadzce w Krakowie musisz się zameldować w ciągu 30 dni. Mogę od razu przygotować zameldowanie, zmianę lekarza rodzinnego, miejsca głosowania i adresu w dowodzie rejestracyjnym. Nic nie wyślę bez Twojego potwierdzenia.',
@@ -42,14 +54,14 @@ const INTENTS = [
   },
 ];
 
-export function Assistant(c) {
-  const [msgs, setMsgs] = useState([]);
+export function Assistant(c: Ctx) {
+  const [msgs, setMsgs] = useState<Message[]>([]);
   const [q, setQ] = useState('');
   const [busy, setBusy] = useState(false);
-  const endRef = useRef(null);
-  const ask = text => {
+  const endRef = useRef<HTMLDivElement>(null);
+  const ask = (text: string) => {
     const it = INTENTS.find(i => i.k.test(text));
-    const ans = it || {
+    const ans: Answer = it || {
       a: 'Na to pytanie nie mam jeszcze pewnej odpowiedzi. Zobacz informacje na gov.pl albo połącz się z konsultantem.',
       src: ['gov.pl'],
       act: ['Porozmawiaj z konsultantem', 'about'],
@@ -61,10 +73,10 @@ export function Assistant(c) {
         setBusy(false);
         setMsgs(m => [...m, { ai: ans, typing: true }]);
       },
-      RM() ? 0 : 900,
+      reducedMotion() ? 0 : 900,
     );
   };
-  const fin = i => setMsgs(m => m.map((x, j) => (j === i ? { ...x, typing: false } : x)));
+  const fin = (i: number) => setMsgs(m => m.map((x, j) => (j === i && x.ai ? { ...x, typing: false } : x)));
   useEffect(() => {
     if (c.s.q) {
       ask(c.s.q);
@@ -79,19 +91,21 @@ export function Assistant(c) {
     <p class="ai-warn" style="text-align:left;margin:0">Odpowiadam na podstawie stron gov.pl i Twoich danych. Mogę się mylić. Niczego nie wysyłam bez Twojego „Potwierdź”.</p>
     ${msgs.length === 0 && html`<div class="sugs">${['Przeprowadzam się w grudniu', 'Urodziło mi się dziecko', 'Kiedy wygasa dowód taty?', 'Dostałam pismo z urzędu'].map(t => html`<button class="sug" onClick=${() => ask(t)}>${t}</button>`)}</div>`}
     <div class="chat">${msgs.map((m, i) =>
-      m.me
+      m.ai === undefined
         ? html`<div class="msg me">${m.me}</div>`
         : html`<div class="msg ai">${m.typing ? html`<${Typed} text=${m.ai.a} onDone=${() => fin(i)}/>` : m.ai.a}
       ${
         !m.typing &&
         html`<div class="srcs in">${m.ai.src.map(s => html`<span>${s}</span>`)}</div>
-      ${m.ai.act && html`<button class="btn in" style="margin-top:10px;padding:11px" onClick=${() => c.go(m.ai.act[1])}>${m.ai.act[0]}</button>`}`
+      ${m.ai.act && html`<button class="btn in" style="margin-top:10px;padding:11px" onClick=${() => c.go(m.ai.act![1])}>${m.ai.act[0]}</button>`}`
       }</div>`,
     )}
       ${busy && html`<div class="msg ai typing"><span class="tdots"><i></i><i></i><i></i></span><span class="tw">Szukam w gov.pl…</span></div>`}</div>
     <div ref=${endRef}></div>
     <div class="askbar" style="margin-top:6px">
-      <input id="ask2" value=${q} onInput=${e => setQ(e.target.value)} onKeyDown=${e => {
+      <input id="ask2" value=${q} onInput=${(e: Event) => setQ((e.target as HTMLInputElement).value)} onKeyDown=${(
+        e: KeyboardEvent,
+      ) => {
         if (e.key === 'Enter' && q) {
           ask(q);
           setQ('');

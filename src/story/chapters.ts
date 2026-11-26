@@ -1,6 +1,45 @@
+import type { Persona } from '@/types';
 /* ---------- One story: a week in the life of the Nowicki family ----------
    Each chapter is And-But-Therefore: a concrete moment (hook), how it works today (but), how it works in the new app (therefore). */
-const CH = (t, when, hook, today, razem, tr, p, r, x = []) => ({ t, when, hook, today, razem, tr, p, r, x });
+/** One chapter of the guided story, told as And-But-Therefore. */
+export interface Chapter {
+  /** Title. */
+  t: string;
+  /** Life area shown above the title (Dom, Auto, Zdrowie...). */
+  when: string;
+  /** The concrete moment that opens the chapter. */
+  hook: string;
+  /** How this works today. */
+  today: string;
+  /** How it works in the new app. */
+  razem: string;
+  /** What to try on the phone. */
+  tr: string;
+  /** Whose phone we are looking at. */
+  p: Persona;
+  /** Routes that belong to this chapter; the first one opens it. */
+  r: string[];
+  /** "Zobacz też" links: label and route. */
+  x: [string, string][];
+}
+
+/**
+ * A step inside a chapter: the route it happens on, what happens, what to tap, and which element
+ * the coach mark points at (a selector, or `~text` to match a button by its label).
+ */
+export type Beat = [route: string, text: string, action?: string, target?: string | string[]];
+
+const CH = (
+  t: string,
+  when: string,
+  hook: string,
+  today: string,
+  razem: string,
+  tr: string,
+  p: Persona,
+  r: string[],
+  x: [string, string][] = [],
+): Chapter => ({ t, when, hook, today, razem, tr, p, r, x });
 
 export const CHAPTERS = [
   CH(
@@ -194,10 +233,9 @@ export const CHAPTERS = [
   ),
 ];
 
-export const chapterOf = r => CHAPTERS.findIndex(ch => ch.r.includes(r));
+export const chapterOf = (r: string) => CHAPTERS.findIndex(ch => ch.r.includes(r));
 
-/* beats: [route, what happens, what to tap, highlight selector ('~text' matches a button by its text)] */
-export const BEATS = [
+export const BEATS: Beat[][] = [
   [
     [
       'today',
@@ -386,4 +424,4 @@ export const BEATS = [
   ],
 ];
 
-export const beatOf = (i, r) => (BEATS[i] || []).findIndex(b => b[0] === r);
+export const beatOf = (i: number, r: string) => (BEATS[i] || []).findIndex(b => b[0] === r);

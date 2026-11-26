@@ -1,8 +1,9 @@
 import { html, useEffect, useState } from '@/lib/preact';
 import { I } from '@/ui/icons';
+import type { Ctx } from '@/types';
 
 /* 4: Zgoda obojga rodziców */
-export function Consent2(c) {
+export function Consent2(c: Ctx) {
   const [tom, setTom] = useState(c.s.tomOk || false);
   useEffect(() => {
     if (c.s.askedTom && !tom) {
@@ -33,7 +34,7 @@ export function Consent2(c) {
 }
 
 /* 5: Szkoła */
-export function School(c) {
+export function School(c: Ctx) {
   const [tab, setTab] = useState('dziś');
   const [ex, setEx] = useState(c.s.excused || false);
   return html`<div>

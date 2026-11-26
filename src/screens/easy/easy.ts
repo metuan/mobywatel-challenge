@@ -1,8 +1,9 @@
 import { html, useEffect, useState } from '@/lib/preact';
 import { I } from '@/ui/icons';
 import { Av } from '@/ui/primitives';
+import type { Ctx } from '@/types';
 
-export function Easy(c) {
+export function Easy(c: Ctx) {
   return html`<div class="easy">
     <h1 class="h-xl">Dzień dobry, Panie Stanisławie.</h1>
     ${c.s.easyApproved ? '' : html`<button class="note amber" style="width:100%;font-size:17px;padding:16px;margin-bottom:14px" onClick=${() => c.go('easy-approve')}>${I('bell', 22)}<span><b>Anna prosi o dostęp.</b> Dotknij, żeby zdecydować.</span></button>`}
@@ -16,7 +17,7 @@ export function Easy(c) {
   </div>`;
 }
 
-export function EasyApprove(c) {
+export function EasyApprove(c: Ctx) {
   const done = c.s.easyApproved;
   return html`<div class="easy">
     <h1 class="h-l" style="font-size:38px">${done ? 'Zgoda zapisana.' : 'Anna chce Panu pomagać w sprawach urzędowych.'}</h1>
@@ -46,7 +47,7 @@ export function EasyApprove(c) {
   </div>`;
 }
 
-export function EasyDoc(c) {
+export function EasyDoc(c: Ctx) {
   return html`<div class="easy"><h1 class="h-l" style="font-size:38px">Pana dowód</h1>
     <div class="card" style="padding:20px;font-size:20px"><div class="small" style="font-size:16px">Ważny do</div><div style="font-weight:600;font-size:28px">26 stycznia 2027</div>
     <div class="note amber" style="margin-top:12px;font-size:16px">Za 63 dni. Anna pomoże złożyć wniosek o nowy.</div></div>
@@ -54,7 +55,7 @@ export function EasyDoc(c) {
 }
 
 /* Hop 5: a real call screen */
-export function EasyCall(c) {
+export function EasyCall(c: Ctx) {
   const who = c.s.persona === 'tata' ? 'Anna' : 'Tata';
   const [t, setT] = useState(-1);
   const [mute, setMute] = useState(false);
@@ -88,7 +89,7 @@ export function EasyCall(c) {
 }
 
 /* Hop 6: voice with a live waveform and words appearing as they are heard */
-export function EasyVoice(c) {
+export function EasyVoice(c: Ctx) {
   const Q = 'Kiedy kończy mi się dowód?'.split(' ');
   const [n, setN] = useState(0);
   const [done, setDone] = useState(false);
@@ -112,9 +113,9 @@ export function EasyVoice(c) {
 }
 
 /* Hop 7: prescriptions as pharmacy-ready codes */
-export function EasyRx(c) {
-  const [open, setOpen] = useState(null);
-  const RX = [
+export function EasyRx(c: Ctx) {
+  const [open, setOpen] = useState<number | null>(null);
+  const RX: [string, string, string, number][] = [
     ['Bisoprolol 5 mg', '7731', 'Na serce, 1 rano', 18],
     ['Atorwastatyna 20 mg', '2290', 'Na cholesterol, 1 wieczorem', 26],
   ];

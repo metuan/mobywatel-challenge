@@ -2,9 +2,10 @@ import { html, useState } from '@/lib/preact';
 import { I } from '@/ui/icons';
 import { Hero } from '@/ui/illustrations';
 import { Progress, Src } from '@/ui/primitives';
+import type { Ctx } from '@/types';
 
 /* 2: Zgłaszanie szkód */
-export function Damage1(c) {
+export function Damage1(c: Ctx) {
   const [n, setN] = useState(c.s.dmgPhotos || 0);
   return html`<div>
     <p class="stepk">Zgłoszenie szkód · krok 1 z 3</p><${Progress} n=${1} of=${3}/>
@@ -24,7 +25,7 @@ export function Damage1(c) {
   </div>`;
 }
 
-export function Damage2(c) {
+export function Damage2(c: Ctx) {
   const [k, setK] = useState('dom');
   return html`<div>
     <p class="stepk">Zgłoszenie szkód · krok 2 z 3</p><${Progress} n=${2} of=${3}/>
@@ -44,7 +45,7 @@ export function Damage2(c) {
   </div>`;
 }
 
-export function Damage3(c) {
+export function Damage3(c: Ctx) {
   return html`<div>
     <${Hero} n="shelter"/>
     <h1 class="h-l">Zgłoszenie przyjęte</h1>

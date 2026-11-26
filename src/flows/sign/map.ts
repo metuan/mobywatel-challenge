@@ -28,7 +28,7 @@ const PL = [
   [14.2, 53.3],
 ].map(([lo, la]) => [(lo - 14) * 28.5 + 8, (54.9 - la) * 46 + 6]);
 
-const inPL = (x, y) => {
+const inPL = (x: number, y: number) => {
   let o = false;
   for (let i = 0, j = PL.length - 1; i < PL.length; j = i++) {
     const [xi, yi] = PL[i],
@@ -109,7 +109,7 @@ const PL2 = [
   [14.25, 53.7],
 ].map(([lo, la]) => [(lo - 14) * 28.5 + 6, (54.95 - la) * 46 + 6]);
 
-const inPL2 = (x, y) => {
+const inPL2 = (x: number, y: number) => {
   let o = false;
   for (let i = 0, j = PL2.length - 1; i < PL2.length; j = i++) {
     const [xi, yi] = PL2[i],
@@ -119,7 +119,7 @@ const inPL2 = (x, y) => {
   return o;
 };
 
-const proj = (lo, la) => [(lo - 14) * 28.5 + 6, (54.95 - la) * 46 + 6];
+const proj = (lo: number, la: number) => [(lo - 14) * 28.5 + 6, (54.95 - la) * 46 + 6];
 
 const CITIES = [
   [21.01, 52.23, 1],

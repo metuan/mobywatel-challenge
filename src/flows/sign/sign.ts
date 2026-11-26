@@ -1,9 +1,10 @@
 import { html, useEffect, useState } from '@/lib/preact';
 import { GRID, KRK2 } from '@/flows/sign/map';
-import { buzz, fire, fmt, rmo } from '@/lib/env';
+import { buzz, fire, fmt, reducedMotion } from '@/lib/env';
 import { TapShare } from '@/ui/controls';
 import { I } from '@/ui/icons';
 import { Av, Label, Lead, Num } from '@/ui/primitives';
+import type { Ctx } from '@/types';
 
 const BILL = {
   t: 'Czyste powietrze przy szkołach',
@@ -14,7 +15,7 @@ const BILL = {
   left: 23,
 };
 
-export function Sign1(c) {
+export function Sign1(c: Ctx) {
   return html`<div>
     <p class="stepk">Rynek Główny · sobota, 11:20</p>
     <h1 class="h-l">Podpis bez kartki i długopisu</h1>
@@ -29,7 +30,7 @@ export function Sign1(c) {
   </div>`;
 }
 
-export function Sign2(c) {
+export function Sign2(c: Ctx) {
   return html`<div>
     <p class="stepk">Głos · sprawdź, zanim podpiszesz</p>
     <h1 class="h-l">${BILL.t}</h1>
@@ -58,7 +59,7 @@ export function Sign2(c) {
   </div>`;
 }
 
-export function SignList(c) {
+export function SignList(c: Ctx) {
   return html`<div>
     <h1 class="h-l">Moje podpisy</h1>
     <p class="lead">Wszystko, co poparłaś: projekty ustaw, petycje i kandydaci.</p>
@@ -73,7 +74,7 @@ export function SignList(c) {
   </div>`;
 }
 
-export function EasySign(c) {
+export function EasySign(c: Ctx) {
   const [rep, setRep] = useState(false);
   return html`<div class="easy">
     <div class="es-ic">${I('shield', 34)}</div>
@@ -93,7 +94,7 @@ export function EasySign(c) {
   </div>`;
 }
 
-export function Sign3(c) {
+export function Sign3(c: Ctx) {
   const [n, setN] = useState(BILL.n);
   useEffect(() => {
     const t = setTimeout(
@@ -101,7 +102,7 @@ export function Sign3(c) {
         setN(BILL.n + 1);
         buzz(10);
       },
-      rmo() ? 0 : 1100,
+      reducedMotion() ? 0 : 1100,
     );
     return () => clearTimeout(t);
   }, []);

@@ -1,8 +1,20 @@
-const LOGIN = ['Logowanie', 'mObywatel z Węzłem Krajowym (login.gov.pl), biometria telefonu', 'j'];
+/**
+ * "Jak to działa" explainer for each screen: which public systems a step relies on.
+ * Kind: `j` exists today, `n` needs to be built, `a` uses a language model.
+ */
+export type TechKind = 'j' | 'n' | 'a';
+export type TechStep = [system: string, what: string, kind: TechKind];
+export type TechEntry = [title: string, steps: TechStep[]];
 
-const SIGN = ['Podpis', 'Potwierdzenie twarzą lub PIN-em, podpis profilem zaufanym w mObywatelu', 'j'];
+const LOGIN: TechStep = ['Logowanie', 'mObywatel z Węzłem Krajowym (login.gov.pl), biometria telefonu', 'j'];
 
-export const TECH = {
+const SIGN: TechStep = [
+  'Podpis',
+  'Potwierdzenie twarzą lub PIN-em, podpis profilem zaufanym w mObywatelu',
+  'j',
+];
+
+export const TECH: Record<string, TechEntry> = {
   'sign-1': [
     'Głos: zbliż telefony',
     [
@@ -630,5 +642,3 @@ export const TECH = {
   ],
   about: ['O koncepcji', [['Zasada', 'Asystent przygotowuje, człowiek decyduje', 'n']]],
 };
-
-const TAGS = { j: ['tag-j', 'Istnieje dziś'], n: ['tag-n', 'Do zbudowania'], a: ['tag-a', 'AI'] };

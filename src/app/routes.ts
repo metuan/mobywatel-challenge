@@ -1,4 +1,6 @@
 import { html } from '@/lib/preact';
+import type { Ctx, Screen } from '@/types';
+import type { IconName } from '@/ui/icons';
 import { Baby1, Baby2, Baby3, BabyDone } from '@/flows/baby';
 import { Damage1, Damage2, Damage3 } from '@/flows/damage';
 import { Letter1, Letter2, Letter3 } from '@/flows/letter';
@@ -35,7 +37,8 @@ import { Today } from '@/screens/today/Today';
 import { Consents } from '@/screens/trust/Consents';
 import { AccessLog, Devices, Offline, Scam, Signin } from '@/screens/trust/trust';
 
-export const TABS = [
+/** Bottom tab bar: route, label, icon. */
+export const TABS: [Route, string, IconName][] = [
   ['today', 'Dziś', 'home'],
   ['matters', 'Sprawy', 'folder'],
   ['family', 'Bliscy', 'people'],
@@ -43,6 +46,7 @@ export const TABS = [
   ['docs', 'Dokumenty', 'card'],
 ];
 
+/** Every screen in the prototype, keyed by its hash route (`#move-1`, `#alert-red`, ...). */
 export const R = {
   today: Today,
   matters: Matters,
@@ -126,11 +130,19 @@ export const R = {
   'easy-rx': EasyRx,
   'easy-call': EasyCall,
   'easy-voice': EasyVoice,
-};
+} satisfies Record<string, Screen>;
 
-export const Wrap = ({ f, c, d }) => html`<div class=${'screen ' + (d || '')}>${f(c)}</div>`;
+export type Route = keyof typeof R;
 
-export const FULL = new Set([
+export const isRoute = (r: string): r is Route => Object.prototype.hasOwnProperty.call(R, r);
+
+export const screenFor = (r: Route): Screen => R[r];
+
+export const Wrap = ({ f, c, d }: { f: Screen; c: Ctx; d?: string }) =>
+  html`<div class=${'screen ' + (d || '')}>${f(c)}</div>`;
+
+/** Screens that take over the whole phone (no top bar, no tab bar). */
+export const FULL = new Set<string>([
   'alert-red',
   'alert-clear',
   'lock',
@@ -140,7 +152,8 @@ export const FULL = new Set([
   'caller',
 ]);
 
-export const TABOF = r =>
+/** Which tab is highlighted while a deeper screen is open. */
+export const TABOF = (r: string): string =>
   TABS.some(t => t[0] === r)
     ? r
     : r.startsWith('move') ||

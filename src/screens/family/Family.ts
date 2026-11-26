@@ -1,8 +1,9 @@
 import { html } from '@/lib/preact';
 import { I } from '@/ui/icons';
 import { Av, AvStack, GRow, Label, Lead } from '@/ui/primitives';
+import type { Ctx } from '@/types';
 
-export function Family(c) {
+export function Family(c: Ctx) {
   const fam = [
     ['A', 'Anna', 'Ty', 'Dowód do 2031', '', 'profile', 'ok'],
     ['Z', 'Zosia', 'Córka, 6 lat', 'Paszport · 41 dni', 'red', 'member-zosia', ''],
@@ -30,7 +31,15 @@ export function Family(c) {
   </div>`;
 }
 
-export function Fam({ who, st, tone }) {
+export function Fam({
+  who,
+  st,
+  tone,
+}: {
+  who: 'anna' | 'zosia' | 'tomasz' | 'tata';
+  st: string;
+  tone: string;
+}) {
   const p = {
     anna: ['AN', '#22408f', 'Ty'],
     zosia: ['ZN', '#b0533f', 'Zosia'],

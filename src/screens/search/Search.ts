@@ -3,9 +3,12 @@ import { norm } from '@/lib/env';
 import { HOWTO, HowCard, howFor, showMe } from '@/story/howto';
 import { I, P } from '@/ui/icons';
 import { Label } from '@/ui/primitives';
+import type { Ctx } from '@/types';
+import type { IconName } from '@/ui/icons';
 
 /* Hop 12: search that answers while you type */
-const IDX = [
+/** Search index: title, subtitle, route, icon. */
+const IDX: [string, string, string, string][] = [
   ['Przeprowadzka', 'Zameldowanie, lekarz, wybory, auto', 'move-1', 'move'],
   ['Nowe dziecko', 'Akt, PESEL, 800+, NFZ', 'baby-1', 'baby'],
   ['Dowód osobisty', 'Mój dowód i kod QR', 'doc-id', 'card'],
@@ -31,9 +34,19 @@ const IDX = [
   ['Kalendarz rodziny', 'Wszystkie terminy', 'calendar', 'list'],
 ];
 
-export function Search({ c, ph = 'Szukaj albo zapytaj, jak coś zrobić', auto, init = '' }) {
+export function Search({
+  c,
+  ph = 'Szukaj albo zapytaj, jak coś zrobić',
+  auto,
+  init = '',
+}: {
+  c: Ctx;
+  ph?: string;
+  auto?: boolean;
+  init?: string;
+}) {
   const [q, setQ] = useState(init);
-  const ref = useRef(null);
+  const ref = useRef<HTMLInputElement>(null);
   useEffect(() => {
     if (!auto) return;
     const a = setTimeout(() => ref.current && ref.current.focus(), 250);
@@ -46,17 +59,17 @@ export function Search({ c, ph = 'Szukaj albo zapytaj, jak coś zrobić', auto, 
   const enter = () =>
     how ? showMe(c, how) : hits[0] ? c.go(hits[0][2]) : c.ask(q || 'Jak zameldować się w nowym mieszkaniu?');
   return html`<div class="srch8"><div class="search"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="6.5"/><path d="m16 16 4.5 4.5"/></svg>
-    <input ref=${ref} value=${q} onInput=${e => setQ(e.target.value)} onKeyDown=${e => e.key === 'Enter' && enter()} placeholder=${ph} aria-label=${ph}/>
+    <input ref=${ref} value=${q} onInput=${(e: Event) => setQ((e.target as HTMLInputElement).value)} onKeyDown=${(e: KeyboardEvent) => e.key === 'Enter' && enter()} placeholder=${ph} aria-label=${ph}/>
     ${q ? html`<button aria-label="Wyczyść" onClick=${() => setQ('')}>${I('x', 16)}</button>` : html`<button aria-label="Mów" onClick=${() => c.ask('Kiedy kończy się ważność mojego dowodu?')}>${I('mic', 18)}</button>`}</div>
     ${how && html`<${HowCard} c=${c} h=${how}/>`}
     ${
       q.trim() &&
-      html`<div class="hits">${hits.map(([t, s, r, ic]) => html`<button class="hit" onClick=${() => c.go(r)}><span class="lead-i">${I(P[ic] ? ic : 'doc', 18)}</span><span class="gtx"><span class="gt">${t}</span><span class="gs">${s}</span></span></button>`)}
+      html`<div class="hits">${hits.map(([t, s, r, ic]) => html`<button class="hit" onClick=${() => c.go(r)}><span class="lead-i">${I((ic in P ? ic : 'doc') as IconName, 18)}</span><span class="gtx"><span class="gt">${t}</span><span class="gs">${s}</span></span></button>`)}
       <button class="hit ask" onClick=${() => c.ask(q)}><span class="lead-i ai">${I('sparkle', 18)}</span><span class="gtx"><span class="gt">Zapytaj asystenta: „${q}”</span><span class="gs">Odpowiedź z gov.pl, ze źródłami</span></span></button></div>`
     }</div>`;
 }
 
-export function SearchScreen(c) {
+export function SearchScreen(c: Ctx) {
   const [pick, setPick] = useState('');
   return html`<div><h1 class="h-l">Szukaj</h1><${Search} key=${pick} init=${pick} c=${c} auto=${!pick}/>
     ${

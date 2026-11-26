@@ -1,14 +1,15 @@
 import { html, useEffect, useState } from '@/lib/preact';
-import { rmo } from '@/lib/env';
+import { reducedMotion } from '@/lib/env';
 import { TapShare } from '@/ui/controls';
 import { I } from '@/ui/icons';
 import { Label } from '@/ui/primitives';
+import type { Ctx } from '@/types';
 
-export function EuWallet(c) {
+export function EuWallet(c: Ctx) {
   const [side, setSide] = useState(0);
   const [sent, setSent] = useState(false);
   useEffect(() => {
-    const t = setTimeout(() => setSide(1), rmo() ? 0 : 700);
+    const t = setTimeout(() => setSide(1), reducedMotion() ? 0 : 700);
     return () => clearTimeout(t);
   }, []);
   const stars = Array.from({ length: 12 }, (_, i) => {

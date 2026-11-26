@@ -3,6 +3,7 @@ import { Fam } from '@/screens/family/Family';
 import { useTicker } from '@/ui/hooks';
 import { I } from '@/ui/icons';
 import { AppIcon } from '@/ui/primitives';
+import type { Ctx } from '@/types';
 
 const NOTES = [
   {
@@ -53,7 +54,7 @@ const NOTES = [
   },
 ];
 
-export function Lock(c) {
+export function Lock(c: Ctx) {
   const [n, replay] = useTicker(6, 1700);
   const shown = NOTES.filter(x => x.at <= n).reverse();
   const live = n >= 3;

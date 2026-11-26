@@ -1,8 +1,9 @@
 import { html, useEffect, useRef, useState } from '@/lib/preact';
 import { edgeBack, leave, sheetDrag } from '@/app/gestures';
 import { Island } from '@/app/Island';
-import { FULL, R, TABOF, TABS, Wrap } from '@/app/routes';
-import { RM } from '@/lib/env';
+import { FULL, TABOF, TABS, Wrap, isRoute, screenFor } from '@/app/routes';
+import type { Route } from '@/app/routes';
+import { reducedMotion } from '@/lib/env';
 import { PayDone, PaySheet } from '@/screens/money/pay';
 import { BEATS, CHAPTERS, beatOf, chapterOf } from '@/story/chapters';
 import { coach } from '@/story/coach';
@@ -12,6 +13,7 @@ import { TechPanel } from '@/tech/TechPanel';
 import { Confirming } from '@/ui/controls';
 import { I } from '@/ui/icons';
 import { Wm } from '@/ui/primitives';
+import type { AppState, Ctx, Persona, Sheet, SheetRequest, ToastInput } from '@/types';
 
 const DEMO = [
   ['Ekran Dziś', 'today', 'T1 T5', 'anna'],
@@ -26,21 +28,21 @@ const DEMO = [
   ['Tryb prosty: tata', 'easy', 'T4', 'tata'],
 ];
 
-const startPersona = r =>
+const startPersona = (r: string): Persona =>
   r === 'easy' || r === 'easy-doc' || r === 'easy-rx' || r === 'easy-voice' ? 'tata' : 'anna';
 
 const hashRoute = () => {
   const h = (location.hash || '').slice(1);
-  return R[h] ? h : null;
+  return isRoute(h) ? h : null;
 };
 
 export function App() {
-  const [route, setRoute] = useState(hashRoute() || 'today');
-  const [hist, setHist] = useState([]);
+  const [route, setRoute] = useState<Route>(hashRoute() || 'today');
+  const [hist, setHist] = useState<Route[]>([]);
   const [dir, setDir] = useState('tab');
-  const [s, setS] = useState({ persona: startPersona(hashRoute() || 'today'), inboxNew: 2 });
-  const [sheet, setSheet] = useState(null);
-  const closeSheet = cb =>
+  const [s, setS] = useState<AppState>({ persona: startPersona(hashRoute() || 'today'), inboxNew: 2 });
+  const [sheet, setSheet] = useState<Sheet | null>(null);
+  const closeSheet = (cb?: unknown) =>
     leave(
       document.querySelector('.phone .sheet'),
       document.querySelector('.phone .sheet-bg'),
@@ -51,11 +53,11 @@ export function App() {
         typeof cb === 'function' && cb();
       },
     );
-  const [toast, setToast] = useState(null);
-  const scrollRef = useRef(null);
+  const [toast, setToast] = useState<ToastInput | null>(null);
+  const scrollRef = useRef<HTMLDivElement>(null);
 
-  const go = (r, persona) => {
-    if (!R[r]) return;
+  const go = (r: string, persona?: Persona) => {
+    if (!isRoute(r)) return;
     if (persona) setS(x => ({ ...x, persona, easy: persona === 'tata' }));
     setDir(kbd.current ? 'kbd' : TABS.some(t => t[0] === r) ? 'tab' : '');
     kbd.current = false;
@@ -76,16 +78,16 @@ export function App() {
       return h.slice(0, -1);
     });
   };
-  const set = patch => setS(x => ({ ...x, ...patch }));
-  const toastT = useRef([]);
-  const showToast = t => {
+  const set = (patch: Partial<AppState>) => setS(x => ({ ...x, ...patch }));
+  const toastT = useRef<ReturnType<typeof setTimeout>[]>([]);
+  const showToast = (t: ToastInput) => {
     toastT.current.forEach(clearTimeout);
     setToast(t);
     toastT.current = [
       setTimeout(() => {
         const el = document.querySelector('.phone .toast');
         el &&
-          !RM() &&
+          !reducedMotion() &&
           el.animate(
             [
               { opacity: 1, transform: 'none' },
@@ -98,18 +100,18 @@ export function App() {
     ];
   };
   const kbd = useRef(false);
-  const c = {
+  const c: Ctx = {
     s,
     go,
     back,
     set,
     toast: showToast,
-    ask: q => {
+    ask: (q: string) => {
       set({ q });
       go('assistant');
     },
-    confirm: o => setSheet({ ...o, stage: 0 }),
-    pay: o => setSheet({ ...o, pay: true, m: 0, stage: 0 }),
+    confirm: (o: SheetRequest) => setSheet({ ...o, stage: 0 }),
+    pay: (o: SheetRequest) => setSheet({ ...o, pay: true, m: 0, stage: 0 }),
   };
 
   useEffect(() => {
@@ -138,13 +140,13 @@ export function App() {
           const d = sheet.done;
           closeSheet(d);
         },
-        RM() ? 600 : 1700,
+        reducedMotion() ? 600 : 1700,
       );
       return () => clearTimeout(t);
     }
   }, [sheet]);
 
-  const Screen = R[route];
+  const Screen = screenFor(route);
   const isTab = TABS.some(t => t[0] === route) || route === 'easy';
   const tata = s.persona === 'tata';
   const curTab = TABOF(route);
@@ -156,13 +158,13 @@ export function App() {
   useEffect(() => {
     const t = setTimeout(() => {
       const h = document.querySelector('.phone .scroll h1');
-      const x = h ? h.textContent.trim() : '';
+      const x = h ? (h.textContent || '').trim() : '';
       setTtl(x.length > 26 ? x.slice(0, 24).replace(/\s+\S*$/, '') + '…' : x);
     }, 60);
     return () => clearTimeout(t);
   }, [route]);
-  const [tour, setTour] = useState(location.hash ? null : 'intro');
-  const closeTour = cb =>
+  const [tour, setTour] = useState<'intro' | 'outro' | null>(location.hash ? null : 'intro');
+  const closeTour = (cb?: () => void) =>
     leave(
       document.querySelector('.tour'),
       document.querySelector('.tour-bg'),
@@ -209,13 +211,13 @@ export function App() {
   }, [sheet]);
   /* M1: the sheet glides to its new height when its content changes (confirm -> loader -> receipt) */
   useEffect(() => {
-    const sh = document.querySelector('.phone .sheet');
+    const sh = document.querySelector<HTMLElement>('.phone .sheet');
     if (!sh || !window.ResizeObserver) return;
     let h = sh.offsetHeight,
       busy = false;
     const ro = new ResizeObserver(() => {
       const nh = sh.offsetHeight;
-      if (Math.abs(nh - h) < 4 || busy || RM()) {
+      if (Math.abs(nh - h) < 4 || busy || reducedMotion()) {
         h = nh;
         return;
       }
@@ -250,7 +252,7 @@ export function App() {
     else if (lbChap.current !== chap) setLastBeat(0);
     lbChap.current = chap;
   }, [route, chap]);
-  const goChap = k => {
+  const goChap = (k: number) => {
     const ch = CHAPTERS[k];
     try {
       history.pushState({ chap: k }, '', '#' + ch.r[0]);
@@ -267,7 +269,7 @@ export function App() {
       sc && (sc.scrollTop = 0);
     }, 0);
   };
-  const step = d => {
+  const step = (d: number) => {
     if (chap + d >= CHAPTERS.length) {
       setPlay(false);
       setTour('outro');
@@ -281,13 +283,13 @@ export function App() {
     return () => clearTimeout(t);
   }, [play, chap]);
   useEffect(() => {
-    const f = e => {
+    const f = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
         closeSheet();
         setMenu(false);
         return;
       }
-      if (e.target.tagName === 'INPUT') return;
+      if ((e.target as HTMLElement).tagName === 'INPUT') return;
       if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
         e.preventDefault();
         kbd.current = true;
@@ -309,7 +311,7 @@ export function App() {
     c.ask(q);
   };
   const showDock = !tata && !FULL.has(route) && route !== 'assistant';
-  const MENU = [
+  const MENU: [Route, string][] = [
     ['today', 'Dziś'],
     ['matters', 'Sprawy'],
     ['family', 'Bliscy'],
@@ -319,6 +321,8 @@ export function App() {
     ['roadmap', 'Co dalej'],
     ['about', 'O koncepcji'],
   ];
+
+  const toastView = toast === null ? null : typeof toast === 'string' ? { t: toast, undo: undefined } : toast;
 
   const phone = html`<div class="phone" role="application" aria-label="Prototyp aplikacji">
     <${Island} c=${c} route=${route} full=${FULL.has(route)}/>
@@ -345,9 +349,12 @@ export function App() {
               : html`<button class="avatar-btn" aria-label="Profil i ustawienia" onClick=${() => go('profile')}>AN</button>`
           }</div>
         </div>
-        <div class="scroll" ref=${scrollRef} style=${s.fs && s.fs !== 1 ? `--fs:${s.fs}` : ''} onPointerDown=${e => !isTab && edgeBack(e, back)} onScroll=${e => {
-          const st = e.currentTarget.scrollTop;
-          e.currentTarget.parentElement.classList.toggle('scrolled', st > 4);
+        <div class="scroll" ref=${scrollRef} style=${s.fs && s.fs !== 1 ? `--fs:${s.fs}` : ''} onPointerDown=${(e: PointerEvent) => !isTab && edgeBack(e, back)} onScroll=${(
+          e: Event,
+        ) => {
+          const el = e.currentTarget as HTMLElement;
+          const st = el.scrollTop;
+          el.parentElement?.classList.toggle('scrolled', st > 4);
           const v = st > 48;
           if (v !== compact) setCompact(v);
         }}><${Wrap} key=${route} f=${Screen} c=${c} d=${dir}/></div>
@@ -385,7 +392,7 @@ export function App() {
         }
       ${
         menu &&
-        html`<div class="menu-bg" onClick=${e => e.target === e.currentTarget && setMenu(false)}>
+        html`<div class="menu-bg" onClick=${(e: MouseEvent) => e.target === e.currentTarget && setMenu(false)}>
         <div class="menu" role="dialog" aria-label="Menu">
           <button class="x" aria-label="Zamknij" onClick=${() => setMenu(false)}>${I('x', 16)}</button>
           <nav>${MENU.map(
@@ -400,38 +407,41 @@ export function App() {
         </div></div>`
       }
       ${
-        toast &&
-        html`<div class=${'toast' + (toast.undo ? ' has-undo' : '')} role="status">${toast.t || toast}${
-          toast.undo &&
+        toastView &&
+        html`<div class=${'toast' + (toastView.undo ? ' has-undo' : '')} role="status">${toastView.t}${
+          toastView.undo &&
           html`<button class="t-undo" onClick=${() => {
-            toast.undo();
+            toastView.undo?.();
             setToast(null);
           }}>${I('undo', 15)} Cofnij</button>`
         }</div>`
       }
       ${
         sheet &&
-        html`<div class="sheet-bg" onClick=${e => e.target === e.currentTarget && (sheet.tech || sheet.stage === 0) && closeSheet()}>
-        <div class="sheet" onPointerDown=${e => sheetDrag(e, closeSheet)} role="dialog" aria-label=${sheet.t || 'Jak to działa'}>
+        html`<div class="sheet-bg" onClick=${(e: MouseEvent) => e.target === e.currentTarget && (sheet.tech || sheet.stage === 0) && closeSheet()}>
+        <div class="sheet" onPointerDown=${(e: PointerEvent) => sheetDrag(e, closeSheet)} role="dialog" aria-label=${sheet.t || 'Jak to działa'}>
           ${
             sheet.pay && sheet.stage === 0
               ? html`<${PaySheet} sheet=${sheet} setSheet=${setSheet} close=${() => closeSheet()}/>`
               : sheet.pay && sheet.stage === 2
                 ? html`<${PayDone} sheet=${sheet} close=${() => closeSheet(sheet.done)}/>`
                 : sheet.tech
-                  ? html`<div><${StoryPanel} i=${chap} route=${route} lastBeat=${lastBeat} go=${(r, p) => {
+                  ? html`<div><${StoryPanel} i=${chap} route=${route} lastBeat=${lastBeat} go=${(
+                      r: string,
+                      p?: Persona,
+                    ) => {
                       closeSheet(() => {
                         setHist([]);
                         go(r, p);
                       });
-                    }} step=${d => {
+                    }} step=${(d: number) => {
                       closeSheet(() => step(d));
                     }}/><${TechPanel} route=${route}/><div class="actions"><button class="btn soft" onClick=${() => closeSheet()}>Zamknij</button></div></div>`
                   : sheet.stage === 0
                     ? html`<div>
             <div class="q">Czy te dane są poprawne?</div>
             <h2 class="h-m" style=${sheet.big ? 'font-size:30px;margin-bottom:12px' : 'margin-bottom:12px'}>${sheet.t}</h2>
-            <div class="fields">${sheet.items.map(i => html`<div class="field" style=${sheet.big ? 'font-size:18px' : ''}><div class="v" style="display:flex;gap:10px;align-items:flex-start"><span style="color:var(--blue);margin-top:2px">${I('check', 16)}</span><span>${i}</span></div></div>`)}</div>
+            <div class="fields">${(sheet.items || []).map(i => html`<div class="field" style=${sheet.big ? 'font-size:18px' : ''}><div class="v" style="display:flex;gap:10px;align-items:flex-start"><span style="color:var(--blue);margin-top:2px">${I('check', 16)}</span><span>${i}</span></div></div>`)}</div>
             <p class="tiny" style="margin-top:12px">Potwierdzasz twarzą lub kodem PIN. To jest Twój podpis. Nic nie zostanie wysłane wcześniej.</p>
             <div class="actions row2"><button class=${'btn soft' + (sheet.big ? ' bigbtn' : '')} onClick=${() => closeSheet()}>Nie, popraw</button><button class=${'btn' + (sheet.big ? ' bigbtn' : '')} onClick=${() => setSheet({ ...sheet, stage: 1 })}>${sheet.ok}</button></div>
           </div>`
@@ -446,7 +456,7 @@ export function App() {
     <header class="top8"><${Wm}/><span><button class="tlink8" onClick=${() => setTour('intro')}>Wstęp</button> · <button class="tlink8" onClick=${() => goChap(chap)}>Zacznij rozdział od nowa</button> · Niezależna koncepcja na mObywatel Challenge · osoby i dane są fikcyjne</span></header>
     <aside class="rail">
       <${Progress12} i=${chap} goChap=${goChap}/>
-      <${StoryPanel} i=${chap} route=${route} lastBeat=${lastBeat} go=${(r, p) => {
+      <${StoryPanel} i=${chap} route=${route} lastBeat=${lastBeat} go=${(r: string, p?: Persona) => {
         setHist([]);
         go(r, p);
       }} step=${step}/>

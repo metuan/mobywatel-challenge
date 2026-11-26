@@ -1,8 +1,9 @@
 import { html, useEffect, useState } from '@/lib/preact';
 import { I } from '@/ui/icons';
 import { Hero } from '@/ui/illustrations';
+import type { Ctx } from '@/types';
 
-export function Letter1(c) {
+export function Letter1(c: Ctx) {
   const [snap, setSnap] = useState(false);
   useEffect(() => {
     if (snap) {
@@ -25,7 +26,7 @@ export function Letter1(c) {
   </div>`;
 }
 
-export function Letter3(c) {
+export function Letter3(c: Ctx) {
   return html`<div>
     <p class="stepk">Podgląd odpowiedzi</p><h1 class="h-l">Wyjaśnienie do urzędu</h1>
     <div class="card" style="padding:16px;font-size:14px;line-height:1.6">
@@ -53,7 +54,7 @@ export function Letter3(c) {
 }
 
 /* Hop 10: the explanation streams in, so the AI step feels like work, not magic */
-export function Letter2(c) {
+export function Letter2(c: Ctx) {
   const [k, setK] = useState(c.s.l2seen ? 4 : 0);
   useEffect(() => {
     if (k >= 4) {

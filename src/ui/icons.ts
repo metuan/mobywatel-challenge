@@ -1,5 +1,6 @@
 import { html } from '@/lib/preact';
 
+/** Icon paths: 1.75 stroke on a 24 grid. */
 export const P = {
   home: 'M3 10.5 12 3l9 7.5V20a1 1 0 0 1-1 1h-5v-6h-6v6H4a1 1 0 0 1-1-1z',
   folder:
@@ -56,5 +57,8 @@ export const P = {
   blik: 'M4 5h16v14H4zM8 9v6M12 9v6M16 9v6',
 };
 
-export const I = (n, s = 20) =>
+export type IconName = keyof typeof P;
+
+/** Inline SVG icon. */
+export const I = (n: IconName, s = 20) =>
   html`<svg width=${s} height=${s} viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d=${P[n]}/></svg>`;

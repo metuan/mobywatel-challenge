@@ -1,9 +1,10 @@
 import { html, useState } from '@/lib/preact';
 import { I } from '@/ui/icons';
 import { Toggle } from '@/ui/primitives';
+import type { Ctx } from '@/types';
 
 /* 10: Tłumacz PJM */
-export function Pjm(c) {
+export function Pjm(c: Ctx) {
   const [on, setOn] = useState(false);
   return html`<div>
     <h1 class="h-l">Tłumacz polskiego języka migowego</h1>
@@ -15,7 +16,7 @@ export function Pjm(c) {
     </div>
     <div class="actions">${on ? html`<button class="btn" style="background:#ff3b30" onClick=${() => setOn(false)}>Zakończ</button>` : html`<button class="btn" onClick=${() => setOn(true)}>${I('camera', 18)} Połącz z tłumaczem</button>`}</div>
     <div class="list" style="margin-top:14px">
-      <div class="row"><span class="tx"><div class="t">Przycisk PJM na każdym ekranie</div></span><${Toggle} on=${!!c.s.pjm} label="Przycisk PJM" set=${v => c.set({ pjm: v })}/></div>
+      <div class="row"><span class="tx"><div class="t">Przycisk PJM na każdym ekranie</div></span><${Toggle} on=${!!c.s.pjm} label="Przycisk PJM" set=${(v: boolean) => c.set({ pjm: v })}/></div>
       <div class="row"><span class="tx"><div class="t">Napisy do komunikatów głosowych</div></span><${Toggle} on=${true} label="Napisy" set=${() => {}}/></div>
     </div>
   </div>`;

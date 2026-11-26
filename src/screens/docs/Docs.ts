@@ -1,11 +1,14 @@
 import { html, useLayoutEffect, useState } from '@/lib/preact';
-import { RM } from '@/lib/env';
+import { reducedMotion } from '@/lib/env';
 import { DRAWER } from '@/ui/controls';
 import { DocCard, QR, ROSETTE } from '@/ui/documentCard';
 import { I } from '@/ui/icons';
 import { GRow, Label, Lead, Row, Sec } from '@/ui/primitives';
+import type { Ctx } from '@/types';
+import type { Persona } from '@/types';
+import { stashBox, takeBox } from '@/lib/morph';
 
-function DocIdBase(c) {
+function DocIdBase(c: Ctx) {
   const [show, setShow] = useState(false);
   return html`<div>
     <${DocCard} c=${c}/>
@@ -15,7 +18,7 @@ function DocIdBase(c) {
   </div>`;
 }
 
-export function ShareMin(c) {
+export function ShareMin(c: Ctx) {
   const [what, setWhat] = useState('age');
   return html`<div>
     <h1 class="h-l">Pokaż tylko to, co trzeba</h1>
@@ -37,7 +40,7 @@ export function ShareMin(c) {
   </div>`;
 }
 
-export function RenewPass(c) {
+export function RenewPass(c: Ctx) {
   return html`<div><p class="stepk">Zosia</p><h1 class="h-l">Nowy paszport dla Zosi</h1>
     <p class="lead">Wniosek przygotujemy z danych, które już są w rejestrach. Potrzebna jest zgoda obojga rodziców.</p>
     <div class="list"><div class="field"><div class="l">Wizyta w urzędzie</div><div class="v">Tylko zdjęcie, dzieci do 12 lat nie oddają odcisków palców</div></div><div class="field"><div class="l">Opłata</div><div class="v">30 zł</div></div></div>
@@ -45,7 +48,7 @@ export function RenewPass(c) {
 }
 
 /* 11: Dokumenty od wystawcy */
-export function Issued(c) {
+export function Issued(c: Ctx) {
   const [acc, setAcc] = useState(c.s.diploma || false);
   return html`<div>
     <h1 class="h-l">Dokumenty od wystawcy</h1>
@@ -73,7 +76,7 @@ export function Issued(c) {
 }
 
 /* 2. Wallet: the card you use most sits in front, fully visible, with real content */
-function DocsBase(c) {
+function DocsBase(c: Ctx) {
   const cards = [
     ['Karta ratunkowa', 'A Rh+ · penicylina', 'ice', 'other', 'A Rh+'],
     ['Dyplom magistra', 'Uniwersytet Jagielloński', 'issued', 'other', 'Nowy'],
@@ -115,21 +118,19 @@ function DocsBase(c) {
   </div>`;
 }
 
-export function Docs(c) {
-  const go2 = (r, p) => {
-    const el = document.querySelector('.phone .scard.sel');
-    if (el) window.__morph2 = el.getBoundingClientRect();
+export function Docs(c: Ctx) {
+  const go2 = (r: string, p?: Persona) => {
+    stashBox('document', document.querySelector('.phone .scard.sel'));
     c.go(r, p);
   };
   return DocsBase({ ...c, go: go2 });
 }
 
-export function DocId(c) {
+export function DocId(c: Ctx) {
   useLayoutEffect(() => {
-    const r = window.__morph2;
-    window.__morph2 = null;
+    const r = takeBox('document');
     const el = document.querySelector('.phone .scroll .doc');
-    if (!r || !el || RM()) return;
+    if (!r || !el || reducedMotion()) return;
     const t = el.getBoundingClientRect();
     const sx = r.width / t.width,
       sy = r.height / t.height;
