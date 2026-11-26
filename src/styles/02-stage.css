@@ -119,7 +119,7 @@
   border-radius: 999px;
   font-size: 13.5px;
   font-weight: 500;
-  color: var(--muted);
+  color: var(--ink-2);
   white-space: nowrap;
 }
 .seg button[aria-pressed='true'] {
@@ -139,7 +139,7 @@
   align-items: center;
   gap: 10px;
   font-size: 12.5px;
-  color: var(--muted);
+  color: var(--ink-2);
 }
 .disclaimer {
   font-size: 12px;

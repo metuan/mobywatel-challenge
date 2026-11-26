@@ -112,7 +112,7 @@ export function Tour({
             <div className="hw main">
               <b>2</b>
               <span className="hw-col ph">
-                <i className="ring"></i>
+                <i className="ring-meter"></i>
               </span>
               <em>Klikasz</em>
             </div>

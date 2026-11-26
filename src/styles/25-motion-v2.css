@@ -257,21 +257,21 @@ button.row:active .check {
 }
 /* callouts nested inside a list row: align with the row text, no extra left inset */
 .row .tx .note,
-.grow .gtx .note {
+.grow-row .gtx .note {
   padding: 10px 0 2px;
   background: none !important;
   gap: 10px;
   align-items: center;
 }
 .row .tx .note > svg,
-.grow .gtx .note > svg {
+.grow-row .gtx .note > svg {
   width: 28px !important;
   height: 28px !important;
   padding: 6px;
   margin-top: 0;
 }
 .row .tx .note > span,
-.grow .gtx .note > span {
+.grow-row .gtx .note > span {
   padding-top: 0;
   font-size: 13.5px;
   line-height: 1.4;
@@ -497,7 +497,7 @@ button.row:active .check {
 .srch8:has(input:not(:placeholder-shown)) ~ * {
   display: none;
 }
-.grow.guide8,
+.grow-row.guide8,
 .row.guide8,
 .how8-row.guide8 {
   outline-offset: -3px;

@@ -80,7 +80,7 @@ export const Ring = ({
     L = 2 * Math.PI * r,
     p = Math.max(0, Math.min(1, v / max));
   return (
-    <span className="ring" style={sx(`width:${size}px;height:${size}px`)}>
+    <span className="ring-meter" style={sx(`width:${size}px;height:${size}px`)}>
       <svg width={size} height={size}>
         <circle cx={size / 2} cy={size / 2} r={r} stroke="var(--fill-2)" strokeWidth={w} fill="none" />
         <circle
@@ -150,7 +150,7 @@ export const GRow = ({
   red?: boolean;
   onClick?: () => void;
 }) => (
-  <button className="grow" onClick={onClick}>
+  <button className="grow-row" onClick={onClick}>
     {ic ? <Lead ic={ic} /> : av ? av : ''}
     <span className="gtx">
       <span className="gt">{t}</span>

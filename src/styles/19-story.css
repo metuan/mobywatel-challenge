@@ -725,7 +725,7 @@
   justify-content: center;
   align-items: center;
 }
-.hw-col.ph .ring {
+.hw-col.ph .ring-meter {
   width: 36px;
   height: 14px;
   border-radius: 7px;
@@ -734,7 +734,7 @@
   outline-offset: 3px;
 }
 @media (prefers-reduced-motion: no-preference) {
-  .hw-col.ph .ring {
+  .hw-col.ph .ring-meter {
     animation: coach 1.4s var(--out) infinite;
   }
 }

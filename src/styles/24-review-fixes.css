@@ -331,7 +331,7 @@
   height: 8px;
 }
 /* calendar */
-.cal8 .grow {
+.cal8 .grow-row {
   align-items: center;
   gap: 14px;
 }

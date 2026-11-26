@@ -51,21 +51,21 @@ export function Sign2(c: Ctx) {
       </p>
       <Label t="Kto co zobaczy" />
       <div className="glist">
-        <div className="grow static">
+        <div className="grow-row is-static">
           <Lead ic="people" />
           <span className="g-tx">
             <span className="gt">Komitet</span>
             <span className="gs">„1 ważny podpis, Kraków”. Bez imienia, PESEL i adresu.</span>
           </span>
         </div>
-        <div className="grow static">
+        <div className="grow-row is-static">
           <Lead ic="shield" />
           <span className="g-tx">
             <span className="gt">Marszałek Sejmu</span>
             <span className="gs">Twoje dane, tylko do sprawdzenia ważności podpisu.</span>
           </span>
         </div>
-        <div className="grow static">
+        <div className="grow-row is-static">
           <Lead ic="eye" />
           <span className="g-tx">
             <span className="gt">Ty</span>
@@ -109,7 +109,7 @@ export function SignList(c: Ctx) {
       <h1 className="h-l">Moje podpisy</h1>
       <p className="lead">Wszystko, co poparłaś: projekty ustaw, petycje i kandydaci.</p>
       <div className="glist">
-        <div className="grow static">
+        <div className="grow-row is-static">
           <Lead ic="doc" />
           <span className="g-tx">
             <span className="gt">{BILL.t}</span>
@@ -118,14 +118,14 @@ export function SignList(c: Ctx) {
             </span>
           </span>
         </div>
-        <div className="grow static">
+        <div className="grow-row is-static">
           <Lead ic="mail" />
           <span className="g-tx">
             <span className="gt">Więcej drzew na Kazimierzu</span>
             <span className="gs">Petycja do Rady Miasta Krakowa · odpowiedź do 12 grudnia</span>
           </span>
         </div>
-        <div className="grow static">
+        <div className="grow-row is-static">
           <Lead ic="check" />
           <span className="g-tx">
             <span className="gt">Kandydatka do Senatu, okręg 32</span>

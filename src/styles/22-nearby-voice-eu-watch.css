@@ -188,7 +188,7 @@
 .b8-n b {
   color: var(--ink);
 }
-.grow.static {
+.grow-row.is-static {
   cursor: default;
 }
 .pl-map {

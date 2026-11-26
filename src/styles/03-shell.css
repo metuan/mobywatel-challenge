@@ -34,7 +34,7 @@
 .word em {
   font-style: italic;
   font-weight: 400;
-  color: var(--muted);
+  color: var(--ink-2);
 }
 .flag {
   width: 15px;
@@ -181,7 +181,7 @@
   border-radius: 16px;
   padding: 12px;
   font-size: 11.5px;
-  color: var(--muted);
+  color: var(--ink-2);
   display: flex;
   flex-direction: column;
   align-items: center;

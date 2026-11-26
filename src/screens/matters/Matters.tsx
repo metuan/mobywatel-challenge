@@ -77,7 +77,7 @@ export function Matters(c: Ctx) {
       <Label t="W toku" />
       <div className="glist">
         {prog.map(([t, n, r, s2]) => (
-          <button className="grow" onClick={() => c.go(r)}>
+          <button className="grow-row" onClick={() => c.go(r)}>
             <Ring v={n} max={4} size={40}>
               <b style={{ fontSize: '11px' }}>{n}/4</b>
             </Ring>

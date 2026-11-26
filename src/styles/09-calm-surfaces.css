@@ -125,7 +125,7 @@
 }
 .mcard .ms {
   font-size: 13px;
-  color: var(--muted);
+  color: var(--ink-2);
   line-height: 1.3;
 }
 .mrow {
@@ -195,7 +195,7 @@
   padding: 8px 0 10px;
   font-size: 12px;
   font-weight: 500;
-  color: var(--muted);
+  color: var(--ink-2);
   border-bottom: 2px solid transparent;
   white-space: nowrap;
 }
@@ -273,7 +273,7 @@
 }
 .rcb .hd .tm {
   margin-left: auto;
-  color: var(--muted);
+  color: var(--ink-2);
   font-weight: 500;
 }
 .rcb .ttl {
@@ -306,7 +306,7 @@
   gap: 8px;
   align-items: center;
   font-size: 12px;
-  color: var(--muted);
+  color: var(--ink-2);
   padding: 8px 16px 2px;
 }
 .rcb-screen .btn.ghost {
@@ -362,7 +362,7 @@
 .tech .eyebrow {
   font-size: 12px;
   font-weight: 600;
-  color: var(--muted);
+  color: var(--ink-2);
   letter-spacing: 0.06em;
   text-transform: uppercase;
 }

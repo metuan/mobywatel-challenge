@@ -20,7 +20,7 @@ export function Family(c: Ctx) {
       </div>
       <div className="glist">
         {fam.map(([i, n, r, f, red, go, k]) => (
-          <button className="grow tall" onClick={() => c.go(go)}>
+          <button className="grow-row tall" onClick={() => c.go(go)}>
             <Av i={i} size={44} />
             <span className="gtx">
               <span className="gt h">
@@ -37,7 +37,7 @@ export function Family(c: Ctx) {
             <span className="gch">{I('chevron', 16)}</span>
           </button>
         ))}
-        <button className="grow" onClick={() => c.go('invite')}>
+        <button className="grow-row" onClick={() => c.go('invite')}>
           <Lead ic="plus" />
           <span className="gtx">
             <span className="gt">Dodaj osobę</span>

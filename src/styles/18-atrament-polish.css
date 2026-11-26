@@ -208,10 +208,10 @@
   line-height: 32px;
   letter-spacing: -0.035em;
 }
-.grow {
+.grow-row {
   padding: 12px 16px;
 }
-.grow + .grow::before {
+.grow-row + .grow-row::before {
   left: 68px;
 }
 .lead-i {

@@ -956,7 +956,7 @@
   opacity: 0.9;
   display: grid;
 }
-.is-r .ring svg circle:first-child {
+.is-r .ring-meter svg circle:first-child {
   stroke: rgb(255 255 255 / 25%);
 }
 .is-x {
@@ -1107,7 +1107,7 @@
   overflow: hidden;
 }
 /* hop 17: press states everywhere */
-.grow,
+.grow-row,
 .row,
 .hit,
 .mtile,
@@ -1118,7 +1118,7 @@
     background-color 0.12s,
     transform 0.16s var(--out);
 }
-.grow:active,
+.grow-row:active,
 button.row:active,
 .sug:active {
   background: var(--fill) !important;
@@ -1129,7 +1129,7 @@ button.row:active,
   transform: scale(0.97);
 }
 @media (hover: hover) {
-  .grow:hover,
+  .grow-row:hover,
   button.row:hover {
     background: #fafafb;
   }

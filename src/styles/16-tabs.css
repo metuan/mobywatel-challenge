@@ -124,13 +124,13 @@
   font-size: 14px;
   font-weight: 600;
 }
-.ring {
+.ring-meter {
   position: relative;
   display: inline-grid;
   place-items: center;
   flex: none;
 }
-.ring svg {
+.ring-meter svg {
   position: absolute;
   inset: 0;
 }

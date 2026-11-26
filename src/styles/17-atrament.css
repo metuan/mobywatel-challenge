@@ -229,7 +229,7 @@ body {
 }
 @media (prefers-reduced-motion: no-preference) {
   button,
-  .grow,
+  .grow-row,
   .w,
   .mtile,
   .doc {
@@ -238,7 +238,7 @@ body {
       background-color 0.15s ease;
   }
   button:active,
-  .grow:active,
+  .grow-row:active,
   .w:active,
   .mtile:active {
     transform: scale(0.97);
@@ -381,7 +381,7 @@ body {
   border-radius: 22px;
   overflow: hidden;
 }
-.grow {
+.grow-row {
   display: flex;
   align-items: center;
   gap: 12px;
@@ -392,10 +392,10 @@ body {
   position: relative;
   background: #fff;
 }
-.grow.tall {
+.grow-row.tall {
   min-height: 72px;
 }
-.grow + .grow::before {
+.grow-row + .grow-row::before {
   content: '';
   position: absolute;
   top: 0;
@@ -404,7 +404,7 @@ body {
   height: 1px;
   background: var(--hair);
 }
-.grow:active {
+.grow-row:active {
   background: var(--fill);
 }
 .lead-i {

@@ -15,7 +15,7 @@ function DocIdBase(c: Ctx) {
     <div>
       <DocCard c={c} />
       <div className="glist" style={{ marginTop: '12px' }}>
-        <div className="grow">
+        <div className="grow-row">
           <span className="gtx">
             <span className="gs">PESEL</span>
             <span className="gt" style={{ fontVariantNumeric: 'tabular-nums' }}>
@@ -256,7 +256,7 @@ function DocsBase(c: Ctx) {
         <GRow ic="list" t="Kto sprawdzał moje dane" v="4 w listopadzie" onClick={() => c.go('access-log')} />
       </div>
       <div className="glist" style={{ marginTop: '12px' }}>
-        <button className="grow" onClick={() => c.go('lost')}>
+        <button className="grow-row" onClick={() => c.go('lost')}>
           <Lead ic="lock" />
           <span className="gtx">
             <span className="gt red-t">Zgubiłam portfel</span>

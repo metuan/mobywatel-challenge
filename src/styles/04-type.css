@@ -27,7 +27,7 @@
   text-wrap: balance;
 }
 .sub {
-  color: var(--muted);
+  color: var(--ink-2);
   font-size: 16px;
   margin: 0 0 6px;
 }
@@ -53,13 +53,13 @@
   text-decoration-color: rgb(12 18 34 / 25%);
 }
 .lead {
-  color: var(--muted);
+  color: var(--ink-2);
   margin: 0 0 18px;
   font-size: 15.5px;
 }
 .small {
   font-size: 13.5px;
-  color: var(--muted);
+  color: var(--ink-2);
 }
 .tiny {
   font-size: 12px;
@@ -67,7 +67,7 @@
 }
 .stepk {
   font-size: 13px;
-  color: var(--muted);
+  color: var(--ink-2);
   margin: 10px 0 0;
   font-weight: 500;
 }

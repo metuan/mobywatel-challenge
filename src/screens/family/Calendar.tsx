@@ -18,7 +18,7 @@ export function Calendar(c: Ctx) {
       <p className="lead">Najbliższe 90 dni. Każdy termin ma następny krok.</p>
       <div className="glist cal8">
         {items.map(([d, m, t, w, left, r, urg]) => (
-          <button className={'grow' + (urg ? ' urg' : '')} onClick={() => c.go(r)}>
+          <button className={'grow-row' + (urg ? ' urg' : '')} onClick={() => c.go(r)}>
             <span className="cal-d">
               <b>{d}</b>
               <small>{m}</small>
