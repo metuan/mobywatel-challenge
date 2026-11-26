@@ -1,3 +1,4 @@
+import { Chip } from '@/components/ui/pill';
 import { List, ListRow, ListRowContent, ListRowDescription, ListRowTitle } from '@/components/ui/list';
 import { Badge } from '@/components/ui/badge';
 import { Card } from '@/components/ui/card';
@@ -35,15 +36,14 @@ function TaxesBase(c: Ctx) {
           {c.s.propPaid ? (
             <Badge>Opłacony</Badge>
           ) : (
-            <button
-              className="mini inline-flex gap-1.5 items-center whitespace-nowrap motion-safe:[&:active]:transform-[scale(0.97)] font-semibold text-[15px] p-[6px_14px] bg-fill text-ink rounded-[999px]"
+            <Chip
               onClick={() => {
                 c.set({ propPaid: true });
                 c.toast('Opłacono 86 zł');
               }}
             >
               Zapłać
-            </button>
+            </Chip>
           )}
         </ListRow>
         <ListRow>

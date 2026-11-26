@@ -1,3 +1,4 @@
+import { Chip } from '@/components/ui/pill';
 import {
   List,
   ListRow,
@@ -62,15 +63,15 @@ export function Ice(c: Ctx) {
           <div className="l">Kontakt w nagłych wypadkach</div>
           <div className="flex justify-between items-center p-[8px_0] text-[15px]">
             <span>Tomasz Nowicki · partner</span>
-            <span className="mini inline-flex gap-1.5 items-center whitespace-nowrap motion-safe:[&:active]:transform-[scale(0.97)] font-semibold text-[15px] p-[6px_14px] bg-fill text-ink rounded-[999px]">
+            <Chip as="span">
               <Icon name="phone" size={14} /> Zadzwoń
-            </span>
+            </Chip>
           </div>
           <div className="flex justify-between items-center p-[8px_0] text-[15px]">
             <span>Stanisław Nowicki · tata</span>
-            <span className="mini inline-flex gap-1.5 items-center whitespace-nowrap motion-safe:[&:active]:transform-[scale(0.97)] font-semibold text-[15px] p-[6px_14px] bg-fill text-ink rounded-[999px]">
+            <Chip as="span">
               <Icon name="phone" size={14} /> Zadzwoń
-            </span>
+            </Chip>
           </div>
         </div>
       </div>

@@ -1,3 +1,4 @@
+import { Chip } from '@/components/ui/pill';
 import { List, ListItemDescription, ListItemTitle } from '@/components/ui/list';
 import { Title } from '@/components/ui/typography';
 import { Fragment, useState } from 'react';
@@ -116,15 +117,14 @@ export function Consents(c: Ctx) {
                       )}
                     </span>
                   </span>
-                  <button
-                    className="mini inline-flex gap-1.5 items-center whitespace-nowrap motion-safe:[&:active]:transform-[scale(0.97)] font-semibold text-[15px] p-[6px_14px] bg-fill text-ink rounded-[999px]"
+                  <Chip
                     onClick={e => {
                       const row = (e.currentTarget as HTMLElement).closest<HTMLElement>('.cons-row');
                       collapseOut(row, () => revoke(x));
                     }}
                   >
                     {x.left === 0 ? 'Usuń' : 'Cofnij'}
-                  </button>
+                  </Chip>
                 </div>
               ))}
           </List>

@@ -1,3 +1,4 @@
+import { Chip } from '@/components/ui/pill';
 import { Fragment } from 'react';
 import { List, ListRow, ListRowContent, ListRowDescription, ListRowTitle } from '@/components/ui/list';
 import { Badge } from '@/components/ui/badge';
@@ -92,8 +93,7 @@ function CarFullBase(c: Ctx) {
           {c.s.paid ? (
             <Badge>Opłacony</Badge>
           ) : (
-            <button
-              className="mini inline-flex gap-1.5 items-center whitespace-nowrap motion-safe:[&:active]:transform-[scale(0.97)] font-semibold text-[15px] p-[6px_14px] bg-fill text-ink rounded-[999px]"
+            <Chip
               onClick={() =>
                 c.confirm({
                   t: 'Zapłacić mandat 200 zł?',
@@ -107,7 +107,7 @@ function CarFullBase(c: Ctx) {
               }
             >
               Zapłać
-            </button>
+            </Chip>
           )}
         </ListRow>
       </List>

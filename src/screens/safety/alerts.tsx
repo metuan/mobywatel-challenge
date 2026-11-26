@@ -1,3 +1,4 @@
+import { Chip } from '@/components/ui/pill';
 import { Field, FieldLabel, FieldSource, FieldValue } from '@/components/ui/field';
 import {
   List,
@@ -332,12 +333,9 @@ export function AlertSafe(c: Ctx) {
             <ListRowTitle>Tata</ListRowTitle>
             <ListRowDescription>Brak odpowiedzi od 15:42</ListRowDescription>
           </ListRowContent>
-          <button
-            className="mini inline-flex gap-1.5 items-center whitespace-nowrap motion-safe:[&:active]:transform-[scale(0.97)] font-semibold text-[15px] p-[6px_14px] bg-fill text-ink rounded-[999px]"
-            onClick={() => c.go('easy-call')}
-          >
+          <Chip onClick={() => c.go('easy-call')}>
             <Icon name="phone" size={14} /> Zadzwoń
-          </button>
+          </Chip>
         </ListRow>
       </List>
       <Caption className="mt-3">Status widzą tylko osoby z Twojej rodziny. Znika po 72 godzinach.</Caption>

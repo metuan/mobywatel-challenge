@@ -1,3 +1,4 @@
+import { Chip } from '@/components/ui/pill';
 import {
   List,
   ListRow,
@@ -128,12 +129,9 @@ export function FamilyMap(c: Ctx) {
             <ListRowTitle>Tata</ListRowTitle>
             <ListRowDescription>Sandomierz · poza strefą alarmu · nie odpowiada</ListRowDescription>
           </ListRowContent>
-          <button
-            className="mini inline-flex gap-1.5 items-center whitespace-nowrap motion-safe:[&:active]:transform-[scale(0.97)] font-semibold text-[15px] p-[6px_14px] bg-fill text-ink rounded-[999px]"
-            onClick={() => c.go('easy-call')}
-          >
+          <Chip onClick={() => c.go('easy-call')}>
             <Icon name="phone" size={14} /> Zadzwoń
-          </button>
+          </Chip>
         </ListRow>
       </List>
       <Note icon="lock" className="mt-3">

@@ -1,3 +1,4 @@
+import { Chip } from '@/components/ui/pill';
 import { Segmented } from '@/components/ui/segmented';
 import { Field, FieldLabel, FieldValue } from '@/components/ui/field';
 import {
@@ -122,8 +123,7 @@ export function School(c: Ctx) {
               {ex ? (
                 <Badge>OK</Badge>
               ) : (
-                <button
-                  className="mini inline-flex gap-1.5 items-center whitespace-nowrap motion-safe:[&:active]:transform-[scale(0.97)] font-semibold text-[15px] p-[6px_14px] bg-fill text-ink rounded-[999px]"
+                <Chip
                   onClick={() => {
                     setEx(true);
                     c.set({ excused: true });
@@ -131,7 +131,7 @@ export function School(c: Ctx) {
                   }}
                 >
                   Usprawiedliw
-                </button>
+                </Chip>
               )}
             </ListRow>
             <ListRow>
@@ -142,12 +142,7 @@ export function School(c: Ctx) {
                 <ListRowTitle>Wycieczka do Ojcowa, 4 grudnia</ListRowTitle>
                 <ListRowDescription>Zgoda rodzica i 45 zł</ListRowDescription>
               </ListRowContent>
-              <button
-                className="mini inline-flex gap-1.5 items-center whitespace-nowrap motion-safe:[&:active]:transform-[scale(0.97)] font-semibold text-[15px] p-[6px_14px] bg-fill text-ink rounded-[999px]"
-                onClick={() => c.toast('Zgoda wyrażona. Płatność BLIK w pełnej wersji.')}
-              >
-                Zgoda
-              </button>
+              <Chip onClick={() => c.toast('Zgoda wyrażona. Płatność BLIK w pełnej wersji.')}>Zgoda</Chip>
             </ListRow>
             <ListRow>
               <ListRowTile>
