@@ -1,3 +1,4 @@
+import { Pill } from '@/components/ui/pill';
 import { Segmented } from '@/components/ui/segmented';
 import { Field, FieldLabel, FieldValue } from '@/components/ui/field';
 import {
@@ -16,7 +17,7 @@ import { useLayoutEffect, useState } from 'react';
 import { reducedMotion } from '@/lib/env';
 import { DRAWER } from '@/ui/controls';
 import { DocCard, QR, ROSETTE } from '@/ui/documentCard';
-import { I } from '@/ui/icons';
+import { Icon } from '@/ui/icons';
 import { GRow, Label, LeadIcon, Row, Sec } from '@/ui/primitives';
 import type { Ctx } from '@/types';
 import type { Persona } from '@/types';
@@ -36,7 +37,9 @@ function DocIdBase(c: Ctx) {
         </ListItem>
       </List>
       <Actions>
-        <Button onClick={() => c.go('share-min')}>{I('qr', 18)} Pokaż do sprawdzenia</Button>
+        <Button onClick={() => c.go('share-min')}>
+          <Icon name="qr" size={18} /> Pokaż do sprawdzenia
+        </Button>
         <Button variant="secondary" onClick={() => setShow(!show)}>
           {show ? 'Ukryj PESEL' : 'Pokaż PESEL'}
         </Button>
@@ -81,7 +84,7 @@ export function ShareMin(c: Ctx) {
       <Caption className="mt-2.5">Każde sprawdzenie trafia do historii „Kto sprawdzał moje dane”.</Caption>
       <Actions>
         <Button variant="secondary" onClick={() => c.go('eu')}>
-          {I('card', 18)} Za granicą: portfel UE
+          <Icon name="card" size={18} /> Za granicą: portfel UE
         </Button>
       </Actions>
     </div>
@@ -144,14 +147,18 @@ export function Issued(c: Ctx) {
           </Actions>
         </Card>
       ) : (
-        <div className="diploma">
-          <div className="dh">
+        <div className="diploma [background:#fffdf7] rounded-2xl p-4.5 [border:1px_solid_#e9e2cf]">
+          <div className="[.diploma_&]:flex [.diploma_&]:justify-between [.diploma_&]:text-[12px] [.diploma_&]:tracking-[0.08em] [.diploma_&]:font-semibold [.diploma_&]:text-[#7a6a40]">
             <span>UNIWERSYTET JAGIELLOŃSKI</span>
-            <span className="flag"></span>
+            <span className="w-4 h-2.75 rounded-[3px] mr-2 [background:linear-gradient(#fff_50%,_var(--red)_50%)] [box-shadow:0_0_0_0.5px_rgb(11_13_18_/_22%)] inline-block flex-none [.d-rp_&]:w-3.5 [.d-rp_&]:h-2.5 [.d-rp_&]:mr-1.75 [.d-rp_&]:[box-shadow:none]"></span>
           </div>
-          <div className="dn">Anna Nowicka</div>
-          <div className="dd">Magister pielęgniarstwa · 2016</div>
-          <div className="dv">{I('check', 14)} Podpisany przez wystawcę</div>
+          <div className="[.diploma_&]:text-[26px] [.diploma_&]:font-bold [.diploma_&]:tracking-[-0.02em] [.diploma_&]:m-[18px_0_4px]">
+            Anna Nowicka
+          </div>
+          <div className="[.diploma_&]:text-ink-2">Magister pielęgniarstwa · 2016</div>
+          <div className="[.diploma_&]:flex [.diploma_&]:gap-1.5 [.diploma_&]:items-center [.diploma_&]:text-signal-green [.diploma_&]:text-[13px] [.diploma_&]:font-semibold [.diploma_&]:mt-3.5">
+            <Icon name="check" size={14} /> Podpisany przez wystawcę
+          </div>
         </div>
       )}
       <Sec t="W portfelu" />
@@ -197,7 +204,10 @@ function DocsBase(c: Ctx) {
     <div>
       <Display>Dokumenty</Display>
       <div
-        className={'stack w2' + (sel >= 0 ? ' has-sel' : '')}
+        className={
+          'stack relative [transition:height_0.32s_var(--out)] [&.has-sel]:h-0 w2' +
+          (sel >= 0 ? ' has-sel' : '')
+        }
         style={sel >= 0 ? undefined : { height: PEEK * (n - 1) + FRONT }}
       >
         {cards.map(([t, s2, r, tone, b], i) => {
@@ -206,7 +216,13 @@ function DocsBase(c: Ctx) {
           const y = sel < 0 ? i * PEEK : isSel ? 0 : 208 + (i - (i > sel ? 1 : 0)) * 7;
           return (
             <button
-              className={'scard doc tone-' + tone + (isSel ? ' sel' : '') + (front ? ' front' : '')}
+              key={t}
+              className={
+                'scard absolute! left-0 right-0 top-0 justify-start gap-1.5 origin-[50%_0] [transition:transform_0.42s_var(--spring)]! [&:active]:filter-[brightness(1.1)] [.stack:not(.has-sel)_&:hover]:transform-[translateY(var(--y))] [@media(hover:none),_(pointer:coarse)]:[.stack:not(.has-sel)_&:hover]:transform-none [.stack.w2_&]:min-h-49 [.stack.w2:not(.has-sel)_&:not(.front)]:[box-shadow:inset_0_1px_0_rgb(255_255_255_/_14%),_0_-1px_0_rgb(0_0_0_/_25%)] [.stack.w2.has-sel_&:not(.sel)]:[clip-path:inset(0_0_calc(100%-12px)_0_round_18px_18px_0_0)] [.stack.w2.has-sel_&:not(.sel)]:pointer-events-auto [.stack.w2.has-sel_&:not(.sel)_*]:invisible doc tone-' +
+                tone +
+                (isSel ? ' sel' : '') +
+                (front ? ' front' : '')
+              }
               style={{
                 transform: `translateY(${y}px)${sel >= 0 && !isSel ? ' scale(' + (1 - 0.02 * (n - 1 - (i - (i > sel ? 1 : 0)))) + ')' : ''}`,
                 zIndex: isSel ? 50 : i + 1,
@@ -215,23 +231,30 @@ function DocsBase(c: Ctx) {
               onClick={() => (isSel ? c.go(r) : setSel(i))}
             >
               {ROSETTE}
-              <div className="d-top">
-                <span className="sc-t">{t}</span>
-                <span className="d-chip">{b}</span>
+              <div className="flex justify-between items-center [.eu-eu_&]:pr-24 [.stack.w2_&]:min-h-6">
+                <span className="text-[15px] font-semibold tracking-[-0.01em]">{t}</span>
+                <span className="h-6 p-[0_10px] rounded-[999px] text-[12px] font-medium inline-flex items-center text-white bg-d-hair [box-shadow:inset_0_0_0_0.5px_rgb(255_255_255_/_14%)] [backdrop-filter:blur(8px)]">
+                  {b}
+                </span>
               </div>
               {front && (
                 <>
-                  <div className="w2-body">
-                    <div className="w2-name">{s2}</div>
-                    <div className="w2-meta">
+                  <div className="mt-4.5">
+                    <div className="text-[24px] font-semibold tracking-[-0.02em] text-white leading-[1.15]">
+                      {s2}
+                    </div>
+                    <div className="text-[12.5px] [color:rgb(255_255_255_/_62%)] mt-1 [font-variant-numeric:tabular-nums]">
                       {tone === 'id' ? 'Ważny do 12.05.2031 · nr ABC 123456' : 'Dotknij, żeby otworzyć'}
                     </div>
                   </div>
-                  <div className="d-bot">
-                    <span className="d-rp">
-                      <i className="flag"></i>Rzeczpospolita Polska
+                  <div className="flex justify-between items-center [.scard_&]:mt-auto">
+                    <span className="d-rp inline-flex items-center text-[12px] font-medium text-d-ink">
+                      <i className="w-4 h-2.75 rounded-[3px] mr-2 [background:linear-gradient(#fff_50%,_var(--red)_50%)] [box-shadow:0_0_0_0.5px_rgb(11_13_18_/_22%)] inline-block flex-none [.d-rp_&]:w-3.5 [.d-rp_&]:h-2.5 [.d-rp_&]:mr-1.75 [.d-rp_&]:[box-shadow:none]"></i>
+                      Rzeczpospolita Polska
                     </span>
-                    <span className="d-chip">{tone === 'id' ? 'Pokaż kod QR' : 'Otwórz'}</span>
+                    <span className="h-6 p-[0_10px] rounded-[999px] text-[12px] font-medium inline-flex items-center text-white bg-d-hair [box-shadow:inset_0_0_0_0.5px_rgb(255_255_255_/_14%)] [backdrop-filter:blur(8px)]">
+                      {tone === 'id' ? 'Pokaż kod QR' : 'Otwórz'}
+                    </span>
                   </div>
                 </>
               )}
@@ -242,13 +265,16 @@ function DocsBase(c: Ctx) {
       {sel >= 0 && (
         <>
           <div style={{ height: `${208 + 7 * (n - 2) + 14}px` }}></div>
-          <div className="w2-acts">
-            <button className="pill" onClick={() => c.go(cards[sel][2])}>
+          <div className="w2-acts flex gap-2 mt-3.5">
+            <Pill onClick={() => c.go(cards[sel][2])}>
               {cards[sel][3] === 'id' ? 'Pokaż kod QR' : 'Otwórz'}
-            </button>
-            <button className="pill soft" onClick={() => setSel(-1)}>
+            </Pill>
+            <Pill
+              className="[&.pill]:bg-fill [&.pill]:text-ink [.st-nav_&.pill]:w-11 [.st-nav_&.pill]:p-0"
+              onClick={() => setSel(-1)}
+            >
               Pokaż wszystkie
-            </button>
+            </Pill>
           </div>
         </>
       )}
@@ -262,7 +288,7 @@ function DocsBase(c: Ctx) {
         <ListItem as="button" onClick={() => c.go('lost')}>
           <LeadIcon ic="lock" />
           <ListItemContent>
-            <ListItemTitle className="red-t">Zgubiłam portfel</ListItemTitle>
+            <ListItemTitle className="text-red!">Zgubiłam portfel</ListItemTitle>
             <ListItemDescription>Zastrzeż wszystkie dokumenty naraz</ListItemDescription>
           </ListItemContent>
           <ListItemChevron size={16} />

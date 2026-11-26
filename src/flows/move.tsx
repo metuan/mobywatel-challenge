@@ -6,7 +6,7 @@ import { Note } from '@/components/ui/note';
 import { Eyebrow, Lead, Muted, Title } from '@/components/ui/typography';
 import { Actions, Button } from '@/components/ui/button';
 import { useState } from 'react';
-import { I } from '@/ui/icons';
+import { Icon } from '@/ui/icons';
 import { Hero } from '@/ui/illustrations';
 import { Progress, Row, Src } from '@/ui/primitives';
 import type { Ctx } from '@/types';
@@ -23,7 +23,9 @@ export function Move1(c: Ctx) {
         <Field>
           <FieldLabel>Nowy adres</FieldLabel>
           <FieldValue>ul. Długa 12/4, 31-147 Kraków</FieldValue>
-          <FieldSource>{I('check', 12)} Z umowy najmu, którą dodałaś 20 listopada</FieldSource>
+          <FieldSource>
+            <Icon name="check" size={12} /> Z umowy najmu, którą dodałaś 20 listopada
+          </FieldSource>
         </Field>
         <Field>
           <FieldLabel>Od kiedy</FieldLabel>
@@ -66,18 +68,21 @@ export function Move2(c: Ctx) {
         </div>
         {items.map(([k, t, sub, ini]) => (
           <ListRow
+            key={k}
             as="button"
             role="checkbox"
             aria-checked={on[k]}
             onClick={() => setOn({ ...on, [k]: !on[k] })}
           >
-            <span className="org">{ini}</span>
+            <span className="org grid place-items-center flex-none font-semibold tracking-[0.02em] [box-shadow:none] w-9 h-9 text-[10.5px] bg-fill! text-ink! rounded-[50%]!">
+              {ini}
+            </span>
             <ListRowContent>
               <ListRowTitle>{t}</ListRowTitle>
               <ListRowDescription>{sub}</ListRowDescription>
             </ListRowContent>
             <span className="check" aria-checked={on[k]}>
-              {on[k] ? I('check', 15) : ''}
+              {on[k] ? <Icon name="check" size={15} /> : ''}
             </span>
           </ListRow>
         ))}
@@ -109,7 +114,7 @@ export function Move3(c: Ctx) {
       <Title>Sprawdź przed wysłaniem</Title>
       {sel.meld && (
         <>
-          <div className="sec">
+          <div className="flex justify-between items-baseline [&_h3]:m-0 [&_button]:underline-offset-[3px] [&_button]:[text-decoration:none] [&_h3]:font-sans [&_h3]:text-[14px] [&_h3]:font-medium [&_h3]:text-ink-2 [&_h3]:tracking-[-0.006em] m-[32px_4px_8px] [&_button]:text-ink [&_button]:text-[14px] [&_button]:font-medium">
             <h3>Zameldowanie</h3>
           </div>
           <List>
@@ -132,7 +137,7 @@ export function Move3(c: Ctx) {
       )}
       {sel.gp && (
         <>
-          <div className="sec">
+          <div className="flex justify-between items-baseline [&_h3]:m-0 [&_button]:underline-offset-[3px] [&_button]:[text-decoration:none] [&_h3]:font-sans [&_h3]:text-[14px] [&_h3]:font-medium [&_h3]:text-ink-2 [&_h3]:tracking-[-0.006em] m-[32px_4px_8px] [&_button]:text-ink [&_button]:text-[14px] [&_button]:font-medium">
             <h3>Lekarz rodzinny</h3>
           </div>
           <List>
@@ -146,7 +151,7 @@ export function Move3(c: Ctx) {
       )}
       {sel.vote && (
         <>
-          <div className="sec">
+          <div className="flex justify-between items-baseline [&_h3]:m-0 [&_button]:underline-offset-[3px] [&_button]:[text-decoration:none] [&_h3]:font-sans [&_h3]:text-[14px] [&_h3]:font-medium [&_h3]:text-ink-2 [&_h3]:tracking-[-0.006em] m-[32px_4px_8px] [&_button]:text-ink [&_button]:text-[14px] [&_button]:font-medium">
             <h3>Wybory</h3>
           </div>
           <List>
@@ -160,7 +165,7 @@ export function Move3(c: Ctx) {
       )}
       {sel.car && (
         <>
-          <div className="sec">
+          <div className="flex justify-between items-baseline [&_h3]:m-0 [&_button]:underline-offset-[3px] [&_button]:[text-decoration:none] [&_h3]:font-sans [&_h3]:text-[14px] [&_h3]:font-medium [&_h3]:text-ink-2 [&_h3]:tracking-[-0.006em] m-[32px_4px_8px] [&_button]:text-ink [&_button]:text-[14px] [&_button]:font-medium">
             <h3>Samochód</h3>
           </div>
           <List>
@@ -202,7 +207,9 @@ export function MoveDone(c: Ctx) {
   return (
     <div>
       <Hero n="move" />
-      <div className="done-mark mt-[-34px] ml-4 relative [border:4px_solid_#fff]">{I('check', 28)}</div>
+      <div className="w-15 h-15 rounded-[50%] text-white grid place-items-center m-[26px_0_4px] [box-shadow:var(--shadow-s)] border-bg! motion-safe:animate-[pop_0.5s_0.15s_var(--ease-spring)_both] bg-ink mt-[-34px] ml-4 relative [border:4px_solid_#fff]">
+        <Icon name="check" size={28} />
+      </div>
       <Title>Wysłane. Resztą zajmiemy się razem.</Title>
       <List>
         <Row

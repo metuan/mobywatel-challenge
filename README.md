@@ -42,13 +42,14 @@ The build is a single HTML file with the code and styles inlined. It runs on Git
 ## Stack
 
 - **React 19 and TypeScript** (`strict`), built by **Vite** into one self-contained HTML file.
-- **Tailwind CSS 4** for styling, with the design tokens (ink on paper, one accent, a type scale) exposed as theme variables in `src/styles/theme.css`.
+- **Tailwind CSS 4** for all styling. Classes sit on the element they style, and colours use theme names (`text-ink-2`, `bg-fill`, `bg-signal-blue`) mapped onto the design tokens in `src/styles/theme.css`.
 - **shadcn/ui conventions** for the component library in `src/components/ui`: each component is a small file you own, styled with Tailwind, varied with `class-variance-authority`, merged with `cn()` (clsx + tailwind-merge), and marked with a `data-slot` attribute.
 - **Radix primitives** under the interactive parts: the bottom sheet is a Radix Dialog (focus trap, Escape, labelled), switches are Radix Switch, and segmented controls are a Radix ToggleGroup.
 
 | Component                                                             | What it is                                                             |
 | --------------------------------------------------------------------- | ---------------------------------------------------------------------- |
 | `Button`, `Actions`                                                   | pill buttons in six variants, and the stack or row they sit in         |
+| `Pill`, `Chip`                                                        | inline buttons that size to their label                                |
 | `Display`, `Title`, `Subtitle`, `Lead`, `Eyebrow`, `Muted`, `Caption` | the type scale                                                         |
 | `Card`, `Badge`, `Note`                                               | surfaces, status badges, notes with an icon and a tone                 |
 | `List`, `ListRow*`, `ListItem*`, `Field*`                             | grouped lists with hairline dividers, rows, and label and value fields |
@@ -60,7 +61,9 @@ The build is a single HTML file with the code and styles inlined. It runs on Git
 src/
   main.tsx             entry point: styles and mounting the app
   types.ts             AppState, Ctx (what every screen receives), sheets, toasts
-  app/                 shell: App, routes (routes.tsx), gestures, Dynamic Island
+  app/                 shell: App (the stage), chrome (top bar, tab bar, story bar, toast),
+                       SheetHost, routes, gestures, Dynamic Island
+    hooks/             navigation, story and coach marks, arrow keys, toasts, frame zoom
   components/ui/       the component library (shadcn/ui style)
   screens/             screens grouped by tab and topic
     today/ matters/ family/ safety/ docs/ profile/ trust/ money/ easy/ ...
@@ -70,10 +73,10 @@ src/
   ui/                  app-specific pieces: icons, illustrations, document card, controls, hooks
   lib/                 cn(), the styled() helper, browser helpers, shared-element transitions
   styles/
-    index.css          cascade layers: theme, base, legacy, components, utilities
+    index.css          cascade layers: theme, base, components, utilities
     theme.css          Tailwind theme mapped onto the design tokens
     00-tokens.css      design tokens: colour, type, elevation, motion
-    01-…25-*.css       screen-specific styles from before the component library, in the `legacy` layer
+    global.css         what can't sit on an element: element defaults, keyframes, coach marks and tones
 tests/
   unit/                story and route data consistency, search
   e2e/                 plays every chapter, renders every screen
@@ -83,7 +86,7 @@ tests/
 ## How it works
 
 - **Screens** are React components that receive a `Ctx`. They are built from the components in `src/components/ui` and Tailwind classes, with no inline styles except computed values such as a progress width.
-- **Styles** sit in cascade layers. Tailwind utilities and component styles come after the `legacy` layer, so they always win over the older screen styles without `!important`. The legacy layer is what is left of the hand-written CSS and shrinks as screens move to components.
+- **Styles** are Tailwind classes on the elements. `global.css` holds only what can't live on an element: element defaults, keyframes, the coach marks the story script adds at run time, and the tone classes chosen from data. It sits in the `base` layer, so a utility always wins over it.
 - **Routes** live in the URL hash (`#move-1`, `#alert-red`). `src/app/routes.tsx` maps 82 routes to screens, so any screen can be opened from a link.
 - **State** (`AppState`) only records what the visitor has done so far: a fine paid, a form signed, an appointment booked. Every screen receives a `Ctx` with navigation, state and confirmation sheets.
 - **The story** is plain data in `src/story/chapters.ts`: chapters (today versus the new app) and beats, each naming the element to tap. The same data drives the side panel, the phone's story bar, the coach marks and the e2e tests.

@@ -30,7 +30,7 @@ export function Roadmap(c: Ctx) {
       <Lead>11 rzeczy, o które prosili ludzie w badaniach. Każdą da się kliknąć.</Lead>
       <List>
         {r.map(([t, s, go], i) => (
-          <ListRow as="button" onClick={() => c.go(go)}>
+          <ListRow key={t} as="button" onClick={() => c.go(go)}>
             <ListRowTile>{String(i + 1).padStart(2, '0')}</ListRowTile>
             <ListRowContent>
               <ListRowTitle>{t}</ListRowTitle>

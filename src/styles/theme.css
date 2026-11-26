@@ -66,10 +66,18 @@
   --color-green-soft: var(--green-soft);
   --color-amber: var(--warn);
   --color-amber-soft: var(--amber-soft);
+  --color-bg: var(--bg);
+  --color-hair-2: var(--hair-2);
+  --color-signal-blue: var(--signal-blue);
+  --color-signal-red: var(--signal-red);
+  --color-signal-green: var(--signal-green);
+  --color-signal-violet: var(--signal-violet);
   --color-d-0: var(--d-0);
   --color-d-1: var(--d-1);
   --color-d-2: var(--d-2);
+  --color-d-ink: var(--d-ink);
   --color-d-ink-2: var(--d-ink-2);
+  --color-d-hair: var(--d-hair);
 
   --radius-sm: calc(var(--radius) - 6px);
   --radius-md: calc(var(--radius) - 4px);

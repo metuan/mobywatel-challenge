@@ -6,7 +6,7 @@ import { Note } from '@/components/ui/note';
 import { Eyebrow, Muted, Title } from '@/components/ui/typography';
 import { Actions, Button } from '@/components/ui/button';
 import { useEffect, useState } from 'react';
-import { I } from '@/ui/icons';
+import { Icon } from '@/ui/icons';
 import { Hero } from '@/ui/illustrations';
 import type { Ctx } from '@/types';
 
@@ -40,10 +40,12 @@ export function Letter1(c: Ctx) {
             snap ? 'border-[#1c7a4c]' : 'border-white/70',
           )}
         ></div>
-        {snap && <div className="absolute bottom-4 text-[#fff] text-[13px]">Czytam pismo…</div>}
+        {snap && <div className="absolute bottom-4 text-white text-[13px]">Czytam pismo…</div>}
       </div>
       <Actions>
-        <Button onClick={() => setSnap(true)}>{I('camera', 18)} Zrób zdjęcie</Button>
+        <Button onClick={() => setSnap(true)}>
+          <Icon name="camera" size={18} /> Zrób zdjęcie
+        </Button>
       </Actions>
     </div>
   );
@@ -102,8 +104,8 @@ export function Letter2(c: Ctx) {
   useEffect(() => {
     if (k >= 4) {
       c.s.l2seen || c.set({ l2seen: true });
-      setTimeout(() => window.dispatchEvent(new Event('coach')), 60);
-      return;
+      const t = setTimeout(() => window.dispatchEvent(new Event('coach')), 60);
+      return () => clearTimeout(t);
     }
     const a = setTimeout(() => setK(k + 1), k ? 520 : 900);
     return () => clearTimeout(a);
@@ -121,8 +123,8 @@ export function Letter2(c: Ctx) {
       <Eyebrow>Wyjaśnienie pisma</Eyebrow>
       <Title>Urząd skarbowy prosi o wyjaśnienie korekty PIT-37.</Title>
       {k < 4 && (
-        <div className="ai-work">
-          {I('sparkle', 14)}{' '}
+        <div className="inline-flex items-center gap-2 text-[13px] font-medium p-[6px_12px] rounded-[999px] text-white [background:linear-gradient(135deg,_var(--signal-blue),_var(--signal-violet))] m-[2px_0_10px] [box-shadow:0_4px_12px_-6px_rgb(76_90_255_/_70%)] [&_span]:animate-[fadeUp_0.25s_var(--out)]">
+          <Icon name="sparkle" size={14} />{' '}
           <span>
             {['Czytam pismo…', 'Szukam przepisu…', 'Sprawdzam termin…', 'Piszę prostym językiem…'][k]}
           </span>
@@ -130,12 +132,14 @@ export function Letter2(c: Ctx) {
       )}
       <List>
         {F.map(([l, v], i) => (
-          <Field>
+          <Field key={l}>
             <FieldLabel>{l}</FieldLabel>
             {i < k ? (
-              <FieldValue className="in">{v}</FieldValue>
+              <FieldValue className="in [&.v]:[animation:txtin_0.3s_cubic-bezier(0.23,_1,_0.32,_1)_both] [&.msg]:[animation:txtin_0.3s_cubic-bezier(0.23,_1,_0.32,_1)_both] motion-reduce:[&.v]:animate-none! motion-reduce:[&.v]:filter-none motion-reduce:[&.msg]:animate-none! motion-reduce:[&.msg]:filter-none">
+                {v}
+              </FieldValue>
             ) : (
-              <div className="skel">
+              <div className="flex flex-col gap-1.75 p-[6px_0_2px] [&_i]:h-3 [&_i]:rounded-[6px] [&_i]:[background:linear-gradient(90deg,_var(--fill)_0%,_var(--fill-2)_40%,_var(--fill)_80%)] [&&_i]:bg-size-[200%_100%] [&_i]:animate-[shim_1.1s_linear_infinite] [&_i_+_i]:w-[62%] motion-reduce:[&_i]:animate-none!">
                 <i></i>
                 <i></i>
               </div>
@@ -145,14 +149,14 @@ export function Letter2(c: Ctx) {
       </List>
       {k >= 4 && (
         <>
-          <div className="msg ai in max-w-[100%] mt-3">
+          <div className="msg p-[12px_15px] rounded-[22px] text-[15px] [&&.ai]:self-start [&.ai]:[border:0] [&.ai]:rounded-[22px]! [&.ai]:[box-shadow:none]! [&&.ai]:bg-white ai in [&.v]:[animation:txtin_0.3s_cubic-bezier(0.23,_1,_0.32,_1)_both] [&.msg]:[animation:txtin_0.3s_cubic-bezier(0.23,_1,_0.32,_1)_both] motion-reduce:[&.v]:animate-none! motion-reduce:[&.v]:filter-none motion-reduce:[&.msg]:animate-none! motion-reduce:[&.msg]:filter-none max-w-[100%] mt-3">
             <Muted as="span">Źródła</Muted>
-            <div className="srcs">
+            <div className="[.msg_&]:flex [.msg_&]:flex-wrap [.msg_&]:gap-1.5 [.msg_&]:mt-2.5 [.msg_&_span]:text-[12px] [.msg_&_span]:bg-bg [.msg_&_span]:rounded-[999px] [.msg_&_span]:p-[4px_10px] [.msg_&_span]:text-(--ink2) [.msg_&_span]:inline-flex [.msg_&_span]:gap-1.25 [.msg_&_span]:items-center [&.in]:animate-[fadeUp_0.25s_var(--out)]">
               <span>Ordynacja podatkowa, art. 155</span>
               <span>podatki.gov.pl: korekta zeznania</span>
             </div>
           </div>
-          <p className="ai-warn">Asystent może się mylić. To nie jest porada prawna.</p>
+          <p className="text-[12.5px] text-ink-2 m-0">Asystent może się mylić. To nie jest porada prawna.</p>
         </>
       )}
       <Actions>

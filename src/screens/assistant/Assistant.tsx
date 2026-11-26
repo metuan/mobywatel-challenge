@@ -2,7 +2,7 @@ import { Title } from '@/components/ui/typography';
 import { Button } from '@/components/ui/button';
 import { useEffect, useRef, useState } from 'react';
 import { reducedMotion } from '@/lib/env';
-import { I } from '@/ui/icons';
+import { Icon } from '@/ui/icons';
 import { Typed } from '@/ui/primitives';
 import type { Ctx } from '@/types';
 
@@ -81,6 +81,8 @@ export function Assistant(c: Ctx) {
   const fin = (i: number) => setMsgs(m => m.map((x, j) => (j === i && x.ai ? { ...x, typing: false } : x)));
   useEffect(() => {
     if (c.s.q) {
+      // A question typed on another screen arrives through the app state: ask it once, on arrival.
+      // eslint-disable-next-line react-hooks/set-state-in-effect
       ask(c.s.q);
       c.set({ q: null });
     }
@@ -91,36 +93,48 @@ export function Assistant(c: Ctx) {
   return (
     <div className="flex flex-col gap-3">
       <Title>Asystent</Title>
-      <p className="ai-warn text-left m-0">
+      <p className="text-[12.5px] text-ink-2 text-left m-0">
         Odpowiadam na podstawie stron gov.pl i Twoich danych. Mogę się mylić. Niczego nie wysyłam bez Twojego
         „Potwierdź”.
       </p>
       {msgs.length === 0 && (
-        <div className="sugs">
+        <div className="flex flex-col gap-2">
           {[
             'Przeprowadzam się w grudniu',
             'Urodziło mi się dziecko',
             'Kiedy wygasa dowód taty?',
             'Dostałam pismo z urzędu',
           ].map(t => (
-            <button className="sug" onClick={() => ask(t)}>
+            <button
+              key={t}
+              className="p-[14px_16px] text-[15px] font-medium [border:0] rounded-[22px]! [box-shadow:none]! bg-white [transition:background-color_0.12s,_transform_0.16s_var(--out)] [&:active]:bg-fill!"
+              onClick={() => ask(t)}
+            >
               {t}
             </button>
           ))}
         </div>
       )}
-      <div className="chat">
+      <div className="flex flex-col gap-3">
         {msgs.map((m, i) =>
           m.ai === undefined ? (
-            <div className="msg me">{m.me}</div>
+            <div
+              key={i}
+              className="msg max-w-[88%] p-[12px_15px] rounded-[22px] text-[15px] [&&.ai]:self-start [&.ai]:[border:0] [&.ai]:rounded-[22px]! [&.ai]:[box-shadow:none]! [&&.ai]:bg-white [&.msg]:self-end [&.msg]:bg-ink [&.msg]:text-white [&.msg]:[border-bottom-right-radius:8px]"
+            >
+              {m.me}
+            </div>
           ) : (
-            <div className="msg ai">
+            <div
+              key={i}
+              className="msg max-w-[88%] p-[12px_15px] rounded-[22px] text-[15px] [&&.ai]:self-start [&.ai]:[border:0] [&.ai]:rounded-[22px]! [&.ai]:[box-shadow:none]! [&&.ai]:bg-white ai"
+            >
               {m.typing ? <Typed text={m.ai.a} onDone={() => fin(i)} /> : m.ai.a}
               {!m.typing && (
                 <>
-                  <div className="srcs in">
+                  <div className="[.msg_&]:flex [.msg_&]:flex-wrap [.msg_&]:gap-1.5 [.msg_&]:mt-2.5 [.msg_&_span]:text-[12px] [.msg_&_span]:bg-bg [.msg_&_span]:rounded-[999px] [.msg_&_span]:p-[4px_10px] [.msg_&_span]:text-(--ink2) [.msg_&_span]:inline-flex [.msg_&_span]:gap-1.25 [.msg_&_span]:items-center [&.in]:animate-[fadeUp_0.25s_var(--out)] in [&.v]:[animation:txtin_0.3s_cubic-bezier(0.23,_1,_0.32,_1)_both] [&.msg]:[animation:txtin_0.3s_cubic-bezier(0.23,_1,_0.32,_1)_both] motion-reduce:[&.v]:animate-none! motion-reduce:[&.v]:filter-none motion-reduce:[&.msg]:animate-none! motion-reduce:[&.msg]:filter-none">
                     {m.ai.src.map(s => (
-                      <span>{s}</span>
+                      <span key={s}>{s}</span>
                     ))}
                   </div>
                   {m.ai.act && (
@@ -138,8 +152,8 @@ export function Assistant(c: Ctx) {
           ),
         )}
         {busy && (
-          <div className="msg ai typing">
-            <span className="tdots">
+          <div className="msg max-w-[88%] p-[12px_15px] rounded-[22px] text-[15px] [&&.ai]:self-start [&.ai]:[border:0] [&.ai]:rounded-[22px]! [&.ai]:[box-shadow:none]! [&&.ai]:bg-white ai [&.msg]:inline-flex [&.msg]:items-center [&.msg]:gap-2.5 [&.msg]:self-start [&.msg]:text-ink-2 [&.msg]:text-[13.5px]">
+            <span className="inline-flex gap-1 [&_i]:w-1.5 [&_i]:h-1.5 [&_i]:rounded-[50%] [&_i]:bg-ink-3 [&_i]:animate-[td_1s_ease-in-out_infinite] [&_i:nth-child(2)]:[animation-delay:0.15s] [&_i:nth-child(3)]:[animation-delay:0.3s] motion-reduce:[&_i]:animate-none">
               <i></i>
               <i></i>
               <i></i>
@@ -149,7 +163,7 @@ export function Assistant(c: Ctx) {
         )}
       </div>
       <div ref={endRef}></div>
-      <div className="askbar mt-1.5">
+      <div className="askbar flex items-center bg-surface [&_input]:flex-1 [&_input]:[border:0] [&_input]:[outline:0] [&_input]:[background:none] [&_input]:min-w-0 [&_input]:text-[15.5px] [&_input::placeholder]:text-ink-3 h-12.5 rounded-[14px] [border:1px_solid_#d9d9d4] [box-shadow:none] p-[0_6px_0_14px] gap-2 [transition:border-color_0.15s] [&:focus-within]:border-ink mt-1.5">
         <input
           id="ask2"
           value={q}
@@ -163,11 +177,15 @@ export function Assistant(c: Ctx) {
           placeholder="Napisz lub powiedz"
           aria-label="Napisz pytanie"
         />
-        <button className="ib" aria-label="Mów" onClick={() => ask('Kiedy wygasa dowód taty?')}>
-          {I('mic')}
+        <button
+          className="[.askbar_&]:w-9 [.askbar_&]:h-9 [.askbar_&]:rounded-[50%] [.askbar_&]:grid [.askbar_&]:place-items-center [.askbar_&]:text-ink"
+          aria-label="Mów"
+          onClick={() => ask('Kiedy wygasa dowód taty?')}
+        >
+          <Icon name="mic" />
         </button>
         <button
-          className="ib go"
+          className="[.askbar_&]:w-9 [.askbar_&]:h-9 [.askbar_&]:rounded-[50%] [.askbar_&]:grid [.askbar_&]:place-items-center [.askbar_&]:text-ink [.askbar_&]:bg-ink [.askbar_&&]:text-white [.askbar_&]:w-9 [.askbar_&]:h-9 [.askbar_&&]:rounded-[10px] [.askbar_&]:animate-[fade_0.16s_ease-out]"
           aria-label="Wyślij"
           onClick={() => {
             if (q) {
@@ -176,7 +194,7 @@ export function Assistant(c: Ctx) {
             }
           }}
         >
-          {I('send', 18)}
+          <Icon name="send" size={18} />
         </button>
       </div>
     </div>

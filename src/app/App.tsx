@@ -1,41 +1,33 @@
-import { Sheet } from '@/components/ui/sheet';
-import { cn } from '@/lib/utils';
-import type { CSSProperties } from 'react';
-import { Field, FieldValue } from '@/components/ui/field';
-import { Caption, Subtitle } from '@/components/ui/typography';
-import { Actions, Button } from '@/components/ui/button';
 import { useEffect, useRef, useState } from 'react';
-import { edgeBack, leave, sheetDrag } from '@/app/gestures';
+import type { CSSProperties } from 'react';
+import { edgeBack, leave } from '@/app/gestures';
 import { Island } from '@/app/Island';
-import { FULL, TABOF, TABS, Wrap, isRoute, screenFor } from '@/app/routes';
-import type { Route } from '@/app/routes';
-import { reducedMotion } from '@/lib/env';
-import { PayDone, PaySheet } from '@/screens/money/pay';
-import { BEATS, CHAPTERS, beatOf, chapterOf } from '@/story/chapters';
-import { coach } from '@/story/coach';
+import { FULL, TABOF, TABS, Wrap, screenFor } from '@/app/routes';
+import { SheetHost } from '@/app/SheetHost';
+import { StoryBar, TabBar, Toast, TopBar } from '@/app/chrome';
+import { useNavigation } from '@/app/hooks/useNavigation';
+import { useStageZoom } from '@/app/hooks/useStageZoom';
+import { useStory } from '@/app/hooks/useStory';
+import { useStoryKeys } from '@/app/hooks/useStoryKeys';
+import { useToast } from '@/app/hooks/useToast';
 import { Progress12, StoryPanel } from '@/story/StoryPanel';
 import { Tour } from '@/story/Tour';
 import { TechPanel } from '@/tech/TechPanel';
-import { Confirming } from '@/ui/controls';
-import { I } from '@/ui/icons';
+import { Icon } from '@/ui/icons';
 import { Wm } from '@/ui/primitives';
-import type { AppState, Ctx, Persona, Sheet as SheetState, SheetRequest, ToastInput } from '@/types';
+import type { Ctx, Persona, Sheet as SheetState, SheetRequest } from '@/types';
 
-const startPersona = (r: string): Persona =>
-  r === 'easy' || r === 'easy-doc' || r === 'easy-rx' || r === 'easy-voice' ? 'tata' : 'anna';
-
-const hashRoute = () => {
-  const h = (location.hash || '').slice(1);
-  return isRoute(h) ? h : null;
-};
-
+/**
+ * The stage: story panel on the left, the phone in the middle, "how it works" on the right.
+ * On phones only the phone shows, with the story folded into a bar.
+ */
 export function App() {
-  const [route, setRoute] = useState<Route>(hashRoute() || 'today');
-  const [, setHist] = useState<Route[]>([]);
-  const [dir, setDir] = useState('tab');
-  const [s, setS] = useState<AppState>({ persona: startPersona(hashRoute() || 'today'), inboxNew: 2 });
+  const nav = useNavigation();
+  const { route, s } = nav;
+  const toast = useToast();
   const [sheet, setSheet] = useState<SheetState | null>(null);
   const [phoneEl, setPhoneEl] = useState<HTMLDivElement | null>(null);
+  const scrollRef = useRef<HTMLDivElement>(null);
   const closeSheet = (cb?: unknown) =>
     leave(
       document.querySelector('.phone .sheet'),
@@ -47,341 +39,85 @@ export function App() {
         typeof cb === 'function' && cb();
       },
     );
-  const [toast, setToast] = useState<ToastInput | null>(null);
-  const scrollRef = useRef<HTMLDivElement>(null);
+  const story = useStory({
+    nav,
+    sheet,
+    onReset: () => {
+      setSheet(null);
+      toast.clear();
+    },
+  });
+  useStoryKeys({ chap: story.chap, step: story.step, kbdRef: nav.kbdRef });
+  useStageZoom();
 
-  const go = (r: string, persona?: Persona) => {
-    if (!isRoute(r)) return;
-    if (persona) setS(x => ({ ...x, persona, easy: persona === 'tata' }));
-    setDir(kbd.current ? 'kbd' : TABS.some(t => t[0] === r) ? 'tab' : '');
-    kbd.current = false;
-    setHist(h => [...h.slice(-30), route]);
-    setRoute(r);
-    try {
-      history.replaceState(null, '', '#' + r);
-    } catch {}
+  /** Navigate and start a fresh back stack (tabs, the wordmark, the story panel). */
+  const goFresh = (r: string, p?: Persona) => {
+    nav.clearHistory();
+    nav.go(r, p);
   };
-  const back = () => {
-    setDir('back');
-    setHist(h => {
-      const p = h[h.length - 1] || (s.persona === 'tata' ? 'easy' : 'today');
-      setRoute(p);
-      try {
-        history.replaceState(null, '', '#' + p);
-      } catch {}
-      return h.slice(0, -1);
-    });
-  };
-  const set = (patch: Partial<AppState>) => setS(x => ({ ...x, ...patch }));
-  const toastT = useRef<ReturnType<typeof setTimeout>[]>([]);
-  const showToast = (t: ToastInput) => {
-    toastT.current.forEach(clearTimeout);
-    setToast(t);
-    toastT.current = [
-      setTimeout(() => {
-        const el = document.querySelector('.phone .toast');
-        el &&
-          !reducedMotion() &&
-          el.animate(
-            [
-              { opacity: 1, transform: 'none' },
-              { opacity: 0, transform: 'translateY(12px) scale(.98)' },
-            ],
-            { duration: 180, easing: 'cubic-bezier(.23,1,.32,1)', fill: 'forwards' },
-          );
-      }, 3000),
-      setTimeout(() => setToast(null), 3200),
-    ];
-  };
-  const kbd = useRef(false);
+  const openHow = () => setSheet({ tech: true });
   const c: Ctx = {
     s,
-    go,
-    back,
-    set,
-    toast: showToast,
+    go: nav.go,
+    back: nav.back,
+    set: nav.set,
+    toast: toast.show,
     ask: (q: string) => {
-      set({ q });
-      go('assistant');
+      nav.set({ q });
+      nav.go('assistant');
     },
     confirm: (o: SheetRequest) => setSheet({ ...o, stage: 0 }),
     pay: (o: SheetRequest) => setSheet({ ...o, pay: true, m: 0, stage: 0 }),
   };
 
-  useEffect(() => {
-    const f = () => {
-      const r = hashRoute();
-      if (r && r !== route) {
-        setRoute(r);
-        if (r === 'easy') setS(x => ({ ...x, persona: 'tata' }));
-        if (TABS.some(t => t[0] === r)) setS(x => ({ ...x, persona: 'anna' }));
-      }
-    };
-    window.addEventListener('hashchange', f);
-    return () => window.removeEventListener('hashchange', f);
-  }, [route]);
+  // A new screen starts at the top with the large title showing.
+  const [compact, setCompact] = useState(false);
+  const [scrolledRoute, setScrolledRoute] = useState(route);
+  if (scrolledRoute !== route) {
+    setScrolledRoute(route);
+    setCompact(false);
+  }
   useEffect(() => {
     if (scrollRef.current) scrollRef.current.scrollTop = 0;
   }, [route]);
-  useEffect(() => {
-    if (sheet && sheet.stage === 1) {
-      const t = setTimeout(
-        () => {
-          if (sheet.pay) {
-            setSheet({ ...sheet, stage: 2 });
-            return;
-          }
-          const d = sheet.done;
-          closeSheet(d);
-        },
-        reducedMotion() ? 600 : 1700,
-      );
-      return () => clearTimeout(t);
-    }
-  }, [sheet]);
 
   const Screen = screenFor(route);
   const isTab = TABS.some(t => t[0] === route) || route === 'easy';
   const tata = s.persona === 'tata';
-  const curTab = TABOF(route);
-
-  const [menu, setMenu] = useState(false);
-  const [play, setPlay] = useState(false);
-  const [compact, setCompact] = useState(false);
-  const [ttl, setTtl] = useState('');
-  useEffect(() => {
-    const t = setTimeout(() => {
-      const h = document.querySelector('.phone .scroll h1');
-      const x = h ? (h.textContent || '').trim() : '';
-      setTtl(x.length > 26 ? x.slice(0, 24).replace(/\s+\S*$/, '') + '…' : x);
-    }, 60);
-    return () => clearTimeout(t);
-  }, [route]);
-  const [tour, setTour] = useState<'intro' | 'outro' | null>(location.hash ? null : 'intro');
-  const closeTour = (cb?: () => void) =>
-    leave(
-      document.querySelector('.tour'),
-      document.querySelector('.tour-bg'),
-      innerWidth <= 640 ? 'translateY(100%)' : 'translateY(10px) scale(.98)',
-      innerWidth <= 640 ? 260 : 180,
-      () => {
-        setTour(null);
-        cb && cb();
-      },
-    );
-  useEffect(() => {
-    const f = () => {
-      const w = innerWidth,
-        h = innerHeight;
-      const z = w <= 640 ? 1 : Math.min(1, Math.max(0.62, (h - (w <= 960 ? 96 : 120)) / 846));
-      document.documentElement.style.setProperty('--pz', z.toFixed(3));
-    };
-    f();
-    addEventListener('resize', f);
-    return () => removeEventListener('resize', f);
-  }, []);
-  useEffect(() => setCompact(false), [route]);
-  const [chap, setChap] = useState(Math.max(0, chapterOf(route)));
-  useEffect(() => {
-    if (beatOf(chap, route) >= 0) return;
-    if (TABS.some(t => t[0] === route)) return;
-    const k = chapterOf(route);
-    if (k >= 0 && k !== chap) setChap(k);
-  }, [route]);
-  useEffect(() => {
-    if (tour) return;
-    const t = setTimeout(() => coach(chap, route), route === 'lock' ? 4200 : 700);
-    return () => clearTimeout(t);
-  }, [route, tour, chap]);
-  useEffect(() => {
-    const f = () => !tour && coach(chap, route, true);
-    window.addEventListener('coach', f);
-    return () => window.removeEventListener('coach', f);
-  }, [chap, route, tour]);
-  useEffect(() => {
-    if (tour || !sheet || sheet.tech || sheet.stage !== 0) return;
-    const t = setTimeout(() => coach(chap, route, true), 450);
-    return () => clearTimeout(t);
-  }, [sheet]);
-  /* M1: the sheet glides to its new height when its content changes (confirm -> loader -> receipt) */
-  useEffect(() => {
-    if (!sheet || !window.ResizeObserver) return;
-    let ro: ResizeObserver | undefined;
-    // The sheet mounts through a portal a frame later, so look for it after the next paint.
-    const raf = requestAnimationFrame(() => {
-      const sh = document.querySelector<HTMLElement>('.phone .sheet');
-      if (sh) ro = glide(sh);
-    });
-    return () => {
-      cancelAnimationFrame(raf);
-      ro?.disconnect();
-    };
-  }, [!!sheet]);
-  const glide = (sh: HTMLElement) => {
-    let h = sh.offsetHeight,
-      busy = false;
-    const ro = new ResizeObserver(() => {
-      const nh = sh.offsetHeight;
-      if (Math.abs(nh - h) < 4 || busy || reducedMotion()) {
-        h = nh;
-        return;
-      }
-      busy = true;
-      sh.animate([{ height: h + 'px' }, { height: nh + 'px' }], {
-        duration: 300,
-        easing: 'cubic-bezier(.32,.72,0,1)',
-      }).onfinish = () => {
-        busy = false;
-      };
-      h = nh;
-    });
-    ro.observe(sh);
-    return ro;
-  };
-  const hadSheet = useRef(false);
-  useEffect(() => {
-    if (sheet) {
-      hadSheet.current = true;
-      return;
-    }
-    if (!hadSheet.current || tour) return;
-    hadSheet.current = false;
-    const t = setTimeout(() => coach(chap, route, true), 320);
-    return () => clearTimeout(t);
-  }, [sheet]);
-  const [lastBeat, setLastBeat] = useState(0);
-  const lbChap = useRef(chap);
-  useEffect(() => {
-    const b = beatOf(chap, route);
-    if (b >= 0) setLastBeat(b);
-    else if (lbChap.current !== chap) setLastBeat(0);
-    lbChap.current = chap;
-  }, [route, chap]);
-  const goChap = (k: number) => {
-    const ch = CHAPTERS[k];
-    try {
-      history.pushState({ chap: k }, '', '#' + ch.r[0]);
-    } catch {}
-    setSheet(null);
-    setMenu(false);
-    setToast(null);
-    setS({ persona: ch.p || 'anna', inboxNew: 2 });
-    setChap(k);
-    go(ch.r[0], ch.p);
-    setHist([]);
-    setTimeout(() => {
-      const sc = document.querySelector('.phone .scroll');
-      sc && (sc.scrollTop = 0);
-    }, 0);
-  };
-  const step = (d: number) => {
-    if (chap + d >= CHAPTERS.length) {
-      setPlay(false);
-      setTour('outro');
-      return;
-    }
-    goChap(Math.max(0, chap + d));
-  };
-  useEffect(() => {
-    if (!play) return;
-    const t = setTimeout(() => step(1), 9000);
-    return () => clearTimeout(t);
-  }, [play, chap]);
-  useEffect(() => {
-    const f = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') {
-        // An open sheet handles Escape itself (see Sheet's onDismiss).
-        setMenu(false);
-        return;
-      }
-      if ((e.target as HTMLElement).tagName === 'INPUT') return;
-      if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
-        e.preventDefault();
-        kbd.current = true;
-        step(1);
-      }
-      if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
-        e.preventDefault();
-        kbd.current = true;
-        step(-1);
-      }
-    };
-    window.addEventListener('keydown', f);
-    return () => window.removeEventListener('keydown', f);
-  }, [chap]);
-  const MENU: [Route, string][] = [
-    ['today', 'Dziś'],
-    ['matters', 'Sprawy'],
-    ['family', 'Bliscy'],
-    ['safety', 'Ochrona'],
-    ['docs', 'Dokumenty'],
-    ['profile', 'Profil i zaufanie'],
-    ['roadmap', 'Co dalej'],
-    ['about', 'O koncepcji'],
-  ];
-
-  const toastView = toast === null ? null : typeof toast === 'string' ? { t: toast, undo: undefined } : toast;
 
   const phone = (
     <div ref={setPhoneEl} className="phone" role="application" aria-label="Prototyp aplikacji">
       <Island c={c} route={route} full={FULL.has(route)} />
-      <div className={'app' + (compact ? ' compact' : '')}>
-        <div className="statusbar">
+      <div
+        className={
+          'app absolute inset-0 flex flex-col [font-family:"Inter",_system-ui,_sans-serif] [font-optical-sizing:auto] [font-feature-settings:"calt",_"ss03",_"cv11"] [-webkit-font-smoothing:antialiased] bg-bg' +
+          (compact ? ' compact' : '')
+        }
+      >
+        <div className="[@media(max-width:960px)]:hidden! h-12.5 flex-none flex justify-between items-end p-[0_30px_6px] text-[14px] font-semibold text-ink [@media(max-width:960px)_and_(min-width:641px)]:[.stage.wide_&]:flex!">
           <span>15:40</span>
-          <span className="flex gap-1.5 items-center">{I('wifi', 15)} 82%</span>
+          <span className="flex gap-1.5 items-center">
+            <Icon name="wifi" size={15} /> 82%
+          </span>
         </div>
         {FULL.has(route) ? (
           <Wrap key={route} f={Screen} c={c} d="full" />
         ) : (
           <>
-            <div className="topbar">
-              {isTab ? (
-                <button
-                  className="word"
-                  onClick={() => {
-                    setHist([]);
-                    go(tata ? 'easy' : 'today');
-                  }}
-                >
-                  <Wm />
-                </button>
-              ) : (
-                <button className="navback" onClick={back}>
-                  {I('left', 22)}
-                  <span>Wstecz</span>
-                </button>
-              )}
-              {!tata && (
-                <span className="tb-title">{isTab ? (TABS.find(t => t[0] === route)?.[1] ?? '') : ttl}</span>
-              )}
-              <div className="tb-right">
-                <button
-                  className="how-btn"
-                  aria-label="Jak to działa"
-                  onClick={() => setSheet({ tech: true })}
-                >
-                  {I('info', 18)}
-                </button>
-                {tata ? (
-                  <button className="menu-btn" onClick={() => go('today', 'anna')}>
-                    Zwykły widok
-                  </button>
-                ) : (
-                  <button
-                    className="avatar-btn"
-                    aria-label="Profil i ustawienia"
-                    onClick={() => go('profile')}
-                  >
-                    AN
-                  </button>
-                )}
-              </div>
-            </div>
+            <TopBar
+              isTab={isTab}
+              tata={tata}
+              route={route}
+              go={nav.go}
+              back={nav.back}
+              clearHistory={nav.clearHistory}
+              openHow={openHow}
+            />
             <div
-              className="scroll"
+              className="scroll flex-1 overflow-y-auto overflow-x-hidden scrollbar-none [&::-webkit-scrollbar]:hidden pr-5 pb-28 pl-5 -mt-13 pt-14 [@media(max-width:960px)]:pb-42.5 [&.edge]:overflow-hidden"
               ref={scrollRef}
               style={s.fs && s.fs !== 1 ? ({ '--fs': s.fs } as CSSProperties) : undefined}
-              onPointerDown={e => !isTab && edgeBack(e, back)}
+              onPointerDown={e => !isTab && edgeBack(e, nav.back)}
               onScroll={e => {
                 const el = e.currentTarget as HTMLElement;
                 const st = el.scrollTop;
@@ -390,223 +126,83 @@ export function App() {
                 if (v !== compact) setCompact(v);
               }}
             >
-              <Wrap key={route} f={Screen} c={c} d={dir} />
+              <Wrap key={route} f={Screen} c={c} d={nav.dir} />
             </div>
             {!tata && (
-              <nav className="tabbar" aria-label="Główne">
-                <i
-                  className="tb-ind"
-                  style={{
-                    transform: `translateX(${
-                      Math.max(
-                        0,
-                        TABS.findIndex(t => t[0] === curTab),
-                      ) * 100
-                    }%)`,
-                  }}
-                ></i>
-                {TABS.map(([r, t, ic]) => (
-                  <button
-                    aria-current={curTab === r && route !== 'profile' ? 'page' : undefined}
-                    onClick={() => {
-                      setHist([]);
-                      go(r);
-                    }}
-                  >
-                    {I(ic, 24)}
-                    <span>{t}</span>
-                  </button>
-                ))}
-              </nav>
+              <TabBar route={route} curTab={TABOF(route)} go={nav.go} clearHistory={nav.clearHistory} />
             )}
           </>
         )}
-        {!tour && (
-          <div className={'mstory' + (FULL.has(route) ? ' top' : '')}>
-            <button
-              className="ms-main"
-              onClick={() => {
-                const h = beatOf(chap, route);
-                if (h < 0 && route !== BEATS[chap][0][0]) go(BEATS[chap][lastBeat][0], CHAPTERS[chap].p);
-                else setSheet({ tech: true });
-              }}
-            >
-              <span className="ms-n">
-                {chap + 1}/{CHAPTERS.length}
-              </span>
-              <span className="ms-t">
-                <b>{CHAPTERS[chap].t}</b>
-                <span>
-                  {(() => {
-                    const h = beatOf(chap, route);
-                    if (h < 0 && route !== BEATS[chap][0][0]) return 'Poza historią. Dotknij, by wrócić';
-                    const bi = h >= 0 ? h : lastBeat,
-                      n = BEATS[chap].length;
-                    return `Krok ${bi + 1} z ${n}`;
-                  })()}
-                </span>
-              </span>
-            </button>
-            <button className="ms-next" aria-label="Następny rozdział" onClick={() => step(1)}>
-              {I('chevron', 18)}
-            </button>
-          </div>
+        {!story.tour && (
+          <StoryBar
+            route={route}
+            chap={story.chap}
+            lastBeat={story.lastBeat}
+            go={nav.go}
+            step={story.step}
+            openHow={openHow}
+          />
         )}
-        {menu && (
-          <div className="menu-bg" onClick={e => e.target === e.currentTarget && setMenu(false)}>
-            <div className="menu" role="dialog" aria-label="Menu">
-              <button className="x" aria-label="Zamknij" onClick={() => setMenu(false)}>
-                {I('x', 16)}
-              </button>
-              <nav>
-                {MENU.map(([r, t]) => (
-                  <button
-                    aria-current={
-                      route === r || (curTab === r && TABS.some(x => x[0] === r) && route !== 'profile')
-                        ? 'page'
-                        : undefined
-                    }
-                    onClick={() => {
-                      setMenu(false);
-                      setHist([]);
-                      go(r);
-                    }}
-                  >
-                    {t}
-                  </button>
-                ))}
-              </nav>
-              <div className="official">
-                <span className="flag"></span>
-                <span>
-                  Niezależna koncepcja na mObywatel Challenge.
-                  <br />
-                  To nie jest oficjalna aplikacja.
-                </span>
-              </div>
-            </div>
-          </div>
-        )}
-        {toastView && (
-          <div className={'toast' + (toastView.undo ? ' has-undo' : '')} role="status">
-            {toastView.t}
-            {toastView.undo && (
-              <button
-                className="t-undo"
-                onClick={() => {
-                  toastView.undo?.();
-                  setToast(null);
-                }}
-              >
-                {I('undo', 15)} Cofnij
-              </button>
-            )}
-          </div>
-        )}
+        {toast.view && <Toast view={toast.view} onClose={toast.clear} />}
         {sheet && (
-          <Sheet
+          <SheetHost
+            sheet={sheet}
+            setSheet={setSheet}
+            close={closeSheet}
             container={phoneEl}
-            title={sheet.t || 'Jak to działa'}
-            onDismiss={sheet.tech || sheet.stage === 0 ? () => closeSheet() : undefined}
-            onPointerDown={e => sheetDrag(e, closeSheet)}
-          >
-            {sheet.pay && sheet.stage === 0 ? (
-              <PaySheet sheet={sheet} setSheet={setSheet} close={() => closeSheet()} />
-            ) : sheet.pay && sheet.stage === 2 ? (
-              <PayDone sheet={sheet} close={() => closeSheet(sheet.done)} />
-            ) : sheet.tech ? (
-              <div>
-                <StoryPanel
-                  i={chap}
-                  route={route}
-                  lastBeat={lastBeat}
-                  go={(r: string, p?: Persona) => {
-                    closeSheet(() => {
-                      setHist([]);
-                      go(r, p);
-                    });
-                  }}
-                  step={(d: number) => {
-                    closeSheet(() => step(d));
-                  }}
-                />
-                <TechPanel route={route} />
-                <Actions>
-                  <Button variant="secondary" onClick={() => closeSheet()}>
-                    Zamknij
-                  </Button>
-                </Actions>
-              </div>
-            ) : sheet.stage === 0 ? (
-              <div>
-                <div className="q">Czy te dane są poprawne?</div>
-                <Subtitle className={cn('mb-3', sheet.big && 'text-[30px]')}>{sheet.t}</Subtitle>
-                <div className="rounded-[22px] bg-white">
-                  {(sheet.items || []).map(i => (
-                    <Field className={cn(sheet.big && 'text-lg')}>
-                      <FieldValue className="flex gap-2.5 items-start">
-                        <span className="text-(--blue) mt-0.5">{I('check', 16)}</span>
-                        <span>{i}</span>
-                      </FieldValue>
-                    </Field>
-                  ))}
-                </div>
-                <Caption className="mt-3">
-                  Potwierdzasz twarzą lub kodem PIN. To jest Twój podpis. Nic nie zostanie wysłane wcześniej.
-                </Caption>
-                <Actions row>
-                  <Button variant="secondary" onClick={() => closeSheet()}>
-                    Nie, popraw
-                  </Button>
-                  <Button onClick={() => setSheet({ ...sheet, stage: 1 })}>{sheet.ok}</Button>
-                </Actions>
-              </div>
-            ) : (
-              <Confirming
-                steps={sheet.pay ? ['Potwierdzam, że to Ty', 'Łączę z bankiem', 'Płacę'] : sheet.steps}
-              />
-            )}
-          </Sheet>
+            route={route}
+            chap={story.chap}
+            lastBeat={story.lastBeat}
+            go={goFresh}
+            step={story.step}
+          />
         )}
       </div>
     </div>
   );
 
   return (
-    <div className="stage wide">
-      <header className="top8">
+    <div className="stage min-h-full grid [grid-template-columns:minmax(320px,_520px)_auto] justify-center gap-18 items-center [padding-left:max(32px,_env(safe-area-inset-left,_0px))] [padding-right:max(32px,_env(safe-area-inset-right,_0px))] [@media(max-width:960px)]:block [@media(max-width:960px)]:pr-0 [@media(max-width:960px)]:pl-0 [@media(max-width:1279px)]:[&.wide]:[grid-template-areas:'rail_phone'_'side_phone'] [@media(max-width:1279px)]:[&.wide_.phone]:[grid-area:phone] py-6 bg-bg [&.wide]:relative [&.wide]:gap-18 [&.wide]:pb-14 [@media(max-width:960px)]:[&.wide]:pr-0 [@media(max-width:960px)]:[&.wide]:pb-0 [@media(max-width:960px)]:[&.wide]:pl-0 [&.wide_.phone]:[filter:drop-shadow(0_50px_40px_rgb(11_13_18_/_8%))] [&.wide_.phone]:sticky [&.wide_.phone]:top-6 [&.wide_.phone]:[zoom:var(--pz,_1)] [&.wide]:[grid-template-columns:minmax(340px,_440px)_392px_minmax(300px,_380px)] [&.wide]:[align-items:start] [&.wide]:pt-23 [@media(max-width:1279px)]:[&.wide]:[grid-template-columns:minmax(320px,_460px)_392px] [@media(max-width:1439px)_and_(min-width:1280px)]:[&.wide]:gap-11 [@media(max-width:1439px)_and_(min-width:1280px)]:[&.wide]:[grid-template-columns:minmax(320px,_400px)_auto_minmax(280px,_340px)] [@media(max-height:820px)_and_(min-width:961px)]:[&.wide]:pt-18 [@media(max-width:1279px)_and_(min-width:961px)]:[&.wide]:[grid-template-columns:minmax(320px,_1fr)_auto] [@media(max-width:1279px)_and_(min-width:961px)]:[&.wide]:[grid-template-areas:'rail_phone'_'side_phone'] [@media(max-width:1279px)_and_(min-width:961px)]:[&.wide]:gap-[28px_48px] [@media(max-width:1279px)_and_(min-width:961px)]:[&.wide]:[align-items:start] [@media(max-width:1279px)_and_(min-width:961px)]:[&.wide]:px-8 [@media(max-width:1279px)_and_(min-width:961px)]:[&.wide_.phone]:[grid-area:phone] [@media(max-width:960px)_and_(min-width:641px)]:[&.wide]:grid! [@media(max-width:960px)_and_(min-width:641px)]:[&.wide]:grid-cols-[1fr] [@media(max-width:960px)_and_(min-width:641px)]:[&.wide]:justify-items-center [@media(max-width:960px)_and_(min-width:641px)]:[&.wide]:p-[76px_24px_24px]! [@media(max-width:960px)_and_(min-width:641px)]:[&.wide]:min-h-dvh [@media(max-width:960px)_and_(min-width:641px)]:[&.wide_.phone]:w-98! [@media(max-width:960px)_and_(min-width:641px)]:[&.wide_.phone]:h-211.5! [@media(max-width:960px)_and_(min-width:641px)]:[&.wide_.phone]:rounded-[56px]! [@media(max-width:960px)_and_(min-width:641px)]:[&.wide_.phone]:[box-shadow:0_0_0_1px_#1a1c22,_0_0_0_9px_var(--ink),_0_0_0_10px_#2a2d35,_0_60px_120px_-40px_rgb(11_13_18_/_35%)]! [@media(max-width:960px)_and_(min-width:641px)]:[&.wide_.phone]:relative [@media(max-width:960px)_and_(min-width:641px)]:[&.wide_.phone]:top-0 [@media(max-width:640px)]:[&.wide_.phone]:w-full! [@media(max-width:640px)]:[&.wide_.phone]:h-dvh! [@media(max-width:640px)]:[&.wide_.phone]:rounded-none! [@media(max-width:640px)]:[&.wide_.phone]:[box-shadow:none]! [@media(max-width:640px)]:[&.wide_.phone]:filter-none! [@media(max-width:640px)]:[&.wide_.phone]:relative [@media(max-width:640px)]:[&.wide_.phone]:top-0 [@media(max-width:640px)]:[&.wide_.phone]:zoom-[1] [@media(max-width:640px)]:[&.wide]:p-0! wide [&.pill]:w-full">
+      <header className="top8 absolute top-7 left-10 right-10 flex justify-between items-center text-[13px] text-ink-2 [@media(max-width:960px)]:hidden [@media(max-height:820px)_and_(min-width:961px)]:top-5 [@media(max-width:960px)_and_(min-width:641px)]:flex! [@media(max-width:960px)_and_(min-width:641px)]:left-6 [@media(max-width:960px)_and_(min-width:641px)]:right-6 [@media(max-width:960px)_and_(min-width:641px)]:top-5.5 [@media(max-width:960px)_and_(min-width:641px)]:[&_>_span]:text-[12px] [@media(max-width:640px)]:hidden">
         <Wm />
         <span>
-          <button className="tlink8" onClick={() => setTour('intro')}>
+          <button
+            className="text-[13px] text-ink font-semibold [text-decoration:underline] underline-offset-[3px] [&&]:decoration-hair-2"
+            onClick={() => story.setTour('intro')}
+          >
             Wstęp
           </button>{' '}
           ·{' '}
-          <button className="tlink8" onClick={() => goChap(chap)}>
+          <button
+            className="text-[13px] text-ink font-semibold [text-decoration:underline] underline-offset-[3px] [&&]:decoration-hair-2"
+            onClick={() => story.goChap(story.chap)}
+          >
             Zacznij rozdział od nowa
           </button>{' '}
           · Niezależna koncepcja na mObywatel Challenge · osoby i dane są fikcyjne
         </span>
       </header>
-      <aside className="rail">
-        <Progress12 i={chap} goChap={goChap} />
-        <StoryPanel
-          i={chap}
-          route={route}
-          lastBeat={lastBeat}
-          go={(r: string, p?: Persona) => {
-            setHist([]);
-            go(r, p);
-          }}
-          step={step}
-        />
+      <aside className="flex flex-col min-w-0 [&_.mark]:flex [&_.mark]:items-center [&_.mark]:gap-2.5 [&_.mark]:tracking-[-0.02em] [@media(max-width:960px)]:hidden [@media(max-width:1279px)]:[.stage.wide_&]:[grid-area:rail] [@media(max-width:1279px)]:[.stage.wide_&]:[align-self:end] [&_.mark]:font-sans [&_.mark]:font-semibold [&_.mark]:text-[19px] gap-0 [@media(max-width:1279px)_and_(min-width:961px)]:[.stage.wide_&]:[grid-area:rail] [@media(max-width:960px)_and_(min-width:641px)]:[.stage.wide_&]:hidden!">
+        <Progress12 i={story.chap} goChap={story.goChap} />
+        <StoryPanel i={story.chap} route={route} lastBeat={story.lastBeat} go={goFresh} step={story.step} />
       </aside>
       {phone}
-      {tour && (
-        <Tour key={tour} mode={tour} onClose={() => closeTour()} onStart={() => closeTour(() => goChap(0))} />
+      {story.tour && (
+        <Tour
+          key={story.tour}
+          mode={story.tour}
+          onClose={() => story.closeTour()}
+          onStart={() => story.closeTour(() => story.goChap(0))}
+        />
       )}
-      <aside className="side">
-        <div className="how-card" key={route}>
-          <div className="hc-k">{I('info', 16)} Jak to działa na tym ekranie</div>
+      <aside className="self-center max-h-none overflow-visible flex flex-col [&_.flows]:gap-0 [&_.flows_button]:[transition:color_0.15s] [@media(max-width:1279px)]:[.stage.wide_&]:[grid-area:side] [@media(max-width:1279px)]:[.stage.wide_&]:block [@media(max-width:1279px)]:[.stage.wide_&&]:[grid-column:1/-1] [@media(max-width:1279px)]:[&_.flows]:grid-cols-[1fr_1fr] [@media(max-width:1279px)]:[&_.flows]:gap-x-4.5 [@media(max-width:960px)]:hidden! [&_.flows]:[border-top:1px_solid_var(--hair-2)] [&_.flows]:mt-2.5 [&_.flows]:flex-col [&_.flows]:hidden [&_.flows_button]:relative [&_.flows_button]:p-[0_0_0_12px] [&_.flows_button]:font-medium [&_.flows_button]:text-ink-2 [&_.flows_button]:[border-bottom:1px_solid_var(--hair)] [&_.flows_button]:[text-decoration:none]! [&_.flows_button]:gap-3 [&_.flows_button]:items-center [&_.flows_button]:h-9.5 [&_.flows_button]:text-[14px] [&_.flows_button:hover]:text-ink [&_.flows_button[aria-current='step']]:text-ink [&_.flows_button[aria-current='step']]:font-semibold [&_.flows_button[aria-current='step']::before]:[content:''] [&_.flows_button[aria-current='step']::before]:absolute [&_.flows_button[aria-current='step']::before]:left-0 [&_.flows_button[aria-current='step']::before]:top-3 [&_.flows_button[aria-current='step']::before]:bottom-3 [&_.flows_button[aria-current='step']::before]:w-0.5 [&_.flows_button[aria-current='step']::before]:rounded-xs [&_.flows_button[aria-current='step']::before]:bg-ink [.stage.wide_&]:[align-self:start] [.stage.wide_&]:sticky [.stage.wide_&]:top-6 [.stage.wide_&]:mt-7.5 [@media(max-width:1279px)_and_(min-width:961px)]:[.stage.wide_&]:[grid-area:side] [@media(max-width:1279px)_and_(min-width:961px)]:[.stage.wide_&]:static [@media(max-width:1279px)_and_(min-width:961px)]:[.stage.wide_&]:mt-0 [@media(max-width:1279px)_and_(min-width:961px)]:[.stage.wide_&]:block [@media(max-width:960px)_and_(min-width:641px)]:[.stage.wide_&]:hidden!">
+        <div
+          className="how-card bg-white [box-shadow:0_0_0_0.5px_var(--hair),_0_20px_50px_-30px_rgb(11_13_18_/_25%)] [&_.sys]:text-[15px] [&_.what]:text-[14px] [&_.what]:leading-5 motion-safe:animate-[rise_0.45s_var(--out)_both] p-[24px_24px_20px] rounded-[28px]"
+          key={route}
+        >
+          <div className="flex items-center text-[12.5px] font-semibold text-signal-blue mb-2 gap-1.5">
+            <Icon name="info" size={16} /> Jak to działa na tym ekranie
+          </div>
           <TechPanel route={route} />
         </div>
       </aside>

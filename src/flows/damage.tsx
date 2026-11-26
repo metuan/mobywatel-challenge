@@ -4,7 +4,7 @@ import { List, ListRow, ListRowContent, ListRowDescription, ListRowTitle } from 
 import { Eyebrow, Lead, Title } from '@/components/ui/typography';
 import { Actions, Button } from '@/components/ui/button';
 import { useState } from 'react';
-import { I } from '@/ui/icons';
+import { Icon } from '@/ui/icons';
 import { Hero } from '@/ui/illustrations';
 import { Progress, Src } from '@/ui/primitives';
 import type { Ctx } from '@/types';
@@ -18,10 +18,13 @@ export function Damage1(c: Ctx) {
       <Progress n={1} of={3} />
       <Title>Zrób zdjęcia szkód</Title>
       <Lead>Do każdego zdjęcia dodamy datę i miejsce. Nikt ich potem nie zmieni.</Lead>
-      <div className="photos">
+      <div className="grid grid-cols-[1fr_1fr] gap-2">
         {[0, 1, 2, 3].map(i =>
           i < n ? (
-            <div className="ph">
+            <div
+              key={i}
+              className="ph [aspect-ratio:1/1] rounded-[12px] overflow-hidden relative bg-white [&_span]:absolute [&_span]:left-2 [&_span]:bottom-2 [&_span]:text-[11px] [&_span]:text-white [&_span]:[background:rgb(0_0_0_/_45%)] [&_span]:rounded-[6px] [&_span]:p-[2px_6px]"
+            >
               <svg viewBox="0 0 100 100" width="100%" height="100%">
                 <rect width="100" height="100" fill={['#c9c4bb', '#b7b1a6', '#d2ccc2', '#bfb9ae'][i]} />
                 <path
@@ -40,13 +43,14 @@ export function Damage1(c: Ctx) {
             </div>
           ) : (
             <button
-              className="ph add"
+              key={i}
+              className="ph [aspect-ratio:1/1] rounded-[12px] overflow-hidden relative bg-white [&_span]:absolute [&_span]:left-2 [&_span]:bottom-2 [&_span]:text-[11px] [&_span]:text-white [&_span]:[background:rgb(0_0_0_/_45%)] [&_span]:rounded-[6px] [&_span]:p-[2px_6px] add [&.ph]:grid [&.ph]:place-items-center [&.ph]:content-center [&.ph]:gap-1.5 [&.ph]:text-ink [&.ph]:text-[14px] [&.ph]:font-semibold [&.ph]:[border:1.5px_dashed_#c7c7cc] [&.ph]:bg-transparent [&.ph_span]:static [&.ph_span]:[background:none] [&.ph_span]:text-ink [&.ph_span]:text-[14px]"
               onClick={() => {
                 setN(n + 1);
                 c.set({ dmgPhotos: n + 1 });
               }}
             >
-              {I('camera', 24)}
+              <Icon name="camera" size={24} />
               <span>{i === n ? 'Zrób zdjęcie' : ''}</span>
             </button>
           ),
@@ -131,8 +135,15 @@ export function Damage3(c: Ctx) {
           ['Komisja wycenia szkody', 'Wynik zobaczysz tutaj', 0],
           ['Wypłata zasiłku', 'Na konto •••• 4471', 0],
         ].map(([t, s, d]) => (
-          <ListRow>
-            <span className={'tl' + (d ? ' on' : '')}></span>
+          <ListRow key={t}>
+            <span
+              className={
+                '[.timeline_&]:w-3 [.timeline_&]:h-3 [.timeline_&]:rounded-[50%] [.timeline_&]:[border:2px_solid_#c7c7cc] [.timeline_&]:flex-none [.timeline_&.on]:bg-signal-green [.timeline_&.on]:border-signal-green' +
+                (d
+                  ? ' on [.progress_i&]:bg-ink [.steps_i&]:bg-ink [.st-ab_>_div&&]:bg-white [.st-ab_&_p]:text-ink [.tour-dots_i&]:w-5.5 [.tour-dots_i&]:bg-ink [.call-keys_button&_span]:bg-white [.call-keys_button&_span]:text-ink'
+                  : '')
+              }
+            ></span>
             <ListRowContent>
               <ListRowTitle>{t}</ListRowTitle>
               <ListRowDescription>{s}</ListRowDescription>

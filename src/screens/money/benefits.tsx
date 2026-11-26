@@ -1,10 +1,11 @@
+import { Pill } from '@/components/ui/pill';
 import type { CSSProperties } from 'react';
 import { List, ListItemDescription, ListItemTitle } from '@/components/ui/list';
 import { Badge } from '@/components/ui/badge';
 import { Card } from '@/components/ui/card';
 import { Note } from '@/components/ui/note';
 import { Caption, Eyebrow, Title } from '@/components/ui/typography';
-import { I } from '@/ui/icons';
+import { Icon } from '@/ui/icons';
 import { Hero } from '@/ui/illustrations';
 import { GRow, Label, Ring, Row } from '@/ui/primitives';
 import type { Ctx } from '@/types';
@@ -51,28 +52,37 @@ export function P800(c: Ctx) {
     <div className="p8">
       <Eyebrow>Świadczenie dla Zosi</Eyebrow>
       <Title>800+</Title>
-      <div className="p8-hero">
+      <div className="p8-hero flex gap-4.5 items-center bg-surface rounded-[22px] p-4.5 [box-shadow:0_0_0_0.5px_var(--hair)]">
         <Ring v={26} max={30} size={76} w={4}>
           <b>2</b>
           <small>dni</small>
         </Ring>
         <div>
           <ListItemDescription as="div">Następna wypłata</ListItemDescription>
-          <div className="p8-v">800 zł</div>
+          <div className="text-[34px] font-[650] tracking-[-0.03em] leading-[1.1] m-[2px_0]">800 zł</div>
           <ListItemDescription as="div">28 listopada · konto •• 4821</ListItemDescription>
         </div>
       </div>
       <Label t="Wypłaty od czerwca 2026 do maja 2027" />
-      <Card className="p8-chart">
-        <div className="bars">
+      <Card className="p-[18px_16px_14px]">
+        <div className="bars grid [grid-template-columns:repeat(12,_1fr)] gap-1.25 [align-items:end] h-30 [&_span]:flex [&_span]:flex-col [&_span]:items-center [&_span]:gap-1.5 [&_span]:h-full [&_span]:justify-end [&_i]:w-full [&_i]:h-[70%] [&_i]:rounded-[6px] [&_i]:bg-fill-2 [&_i]:origin-bottom [&_i]:animate-[barup_0.5s_var(--out)_calc(var(--i)*30ms)_both] [&_small]:text-[10px] [&_small]:text-ink-3 motion-reduce:[&_i]:animate-none!">
           {M.map((m, i) => (
-            <span className={i < 5 ? 'paid' : i === 5 ? 'next' : ''}>
+            <span
+              key={i}
+              className={
+                i < 5
+                  ? '[.bars_&_i]:bg-ink'
+                  : i === 5
+                    ? '[.bars_&_i]:[background:repeating-linear-gradient(135deg,_var(--ink)_0_3px,_transparent_3px_6px)] [.bars_&_i]:[box-shadow:inset_0_0_0_1.5px_var(--ink)]'
+                    : ''
+              }
+            >
               <i style={{ '--i': i } as CSSProperties}></i>
               <small>{m}</small>
             </span>
           ))}
         </div>
-        <div className="p8-sum">
+        <div className="flex justify-between mt-3 text-[13px] text-ink-2 [&_b]:text-ink">
           <span>
             <b>4 000 zł</b> wypłacone
           </span>
@@ -114,20 +124,28 @@ export function Vacc(c: Ctx) {
     <div>
       <Eyebrow>Zosia, 6 lat</Eyebrow>
       <Title>Szczepienia</Title>
-      <div className="vt">
+      <div className="relative m-[14px_0_16px] pl-1.5">
         {V.map(([age, t, s, st]) => (
-          <div className={'vt-i ' + st}>
-            <span className="vt-dot">{st === 'ok' ? I('check', 12) : ''}</span>
-            <div className="vt-b">
+          <div
+            key={age}
+            className={
+              'vt-i relative flex gap-3.5 p-[0_0_22px] [&:not(:last-child)::before]:[content:""] [&:not(:last-child)::before]:absolute [&:not(:last-child)::before]:left-2.5 [&:not(:last-child)::before]:top-6 [&:not(:last-child)::before]:bottom-0.5 [&:not(:last-child)::before]:w-[1.5px] [&:not(:last-child)::before]:bg-hair-2 [&.later]:opacity-[0.55] ' +
+              st
+            }
+          >
+            <span className="flex-none w-5.5 h-5.5 rounded-[50%] grid place-items-center bg-bg [box-shadow:inset_0_0_0_1.5px_var(--ink-3)] text-white mt-px [.vt-i.ok_&]:bg-ink [.vt-i.ok_&]:[box-shadow:none] [.vt-i.due_&&]:[box-shadow:inset_0_0_0_2px_var(--red),_0_0_0_4px_var(--red-soft)]">
+              {st === 'ok' ? <Icon name="check" size={12} /> : ''}
+            </span>
+            <div className="flex-1">
               <ListItemTitle as="div">{t}</ListItemTitle>
               <ListItemDescription as="div">{s}</ListItemDescription>
               {st === 'due' && (
-                <button className="pill mt-2.5" onClick={() => c.go('visit-1')}>
+                <Pill className="mt-2.5" onClick={() => c.go('visit-1')}>
                   Umów szczepienie
-                </button>
+                </Pill>
               )}
             </div>
-            <span className="vt-age">{age}</span>
+            <span className="text-[12px] text-ink-3 whitespace-nowrap mt-0.75">{age}</span>
           </div>
         ))}
       </div>

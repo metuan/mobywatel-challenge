@@ -3,7 +3,7 @@ import { Title } from '@/components/ui/typography';
 import { useEffect, useRef, useState } from 'react';
 import { norm } from '@/lib/env';
 import { HOWTO, HowCard, howFor, showMe } from '@/story/howto';
-import { I, P } from '@/ui/icons';
+import { P, Icon } from '@/ui/icons';
 import { Label } from '@/ui/primitives';
 import type { Ctx } from '@/types';
 import type { IconName } from '@/ui/icons';
@@ -61,7 +61,7 @@ export function Search({
   const enter = () =>
     how ? showMe(c, how) : hits[0] ? c.go(hits[0][2]) : c.ask(q || 'Jak zameldować się w nowym mieszkaniu?');
   return (
-    <div className="srch8">
+    <div className="relative [&:has(input:not(:placeholder-shown))_~_*]:hidden">
       <div className="search">
         <svg
           width="17"
@@ -85,28 +85,39 @@ export function Search({
         />
         {q ? (
           <button aria-label="Wyczyść" onClick={() => setQ('')}>
-            {I('x', 16)}
+            <Icon name="x" size={16} />
           </button>
         ) : (
           <button aria-label="Mów" onClick={() => c.ask('Kiedy kończy się ważność mojego dowodu?')}>
-            {I('mic', 18)}
+            <Icon name="mic" size={18} />
           </button>
         )}
       </div>
       {how && <HowCard c={c} h={how} />}
       {q.trim() && (
-        <div className="hits">
+        <div className="mt-2 bg-surface rounded-[18px] [box-shadow:var(--e-float)] overflow-hidden animate-[fadeUp_0.18s_var(--out)]">
           {hits.map(([t, s, r, ic]) => (
-            <button className="hit" onClick={() => c.go(r)}>
-              <span className="lead-i">{I((ic in P ? ic : 'doc') as IconName, 18)}</span>
+            <button
+              key={t}
+              className="flex gap-3 items-center w-full text-left p-[11px_14px] [border-top:0.5px_solid_var(--hair)] [&:first-child]:[border-top:0] [&:active]:bg-fill [transition:background-color_0.12s,_transform_0.16s_var(--out)]"
+              onClick={() => c.go(r)}
+            >
+              <span className="w-10 h-10 rounded-[50%] grid place-items-center flex-none text-ink bg-bg [&.ai]:[background:linear-gradient(135deg,_var(--signal-blue),_var(--signal-violet))] [&.ai]:text-white [.how8-row_&]:w-7.5 [.how8-row_&]:h-7.5 [.how8-row_&]:rounded-[10px]">
+                <Icon name={(ic in P ? ic : 'doc') as IconName} size={18} />
+              </span>
               <ListItemContent>
                 <ListItemTitle>{t}</ListItemTitle>
                 <ListItemDescription>{s}</ListItemDescription>
               </ListItemContent>
             </button>
           ))}
-          <button className="hit ask" onClick={() => c.ask(q)}>
-            <span className="lead-i ai">{I('sparkle', 18)}</span>
+          <button
+            className="flex gap-3 items-center w-full text-left p-[11px_14px] [border-top:0.5px_solid_var(--hair)] [&:first-child]:[border-top:0] [&:active]:bg-fill [transition:background-color_0.12s,_transform_0.16s_var(--out)] ask"
+            onClick={() => c.ask(q)}
+          >
+            <span className="w-10 h-10 rounded-[50%] grid place-items-center flex-none text-ink bg-bg [&.ai]:[background:linear-gradient(135deg,_var(--signal-blue),_var(--signal-violet))] [&.ai]:text-white [.how8-row_&]:w-7.5 [.how8-row_&]:h-7.5 [.how8-row_&]:rounded-[10px] ai">
+              <Icon name="sparkle" size={18} />
+            </span>
             <ListItemContent>
               <ListItemTitle>Zapytaj asystenta: „{q}”</ListItemTitle>
               <ListItemDescription>Odpowiedź z gov.pl, ze źródłami</ListItemDescription>
@@ -127,19 +138,26 @@ export function SearchScreen(c: Ctx) {
       {!pick && (
         <>
           <Label t="Jak to zrobić?" />
-          <div className="how8-list">
+          <div className="bg-surface rounded-[18px] overflow-hidden">
             {HOWTO.slice(0, 5).map(h => (
-              <button className="how8-row" onClick={() => setPick(h.q)}>
-                <span className="lead-i ai">{I('sparkle', 16)}</span>
+              <button
+                key={h.q}
+                className="how8-row flex items-center gap-3 w-full text-left p-[12px_14px] text-[15px] font-medium [border-top:0.5px_solid_var(--hair)] [&:first-child]:[border-top:0] [&_>_span:nth-child(2)]:flex-1 [&:active]:bg-fill"
+                onClick={() => setPick(h.q)}
+              >
+                <span className="w-10 h-10 rounded-[50%] grid place-items-center flex-none text-ink bg-bg [&.ai]:[background:linear-gradient(135deg,_var(--signal-blue),_var(--signal-violet))] [&.ai]:text-white [.how8-row_&]:w-7.5 [.how8-row_&]:h-7.5 [.how8-row_&]:rounded-[10px] ai">
+                  <Icon name="sparkle" size={16} />
+                </span>
                 <span>{h.q}</span>
                 <ListItemChevron size={16} />
               </button>
             ))}
           </div>
           <Label t="Często szukane" />
-          <div className="chips wrap">
+          <div className="chips flex gap-2 overflow-x-auto m-[12px_-20px_0] p-[0_20px] scrollbar-none [&::-webkit-scrollbar]:hidden [&_button]:flex-none [&_button]:rounded-[999px] [&_button]:bg-fill [&_button]:text-ink [&_button]:text-[14px] [&_button]:font-medium [&_button]:h-9 [&_button]:p-[0_16px] [&_button[aria-pressed='true']]:bg-ink [&_button[aria-pressed='true']]:text-white [&&_button:not([aria-pressed='true'])]:bg-white [&_button:not([aria-pressed='true'])]:[box-shadow:inset_0_0_0_0.5px_var(--hair)] [&.chips]:flex-wrap">
             {['Przeprowadzka', 'Dowód', '800+', 'Schron', 'Podatki', 'Recepta'].map(t => (
               <button
+                key={t}
                 onClick={() => {
                   const h = IDX.find(x => norm(x[0] + x[1]).includes(norm(t)));
                   h ? c.go(h[2]) : c.ask(t);

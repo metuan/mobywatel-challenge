@@ -1,3 +1,4 @@
+import { Chip } from '@/components/ui/pill';
 import { Segmented } from '@/components/ui/segmented';
 import { Field, FieldLabel, FieldValue } from '@/components/ui/field';
 import {
@@ -15,7 +16,7 @@ import { Note } from '@/components/ui/note';
 import { Caption, Eyebrow, Lead, Muted, Subtitle, Title } from '@/components/ui/typography';
 import { Actions, Button } from '@/components/ui/button';
 import { useEffect, useState } from 'react';
-import { I } from '@/ui/icons';
+import { Icon } from '@/ui/icons';
 import type { Ctx } from '@/types';
 
 /* 4: Zgoda obojga rodziców */
@@ -94,7 +95,7 @@ export function School(c: Ctx) {
       <div className="flex gap-3 items-center mt-1">
         <ListRowAvatar>ZN</ListRowAvatar>
         <div>
-          <div className="t font-semibold text-[17px]">Zosia · zerówka</div>
+          <div className="[.ice-h_&]:font-semibold font-semibold text-[17px]">Zosia · zerówka</div>
           <Muted>Szkoła Podstawowa nr 9, Kraków</Muted>
         </div>
       </div>
@@ -110,7 +111,9 @@ export function School(c: Ctx) {
         <div>
           <List>
             <ListRow>
-              <ListRowTile tone="orange">{I('bell', 18)}</ListRowTile>
+              <ListRowTile tone="orange">
+                <Icon name="bell" size={18} />
+              </ListRowTile>
               <ListRowContent>
                 <ListRowTitle>Nieobecność wczoraj</ListRowTitle>
                 <ListRowDescription>
@@ -120,8 +123,7 @@ export function School(c: Ctx) {
               {ex ? (
                 <Badge>OK</Badge>
               ) : (
-                <button
-                  className="mini"
+                <Chip
                   onClick={() => {
                     setEx(true);
                     c.set({ excused: true });
@@ -129,24 +131,23 @@ export function School(c: Ctx) {
                   }}
                 >
                   Usprawiedliw
-                </button>
+                </Chip>
               )}
             </ListRow>
             <ListRow>
-              <ListRowTile tone="green">{I('route', 18)}</ListRowTile>
+              <ListRowTile tone="green">
+                <Icon name="route" size={18} />
+              </ListRowTile>
               <ListRowContent>
                 <ListRowTitle>Wycieczka do Ojcowa, 4 grudnia</ListRowTitle>
                 <ListRowDescription>Zgoda rodzica i 45 zł</ListRowDescription>
               </ListRowContent>
-              <button
-                className="mini"
-                onClick={() => c.toast('Zgoda wyrażona. Płatność BLIK w pełnej wersji.')}
-              >
-                Zgoda
-              </button>
+              <Chip onClick={() => c.toast('Zgoda wyrażona. Płatność BLIK w pełnej wersji.')}>Zgoda</Chip>
             </ListRow>
             <ListRow>
-              <ListRowTile>{I('mail', 18)}</ListRowTile>
+              <ListRowTile>
+                <Icon name="mail" size={18} />
+              </ListRowTile>
               <ListRowContent>
                 <ListRowTitle>Wiadomość od wychowawczyni</ListRowTitle>
                 <ListRowDescription>
@@ -163,9 +164,14 @@ export function School(c: Ctx) {
             <Subtitle as="div">96%</Subtitle>
             <Muted>listopad</Muted>
           </div>
-          <div className="att">
+          <div className="att grid [grid-template-columns:repeat(10,_1fr)] gap-1 mt-3 [&_i]:h-6 [&_i]:rounded-[5px] [&_i]:bg-signal-green [&_i]:opacity-[0.85]">
             {Array.from({ length: 20 }, (_, i) => (
-              <i className={i === 15 ? (ex ? 'ex' : 'ab') : ''}></i>
+              <i
+                key={i}
+                className={
+                  i === 15 ? (ex ? '[.att_i&]:[background:#ff9500]' : '[.att_i&]:bg-signal-red') : ''
+                }
+              ></i>
             ))}
           </div>
           <Muted className="mt-2">1 nieobecność{ex ? ' (usprawiedliwiona)' : ''} · 0 spóźnień</Muted>
@@ -176,7 +182,7 @@ export function School(c: Ctx) {
           <Muted>
             Ocena opisowa za I półrocze pojawi się w styczniu. W klasach 1–3 oceny też są opisowe.
           </Muted>
-          <Note icon="sparkle" className="mt-3 bg-(--fill)">
+          <Note icon="sparkle" className="mt-3 bg-fill">
             Jeśli chcesz, streścimy ocenę w trzech zdaniach.
           </Note>
         </Card>

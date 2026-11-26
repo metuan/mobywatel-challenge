@@ -13,7 +13,7 @@ import { Caption, Lead, Muted, Title } from '@/components/ui/typography';
 import { Actions, Button } from '@/components/ui/button';
 import { useState } from 'react';
 import { LOG } from '@/data/household';
-import { I } from '@/ui/icons';
+import { Icon } from '@/ui/icons';
 import { Hero } from '@/ui/illustrations';
 import { Row } from '@/ui/primitives';
 import type { Ctx } from '@/types';
@@ -27,8 +27,10 @@ export function AccessLog(c: Ctx) {
       <Lead>Listopad 2026. Każde sprawdzenie Twoich dokumentów lub rejestrów.</Lead>
       <List>
         {LOG.map((l, i) => (
-          <ListRow className="items-start">
-            <ListRowIcon>{I('eye', 18)}</ListRowIcon>
+          <ListRow key={i} className="items-start">
+            <ListRowIcon>
+              <Icon name="eye" size={18} />
+            </ListRowIcon>
             <ListRowContent>
               <ListRowTitle>{l.who}</ListRowTitle>
               <ListRowDescription>{l.why}</ListRowDescription>
@@ -42,7 +44,7 @@ export function AccessLog(c: Ctx) {
                 </Note>
               ) : (
                 <button
-                  className="link text-[13px] mt-1.5"
+                  className="link font-medium text-ink [text-decoration:underline] underline-offset-[3px] [&&]:decoration-hair-2 text-[13px] mt-1.5"
 
                   onClick={() => setFlag(i)}
                 >
@@ -65,7 +67,9 @@ export function AccessLog(c: Ctx) {
 export function Signin(c: Ctx) {
   return (
     <div className="text-center">
-      <div className="face scan mt-[60px]">{I('eye', 40)}</div>
+      <div className="w-21 h-21 rounded-[26px] bg-fill grid place-items-center text-ink m-[10px_auto_12px] motion-safe:[&.scan]:animate-[pulse_1s_ease-in-out_infinite] scan mt-[60px]">
+        <Icon name="eye" size={40} />
+      </div>
       <Title>Zaloguj się twarzą</Title>
       <Lead>
         Bez kodów i haseł. Klucz dostępu działa tylko na stronach i w aplikacjach rządowych, więc fałszywa
@@ -84,7 +88,8 @@ export function Offline(c: Ctx) {
   return (
     <div>
       <div className="offline mt-2 -mr-5 mb-0 -ml-5">
-        {I('wifi', 16)} Aktualizacja się nie powiodła. Nie masz internetu, ale najważniejsze rzeczy działają.
+        <Icon name="wifi" size={16} /> Aktualizacja się nie powiodła. Nie masz internetu, ale najważniejsze
+        rzeczy działają.
       </div>
       <Title>Twoje dokumenty są bezpieczne.</Title>
       <Lead>
@@ -122,14 +127,18 @@ export function Devices(c: Ctx) {
       </Lead>
       <List>
         <ListRow>
-          <ListRowTile>{I('phone', 18)}</ListRowTile>
+          <ListRowTile>
+            <Icon name="phone" size={18} />
+          </ListRowTile>
           <ListRowContent>
             <ListRowTitle>iPhone 15 · ten telefon</ListRowTitle>
             <ListRowDescription>Kraków · aktywny teraz</ListRowDescription>
           </ListRowContent>
         </ListRow>
         <ListRow>
-          <ListRowTile tone={lost ? 'gray' : 'default'}>{I('phone', 18)}</ListRowTile>
+          <ListRowTile tone={lost ? 'gray' : 'default'}>
+            <Icon name="phone" size={18} />
+          </ListRowTile>
           <ListRowContent>
             <ListRowTitle>iPhone 11 · stary</ListRowTitle>
             <ListRowDescription>
@@ -140,7 +149,7 @@ export function Devices(c: Ctx) {
             <Badge>Wylogowany</Badge>
           ) : (
             <button
-              className="mini text-[#ff3b30]"
+              className="mini inline-flex gap-1.5 items-center whitespace-nowrap motion-safe:[&:active]:transform-[scale(0.97)] font-semibold text-[15px] p-[6px_14px] bg-fill rounded-[999px] text-signal-red"
 
               onClick={() =>
                 c.confirm({
@@ -163,7 +172,9 @@ export function Devices(c: Ctx) {
           )}
         </ListRow>
         <ListRow>
-          <ListRowTile>{I('card', 18)}</ListRowTile>
+          <ListRowTile>
+            <Icon name="card" size={18} />
+          </ListRowTile>
           <ListRowContent>
             <ListRowTitle>Przeglądarka · gov.pl</ListRowTitle>
             <ListRowDescription>MacBook · dziś, 9:12</ListRowDescription>
@@ -185,17 +196,20 @@ export function Scam(c: Ctx) {
       <Hero n="lock" />
       <Title>Tarcza antyoszustwa</Title>
       <Lead>Wklej podejrzaną wiadomość. Sprawdzimy link na liście ostrzeżeń CERT Polska.</Lead>
-      <div className="sms">
-        <div className="sms-h">SMS · +48 731 •••</div>Twoja paczka czeka. Dopłać 1,99 zł: inpost-dopłata.pl/x7
+      <div className="[background:#e9e9eb] rounded-[18px_18px_18px_4px] p-[10px_14px] text-[16px] max-w-[88%]">
+        <div className="text-[12px] text-ink-2 mb-1">SMS · +48 731 •••</div>Twoja paczka czeka. Dopłać 1,99
+        zł: inpost-dopłata.pl/x7
       </div>
       {!chk ? (
         <Actions>
           <Button onClick={() => setChk(true)}>Sprawdź wiadomość</Button>
         </Actions>
       ) : (
-        <div className="verdict">
-          <div className="vh">{I('x', 18)} To oszustwo</div>
-          <Muted className="text-(--ink)">
+        <div className="verdict bg-white rounded-[14px] p-4 mt-3.5 [border-left:4px_solid_var(--signal-red)]">
+          <div className="[.verdict_&]:flex [.verdict_&]:gap-1.5 [.verdict_&]:items-center [.verdict_&]:font-bold [.verdict_&]:text-[18px] [.verdict_&]:text-signal-red [.verdict_&]:mb-1.5">
+            <Icon name="x" size={18} /> To oszustwo
+          </div>
+          <Muted className="text-ink">
             Ta strona jest na liście ostrzeżeń CERT Polska od 21 listopada. Firmy kurierskie nie proszą o
             dopłaty SMS-em z linkiem.
           </Muted>
@@ -209,7 +223,9 @@ export function Scam(c: Ctx) {
       )}
       <List className="mt-3.5">
         <ListRow>
-          <ListRowTile tone="green">{I('check', 18)}</ListRowTile>
+          <ListRowTile tone="green">
+            <Icon name="check" size={18} />
+          </ListRowTile>
           <ListRowContent>
             <ListRowTitle>mObywatel nigdy nie pisze SMS-ów z linkiem</ListRowTitle>
             <ListRowDescription>

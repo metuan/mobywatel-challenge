@@ -6,7 +6,7 @@ import { useEffect, useState } from 'react';
 import { GRID, KRK2 } from '@/flows/sign/map';
 import { buzz, fire, fmt, reducedMotion } from '@/lib/env';
 import { TapShare } from '@/ui/controls';
-import { I } from '@/ui/icons';
+import { Icon } from '@/ui/icons';
 import { Av, Label, LeadIcon, Num } from '@/ui/primitives';
 import type { Ctx } from '@/types';
 
@@ -24,14 +24,14 @@ export function Sign1(c: Ctx) {
     <div>
       <Eyebrow>Rynek Główny · sobota, 11:20</Eyebrow>
       <Title>Podpis bez kartki i długopisu</Title>
-      <div className="bill8">
-        <div className="b8-k">{BILL.k}</div>
-        <div className="b8-t">{BILL.t}</div>
-        <div className="b8-s">{BILL.who}</div>
-        <div className="b8-bar">
+      <div className="bg-white rounded-[20px] p-[16px_18px] mt-1">
+        <div className="text-[12.5px] text-ink-3 font-medium">{BILL.k}</div>
+        <div className="text-[19px] font-[650] tracking-[-0.01em] m-[4px_0_2px]">{BILL.t}</div>
+        <div className="text-[13.5px] text-ink-2">{BILL.who}</div>
+        <div className="h-1.5 rounded-[3px] bg-fill-2 m-[14px_0_8px] overflow-hidden [&_i]:block [&_i]:h-full [&_i]:bg-ink [&_i]:rounded-[3px] [&_i]:[transition:width_0.8s_cubic-bezier(0.23,_1,_0.32,_1)] [&.big]:h-2 [&&.big]:mt-1.5">
           <i style={{ width: `${(BILL.n / BILL.goal) * 100}%` }}></i>
         </div>
-        <div className="b8-n">
+        <div className="text-[13px] text-ink-2 [&_b]:text-ink">
           <b>{fmt(BILL.n)}</b> z {fmt(BILL.goal)} podpisów · zostało {BILL.left} dni
         </div>
       </div>
@@ -145,13 +145,16 @@ export function SignList(c: Ctx) {
         ktoś poda Ci osobiście.
       </Caption>
       <Label t="Tego samego dnia w Sandomierzu" />
-      <button className="sg-twist" onClick={() => c.go('easy-sign', 'tata')}>
+      <button
+        className="sg-twist flex gap-3 w-full text-left bg-white [border:0] rounded-[18px] p-[14px_16px] [font:inherit] text-ink cursor-pointer [&_>_span]:flex-1 [&_>_span]:flex [&_>_span]:flex-col [&_>_span]:gap-0.5 [&_b]:font-semibold [&_>_span_>_span]:text-[13.5px] [&_>_span_>_span]:text-ink-2 items-center [box-shadow:0_0_0_0.5px_var(--hair)] [&_>_svg]:flex-none [&_>_svg]:text-ink-3"
+        onClick={() => c.go('easy-sign', 'tata')}
+      >
         <Av i="S" size={40} />
         <span>
           <b>Telefon taty</b>
           <span>Stanisław dostaje ostrzeżenie o podpisie, którego nie złożył.</span>
         </span>
-        {I('chevron', 18)}
+        <Icon name="chevron" size={18} />
       </button>
     </div>
   );
@@ -161,7 +164,9 @@ export function EasySign(c: Ctx) {
   const [rep, setRep] = useState(false);
   return (
     <div className="easy">
-      <div className="es-ic">{I('shield', 34)}</div>
+      <div className="w-16 h-16 rounded-[20px] [background:var(--red-soft,_#fbe7ea)] text-red grid place-items-center m-[28px_0_18px]">
+        <Icon name="shield" size={34} />
+      </div>
       <Title className="text-[34px]/[38px] in-[.easy]:leading-[38px]">Ktoś podpisał się za Pana</Title>
       <Lead className="text-[19px]/[27px]">
         Pana PESEL jest na liście poparcia komitetu wyborczego „Nowa Fala”. Lista wpłynęła 22 listopada.
@@ -217,10 +222,11 @@ export function Sign3(c: Ctx) {
   return (
     <div>
       <Eyebrow>Głos · podpisano</Eyebrow>
-      <div className="pl-map v2">
+      <div className="pl-map relative m-[4px_-4px_0] [&_svg]:w-full [&_svg]:h-auto [&_svg]:block [&.v2]:relative [&.v2]:bg-surface [&.v2]:rounded-3xl [&.v2]:p-[18px_14px_12px] [&.v2]:[box-shadow:0_0_0_0.5px_var(--hair)] [&.v2_svg]:block [&.v2_svg]:w-full [&.v2_svg]:h-auto v2">
         <svg viewBox="0 0 300 278" role="img" aria-label="Mapa Polski: gdzie ludzie podpisali projekt">
           {GRID.map(([x, y, v]) => (
             <circle
+              key={`${x}-${y}`}
               cx={x.toFixed(1)}
               cy={y.toFixed(1)}
               r={(1.1 + v * 1.5).toFixed(2)}
@@ -229,30 +235,52 @@ export function Sign3(c: Ctx) {
             />
           ))}
           <g
-            className={'me-dot' + (lit ? ' on' : '')}
+            className={
+              'me-dot' +
+              (lit
+                ? ' on [.progress_i&]:bg-ink [.steps_i&]:bg-ink [.st-ab_>_div&&]:bg-white [.st-ab_&_p]:text-ink [.tour-dots_i&]:w-5.5 [.tour-dots_i&]:bg-ink [.call-keys_button&_span]:bg-white [.call-keys_button&_span]:text-ink'
+                : '')
+            }
             transform={`translate(${KRK2[0].toFixed(1)} ${KRK2[1].toFixed(1)})`}
           >
-            <circle className="md-ring" r="7" fill="none" stroke="#2F6BFF" strokeWidth="2" />
-            <circle className="md-core" r="5" fill="#2F6BFF" stroke="#fff" strokeWidth="2" />
+            <circle
+              className="[.me-dot_&]:opacity-[0] motion-safe:[.me-dot.on_&]:animate-[md-ping_1.6s_ease-out_3] [.me-dot.on_&]:origin-top-left [.pl-map.v2_&]:origin-center [.pl-map.v2_&]:opacity-[0] [.pl-map.v2_.me-dot.on_&]:animate-[mdring_1.4s_var(--out)_2]"
+              r="7"
+              fill="none"
+              stroke="#2F6BFF"
+              strokeWidth="2"
+            />
+            <circle
+              className="[.me-dot_&]:transform-[scale(0)] [.me-dot_&]:[transition:transform_0.4s_cubic-bezier(0.34,_1.56,_0.64,_1)] [.me-dot.on_&]:transform-[scale(1)] [.pl-map.v2_.me-dot_&]:origin-center [.pl-map.v2_.me-dot_&]:transform-[scale(0)] [.pl-map.v2_.me-dot_&]:[transition:transform_0.35s_var(--spring)] [.pl-map.v2_.me-dot.on_&]:transform-[scale(1)]"
+              r="5"
+              fill="#2F6BFF"
+              stroke="#fff"
+              strokeWidth="2"
+            />
           </g>
         </svg>
         <div
-          className={'pl-tag2' + (lit ? ' on' : '')}
+          className={
+            'absolute [transform:translate(-50%,_calc(-100%_-_26px))] whitespace-nowrap bg-ink text-white text-[12px] font-semibold p-[6px_10px] rounded-[999px] opacity-[0] [transition:opacity_0.25s,_transform_0.35s_var(--out)] pointer-events-none [&.on]:opacity-[1] [&.on]:[transform:translate(-50%,_calc(-100%_-_14px))]' +
+            (lit
+              ? ' on [.progress_i&]:bg-ink [.steps_i&]:bg-ink [.st-ab_>_div&&]:bg-white [.st-ab_&_p]:text-ink [.tour-dots_i&]:w-5.5 [.tour-dots_i&]:bg-ink [.call-keys_button&_span]:bg-white [.call-keys_button&_span]:text-ink'
+              : '')
+          }
           style={{ left: `${(KRK2[0] / 3).toFixed(1)}%`, top: `${(KRK2[1] / 2.78).toFixed(1)}%` }}
         >
           Twój podpis · Kraków
         </div>
-        <div className="pl-leg">
+        <div className="pl-leg flex justify-between text-[11.5px] text-ink-3 mt-2 p-[0_4px] [&_span]:flex [&_span]:items-center [&_span]:gap-1 [&_i]:w-1.5 [&_i]:h-1.5 [&_i]:rounded-[50%] [&_i]:bg-ink">
           <span>
-            <i className="l1"></i>mniej
+            <i className="[.pl-leg_&]:opacity-[0.15]"></i>mniej
           </span>
           <span>
-            <i className="l2"></i>
-            <i className="l3"></i>więcej podpisów
+            <i className="[.pl-leg_&]:opacity-[0.5]"></i>
+            <i className="[.pl-leg_&]:opacity-[0.85] [.pl-leg_&]:w-2 [.pl-leg_&]:h-2"></i>więcej podpisów
           </span>
         </div>
       </div>
-      <div className="pl-count">
+      <div className="flex items-baseline gap-2.5 mt-2 [&_b]:text-[40px] [&_b]:font-bold [&_b]:tracking-[-0.03em] [&_b]:[font-variant-numeric:tabular-nums] [&_span]:text-[13.5px] [&_span]:text-ink-2 motion-safe:[&_b]:[animation:num-in_0.45s_cubic-bezier(0.23,_1,_0.32,_1)_both]">
         <b>
           <Num v={n} fmtf={v => fmt(Number(v))} />
         </b>
@@ -260,7 +288,7 @@ export function Sign3(c: Ctx) {
           z {fmt(BILL.goal)} · zostało {BILL.left} dni
         </span>
       </div>
-      <div className="b8-bar big">
+      <div className="h-1.5 rounded-[3px] bg-fill-2 m-[14px_0_8px] overflow-hidden [&_i]:block [&_i]:h-full [&_i]:bg-ink [&_i]:rounded-[3px] [&_i]:[transition:width_0.8s_cubic-bezier(0.23,_1,_0.32,_1)] [&.big]:h-2 [&&.big]:mt-1.5 big [.taxhero_&]:text-[40px] [.taxhero_&]:font-bold [.taxhero_&]:tracking-[-0.03em] [.taxhero_&]:text-signal-green [.taxhero_&]:m-[4px_0_0]">
         <i style={{ width: `${(n / BILL.goal) * 100}%` }}></i>
       </div>
       <Note icon="shield" className="mt-3.5">

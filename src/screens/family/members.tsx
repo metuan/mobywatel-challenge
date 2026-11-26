@@ -11,7 +11,7 @@ import { Badge } from '@/components/ui/badge';
 import { Note } from '@/components/ui/note';
 import { Caption, Muted, Subtitle } from '@/components/ui/typography';
 import { Actions, Button } from '@/components/ui/button';
-import { I } from '@/ui/icons';
+import { Icon } from '@/ui/icons';
 import { Row, Sec } from '@/ui/primitives';
 import type { Ctx } from '@/types';
 
@@ -99,9 +99,9 @@ export function MemberTata(c: Ctx) {
           ['Widzieć dane o zdrowiu', false],
           ['Wysyłać wnioski bez jego zgody', false],
         ].map(([t, on]) => (
-          <ListRow>
+          <ListRow key={String(t)}>
             <ListRowIcon className={cn(on && 'bg-green-soft text-green')}>
-              {I(on ? 'check' : 'x', 18)}
+              <Icon name={on ? 'check' : 'x'} size={18} />
             </ListRowIcon>
             <ListRowContent>
               <ListRowTitle>{t}</ListRowTitle>
@@ -152,8 +152,10 @@ export function MemberTomasz(_c: Ctx) {
           'Sprawy dzieci, jako drugi rodzic',
           'Plan kryzysowy i status „Jestem bezpieczna”',
         ].map(t => (
-          <ListRow>
-            <ListRowIcon className="bg-(--green-soft) text-(--green)">{I('check', 18)}</ListRowIcon>
+          <ListRow key={t}>
+            <ListRowIcon className="bg-green-soft text-green">
+              <Icon name="check" size={18} />
+            </ListRowIcon>
             <ListRowContent>
               <ListRowTitle>{t}</ListRowTitle>
             </ListRowContent>

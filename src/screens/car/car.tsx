@@ -1,3 +1,5 @@
+import { Chip } from '@/components/ui/pill';
+import { Fragment } from 'react';
 import { List, ListRow, ListRowContent, ListRowDescription, ListRowTitle } from '@/components/ui/list';
 import { Badge } from '@/components/ui/badge';
 import { Eyebrow, Lead, Title } from '@/components/ui/typography';
@@ -15,17 +17,19 @@ export function CarSell(c: Ctx) {
       <Lead>
         Jedna sprawa w aplikacji zamiast trzech wizyt w urzędach. Kupujący potwierdza w swojej aplikacji.
       </Lead>
-      <div className="road">
+      <div className="road grid grid-cols-[auto_1fr] gap-[0_16px] [&_.n]:text-ink-3 [&_.n]:pt-3 [&_.n]:font-sans [&_.n]:font-bold [&_.n]:text-[20px]">
         {[
           'Wpisz numer PESEL lub NIP kupującego',
           'Kupujący potwierdza zakup w swojej aplikacji',
           'Zgłaszamy sprzedaż auta w starostwie',
           'Przenosimy lub wypowiadamy OC',
         ].map((t, i) => (
-          <>
+          <Fragment key={t}>
             <div className="n">{i + 1}</div>
-            <div className="b">{t}</div>
-          </>
+            <div className="[.road_&]:[border-bottom:1px_solid_var(--hair)] [.road_&]:p-[13px_0] [.rcb_.hd_&]:w-5.5 [.rcb_.hd_&]:h-5.5 [.rcb_.hd_&]:rounded-[6px] [.rcb_.hd_&]:text-white [.rcb_.hd_&]:grid [.rcb_.hd_&]:place-items-center [.rcb.clear_.hd_&]:bg-green [.rcb_.hd_&]:[background:rgb(255_255_255_/_20%)]">
+              {t}
+            </div>
+          </Fragment>
         ))}
       </div>
       <Actions>
@@ -42,18 +46,24 @@ function CarFullBase(c: Ctx) {
       <Hero n="car" />
       <Title>Toyota Yaris</Title>
       <Lead className="-mt-1.5">KR 4F21 · 2019 · benzyna</Lead>
-      <div className="stats">
+      <div className="stats grid [grid-template-columns:repeat(3,_1fr)] gap-2 m-[4px_0_14px] [&_>_div]:bg-white [&_>_div]:rounded-[12px] [&_>_div]:p-3 [&_.l]:text-[13px] [&_.l]:text-ink-2">
         <div>
           <div className="l">OC</div>
-          <div className="v red">12 dni</div>
+          <div className="v [.ice-g_&]:text-[17px] [.ice-g_&]:font-semibold [.stats_&]:text-[20px] [.stats_&]:font-bold [.stats_&]:tracking-[-0.02em] [.stats_&.red]:text-signal-red red">
+            12 dni
+          </div>
         </div>
         <div>
           <div className="l">Przegląd</div>
-          <div className="v">82 dni</div>
+          <div className="v [.ice-g_&]:text-[17px] [.ice-g_&]:font-semibold [.stats_&]:text-[20px] [.stats_&]:font-bold [.stats_&]:tracking-[-0.02em] [.stats_&.red]:text-signal-red">
+            82 dni
+          </div>
         </div>
         <div>
           <div className="l">Punkty</div>
-          <div className="v">3 / 24</div>
+          <div className="v [.ice-g_&]:text-[17px] [.ice-g_&]:font-semibold [.stats_&]:text-[20px] [.stats_&]:font-bold [.stats_&]:tracking-[-0.02em] [.stats_&.red]:text-signal-red">
+            3 / 24
+          </div>
         </div>
       </div>
       <List>
@@ -83,8 +93,7 @@ function CarFullBase(c: Ctx) {
           {c.s.paid ? (
             <Badge>Opłacony</Badge>
           ) : (
-            <button
-              className="mini"
+            <Chip
               onClick={() =>
                 c.confirm({
                   t: 'Zapłacić mandat 200 zł?',
@@ -98,7 +107,7 @@ function CarFullBase(c: Ctx) {
               }
             >
               Zapłać
-            </button>
+            </Chip>
           )}
         </ListRow>
       </List>

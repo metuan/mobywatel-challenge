@@ -1,3 +1,4 @@
+import { Chip } from '@/components/ui/pill';
 import {
   List,
   ListRow,
@@ -9,7 +10,7 @@ import {
 import { Badge } from '@/components/ui/badge';
 import { Note } from '@/components/ui/note';
 import { Title } from '@/components/ui/typography';
-import { I } from '@/ui/icons';
+import { Icon } from '@/ui/icons';
 import type { Ctx } from '@/types';
 
 export function FamilyMap(c: Ctx) {
@@ -17,7 +18,7 @@ export function FamilyMap(c: Ctx) {
     <div>
       <Badge className="mt-2">Alert RCB trwa · Kraków</Badge>
       <Title>Gdzie jest rodzina</Title>
-      <div className="map relative">
+      <div className="overflow-hidden [border:0] rounded-[22px]! [box-shadow:none]! bg-white relative">
         <svg viewBox="0 0 350 260" width="100%" role="img" aria-label="Mapa: położenie rodziny">
           <rect width="350" height="260" fill="#eef0ea" />
           <path
@@ -43,13 +44,19 @@ export function FamilyMap(c: Ctx) {
             stroke="rgba(212,42,62,.35)"
             strokeDasharray="3 4"
           />
-          <g className="mpin" transform="translate(150 110)">
+          <g
+            className="motion-safe:animate-[pin-in_0.5s_var(--ease-spring)_both]"
+            transform="translate(150 110)"
+          >
             <circle r="15" fill="#22408f" stroke="#fff" strokeWidth="3" />
             <text y="4" textAnchor="middle" fontSize="10" fontWeight="700" fill="#fff" fontFamily="Inter">
               AN
             </text>
           </g>
-          <g className="mpin [animation-delay:.12s]" transform="translate(262 205)">
+          <g
+            className="motion-safe:animate-[pin-in_0.5s_var(--ease-spring)_both] [animation-delay:.12s]"
+            transform="translate(262 205)"
+          >
             <circle r="15" fill="#b0533f" stroke="#fff" strokeWidth="3" />
             <text y="4" textAnchor="middle" fontSize="10" fontWeight="700" fill="#fff" fontFamily="Inter">
               ZN
@@ -122,9 +129,9 @@ export function FamilyMap(c: Ctx) {
             <ListRowTitle>Tata</ListRowTitle>
             <ListRowDescription>Sandomierz · poza strefą alarmu · nie odpowiada</ListRowDescription>
           </ListRowContent>
-          <button className="mini" onClick={() => c.go('easy-call')}>
-            {I('phone', 14)} Zadzwoń
-          </button>
+          <Chip onClick={() => c.go('easy-call')}>
+            <Icon name="phone" size={14} /> Zadzwoń
+          </Chip>
         </ListRow>
       </List>
       <Note icon="lock" className="mt-3">

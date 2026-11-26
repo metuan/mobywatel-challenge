@@ -30,7 +30,7 @@ export const Lead = styled('lead', 'p', 'mt-0 mb-[18px] text-base/[1.45] text-in
 
 /** Small label above a title: "Przeprowadzka · krok 2 z 3". */
 export const Eyebrow = styled(
-  'eyebrow',
+  '[.tech_&]:normal-case! [.tech_&]:[letter-spacing:0]! normal-case! [letter-spacing:0]! [.tech_&]:text-[13px] [.tech_&]:font-medium [.tech_&]:text-ink-2 [.how-card_.tech_&]:hidden',
   'p',
   'mt-2.5 mb-0 text-[13px] font-semibold tracking-normal text-ink-2 normal-case',
 );

@@ -26,6 +26,12 @@
   --amber: var(--warn);
   --amber-soft: #fbf1e4;
 
+  /* Signal colours: coach marks and live highlights, urgent alerts, success ticks, the assistant */
+  --signal-blue: #2f6bff;
+  --signal-red: #ff3b30;
+  --signal-green: #34c759;
+  --signal-violet: #7a4dff;
+
   /* Dark surfaces (alerts, documents) */
   --d-0: #0b0d12;
   --d-1: #111723;

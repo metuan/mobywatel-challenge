@@ -9,7 +9,7 @@ import { Icon } from '@/ui/icons';
  *
  *   <List>
  *     <ListRow as="button" onClick={…}>
- *       <ListRowIcon>{I('doc', 18)}</ListRowIcon>
+ *       <ListRowIcon><Icon name="doc" size={18} /></ListRowIcon>
  *       <ListRowContent>
  *         <ListRowTitle>Dowód osobisty</ListRowTitle>
  *         <ListRowDescription>Ważny do 2031</ListRowDescription>
@@ -66,9 +66,9 @@ const tile = cva(
     variants: {
       tone: {
         default: 'bg-fill',
-        red: 'bg-[#ff3b30]',
+        red: 'bg-signal-red',
         orange: 'bg-[#ff9500]',
-        green: 'bg-[#34c759]',
+        green: 'bg-signal-green',
         gray: 'bg-[#8e8e93]',
       },
     },

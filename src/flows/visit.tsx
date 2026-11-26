@@ -13,7 +13,7 @@ import { Card } from '@/components/ui/card';
 import { Caption, Eyebrow, Title } from '@/components/ui/typography';
 import { Actions, Button } from '@/components/ui/button';
 import { useState } from 'react';
-import { I } from '@/ui/icons';
+import { Icon } from '@/ui/icons';
 import { Hero } from '@/ui/illustrations';
 import { Row, Toggle } from '@/ui/primitives';
 import type { Ctx } from '@/types';
@@ -73,9 +73,9 @@ export function Visit2(c: Ctx) {
       />
       <List>
         {slots.map(([d, p, km], i) => (
-          <ListRow as="button" onClick={() => setPick(i)} aria-pressed={pick === i}>
+          <ListRow key={d} as="button" onClick={() => setPick(i)} aria-pressed={pick === i}>
             <ListRowIcon className={cn(pick === i && 'bg-ink text-white')}>
-              {pick === i ? I('check', 18) : ''}
+              {pick === i ? <Icon name="check" size={18} /> : ''}
             </ListRowIcon>
             <ListRowContent>
               <ListRowTitle>{d}</ListRowTitle>
@@ -158,7 +158,9 @@ export function Visit4(c: Ctx) {
   return (
     <div>
       <Hero n="doctor" />
-      <div className="done-mark mt-[-34px] ml-4 relative [border:4px_solid_#fff]">{I('check', 28)}</div>
+      <div className="w-15 h-15 rounded-[50%] text-white grid place-items-center m-[26px_0_4px] [box-shadow:var(--shadow-s)] border-bg! motion-safe:animate-[pop_0.5s_0.15s_var(--ease-spring)_both] bg-ink mt-[-34px] ml-4 relative [border:4px_solid_#fff]">
+        <Icon name="check" size={28} />
+      </div>
       <Title>Wizyta Zosi: {c.s.visit || '15 grudnia, 10:30'}</Title>
       <List>
         <ListRow>

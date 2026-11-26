@@ -1,7 +1,8 @@
+import { Pill } from '@/components/ui/pill';
 import { List, ListItemDescription, ListItemTitle } from '@/components/ui/list';
 import { Display } from '@/components/ui/typography';
 import { DocCard } from '@/ui/documentCard';
-import { I } from '@/ui/icons';
+import { Icon } from '@/ui/icons';
 import { AvStack, GRow, Label, Num, Ring, Tile } from '@/ui/primitives';
 import type { Ctx } from '@/types';
 import type { IconName } from '@/ui/icons';
@@ -11,12 +12,12 @@ function TodayBase(c: Ctx) {
   return (
     <div className="today8">
       <div className="hi">
-        <div className="hi-d">Wtorek, 24 listopada</div>
+        <div className="text-ink-2 m-[8px_4px_0] text-[13px] tracking-[-0.003em]">Wtorek, 24 listopada</div>
         <Display className="mx-1 mt-0.5 mb-5">Dzień dobry, Anno</Display>
       </div>
       {c.bar || ''}
       <DocCard c={c} />
-      <div className="qa8">
+      <div className="grid [grid-template-columns:repeat(4,_1fr)] mt-6 [&_button]:flex [&_button]:flex-col [&_button]:items-center [&_button]:font-medium [&_button]:text-[12px] [&_button]:text-ink-2 [&_button]:gap-2.25">
         {(
           [
             ['qr', 'Pokaż', 'share-min'],
@@ -25,16 +26,18 @@ function TodayBase(c: Ctx) {
             ['coin', 'Zapłać', 'taxes'],
           ] as [IconName, string, string][]
         ).map(([ic, t, r]) => (
-          <button onClick={() => c.go(r)}>
-            <span className="qa8-i">{I(ic, 22)}</span>
+          <button key={t} onClick={() => c.go(r)}>
+            <span className="rounded-[50%] grid place-items-center w-14 h-14 bg-white [box-shadow:0_0_0_0.5px_var(--hair)]">
+              <Icon name={ic} size={22} />
+            </span>
             <span>{t}</span>
           </button>
         ))}
       </div>
       <Label t="Wymaga uwagi" />
-      <div className="attn">
+      <div className="flex gap-3.5 items-center bg-white rounded-[22px_22px_0_0] p-[18px_18px_6px]">
         <Ring v={12} max={30} color="var(--red)" size={48}>
-          <b className="red-t">12</b>
+          <b className="text-red!">12</b>
           <small>dni</small>
         </Ring>
         <div className="attn-tx">
@@ -44,46 +47,77 @@ function TodayBase(c: Ctx) {
           <ListItemDescription as="div">KR 4F21 · polisa do 6 grudnia</ListItemDescription>
         </div>
       </div>
-      <div className="attn-act">
-        <button className="pill" onClick={() => c.go('car')}>
-          Przedłuż OC
-        </button>
-        <button className="pill soft" onClick={() => c.go('car')}>
+      <div className="attn-act flex gap-2 bg-white rounded-[0_0_22px_22px] p-[12px_18px_18px]">
+        <Pill onClick={() => c.go('car')}>Przedłuż OC</Pill>
+        <Pill
+          className="[&.pill]:bg-fill [&.pill]:text-ink [.st-nav_&.pill]:w-11 [.st-nav_&.pill]:p-0"
+          onClick={() => c.go('car')}
+        >
           Szczegóły
-        </button>
+        </Pill>
       </div>
-      <div className="w8">
-        <button className="w" onClick={() => c.go('p800')}>
-          <span className="wk">800+ na Zosię</span>
-          <span className="wico">{I('coin', 20)}</span>
-          <span className="wv">800 zł</span>
-          <span className="ws">Wypłata 28 listopada</span>
+      <div className="grid grid-cols-[1fr_1fr] mt-3 gap-2.5">
+        <button
+          className="motion-safe:[&:active]:duration-[0.12s] relative bg-white rounded-[22px] flex flex-col text-left text-ink p-[16px_16px_15px] min-h-34.5 [transition:background-color_0.12s,_transform_0.16s_var(--out)] [&:active]:transform-[scale(0.97)]"
+          onClick={() => c.go('p800')}
+        >
+          <span className="text-[12px] font-medium pr-6.5 leading-4 text-ink-2">800+ na Zosię</span>
+          <span className="absolute top-3.5 right-3.5 grid text-ink-3">
+            <Icon name="coin" size={20} />
+          </span>
+          <span className="font-semibold [font-variant-numeric:tabular-nums] mt-auto text-[30px] leading-8 tracking-[-0.035em] [&_small]:text-[14px] [&_small]:font-medium [&_small]:text-ink-2 [&_small]:tracking-[-0.01em]">
+            800 zł
+          </span>
+          <span className="text-[13px] text-ink-2 mt-0.75 leading-4.25">Wypłata 28 listopada</span>
         </button>
-        <button className="w" onClick={() => c.go(s.moved ? 'move-done' : 'case-meld')}>
-          <span className="wk">{s.moved ? 'Przeprowadzka' : 'Rejestracja auta'}</span>
-          <span className="wico">{I('folder', 20)}</span>
-          <span className="wv">
+        <button
+          className="motion-safe:[&:active]:duration-[0.12s] relative bg-white rounded-[22px] flex flex-col text-left text-ink p-[16px_16px_15px] min-h-34.5 [transition:background-color_0.12s,_transform_0.16s_var(--out)] [&:active]:transform-[scale(0.97)]"
+          onClick={() => c.go(s.moved ? 'move-done' : 'case-meld')}
+        >
+          <span className="text-[12px] font-medium pr-6.5 leading-4 text-ink-2">
+            {s.moved ? 'Przeprowadzka' : 'Rejestracja auta'}
+          </span>
+          <span className="absolute top-3.5 right-3.5 grid text-ink-3">
+            <Icon name="folder" size={20} />
+          </span>
+          <span className="font-semibold [font-variant-numeric:tabular-nums] mt-auto text-[30px] leading-8 tracking-[-0.035em] [&_small]:text-[14px] [&_small]:font-medium [&_small]:text-ink-2 [&_small]:tracking-[-0.01em]">
             {s.moved ? 2 : 3}
             <small> z 4</small>
           </span>
-          <span className="wbar">
+          <span className="h-0.75 rounded-xs bg-fill-2 mt-2 overflow-hidden [&_i]:block [&_i]:h-full [&_i]:bg-ink [&_i]:rounded-xs">
             <i style={{ width: `${(s.moved ? 2 : 3) * 25}%` }}></i>
           </span>
-          <span className="ws">{s.moved ? 'Urząd potwierdzi do 27.11' : 'Odbiór od 2 grudnia'}</span>
+          <span className="text-[13px] text-ink-2 mt-0.75 leading-4.25">
+            {s.moved ? 'Urząd potwierdzi do 27.11' : 'Odbiór od 2 grudnia'}
+          </span>
         </button>
-        <button className="w" onClick={() => c.go('family')}>
-          <span className="wk">Bliscy</span>
-          <span className="wico">{I('people', 20)}</span>
-          <span className="wav">
+        <button
+          className="motion-safe:[&:active]:duration-[0.12s] relative bg-white rounded-[22px] flex flex-col text-left text-ink p-[16px_16px_15px] min-h-34.5 [transition:background-color_0.12s,_transform_0.16s_var(--out)] [&:active]:transform-[scale(0.97)]"
+          onClick={() => c.go('family')}
+        >
+          <span className="text-[12px] font-medium pr-6.5 leading-4 text-ink-2">Bliscy</span>
+          <span className="absolute top-3.5 right-3.5 grid text-ink-3">
+            <Icon name="people" size={20} />
+          </span>
+          <span className="mt-auto">
             <AvStack size={28} />
           </span>
-          <span className="ws">Tata: nowa e-recepta</span>
+          <span className="text-[13px] text-ink-2 mt-0.75 leading-4.25">Tata: nowa e-recepta</span>
         </button>
-        <button className="w" onClick={() => c.go(s.visit ? 'visit-4' : 'visit-1')}>
-          <span className="wk">Zosia, kardiolog</span>
-          <span className="wico">{I('steth', 20)}</span>
-          <span className="wv text-[22px]">{s.visit ? '15 gru' : 'Skierowanie'}</span>
-          <span className="ws">{s.visit ? '10:30 · Prokocim' : 'Wybierz termin'}</span>
+        <button
+          className="motion-safe:[&:active]:duration-[0.12s] relative bg-white rounded-[22px] flex flex-col text-left text-ink p-[16px_16px_15px] min-h-34.5 [transition:background-color_0.12s,_transform_0.16s_var(--out)] [&:active]:transform-[scale(0.97)]"
+          onClick={() => c.go(s.visit ? 'visit-4' : 'visit-1')}
+        >
+          <span className="text-[12px] font-medium pr-6.5 leading-4 text-ink-2">Zosia, kardiolog</span>
+          <span className="absolute top-3.5 right-3.5 grid text-ink-3">
+            <Icon name="steth" size={20} />
+          </span>
+          <span className="font-semibold [font-variant-numeric:tabular-nums] mt-auto leading-8 tracking-[-0.035em] [&_small]:font-medium [&_small]:text-ink-2 [&_small]:tracking-[-0.01em] text-[22px]">
+            {s.visit ? '15 gru' : 'Skierowanie'}
+          </span>
+          <span className="text-[13px] text-ink-2 mt-0.75 leading-4.25">
+            {s.visit ? '10:30 · Prokocim' : 'Wybierz termin'}
+          </span>
         </button>
       </div>
       <Label t="Terminy" more="Wszystkie" go={() => c.go('calendar')} />
@@ -94,13 +128,13 @@ function TodayBase(c: Ctx) {
         <GRow ic="doc" t="Dowód taty wygasa" s="26 sty" v="63 dni" onClick={() => c.go('member-tata')} />
       </List>
       <Label t="Ważne momenty" more="Wszystkie" go={() => c.go('matters')} />
-      <div className="mrow">
+      <div className="motion-safe:[.screen_&_>_*]:animate-[fade-up_0.42s_var(--ease-out)_both] motion-safe:[.screen_&_>_*:nth-child(2)]:[animation-delay:0.04s] motion-safe:[.screen_&_>_*:nth-child(3)]:[animation-delay:0.08s] motion-safe:[.screen_&_>_*:nth-child(n_+_4)]:[animation-delay:0.12s] flex gap-3 overflow-x-auto m-[0_-20px] p-[0_20px_4px] [scroll-snap-type:x_mandatory] scrollbar-none [&::-webkit-scrollbar]:hidden">
         <Tile t="Przeprowadzka" s="4 urzędy, 1 wniosek" n="move" onClick={() => c.go('move-1')} />
         <Tile t="Nowe dziecko" s="PESEL, 800+, NFZ" n="baby" onClick={() => c.go('baby-1')} />
         <Tile t="Mój samochód" s="OC, przegląd, mandaty" n="car" onClick={() => c.go('car')} />
         <Tile t="Podatki" s="Zwrot 1 284 zł" n="coin" onClick={() => c.go('taxes')} />
       </div>
-      <p className="foot">Niezależna koncepcja. Dane są fikcyjne.</p>
+      <p className="text-[12px] text-ink-3 text-center mt-7">Niezależna koncepcja. Dane są fikcyjne.</p>
     </div>
   );
 }
@@ -109,13 +143,20 @@ export function Today(c: Ctx) {
   const n = c.s.mail ? c.s.mail.filter(x => x.unread).length : 2;
   /* search + inbox sit in their own row under the greeting, so nothing crowds the title (Karl, 26 Nov) */
   const bar = (
-    <div className="hdr9">
-      <button className="hdr9-s" onClick={() => c.go('search')}>
-        {I('search', 18)}
+    <div className="flex gap-2.5 items-center m-[14px_0_16px]">
+      <button
+        className="flex-1 min-w-0 flex items-center gap-2 h-11 p-[0_14px] rounded-[14px] bg-surface [box-shadow:inset_0_0_0_0.5px_var(--hair)] [color:var(--label2,_#8a8f99)] text-[15px] text-left [transition:transform_0.16s_var(--out)] [&_span]:overflow-hidden [&_span]:whitespace-nowrap [&_span]:text-ellipsis [&:active]:transform-[scale(0.97)]"
+        onClick={() => c.go('search')}
+      >
+        <Icon name="search" size={18} />
         <span>Szukaj albo zapytaj</span>
       </button>
-      <button className="hdr9-i" aria-label={'Skrzynka, nowe: ' + n} onClick={() => c.go('inbox')}>
-        {I('inbox', 20)}
+      <button
+        className="relative flex-none w-11 h-11 rounded-[14px] bg-surface grid place-items-center [box-shadow:inset_0_0_0_0.5px_var(--hair)] [transition:transform_0.16s_var(--out)] [&:active]:transform-[scale(0.97)] [&_b]:absolute [&_b]:-top-1 [&_b]:-right-1 [&_b]:min-w-4.5 [&_b]:h-4.5 [&_b]:p-[0_5px] [&_b]:rounded-[9px] [&_b]:bg-red [&_b]:text-white [&_b]:text-[11px] [&_b]:font-bold [&_b]:grid [&_b]:place-items-center [&_b]:[box-shadow:0_0_0_2px_var(--bg)]"
+        aria-label={'Skrzynka, nowe: ' + n}
+        onClick={() => c.go('inbox')}
+      >
+        <Icon name="inbox" size={20} />
         {n > 0 && (
           <b>
             <Num v={n} />
@@ -124,5 +165,9 @@ export function Today(c: Ctx) {
       </button>
     </div>
   );
-  return <div className="tw8">{TodayBase({ ...c, bar })}</div>;
+  return (
+    <div className="relative animate-[wordin_0.22s_ease-out_both] motion-reduce:animate-none! motion-reduce:filter-none">
+      {TodayBase({ ...c, bar })}
+    </div>
+  );
 }
