@@ -13,12 +13,18 @@ export function Pjm(c: Ctx) {
     <div>
       <Title>Tłumacz polskiego języka migowego</Title>
       <Lead>Na każdym ekranie przycisk „PJM”. Łączy z tłumaczem na wideo, w dni robocze 8–20.</Lead>
-      <div className="video">
+      <div className="rounded-2xl overflow-hidden relative [background:#2c2f36] [&_svg]:block">
         <svg viewBox="0 0 320 200" width="100%" aria-hidden="true">
           <rect width="320" height="200" fill="#2c2f36" />
           <circle cx="160" cy="78" r="28" fill="#e8c9a8" />
           <path d="M104 200c4-48 28-70 56-70s52 22 56 70z" fill="#22408f" />
-          <g className={on ? 'sign' : ''}>
+          <g
+            className={
+              on
+                ? 'motion-safe:[&_path]:animate-[wave_1s_ease-in-out_infinite_alternate] motion-safe:[&_path]:origin-center'
+                : ''
+            }
+          >
             <path
               d="M110 150c-8-24-2-44 10-50"
               stroke="#e8c9a8"
@@ -35,10 +41,11 @@ export function Pjm(c: Ctx) {
             />
           </g>
         </svg>
-        <div className="vlabel">
+        <div className="absolute left-3 bottom-3 [color:#fff] text-[13px] flex gap-1.5 items-center [background:rgb(0_0_0_/_40%)] p-[4px_10px] rounded-[999px]">
           {on ? (
             <>
-              <span className="lv-dot"></span> Tłumaczka Marta · połączono
+              <span className="w-2 h-2 rounded-[50%] [background:#ff4d5e] [box-shadow:0_0_0_0_rgb(255_77_94_/_60%)] motion-safe:animate-[ping_1.6s_ease-out_infinite]"></span>{' '}
+              Tłumaczka Marta · połączono
             </>
           ) : (
             'Kamera wyłączona'

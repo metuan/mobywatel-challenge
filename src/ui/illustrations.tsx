@@ -227,7 +227,13 @@ const ILLS = {
 export type IllustrationName = keyof typeof ILLS;
 
 export const ILL = (n: IllustrationName, w = 120) => (
-  <svg className="ill" width={w} height={w * 0.8} viewBox="0 0 120 96" aria-hidden="true">
+  <svg
+    className="block [.spot_&]:-ml-1.5 [&_path[stroke-dasharray]]:opacity-[0.5] [.mtile_&_path[stroke-dasharray]]:hidden [.mt-ill_&]:w-18 [.mt-ill_&]:h-auto [.mt-ill_&_g]:stroke-[1.35] [.spot_&_path[stroke-dasharray]]:hidden"
+    width={w}
+    height={w * 0.8}
+    viewBox="0 0 120 96"
+    aria-hidden="true"
+  >
     <path
       d="M14 88h92"
       stroke="#0B0D12"
@@ -241,4 +247,6 @@ export const ILL = (n: IllustrationName, w = 120) => (
   </svg>
 );
 
-export const Hero = ({ n }: { n: IllustrationName }) => <div className="spot">{ILL(n, 84)}</div>;
+export const Hero = ({ n }: { n: IllustrationName }) => (
+  <div className="spot [background:none]! rounded-none p-0 m-[4px_0_2px]">{ILL(n, 84)}</div>
+);

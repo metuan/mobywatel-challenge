@@ -39,23 +39,30 @@ export function TapShare({
     };
   }, [st]);
   return (
-    <div className={'tap8 s' + st}>
-      <div className="tap-scene" aria-hidden="true">
-        <div className="tp tp-them">
-          <span className="tp-isl"></span>
-          <span className="tp-n">{them}</span>
+    <div className={'mt-4.5 [.ice-h_&]:text-[14px] [.ice-h_&]:text-(--label2) [.hw-col_i&]:w-[60%]' + st}>
+      <div
+        className="relative h-52.5 rounded-3xl [background:#0b0d12] overflow-hidden flex flex-col items-center justify-between p-0"
+        aria-hidden="true"
+      >
+        <div className="absolute left-[50%] h-37.5 rounded-[26px] [background:#1a1d24] [box-shadow:inset_0_0_0_1.5px_#2e323c] [transition:transform_0.6s_cubic-bezier(0.32,_0.72,_0,_1)] w-37.5 -ml-18.75 tp-them -top-23 transform-none [.s2_&]:transform-[translateY(43px)]">
+          <span className="absolute left-[50%] w-8.5 h-2.25 -ml-4.25 rounded-[6px] [background:#000] [.tp-them_&]:bottom-2.5 [.tp-me_&]:top-2.5"></span>
+          <span className="absolute left-0 right-0 text-center text-[11.5px] font-semibold [color:rgb(255_255_255_/_72%)] [.tp-them_&]:bottom-6 [.tp-me_&]:top-6">
+            {them}
+          </span>
         </div>
-        <div className="tp-wave">
+        <div className="absolute left-[50%] top-[50%] w-0 h-0 [&_i]:absolute [&_i]:-left-15 [&_i]:-top-15 [&_i]:w-30 [&_i]:h-30 [&_i]:rounded-[50%] [&_i]:[border:2px_solid_rgb(255_255_255_/_85%)] [&_i]:opacity-[0] [&_i]:transform-[scale(0.2)]">
           <i></i>
           <i></i>
           <i></i>
         </div>
-        <div className="tp tp-me">
-          <span className="tp-isl"></span>
-          <span className="tp-n">Anna</span>
+        <div className="absolute left-[50%] h-37.5 rounded-[26px] [background:#1a1d24] [box-shadow:inset_0_0_0_1.5px_#2e323c] [transition:transform_0.6s_cubic-bezier(0.32,_0.72,_0,_1)] w-37.5 -ml-18.75 tp-me -bottom-23 transform-none [.s2_&]:transform-[translateY(-43px)]">
+          <span className="absolute left-[50%] w-8.5 h-2.25 -ml-4.25 rounded-[6px] [background:#000] [.tp-them_&]:bottom-2.5 [.tp-me_&]:top-2.5"></span>
+          <span className="absolute left-0 right-0 text-center text-[11.5px] font-semibold [color:rgb(255_255_255_/_72%)] [.tp-them_&]:bottom-6 [.tp-me_&]:top-6">
+            Anna
+          </span>
         </div>
       </div>
-      <div className="tap-cap">
+      <div className="text-[14px] text-ink-2 text-center m-[12px_6px_0] min-h-5 [.s2_&]:[color:var(--ok,_#1f7a4f)] [.s2_&]:font-semibold">
         {st === 0 ? sub : st === 1 ? 'Łączenie…' : 'Gotowe. Telefony się rozpoznały.'}
       </div>
       {st === 0 && (
@@ -80,8 +87,12 @@ export function Confirming({ steps }: { steps?: string[] }) {
   }, [k]);
   const done = k >= S.length;
   return (
-    <div className={'conf8' + (done ? ' done' : '')} role="status" aria-live="polite">
-      <div className="cf-art">
+    <div
+      className={'conf8 flex flex-col items-center p-[14px_0_22px]' + (done ? ' done' : '')}
+      role="status"
+      aria-live="polite"
+    >
+      <div className="relative w-21 h-21 grid place-items-center rounded-[26px] [background:var(--fill)] text-ink overflow-hidden [transition:background_0.3s,_color_0.3s] [.conf8.done_&]:[background:var(--ok)] [.conf8.done_&]:[color:#fff] [.conf8.done_&]:animate-[cfdone_0.35s_var(--spring)]">
         <svg
           viewBox="0 0 64 64"
           width="64"
@@ -93,20 +104,34 @@ export function Confirming({ steps }: { steps?: string[] }) {
           strokeLinejoin="round"
         >
           <path
-            className="cf-br"
+            className="[stroke-dasharray:120] [stroke-dashoffset:120] animate-[cfdraw_0.5s_var(--out)_forwards] [.conf8.done_&]:[transition:opacity_0.15s] [.conf8.done_&]:animate-none! [.conf8.done_&]:opacity-[0]! motion-reduce:animate-none! motion-reduce:[stroke-dashoffset:0]"
             d="M6 20V12a6 6 0 0 1 6-6h8M44 6h8a6 6 0 0 1 6 6v8M58 44v8a6 6 0 0 1-6 6h-8M20 58h-8a6 6 0 0 1-6-6v-8"
           />
-          <g className="cf-face">
+          <g className="opacity-[0] animate-[cfin_0.3s_var(--out)_0.25s_forwards] [transition:opacity_0.2s] [.conf8.done_&]:[transition:opacity_0.15s] [.conf8.done_&]:animate-none! [.conf8.done_&]:opacity-[0]! motion-reduce:animate-none! motion-reduce:[stroke-dashoffset:0]">
             <path d="M23 25v4M41 25v4M32 26v9h-3M25 42c4 4 10 4 14 0" />
           </g>
-          <path className="cf-ok" d="M20 33l8 8 16-17" />
+          <path
+            className="[stroke-dasharray:44] [stroke-dashoffset:44] opacity-[0] [.conf8.done_&]:opacity-[1] [.conf8.done_&]:animate-[cfdraw_0.35s_var(--out)_forwards] motion-reduce:animate-none! motion-reduce:[stroke-dashoffset:0]"
+            d="M20 33l8 8 16-17"
+          />
         </svg>
-        <i className="cf-scan"></i>
+        <i className="absolute left-2.5 right-2.5 h-0.5 rounded-xs [background:#2f6bff] [box-shadow:0_0_12px_2px_rgb(47_107_255_/_60%)] top-3.5 animate-[cfscan_1s_ease-in-out_0.2s_2_alternate] [.conf8.done_&]:hidden motion-reduce:animate-none"></i>
       </div>
-      <div className="cf-steps">
+      <div className="mt-4.5 flex flex-col gap-2.25 min-w-50">
         {S.map((t, i) => (
-          <div className={'cf-s' + (i < k ? ' ok' : i === k ? ' now' : '')}>
-            <span className="cf-dot">{i < k ? I('check', 12) : ''}</span>
+          <div
+            className={
+              'cf-s flex items-center gap-2.5 text-[14.5px] text-ink-3 [transition:color_0.2s] [&.now]:text-ink [&.now]:font-medium [&.ok]:text-ink-2' +
+              (i < k
+                ? ' ok'
+                : i === k
+                  ? ' now [.p12-bar_button&]:[background:var(--ink)] [.beats_li&_p]:text-ink [.beats_li&_p]:text-[16px] [.beats_li&_p]:leading-5.75 [.beats_li&_p]:font-medium motion-safe:[.beats_li&_>_div]:animate-[rise_0.4s_var(--out)_both] [@media(max-height:820px)_and_(min-width:961px)]:[.beats_li&_p]:text-[15px] [@media(max-height:820px)_and_(min-width:961px)]:[.beats_li&_p]:leading-5.25'
+                  : '')
+            }
+          >
+            <span className="w-4.5 h-4.5 rounded-[50%] flex-none grid place-items-center [box-shadow:inset_0_0_0_1.5px_var(--hair-2)] [color:#fff] [transition:background_0.2s,_box-shadow_0.2s] [.cf-s.now_&]:[box-shadow:inset_0_0_0_2px_#2f6bff] [.cf-s.now_&]:animate-[cfpulse_1s_ease-in-out_infinite] [.cf-s.ok_&]:[background:var(--ink)] [.cf-s.ok_&]:[box-shadow:none] [.cf-s.ok_&]:animate-[pop_0.25s_var(--spring)] motion-reduce:[.cf-s.now_&&]:animate-none">
+              {i < k ? I('check', 12) : ''}
+            </span>
             {t}
           </div>
         ))}
@@ -223,7 +248,10 @@ export function HoldBtn({
   return (
     <Button
       variant="destructive"
-      className={cn('hold8', p > 0 && p < 1 && 'holding')}
+      className={cn(
+        'hold8 relative overflow-hidden isolate touch-none [-webkit-user-select:none] [background:var(--red-soft)]! text-red! [&.holding]:transform-[scale(0.985)]',
+        p > 0 && p < 1 && 'holding',
+      )}
       style={{ '--p': p } as CSSProperties}
       onPointerDown={start}
       onPointerUp={stop}
@@ -235,7 +263,10 @@ export function HoldBtn({
       }}
     >
       <span className="hold-l">{p > 0 && p < 1 ? holdLabel : label}</span>
-      <span className="hold-fill" aria-hidden="true">
+      <span
+        className="absolute inset-0 [clip-path:inset(0_calc((1-var(--p))*100%)_0_0)] [transition:clip-path_0.2s_cubic-bezier(0.23,_1,_0.32,_1)] z-1 grid place-items-center [background:var(--red)] [color:#fff] [font:inherit] [&&]:[font-weight:inherit] [.hold8.holding_&]:[transition:none]"
+        aria-hidden="true"
+      >
         {p > 0 && p < 1 ? holdLabel : label}
       </span>
     </Button>

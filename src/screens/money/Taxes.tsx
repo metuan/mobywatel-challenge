@@ -12,14 +12,16 @@ function TaxesBase(c: Ctx) {
     <div>
       <Hero n="coin" />
       <Title>Podatki</Title>
-      <Card className="taxhero">
+      <Card className="taxhero p-4">
         <Muted>PIT-37 za 2025 · Twój e-PIT · zwrot do 45 dni</Muted>
-        <div className="big">1 284 zł</div>
+        <div className="big [.taxhero_&]:text-[40px] [.taxhero_&]:font-bold [.taxhero_&]:tracking-[-0.03em] [.taxhero_&]:text-[#34c759] [.taxhero_&]:m-[4px_0_0]">
+          1 284 zł
+        </div>
         <Muted>zwrotu, wysłany 3 marca na konto •••• 4471</Muted>
-        <div className="steps grid-cols-[repeat(3,1fr)]">
-          <i className="on"></i>
-          <i className="on"></i>
-          <i className="on"></i>
+        <div className="steps grid [grid-template-columns:repeat(4,_1fr)] gap-1 m-[12px_0_8px] [&_i]:rounded-xs [&_i]:[background:var(--track)] [&_i]:h-0.75 grid-cols-[repeat(3,1fr)]">
+          <i className="on [.progress_i&]:[background:var(--ink)] [.steps_i&]:[background:var(--ink)] [.st-ab_>_div&&]:[background:#fff] [.st-ab_&_p]:text-ink [.tour-dots_i&]:w-5.5 [.tour-dots_i&]:[background:var(--ink)] [.call-keys_button&_span]:[background:#fff] [.call-keys_button&_span]:text-[#0b0d12]"></i>
+          <i className="on [.progress_i&]:[background:var(--ink)] [.steps_i&]:[background:var(--ink)] [.st-ab_>_div&&]:[background:#fff] [.st-ab_&_p]:text-ink [.tour-dots_i&]:w-5.5 [.tour-dots_i&]:[background:var(--ink)] [.call-keys_button&_span]:[background:#fff] [.call-keys_button&_span]:text-[#0b0d12]"></i>
+          <i className="on [.progress_i&]:[background:var(--ink)] [.steps_i&]:[background:var(--ink)] [.st-ab_>_div&&]:[background:#fff] [.st-ab_&_p]:text-ink [.tour-dots_i&]:w-5.5 [.tour-dots_i&]:[background:var(--ink)] [.call-keys_button&_span]:[background:#fff] [.call-keys_button&_span]:text-[#0b0d12]"></i>
         </div>
         <Muted>Złożony · przyjęty · zwrot wypłacony</Muted>
       </Card>
@@ -34,7 +36,7 @@ function TaxesBase(c: Ctx) {
             <Badge>Opłacony</Badge>
           ) : (
             <button
-              className="mini"
+              className="mini inline-flex gap-1.5 items-center whitespace-nowrap motion-safe:[&:active]:transform-[scale(0.97)] font-semibold text-[15px] p-[6px_14px] [background:var(--fill)] text-ink rounded-[999px]"
               onClick={() => {
                 c.set({ propPaid: true });
                 c.toast('Opłacono 86 zł');

@@ -22,7 +22,7 @@ import type { IconName } from '@/ui/icons';
 import type { Child } from '@/types';
 
 export const Sec = ({ t, more, go }: { t: Child; more?: Child; go?: () => void }) => (
-  <div className="sec">
+  <div className="flex justify-between items-baseline [&_h3]:m-0 [&_button]:underline-offset-[3px] [&_button]:[text-decoration:none] [&_h3]:[font-family:var(--disp)] [&_h3]:text-[14px] [&_h3]:font-medium [&_h3]:text-ink-2 [&_h3]:tracking-[-0.006em] m-[32px_4px_8px] [&_button]:text-ink [&_button]:text-[14px] [&_button]:font-medium">
     <h3>{t}</h3>
     {more && <button onClick={go}>{more}</button>}
   </div>
@@ -52,9 +52,21 @@ export const Row = ({
 );
 
 export const Progress = ({ n, of }: { n: number; of: number }) => (
-  <div className="progress" aria-label={`Krok ${n} z ${of}`}>
+  <div
+    className="progress flex gap-1 m-[8px_0_2px] [&_i]:flex-1 [&_i]:h-0.75 [&_i]:rounded-xs [&_i]:[background:var(--track)] [&_i]:relative [&_i]:overflow-hidden"
+    aria-label={`Krok ${n} z ${of}`}
+  >
     {Array.from({ length: of }, (_, i) => (
-      <i className={(i < n ? 'on' : '') + (i === n - 1 && n > 1 ? ' fresh' : '')}></i>
+      <i
+        className={
+          (i < n
+            ? 'on [.progress_i&]:[background:var(--ink)] [.steps_i&]:[background:var(--ink)] [.st-ab_>_div&&]:[background:#fff] [.st-ab_&_p]:text-ink [.tour-dots_i&]:w-5.5 [.tour-dots_i&]:[background:var(--ink)] [.call-keys_button&_span]:[background:#fff] [.call-keys_button&_span]:text-[#0b0d12]'
+            : '') +
+          (i === n - 1 && n > 1
+            ? ' [.progress_i&.on]:[background:var(--fill-2)]! [.progress_i&.on::after]:[content:""] [.progress_i&.on::after]:absolute [.progress_i&.on::after]:inset-0 [.progress_i&.on::after]:[background:var(--ink)] [.progress_i&.on::after]:origin-[left] [.progress_i&.on::after]:[animation:segfill_0.45s_cubic-bezier(0.23,_1,_0.32,_1)_0.12s_both] motion-reduce:[.progress_i&.on::after]:animate-none'
+            : '')
+        }
+      ></i>
     ))}
   </div>
 );
@@ -88,11 +100,14 @@ export const Ring = ({
     L = 2 * Math.PI * r,
     p = Math.max(0, Math.min(1, v / max));
   return (
-    <span className="ring-meter" style={{ width: size, height: size }}>
+    <span
+      className="relative inline-grid place-items-center flex-none [&_svg]:absolute [&_svg]:inset-0 [.hw-col.ph_&]:w-9 [.hw-col.ph_&]:h-3.5 [.hw-col.ph_&]:rounded-[7px] [.hw-col.ph_&]:[background:var(--fill-2)] [.hw-col.ph_&]:[outline:2px_solid_#2f6bff] [.hw-col.ph_&]:outline-offset-[3px] motion-safe:[.hw-col.ph_&]:animate-[coach_1.4s_var(--out)_infinite] [.is-r_&_svg_circle:first-child]:[stroke:rgb(255_255_255_/_25%)]"
+      style={{ width: size, height: size }}
+    >
       <svg width={size} height={size}>
         <circle cx={size / 2} cy={size / 2} r={r} stroke="var(--fill-2)" strokeWidth={w} fill="none" />
         <circle
-          className="ring-p"
+          className="motion-safe:[transition:stroke-dashoffset_1s_var(--ease-out)] motion-safe:[.screen_&]:animate-[ring-in_1.1s_var(--ease-out)_both]"
           cx={size / 2}
           cy={size / 2}
           r={r}
@@ -105,15 +120,18 @@ export const Ring = ({
           transform={`rotate(-90 ${size / 2} ${size / 2})`}
         />
       </svg>
-      <span className="ring-c">{children}</span>
+      <span className="relative flex flex-col items-center leading-none [&_small]:mt-0.5 [&_small]:text-[10px] [&_small]:text-ink-2 [&_b]:text-[15px] [&_b]:font-semibold [&_b]:[font-variant-numeric:tabular-nums] [&_b]:tracking-[-0.02em] [.p8-hero_&_b]:text-[22px] [.p8-hero_&_b]:leading-none [.p8-hero_&_small]:text-[11px] [.p8-hero_&_small]:text-ink-2 [.p8-hero_&]:flex [.p8-hero_&]:flex-col [.p8-hero_&]:items-center">
+        {children}
+      </span>
     </span>
   );
 };
 
 export const Wm = ({ rz = false }: { rz?: boolean }) => (
-  <span className="wm">
-    <i className="flag"></i>
-    <span className="m">m</span>Obywatel{rz && <span className="rz">Razem</span>}
+  <span className="wm font-[650] text-[17px] leading-none tracking-[-0.02em] text-ink inline-flex items-center whitespace-nowrap [.app.compact_.topbar_&]:opacity-[0] [.top8_&]:text-[16px] [.topbar_&]:[transition:opacity_0.12s_var(--out)]">
+    <i className="w-4 h-2.75 rounded-[3px] mr-2 [background:linear-gradient(#fff_50%,_var(--red)_50%)] [box-shadow:0_0_0_0.5px_rgb(11_13_18_/_22%)] inline-block flex-none [.d-rp_&]:w-3.5 [.d-rp_&]:h-2.5 [.d-rp_&]:mr-1.75 [.d-rp_&]:[box-shadow:none]"></i>
+    <span className="[.wm_&]:font-normal [.wm_&]:text-ink-2">m</span>Obywatel
+    {rz && <span className="[.wm_&]:font-normal [.wm_&]:text-ink-3 [.wm_&]:ml-1.5">Razem</span>}
   </span>
 );
 
@@ -125,21 +143,34 @@ const AV: [string, string][] = [
 ];
 
 export const Av = ({ i, size = 40, dot }: { i: string; size?: number; dot?: string }) => (
-  <span className="av" style={{ width: size, height: size, fontSize: Math.round(size * 0.34) }}>
+  <span
+    className="av [.lfam_&]:w-9 [.lfam_&]:h-9 [.lfam_&]:rounded-[50%] [.lfam_&]:grid [.lfam_&]:place-items-center [.lfam_&]:text-[11.5px] [.lfam_&]:font-bold [.lfam_&]:relative rounded-[50%] text-ink grid place-items-center flex-none relative [letter-spacing:0] [.avstack_&]:[box-shadow:0_0_0_2px_var(--surface)] [.avstack_&]:-ml-2 [.avstack_&:first-child]:ml-0 [.avstack_&]:[background:#dcdee3] [.fhead_&]:[background:#dcdee3] [background:#e6e7eb] font-semibold [.tv-person_&]:[background:#fff] [.tv-person_&]:[box-shadow:0_0_0_0.5px_var(--hair-2),_0_8px_20px_-10px_rgb(11_13_18_/_25%)] [.tv-person:first-child_&]:[background:var(--ink)] [.tv-person:first-child_&]:[color:#fff] [.sg-twist_&]:flex-none [.call-av_&]:relative [.call-av_&]:z-1 [.call-av_&]:[background:#2a3140]! [.call-av_&]:[color:#fff]! [.call-av_&]:text-[40px]! [.sg-twist_>_span&]:flex-none [.sg-twist_>_span&]:grid [.sg-twist_>_span&]:flex-row [.sg-twist_>_span&]:gap-0 [.sg-twist_>_span&]:self-center"
+    style={{ width: size, height: size, fontSize: Math.round(size * 0.34) }}
+  >
     {i}
-    {dot && <i className={'avd ' + dot}></i>}
+    {dot && (
+      <i
+        className={
+          'absolute -right-px -bottom-px w-2.5 h-2.5 rounded-[50%] [box-shadow:0_0_0_2px_#fff] ' + dot
+        }
+      ></i>
+    )}
   </span>
 );
 
 export const AvStack = ({ size = 28, list = AV }: { size?: number; list?: [string, string?][] }) => (
-  <span className="avstack">
+  <span className="avstack [&_span]:rounded-[50%] [&_span]:[color:#fff] [&_span]:text-[10px] [&_span]:font-bold [&_span]:grid [&_span]:place-items-center [&_span]:[box-shadow:0_0_0_2.5px_#fff] [&_span]:-ml-2 [&_span:first-child]:ml-0 inline-flex">
     {list.map(([i]) => (
       <Av i={i} size={size} />
     ))}
   </span>
 );
 
-export const LeadIcon = ({ ic }: { ic: IconName }) => <span className="lead-i">{I(ic, 20)}</span>;
+export const LeadIcon = ({ ic }: { ic: IconName }) => (
+  <span className="w-10 h-10 rounded-[50%] grid place-items-center flex-none text-ink [background:var(--bg)] [&.ai]:[background:linear-gradient(135deg,_#2f6bff,_#7a4dff)] [&.ai]:[color:#fff] [.how8-row_&]:w-7.5 [.how8-row_&]:h-7.5 [.how8-row_&]:rounded-[10px]">
+    {I(ic, 20)}
+  </span>
+);
 
 export const GRow = ({
   ic,
@@ -164,13 +195,22 @@ export const GRow = ({
       <ListItemTitle>{t}</ListItemTitle>
       {s && <ListItemDescription>{s}</ListItemDescription>}
     </ListItemContent>
-    {v && <span className={'gv' + (red ? ' red' : '')}>{v}</span>}
+    {v && (
+      <span
+        className={
+          'text-[14px] text-ink-2 [font-variant-numeric:tabular-nums] whitespace-nowrap [&.red]:text-red!' +
+          (red ? ' red' : '')
+        }
+      >
+        {v}
+      </span>
+    )}
     <ListItemChevron size={16} />
   </ListItem>
 );
 
 export const Label = ({ t, more, go }: { t: Child; more?: Child; go?: () => void }) => (
-  <div className="lbl">
+  <div className="[.rcb-app_&]:flex [.rcb-app_&]:gap-2 [.rcb-app_&]:items-center [.rcb-app_&]:text-[12px] [.rcb-app_&]:text-ink-2 [.rcb-app_&]:p-[8px_16px_2px] flex justify-between items-center [&_button]:inline-flex [&_button]:items-center [&_button]:gap-0.5 [&_button]:text-ink [&_button]:font-medium [&_button]:text-[14px] text-[13px] tracking-[-0.003em] m-[36px_4px_10px] text-ink-2 font-medium">
     <span>{t}</span>
     {more && (
       <button onClick={go}>
@@ -192,21 +232,32 @@ export const Tile = ({
   n: IllustrationName;
   onClick?: () => void;
 }) => (
-  <button className="mtile" onClick={onClick}>
-    <span className="mt-ill">{ILL(n, 76)}</span>
-    <span className="mt-t">{t}</span>
-    <span className="mt-s">{s}</span>
+  <button
+    className="mtile motion-safe:[&:active]:duration-[0.12s] flex-[0_0_148px] h-42 snap-start [background:#fff] rounded-[22px] p-[12px_14px_14px] flex flex-col text-left text-ink [box-shadow:none] [.mgrid_&]:h-44 [transition:background-color_0.12s,_transform_0.16s_var(--out)] [&:active]:transform-[scale(0.97)]"
+    onClick={onClick}
+  >
+    <span className="mt-ill flex-1 grid place-items-center">{ILL(n, 76)}</span>
+    <span className="text-[15px] font-semibold tracking-[-0.015em] [.mtile_&]:block [.mtile_&]:max-w-full [.mtile_&]:whitespace-nowrap [.mtile_&]:overflow-hidden [.mtile_&]:text-ellipsis">
+      {t}
+    </span>
+    <span className="text-[12px] text-ink-2 leading-4 mt-px [.mtile_&]:block [.mtile_&]:max-w-full [.mtile_&]:whitespace-nowrap [.mtile_&]:overflow-hidden [.mtile_&]:text-ellipsis">
+      {s}
+    </span>
   </button>
 );
 
 export const AppIcon = ({ k }: { k: string }) =>
   k === 'rcb' ? (
-    <span className="nicon bg-[#d42a3e] text-[#fff]">{I('bell', 15)}</span>
+    <span className="w-5.5 h-5.5 rounded-[6px] grid place-items-center flex-none [&.mob]:[background:#fff] [&.mob]:[box-shadow:inset_0_0_0_1px_rgb(0_0_0_/_8%)] bg-[#d42a3e] text-[#fff]">
+      {I('bell', 15)}
+    </span>
   ) : k === 'imgw' ? (
-    <span className="nicon bg-[#2b6cb0] text-[#fff]">{I('sun', 15)}</span>
+    <span className="w-5.5 h-5.5 rounded-[6px] grid place-items-center flex-none [&.mob]:[background:#fff] [&.mob]:[box-shadow:inset_0_0_0_1px_rgb(0_0_0_/_8%)] bg-[#2b6cb0] text-[#fff]">
+      {I('sun', 15)}
+    </span>
   ) : (
-    <span className="nicon mob">
-      <span className="flag w-4 h-[11px]"></span>
+    <span className="w-5.5 h-5.5 rounded-[6px] grid place-items-center flex-none [&.mob]:[background:#fff] [&.mob]:[box-shadow:inset_0_0_0_1px_rgb(0_0_0_/_8%)] mob">
+      <span className="rounded-[3px] mr-2 [background:linear-gradient(#fff_50%,_var(--red)_50%)] [box-shadow:0_0_0_0.5px_rgb(11_13_18_/_22%)] inline-block flex-none [.d-rp_&]:mr-1.75 [.d-rp_&]:[box-shadow:none] w-4 h-[11px]"></span>
     </span>
   );
 
@@ -225,7 +276,10 @@ export function Typed({ text, onDone }: { text: string; onDone?: () => void }) {
   return (
     <span>
       {W.slice(0, n).map((w, i) => (
-        <span className="tw8" key={i}>
+        <span
+          className="relative animate-[wordin_0.22s_ease-out_both] motion-reduce:animate-none! motion-reduce:filter-none"
+          key={i}
+        >
           {w}{' '}
         </span>
       ))}
@@ -240,12 +294,18 @@ export function Num({ v, fmtf }: { v: number | string; fmtf?: (v: number | strin
   const old = prev.current;
   prev.current = s;
   return (
-    <span className="num" aria-label={s}>
+    <span className="inline-flex [font-variant-numeric:tabular-nums]" aria-label={s}>
       {s.split('').map((ch, i) => {
         const ch0 = old[i - (s.length - old.length)];
         const changed = ch0 !== undefined && ch0 !== ch && /\d/.test(ch);
         return (
-          <span className={'dg' + (changed ? ' roll' : '')} key={i + ch}>
+          <span
+            className={
+              'inline-block [&.roll]:[animation:dgroll_0.36s_cubic-bezier(0.23,_1,_0.32,_1)_both] motion-reduce:[&.roll]:animate-none! motion-reduce:[&.roll]:filter-none' +
+              (changed ? ' roll' : '')
+            }
+            key={i + ch}
+          >
             {ch === ' ' ? ' ' : ch}
           </span>
         );

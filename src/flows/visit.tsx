@@ -158,7 +158,9 @@ export function Visit4(c: Ctx) {
   return (
     <div>
       <Hero n="doctor" />
-      <div className="done-mark mt-[-34px] ml-4 relative [border:4px_solid_#fff]">{I('check', 28)}</div>
+      <div className="w-15 h-15 rounded-[50%] [color:#fff] grid place-items-center m-[26px_0_4px] [box-shadow:var(--shadow-s)] border-(--app)! motion-safe:animate-[pop_0.5s_0.15s_var(--ease-spring)_both] [background:var(--ink)] mt-[-34px] ml-4 relative [border:4px_solid_#fff]">
+        {I('check', 28)}
+      </div>
       <Title>Wizyta Zosi: {c.s.visit || '15 grudnia, 10:30'}</Title>
       <List>
         <ListRow>

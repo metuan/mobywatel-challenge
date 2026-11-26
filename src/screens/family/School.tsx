@@ -94,7 +94,7 @@ export function School(c: Ctx) {
       <div className="flex gap-3 items-center mt-1">
         <ListRowAvatar>ZN</ListRowAvatar>
         <div>
-          <div className="t font-semibold text-[17px]">Zosia · zerówka</div>
+          <div className="[.ice-h_&]:font-semibold font-semibold text-[17px]">Zosia · zerówka</div>
           <Muted>Szkoła Podstawowa nr 9, Kraków</Muted>
         </div>
       </div>
@@ -121,7 +121,7 @@ export function School(c: Ctx) {
                 <Badge>OK</Badge>
               ) : (
                 <button
-                  className="mini"
+                  className="mini inline-flex gap-1.5 items-center whitespace-nowrap motion-safe:[&:active]:transform-[scale(0.97)] font-semibold text-[15px] p-[6px_14px] [background:var(--fill)] text-ink rounded-[999px]"
                   onClick={() => {
                     setEx(true);
                     c.set({ excused: true });
@@ -139,7 +139,7 @@ export function School(c: Ctx) {
                 <ListRowDescription>Zgoda rodzica i 45 zł</ListRowDescription>
               </ListRowContent>
               <button
-                className="mini"
+                className="mini inline-flex gap-1.5 items-center whitespace-nowrap motion-safe:[&:active]:transform-[scale(0.97)] font-semibold text-[15px] p-[6px_14px] [background:var(--fill)] text-ink rounded-[999px]"
                 onClick={() => c.toast('Zgoda wyrażona. Płatność BLIK w pełnej wersji.')}
               >
                 Zgoda
@@ -163,9 +163,13 @@ export function School(c: Ctx) {
             <Subtitle as="div">96%</Subtitle>
             <Muted>listopad</Muted>
           </div>
-          <div className="att">
+          <div className="att grid [grid-template-columns:repeat(10,_1fr)] gap-1 mt-3 [&_i]:h-6 [&_i]:rounded-[5px] [&_i]:[background:#34c759] [&_i]:opacity-[0.85]">
             {Array.from({ length: 20 }, (_, i) => (
-              <i className={i === 15 ? (ex ? 'ex' : 'ab') : ''}></i>
+              <i
+                className={
+                  i === 15 ? (ex ? '[.att_i&]:[background:#ff9500]' : '[.att_i&]:[background:#ff3b30]') : ''
+                }
+              ></i>
             ))}
           </div>
           <Muted className="mt-2">1 nieobecność{ex ? ' (usprawiedliwiona)' : ''} · 0 spóźnień</Muted>

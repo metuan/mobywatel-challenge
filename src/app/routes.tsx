@@ -138,7 +138,14 @@ export const isRoute = (r: string): r is Route => Object.prototype.hasOwnPropert
 export const screenFor = (r: Route): Screen => R[r];
 
 export const Wrap = ({ f, c, d }: { f: Screen; c: Ctx; d?: string }) => (
-  <div className={'screen ' + (d || '')}>{f(c)}</div>
+  <div
+    className={
+      'screen motion-safe:animate-[scr-in_0.32s_var(--ease-out)_both] motion-safe:[&.back]:[animation-name:scr-back] motion-safe:[&_.people_>_*]:animate-[fade-up_0.42s_var(--ease-out)_both] motion-safe:[&_.people_>_*:nth-child(2)]:[animation-delay:0.04s] motion-safe:[&_.people_>_*:nth-child(3)]:[animation-delay:0.08s] motion-safe:[&_.people_>_*:nth-child(n_+_4)]:[animation-delay:0.12s] [&.full]:absolute [&.full]:inset-0 [&.full]:z-30 [&.full]:animate-[fade_0.25s_ease-out_both] motion-safe:[&.tab_>_div_>_*:nth-child(2)]:[animation-delay:0.03s] motion-safe:[&.tab_>_div_>_*:nth-child(3)]:[animation-delay:0.06s] motion-safe:[&.tab_>_div_>_*:nth-child(4)]:[animation-delay:0.09s] motion-safe:[&.tab_>_div_>_*:nth-child(5)]:[animation-delay:0.12s] motion-safe:[&.tab_>_div_>_*:nth-child(6)]:[animation-delay:0.15s] motion-safe:[&.tab_>_div_>_*:nth-child(n_+_7)]:[animation-delay:0.18s] [&.kbd]:animate-none! [&.kbd_*]:animate-none! [.scroll_>_&]:[zoom:var(--fs,_1)] motion-safe:[&.tab_>_div_>_*]:animate-none! motion-safe:[&.tab]:animate-[tabfade_0.16s_ease-out_both]! ' +
+      (d || '')
+    }
+  >
+    {f(c)}
+  </div>
 );
 
 /** Screens that take over the whole phone (no top bar, no tab bar). */

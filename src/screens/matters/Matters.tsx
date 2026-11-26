@@ -81,7 +81,7 @@ export function Matters(c: Ctx) {
     <div>
       <Display>Sprawy</Display>
       <Search c={c} ph="Czego potrzebujesz?" />
-      <div className="chips">
+      <div className="chips flex gap-2 overflow-x-auto m-[12px_-20px_0] p-[0_20px] scrollbar-none [&::-webkit-scrollbar]:hidden [&_button]:flex-none [&_button]:rounded-[999px] [&_button]:[background:var(--fill)] [&_button]:text-ink [&_button]:text-[14px] [&_button]:font-medium [&_button]:h-9 [&_button]:p-[0_16px] [&_button[aria-pressed='true']]:[background:var(--ink)] [&_button[aria-pressed='true']]:[color:#fff] [&&_button:not([aria-pressed='true'])]:[background:#fff] [&_button:not([aria-pressed='true'])]:[box-shadow:inset_0_0_0_0.5px_var(--hair)]">
         {cats.map(([k, t]) => (
           <button aria-pressed={cat === k} onClick={() => setCat(k)}>
             {t}
@@ -93,7 +93,7 @@ export function Matters(c: Ctx) {
         {prog.map(([t, n, r, s2]) => (
           <ListItem as="button" onClick={() => c.go(r)}>
             <Ring v={n} max={4} size={40}>
-              <b className="text-[11px]">{n}/4</b>
+              <b className="text-[11px]!">{n}/4</b>
             </Ring>
             <ListItemContent>
               <ListItemTitle>{t}</ListItemTitle>
@@ -104,7 +104,7 @@ export function Matters(c: Ctx) {
         ))}
       </List>
       <Label t="Załatw od początku do końca" />
-      <div className="mgrid">
+      <div className="mgrid [&_.moment]:h-42.5 [&_.moment]:flex-none grid grid-cols-[1fr_1fr] gap-3">
         {shown.map(([t, s2, r, n]) => (
           <Tile t={t} s={s2} n={n} onClick={() => c.go(r)} />
         ))}

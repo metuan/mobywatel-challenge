@@ -121,7 +121,7 @@ export function Letter2(c: Ctx) {
       <Eyebrow>Wyjaśnienie pisma</Eyebrow>
       <Title>Urząd skarbowy prosi o wyjaśnienie korekty PIT-37.</Title>
       {k < 4 && (
-        <div className="ai-work">
+        <div className="inline-flex items-center gap-2 text-[13px] font-medium p-[6px_12px] rounded-[999px] [color:#fff] [background:linear-gradient(135deg,_#2f6bff,_#7a4dff)] m-[2px_0_10px] [box-shadow:0_4px_12px_-6px_rgb(76_90_255_/_70%)] [&_span]:animate-[fadeUp_0.25s_var(--out)]">
           {I('sparkle', 14)}{' '}
           <span>
             {['Czytam pismo…', 'Szukam przepisu…', 'Sprawdzam termin…', 'Piszę prostym językiem…'][k]}
@@ -133,9 +133,11 @@ export function Letter2(c: Ctx) {
           <Field>
             <FieldLabel>{l}</FieldLabel>
             {i < k ? (
-              <FieldValue className="in">{v}</FieldValue>
+              <FieldValue className="in [&.v]:[animation:txtin_0.3s_cubic-bezier(0.23,_1,_0.32,_1)_both] [&.msg]:[animation:txtin_0.3s_cubic-bezier(0.23,_1,_0.32,_1)_both] motion-reduce:[&.v]:animate-none! motion-reduce:[&.v]:filter-none motion-reduce:[&.msg]:animate-none! motion-reduce:[&.msg]:filter-none">
+                {v}
+              </FieldValue>
             ) : (
-              <div className="skel">
+              <div className="flex flex-col gap-1.75 p-[6px_0_2px] [&_i]:h-3 [&_i]:rounded-[6px] [&_i]:[background:linear-gradient(90deg,_var(--fill)_0%,_var(--fill-2)_40%,_var(--fill)_80%)] [&&_i]:bg-size-[200%_100%] [&_i]:animate-[shim_1.1s_linear_infinite] [&_i_+_i]:w-[62%] motion-reduce:[&_i]:animate-none!">
                 <i></i>
                 <i></i>
               </div>
@@ -145,14 +147,14 @@ export function Letter2(c: Ctx) {
       </List>
       {k >= 4 && (
         <>
-          <div className="msg ai in max-w-[100%] mt-3">
+          <div className="msg p-[12px_15px] rounded-[22px] text-[15px] [&&.ai]:self-start [&.ai]:[border:0] [&.ai]:rounded-[22px]! [&.ai]:[box-shadow:none]! [&&.ai]:[background:#fff] ai in [&.v]:[animation:txtin_0.3s_cubic-bezier(0.23,_1,_0.32,_1)_both] [&.msg]:[animation:txtin_0.3s_cubic-bezier(0.23,_1,_0.32,_1)_both] motion-reduce:[&.v]:animate-none! motion-reduce:[&.v]:filter-none motion-reduce:[&.msg]:animate-none! motion-reduce:[&.msg]:filter-none max-w-[100%] mt-3">
             <Muted as="span">Źródła</Muted>
-            <div className="srcs">
+            <div className="[.msg_&]:flex [.msg_&]:flex-wrap [.msg_&]:gap-1.5 [.msg_&]:mt-2.5 [.msg_&_span]:text-[12px] [.msg_&_span]:[background:var(--bg)] [.msg_&_span]:rounded-[999px] [.msg_&_span]:p-[4px_10px] [.msg_&_span]:text-(--ink2) [.msg_&_span]:inline-flex [.msg_&_span]:gap-1.25 [.msg_&_span]:items-center [&.in]:animate-[fadeUp_0.25s_var(--out)]">
               <span>Ordynacja podatkowa, art. 155</span>
               <span>podatki.gov.pl: korekta zeznania</span>
             </div>
           </div>
-          <p className="ai-warn">Asystent może się mylić. To nie jest porada prawna.</p>
+          <p className="text-[12.5px] text-ink-2 m-0">Asystent może się mylić. To nie jest porada prawna.</p>
         </>
       )}
       <Actions>

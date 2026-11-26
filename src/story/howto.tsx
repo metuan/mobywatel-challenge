@@ -187,13 +187,16 @@ export function showMe(c: Ctx, h: HowTo) {
 
 export function HowCard({ c, h }: { c: Ctx; h: HowTo }) {
   return (
-    <div className="how8" key={h.q}>
-      <div className="how8-k">
+    <div
+      className="mt-2.5 [background:var(--surface)] rounded-[20px] p-[16px_16px_14px] [box-shadow:var(--e-float)] animate-[fadeUp_0.2s_var(--out)]"
+      key={h.q}
+    >
+      <div className="flex items-center gap-1.5 text-[12.5px] font-semibold text-[#5b5cf0]">
         {I('sparkle', 14)}
         <span>Jak to zrobić</span>
       </div>
-      <div className="how8-q">{h.q}</div>
-      <ol className="how8-s">
+      <div className="text-[17px] font-bold tracking-[-0.015em] m-[6px_0_10px]">{h.q}</div>
+      <ol className="[list-style:none] m-0 p-0 grid gap-2.25 [&_li]:flex [&_li]:gap-2.5 [&_li]:items-start [&_li]:text-[14.5px] [&_li]:leading-[1.4] [&_li]:text-(--ink2) [&_li_i]:flex-none [&_li_i]:w-5.5 [&_li_i]:h-5.5 [&_li_i]:rounded-[50%] [&_li_i]:grid [&_li_i]:place-items-center [&_li_i]:not-italic [&_li_i]:text-[12px] [&_li_i]:font-bold [&_li_i]:[background:var(--fill)] [&_li_i]:text-ink motion-safe:[&_li]:animate-[fadeUp_0.22s_var(--out)_both] motion-safe:[&_li]:[animation-delay:calc(var(--i)*50ms+60ms)]">
         {h.s.map((t, i) => (
           <li key={i} style={{ '--i': i } as CSSProperties}>
             <i>{i + 1}</i>
@@ -201,7 +204,7 @@ export function HowCard({ c, h }: { c: Ctx; h: HowTo }) {
           </li>
         ))}
       </ol>
-      <Button className="how8-go" onClick={() => showMe(c, h)}>
+      <Button className="mt-3.5" onClick={() => showMe(c, h)}>
         Pokaż mi, gdzie to jest
       </Button>
     </div>
