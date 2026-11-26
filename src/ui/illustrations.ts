@@ -1,6 +1,19 @@
 import { html } from '@/lib/preact';
 
-const C_ = { ink: '#0B0D12', navy: '#E4E5E9', sky: '#ffffff', coral: '#E4E5E9', sand: '#ffffff', sand2: '#EDEEF1', mint: '#ffffff', yellow: '#ffffff', yellow2: '#EDEEF1', rose: '#ffffff', cream: '#ffffff', green: '#E4E5E9' };
+const C_ = {
+  ink: '#0B0D12',
+  navy: '#E4E5E9',
+  sky: '#ffffff',
+  coral: '#E4E5E9',
+  sand: '#ffffff',
+  sand2: '#EDEEF1',
+  mint: '#ffffff',
+  yellow: '#ffffff',
+  yellow2: '#EDEEF1',
+  rose: '#ffffff',
+  cream: '#ffffff',
+  green: '#E4E5E9',
+};
 
 const ILLS = {
   move: html`<g>
@@ -54,11 +67,14 @@ const ILLS = {
   lock: html`<g>
     <rect x="30" y="44" width="60" height="40" rx="8" fill=${C_.navy}/><path d="M42 44V34a18 18 0 0 1 36 0v10" fill="none" stroke=${C_.ink} stroke-width="5"/>
     <circle cx="60" cy="61" r="5" fill="#fff"/><path d="M60 64v8" stroke="#fff" stroke-width="4" stroke-linecap="round"/>
-    <circle cx="94" cy="30" r="11" fill=${C_.mint}/><path d="M89 30l4 4 6-7" fill="none" stroke=${C_.ink} stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></g>`
+    <circle cx="94" cy="30" r="11" fill=${C_.mint}/><path d="M89 30l4 4 6-7" fill="none" stroke=${C_.ink} stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></g>`,
 };
 
 /* outline pass: draws an ink stroke around every filled shape for the hand-made look */
-export const ILL = (n, w = 120) => html`<svg class="ill" width=${w} height=${w * .8} viewBox="0 0 120 96" aria-hidden="true">
+export const ILL = (
+  n,
+  w = 120,
+) => html`<svg class="ill" width=${w} height=${w * 0.8} viewBox="0 0 120 96" aria-hidden="true">
   <path d="M14 88h92" stroke="#0B0D12" stroke-width="1.25" stroke-linecap="round" stroke-dasharray="0 0 70 6 3 200"/>
   <g stroke="#0B0D12" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">${ILLS[n]}</g></svg>`;
 

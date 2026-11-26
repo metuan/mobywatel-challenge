@@ -7,8 +7,14 @@ import { Label } from '@/ui/primitives';
 export function EuWallet(c) {
   const [side, setSide] = useState(0);
   const [sent, setSent] = useState(false);
-  useEffect(() => { const t = setTimeout(() => setSide(1), rmo() ? 0 : 700); return () => clearTimeout(t); }, []);
-  const stars = Array.from({ length: 12 }, (_, i) => { const a = i / 12 * Math.PI * 2; return [50 + Math.cos(a) * 30, 50 + Math.sin(a) * 30]; });
+  useEffect(() => {
+    const t = setTimeout(() => setSide(1), rmo() ? 0 : 700);
+    return () => clearTimeout(t);
+  }, []);
+  const stars = Array.from({ length: 12 }, (_, i) => {
+    const a = (i / 12) * Math.PI * 2;
+    return [50 + Math.cos(a) * 30, 50 + Math.sin(a) * 30];
+  });
   return html`<div>
     <p class="stepk">Lizbona · wypożyczalnia aut</p>
     <h1 class="h-l">Ta sama karta w całej Unii</h1>

@@ -20,7 +20,10 @@ export function Ice(c) {
         <div class="ice-p"><span>Stanisław Nowicki · tata</span><span class="mini">${I('phone', 14)} Zadzwoń</span></div></div>
     </div>
     <div class="list" style="margin-top:14px">
-      <div class="row"><span class="it" style="background:#ff3b30!important">${I('lock', 18)}</span><span class="tx"><div class="t">Pokaż na ekranie blokady</div><div class="s">Ratownik zobaczy kartę bez odblokowania telefonu</div></span><${Toggle} on=${lock} label="Pokaż na ekranie blokady" set=${v => { setLock(v); c.set({ medLock: v }); }}/></div>
+      <div class="row"><span class="it" style="background:#ff3b30!important">${I('lock', 18)}</span><span class="tx"><div class="t">Pokaż na ekranie blokady</div><div class="s">Ratownik zobaczy kartę bez odblokowania telefonu</div></span><${Toggle} on=${lock} label="Pokaż na ekranie blokady" set=${v => {
+        setLock(v);
+        c.set({ medLock: v });
+      }}/></div>
       <div class="row"><span class="it">${I('wifi', 18)}</span><span class="tx"><div class="t">Działa bez internetu</div><div class="s">Zapisana w telefonie, zaszyfrowana</div></span></div>
       <button class="row" onClick=${() => c.go('medical-id')}><span class="it">${I('eye', 18)}</span><span class="tx"><div class="t">Zobacz, co widzi ratownik</div></span><span class="chev">${I('chevron', 18)}</span></button>
     </div>

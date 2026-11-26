@@ -25,16 +25,32 @@ export function P800(c) {
       <div class="bars">${M.map((m, i) => html`<span class=${i < 5 ? 'paid' : i === 5 ? 'next' : ''}><i style=${`--i:${i}`}></i><small>${m}</small></span>`)}</div>
       <div class="p8-sum"><span><b>4 000 zł</b> wypłacone</span><span>5 z 12</span></div>
     </div>
-    ${c.s.babyDone ? html`<${Label} t="Julia"/><div class="glist"><${GRow} ic="baby" t="Wniosek w ZUS" s="Decyzja do 24 grudnia" v="W toku"/></div>`
-      : html`<div class="glist" style="margin-top:12px"><${GRow} ic="baby" t="Urodziło się dziecko?" s="Wniosek o 800+ złożysz w pakiecie „Nowe dziecko”" onClick=${() => c.go('baby-1')}/></div>`}
+    ${
+      c.s.babyDone
+        ? html`<${Label} t="Julia"/><div class="glist"><${GRow} ic="baby" t="Wniosek w ZUS" s="Decyzja do 24 grudnia" v="W toku"/></div>`
+        : html`<div class="glist" style="margin-top:12px"><${GRow} ic="baby" t="Urodziło się dziecko?" s="Wniosek o 800+ złożysz w pakiecie „Nowe dziecko”" onClick=${() => c.go('baby-1')}/></div>`
+    }
     <p class="tiny" style="margin-top:12px">Nie musisz logować się do ZUS ani do banku.</p></div>`;
 }
 
 /* Hop 9: vaccinations as a timeline */
 export function Vacc(c) {
-  const V = [['6 lat', 'MMR, dawka 2', 'Zalecane do 31 grudnia', 'due'], ['6 lat', 'DTaP, dawka 5', 'Wykonane 12 września 2026', 'ok'], ['6 lat', 'Polio, dawka 4', 'Wykonane 12 września 2026', 'ok'], ['14 lat', 'HPV', 'Za 8 lat, przypomnimy', 'later'], ['19 lat', 'Td, przypominająca', 'Za 13 lat', 'later']];
+  const V = [
+    ['6 lat', 'MMR, dawka 2', 'Zalecane do 31 grudnia', 'due'],
+    ['6 lat', 'DTaP, dawka 5', 'Wykonane 12 września 2026', 'ok'],
+    ['6 lat', 'Polio, dawka 4', 'Wykonane 12 września 2026', 'ok'],
+    ['14 lat', 'HPV', 'Za 8 lat, przypomnimy', 'later'],
+    ['19 lat', 'Td, przypominająca', 'Za 13 lat', 'later'],
+  ];
   return html`<div><p class="stepk">Zosia, 6 lat</p><h1 class="h-l">Szczepienia</h1>
-    <div class="vt">${V.map(([age, t, s, st]) => html`<div class=${'vt-i ' + st}><span class="vt-dot">${st === 'ok' ? I('check', 12) : ''}</span>
-      <div class="vt-b"><div class="gt">${t}</div><div class="gs">${s}</div>${st === 'due' && html`<button class="pill" style="margin-top:10px" onClick=${() => c.go('visit-1')}>Umów szczepienie</button>`}</div><span class="vt-age">${age}</span></div>`)}</div>
+    <div class="vt">${V.map(
+      ([
+        age,
+        t,
+        s,
+        st,
+      ]) => html`<div class=${'vt-i ' + st}><span class="vt-dot">${st === 'ok' ? I('check', 12) : ''}</span>
+      <div class="vt-b"><div class="gt">${t}</div><div class="gs">${s}</div>${st === 'due' && html`<button class="pill" style="margin-top:10px" onClick=${() => c.go('visit-1')}>Umów szczepienie</button>`}</div><span class="vt-age">${age}</span></div>`,
+    )}</div>
     <p class="tiny">Z Internetowego Konta Pacjenta. Oboje rodzice widzą to samo.</p></div>`;
 }

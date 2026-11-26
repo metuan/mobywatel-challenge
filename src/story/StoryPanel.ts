@@ -3,8 +3,10 @@ import { BEATS, CHAPTERS, beatOf } from '@/story/chapters';
 import { I } from '@/ui/icons';
 
 export function StoryPanel({ i, route, go, step, lastBeat = 0 }) {
-  const ch = CHAPTERS[i], beats = BEATS[i];
-  const here = beatOf(i, route), off = here < 0 && route !== beats[0][0];
+  const ch = CHAPTERS[i],
+    beats = BEATS[i];
+  const here = beatOf(i, route),
+    off = here < 0 && route !== beats[0][0];
   const cur = here >= 0 ? here : Math.min(lastBeat, beats.length - 1);
   const last = cur === beats.length - 1;
   return html`<div class="story" key=${i}>
@@ -15,9 +17,11 @@ export function StoryPanel({ i, route, go, step, lastBeat = 0 }) {
       <div><span class="st-k">Dziś</span><p>${ch.today}</p></div>
       <div class="on"><span class="st-k">W nowym mObywatelu</span><p>${ch.razem}</p></div>
     </div>
-    <ol class="beats">${beats.map(([r, t, act], j) => html`<li class=${j < cur ? 'done' : j === cur ? 'now' : ''}>
+    <ol class="beats">${beats.map(
+      ([r, t, act], j) => html`<li class=${j < cur ? 'done' : j === cur ? 'now' : ''}>
       <button class="bt-dot" onClick=${() => go(r, ch.p)} aria-label=${'Krok ' + (j + 1)}>${j < cur ? I('check', 13) : j + 1}</button>
-      <div><p>${t}</p>${j === cur && off && html`<button class="bt-back" onClick=${() => go(r, ch.p)}>${I('left', 14)}<span>Wróć do tego kroku</span></button>`}</div></li>`)}</ol>
+      <div><p>${t}</p>${j === cur && off && html`<button class="bt-back" onClick=${() => go(r, ch.p)}>${I('left', 14)}<span>Wróć do tego kroku</span></button>`}</div></li>`,
+    )}</ol>
     ${last && html`<div class="st-done">${i < CHAPTERS.length - 1 ? 'Ten rozdział za Tobą.' : 'To ostatni rozdział.'}</div>`}
     <div class="st-nav">
       <button class="pill soft" disabled=${i === 0} onClick=${() => step(-1)} aria-label="Poprzedni rozdział">${I('left', 18)}</button>

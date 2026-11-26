@@ -26,7 +26,14 @@ export function Baby2(c) {
     <h1 class="h-l">Co załatwić od razu?</h1>
     <p class="lead">Po zgłoszeniu Julia dostanie PESEL i adres automatycznie. Te sprawy wypełnimy za Ciebie:</p>
     <div class="list">
-      ${[['p800', '800+', 'Wniosek do ZUS, bez logowania na stronę ZUS'], ['nfz', 'Ubezpieczenie zdrowotne', 'Zgłoszenie do NFZ przez Twojego pracodawcę'], ['pass', 'Paszport', 'Gdy planujecie podróż']].map(([k, t, s]) => html`<div class="row"><span class="tx"><div class="t">${t}</div><div class="s">${s}</div></span><${Toggle} on=${on[k]} label=${t} set=${v => setOn({ ...on, [k]: v })}/></div>`)}
+      ${[
+        ['p800', '800+', 'Wniosek do ZUS, bez logowania na stronę ZUS'],
+        ['nfz', 'Ubezpieczenie zdrowotne', 'Zgłoszenie do NFZ przez Twojego pracodawcę'],
+        ['pass', 'Paszport', 'Gdy planujecie podróż'],
+      ].map(
+        ([k, t, s]) =>
+          html`<div class="row"><span class="tx"><div class="t">${t}</div><div class="s">${s}</div></span><${Toggle} on=${on[k]} label=${t} set=${v => setOn({ ...on, [k]: v })}/></div>`,
+      )}
     </div>
     <div class="actions"><button class="btn" onClick=${() => c.go('baby-3')}>Pokaż podgląd</button></div>
   </div>`;
@@ -34,7 +41,12 @@ export function Baby2(c) {
 
 export function Baby3(c) {
   const [stage, setStage] = useState(0);
-  useEffect(() => { if (stage === 1) { const t = setTimeout(() => setStage(2), 2200); return () => clearTimeout(t); } }, [stage]);
+  useEffect(() => {
+    if (stage === 1) {
+      const t = setTimeout(() => setStage(2), 2200);
+      return () => clearTimeout(t);
+    }
+  }, [stage]);
   return html`<div>
     <p class="stepk">Nowe dziecko · krok 3 z 4</p><${Progress} n=${3} of=${4}/>
     <h1 class="h-l">Sprawdź i poproś Tomasza o zgodę</h1>
@@ -45,8 +57,20 @@ export function Baby3(c) {
     </div>
     ${stage === 0 && html`<div class="actions"><button class="btn" onClick=${() => setStage(1)}>Poproś Tomasza o zgodę</button></div>`}
     ${stage === 1 && html`<div class="note amber" style="margin-top:14px">${I('bell', 18)}<span>Tomasz dostał prośbę. Czekamy, aż potwierdzi…</span></div>`}
-    ${stage === 2 && html`<div><div class="note green" style="margin-top:14px">${I('check', 18)}<span>Tomasz potwierdził na swoim telefonie o 15:31.</span></div>
-      <div class="actions"><button class="btn" onClick=${() => c.confirm({ t: 'Wysłać pakiet „Nowe dziecko”?', items: ['Zgłoszenie urodzenia', 'Wniosek 800+', 'Zgłoszenie do NFZ'], ok: 'Potwierdź i wyślij', done: () => { c.set({ babyDone: true }); c.go('baby-done'); } })}>Potwierdź</button></div></div>`}
+    ${
+      stage === 2 &&
+      html`<div><div class="note green" style="margin-top:14px">${I('check', 18)}<span>Tomasz potwierdził na swoim telefonie o 15:31.</span></div>
+      <div class="actions"><button class="btn" onClick=${() =>
+        c.confirm({
+          t: 'Wysłać pakiet „Nowe dziecko”?',
+          items: ['Zgłoszenie urodzenia', 'Wniosek 800+', 'Zgłoszenie do NFZ'],
+          ok: 'Potwierdź i wyślij',
+          done: () => {
+            c.set({ babyDone: true });
+            c.go('baby-done');
+          },
+        })}>Potwierdź</button></div></div>`
+    }
   </div>`;
 }
 

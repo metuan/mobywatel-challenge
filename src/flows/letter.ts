@@ -4,7 +4,12 @@ import { Hero } from '@/ui/illustrations';
 
 export function Letter1(c) {
   const [snap, setSnap] = useState(false);
-  useEffect(() => { if (snap) { const t = setTimeout(() => c.go('letter-2'), 1400); return () => clearTimeout(t); } }, [snap]);
+  useEffect(() => {
+    if (snap) {
+      const t = setTimeout(() => c.go('letter-2'), 1400);
+      return () => clearTimeout(t);
+    }
+  }, [snap]);
   return html`<div>
     <${Hero} n="letter" bg="sand"/>
     <h1 class="h-l">Zrób zdjęcie pisma</h1>
@@ -29,23 +34,54 @@ export function Letter3(c) {
       <p style="margin:0">Anna Nowicka</p>
     </div>
     <div class="list" style="margin-top:10px"><div class="field"><div class="l">Załącznik</div><div class="v">Zaświadczenie o uldze na dziecko (z rejestru, bez skanowania)</div></div></div>
-    ${c.s.letterSent ? html`<div class="note green" style="margin-top:14px">${I('check', 18)}<span>Wysłano przez e-Doręczenia. Urzędowe potwierdzenie odbioru jest zapisane w sprawie.</span></div>` : html`<div class="actions"><button class="btn" onClick=${() => c.confirm({ t: 'Wysłać wyjaśnienie?', items: ['Do: Urząd Skarbowy Kraków-Podgórze', 'Przez: e-Doręczenia', '1 załącznik'], ok: 'Potwierdź i wyślij', done: () => { c.set({ letterSent: true }); c.toast('Wysłano. Urząd ma 14 dni na odpowiedź.'); } })}>Potwierdź</button>
-    <button class="btn ghost">Edytuj treść</button></div>`}
+    ${
+      c.s.letterSent
+        ? html`<div class="note green" style="margin-top:14px">${I('check', 18)}<span>Wysłano przez e-Doręczenia. Urzędowe potwierdzenie odbioru jest zapisane w sprawie.</span></div>`
+        : html`<div class="actions"><button class="btn" onClick=${() =>
+            c.confirm({
+              t: 'Wysłać wyjaśnienie?',
+              items: ['Do: Urząd Skarbowy Kraków-Podgórze', 'Przez: e-Doręczenia', '1 załącznik'],
+              ok: 'Potwierdź i wyślij',
+              done: () => {
+                c.set({ letterSent: true });
+                c.toast('Wysłano. Urząd ma 14 dni na odpowiedź.');
+              },
+            })}>Potwierdź</button>
+    <button class="btn ghost">Edytuj treść</button></div>`
+    }
   </div>`;
 }
 
 /* Hop 10: the explanation streams in, so the AI step feels like work, not magic */
 export function Letter2(c) {
   const [k, setK] = useState(c.s.l2seen ? 4 : 0);
-  useEffect(() => { if (k >= 4) { c.s.l2seen || c.set({ l2seen: true }); setTimeout(() => window.dispatchEvent(new Event('coach')), 60); return; } const a = setTimeout(() => setK(k + 1), k ? 520 : 900); return () => clearTimeout(a); }, [k]);
-  const F = [['Co to znaczy', 'To nie kara. Urząd chce wiedzieć, dlaczego zmieniłaś zeznanie za 2025 rok i zwrot wzrósł o 1 240 zł.'], ['Termin', '7 grudnia 2026 (14 dni od dnia, w którym dostałaś pismo)'], ['Co zrobić', 'Wyślij krótkie wyjaśnienie i zaświadczenie o uldze na dziecko.']];
+  useEffect(() => {
+    if (k >= 4) {
+      c.s.l2seen || c.set({ l2seen: true });
+      setTimeout(() => window.dispatchEvent(new Event('coach')), 60);
+      return;
+    }
+    const a = setTimeout(() => setK(k + 1), k ? 520 : 900);
+    return () => clearTimeout(a);
+  }, [k]);
+  const F = [
+    [
+      'Co to znaczy',
+      'To nie kara. Urząd chce wiedzieć, dlaczego zmieniłaś zeznanie za 2025 rok i zwrot wzrósł o 1 240 zł.',
+    ],
+    ['Termin', '7 grudnia 2026 (14 dni od dnia, w którym dostałaś pismo)'],
+    ['Co zrobić', 'Wyślij krótkie wyjaśnienie i zaświadczenie o uldze na dziecko.'],
+  ];
   return html`<div>
     <p class="stepk">Wyjaśnienie pisma</p>
     <h1 class="h-l">Urząd skarbowy prosi o wyjaśnienie korekty PIT-37.</h1>
     ${k < 4 && html`<div class="ai-work">${I('sparkle', 14)} <span>${['Czytam pismo…', 'Szukam przepisu…', 'Sprawdzam termin…', 'Piszę prostym językiem…'][k]}</span></div>`}
     <div class="list">${F.map(([l, v], i) => html`<div class="field"><div class="l">${l}</div>${i < k ? html`<div class="v in">${v}</div>` : html`<div class="skel"><i></i><i></i></div>`}</div>`)}</div>
-    ${k >= 4 && html`<div class="msg ai in" style="max-width:100%;margin-top:12px"><span class="small">Źródła</span><div class="srcs"><span>Ordynacja podatkowa, art. 155</span><span>podatki.gov.pl: korekta zeznania</span></div></div>
-    <p class="ai-warn">Asystent może się mylić. To nie jest porada prawna.</p>`}
+    ${
+      k >= 4 &&
+      html`<div class="msg ai in" style="max-width:100%;margin-top:12px"><span class="small">Źródła</span><div class="srcs"><span>Ordynacja podatkowa, art. 155</span><span>podatki.gov.pl: korekta zeznania</span></div></div>
+    <p class="ai-warn">Asystent może się mylić. To nie jest porada prawna.</p>`
+    }
     <div class="actions"><button class="btn" disabled=${k < 4} onClick=${() => c.go('letter-3')}>Przygotuj odpowiedź</button></div>
   </div>`;
 }

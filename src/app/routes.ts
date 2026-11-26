@@ -35,29 +35,142 @@ import { Today } from '@/screens/today/Today';
 import { Consents } from '@/screens/trust/Consents';
 import { AccessLog, Devices, Offline, Scam, Signin } from '@/screens/trust/trust';
 
-export const TABS = [['today', 'Dziś', 'home'], ['matters', 'Sprawy', 'folder'], ['family', 'Bliscy', 'people'], ['safety', 'Ochrona', 'shield'], ['docs', 'Dokumenty', 'card']];
+export const TABS = [
+  ['today', 'Dziś', 'home'],
+  ['matters', 'Sprawy', 'folder'],
+  ['family', 'Bliscy', 'people'],
+  ['safety', 'Ochrona', 'shield'],
+  ['docs', 'Dokumenty', 'card'],
+];
 
 export const R = {
-  today: Today, matters: Matters, family: Family, safety: Safety, docs: Docs, profile: Profile,
-  'case-meld': CaseMeld, 'member-zosia': MemberZosia, 'member-tata': MemberTata, 'member-tomasz': MemberTomasz, 'member-julia': MemberZosia,
-  invite: Invite, calendar: Calendar, plan: Plan, places: Places,
-  'alert-red': AlertRed, 'alert-shelter': AlertShelter, 'alert-guide': AlertGuide, 'alert-clear': AlertClear, 'alert-safe': AlertSafe, 'alert-damage': Damage1,
-  'doc-id': DocId, 'share-min': ShareMin, lost: Lost, 'access-log': AccessLog, consents: Consents, signin: Signin, offline: Offline, roadmap: Roadmap, about: About,
-  car: CarFull, 'car-sell': CarSell, benefits: Benefits, p800: P800, vacc: Vacc, 'renew-pass': RenewPass,
-  'move-1': Move1, 'move-2': Move2, 'move-3': Move3, 'move-done': MoveDone,
-  'baby-1': Baby1, 'baby-2': Baby2, 'baby-3': Baby3, 'baby-done': BabyDone,
-  'visit-1': Visit1, 'visit-2': Visit2, 'visit-3': Visit3, 'visit-4': Visit4,
-  'letter-1': Letter1, 'letter-2': Letter2, 'letter-3': Letter3, assistant: Assistant, lock: Lock, 'family-map': FamilyMap, ice: Ice, 'medical-id': MedicalId, 'damage-1': Damage1, 'damage-2': Damage2, 'damage-3': Damage3, consent2: Consent2, school: School, taxes: Taxes, devices: Devices, scam: Scam, pjm: Pjm, issued: Issued,
-  'sign-1': Sign1, 'sign-2': Sign2, 'sign-3': Sign3, 'sign-list': SignList, 'easy-sign': EasySign, eu: EuWallet, 'alert-watch': AlertWatch,
-  inbox: Inbox, search: SearchScreen, caller: Caller,
-  easy: Easy, 'easy-approve': EasyApprove, 'easy-doc': EasyDoc, 'easy-rx': EasyRx, 'easy-call': EasyCall, 'easy-voice': EasyVoice
+  today: Today,
+  matters: Matters,
+  family: Family,
+  safety: Safety,
+  docs: Docs,
+  profile: Profile,
+  'case-meld': CaseMeld,
+  'member-zosia': MemberZosia,
+  'member-tata': MemberTata,
+  'member-tomasz': MemberTomasz,
+  'member-julia': MemberZosia,
+  invite: Invite,
+  calendar: Calendar,
+  plan: Plan,
+  places: Places,
+  'alert-red': AlertRed,
+  'alert-shelter': AlertShelter,
+  'alert-guide': AlertGuide,
+  'alert-clear': AlertClear,
+  'alert-safe': AlertSafe,
+  'alert-damage': Damage1,
+  'doc-id': DocId,
+  'share-min': ShareMin,
+  lost: Lost,
+  'access-log': AccessLog,
+  consents: Consents,
+  signin: Signin,
+  offline: Offline,
+  roadmap: Roadmap,
+  about: About,
+  car: CarFull,
+  'car-sell': CarSell,
+  benefits: Benefits,
+  p800: P800,
+  vacc: Vacc,
+  'renew-pass': RenewPass,
+  'move-1': Move1,
+  'move-2': Move2,
+  'move-3': Move3,
+  'move-done': MoveDone,
+  'baby-1': Baby1,
+  'baby-2': Baby2,
+  'baby-3': Baby3,
+  'baby-done': BabyDone,
+  'visit-1': Visit1,
+  'visit-2': Visit2,
+  'visit-3': Visit3,
+  'visit-4': Visit4,
+  'letter-1': Letter1,
+  'letter-2': Letter2,
+  'letter-3': Letter3,
+  assistant: Assistant,
+  lock: Lock,
+  'family-map': FamilyMap,
+  ice: Ice,
+  'medical-id': MedicalId,
+  'damage-1': Damage1,
+  'damage-2': Damage2,
+  'damage-3': Damage3,
+  consent2: Consent2,
+  school: School,
+  taxes: Taxes,
+  devices: Devices,
+  scam: Scam,
+  pjm: Pjm,
+  issued: Issued,
+  'sign-1': Sign1,
+  'sign-2': Sign2,
+  'sign-3': Sign3,
+  'sign-list': SignList,
+  'easy-sign': EasySign,
+  eu: EuWallet,
+  'alert-watch': AlertWatch,
+  inbox: Inbox,
+  search: SearchScreen,
+  caller: Caller,
+  easy: Easy,
+  'easy-approve': EasyApprove,
+  'easy-doc': EasyDoc,
+  'easy-rx': EasyRx,
+  'easy-call': EasyCall,
+  'easy-voice': EasyVoice,
 };
 
 export const Wrap = ({ f, c, d }) => html`<div class=${'screen ' + (d || '')}>${f(c)}</div>`;
 
-export const FULL = new Set(['alert-red', 'alert-clear', 'lock', 'medical-id', 'alert-watch', 'easy-call', 'caller']);
+export const FULL = new Set([
+  'alert-red',
+  'alert-clear',
+  'lock',
+  'medical-id',
+  'alert-watch',
+  'easy-call',
+  'caller',
+]);
 
-export const TABOF = r => TABS.some(t => t[0] === r) ? r : r.startsWith('move') || r.startsWith('baby') || r === 'case-meld' || r === 'car-sell' || r === 'benefits' ? 'matters'
-  : r.startsWith('member') || ['invite', 'calendar', 'plan', 'school', 'consent2', 'visit-1', 'visit-2', 'visit-3', 'visit-4', 'vacc', 'p800', 'renew-pass'].includes(r) ? 'family'
-  : r.startsWith('alert') || r.startsWith('damage') || ['places', 'lock', 'family-map', 'scam', 'caller'].includes(r) ? 'safety'
-  : ['doc-id', 'share-min', 'lost', 'car', 'ice', 'medical-id', 'issued'].includes(r) ? 'docs' : ['taxes'].includes(r) ? 'matters' : 'today';
+export const TABOF = r =>
+  TABS.some(t => t[0] === r)
+    ? r
+    : r.startsWith('move') ||
+        r.startsWith('baby') ||
+        r === 'case-meld' ||
+        r === 'car-sell' ||
+        r === 'benefits'
+      ? 'matters'
+      : r.startsWith('member') ||
+          [
+            'invite',
+            'calendar',
+            'plan',
+            'school',
+            'consent2',
+            'visit-1',
+            'visit-2',
+            'visit-3',
+            'visit-4',
+            'vacc',
+            'p800',
+            'renew-pass',
+          ].includes(r)
+        ? 'family'
+        : r.startsWith('alert') ||
+            r.startsWith('damage') ||
+            ['places', 'lock', 'family-map', 'scam', 'caller'].includes(r)
+          ? 'safety'
+          : ['doc-id', 'share-min', 'lost', 'car', 'ice', 'medical-id', 'issued'].includes(r)
+            ? 'docs'
+            : ['taxes'].includes(r)
+              ? 'matters'
+              : 'today';

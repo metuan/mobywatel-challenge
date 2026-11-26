@@ -30,8 +30,16 @@ export function MemberTata(c) {
     <div class="note green" style="margin-top:16px">${I('check', 18)}<span>Tata zatwierdził Twój dostęp 24 listopada 2026, w trybie prostym na swoim telefonie. Może go cofnąć w każdej chwili.</span></div>
     <${Sec} t="Możesz"/>
     <div class="list">
-      ${[['Widzieć jego terminy', true], ['Czytać pisma z urzędów', true], ['Przygotowywać wnioski do jego zatwierdzenia', true], ['Widzieć dane o zdrowiu', false], ['Wysyłać wnioski bez jego zgody', false]].map(([t, on]) =>
-        html`<div class="row"><span class="ic" style=${on ? 'background:var(--green-soft);color:var(--green)' : ''}>${I(on ? 'check' : 'x', 18)}</span><span class="tx"><div class="t">${t}</div></span></div>`)}
+      ${[
+        ['Widzieć jego terminy', true],
+        ['Czytać pisma z urzędów', true],
+        ['Przygotowywać wnioski do jego zatwierdzenia', true],
+        ['Widzieć dane o zdrowiu', false],
+        ['Wysyłać wnioski bez jego zgody', false],
+      ].map(
+        ([t, on]) =>
+          html`<div class="row"><span class="ic" style=${on ? 'background:var(--green-soft);color:var(--green)' : ''}>${I(on ? 'check' : 'x', 18)}</span><span class="tx"><div class="t">${t}</div></span></div>`,
+      )}
     </div>
     <${Sec} t="Terminy taty"/>
     <div class="list">

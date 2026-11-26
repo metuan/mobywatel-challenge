@@ -9,7 +9,15 @@ function TodayBase(c) {
     <div class="hi"><div class="hi-d">Wtorek, 24 listopada</div><h1 class="h-xl">Dzień dobry, Anno</h1></div>${c.bar || ''}
     <${DocCard} c=${c}/>
     <div class="qa8">
-      ${[['qr', 'Pokaż', 'share-min'], ['camera', 'Skanuj', 'letter-1'], ['mic', 'Zapytaj', 'assistant'], ['coin', 'Zapłać', 'taxes']].map(([ic, t, r]) => html`<button onClick=${() => c.go(r)}><span class="qa8-i">${I(ic, 22)}</span><span>${t}</span></button>`)}
+      ${[
+        ['qr', 'Pokaż', 'share-min'],
+        ['camera', 'Skanuj', 'letter-1'],
+        ['mic', 'Zapytaj', 'assistant'],
+        ['coin', 'Zapłać', 'taxes'],
+      ].map(
+        ([ic, t, r]) =>
+          html`<button onClick=${() => c.go(r)}><span class="qa8-i">${I(ic, 22)}</span><span>${t}</span></button>`,
+      )}
     </div>
     <${Label} t="Wymaga uwagi"/>
     <div class="attn">

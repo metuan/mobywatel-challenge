@@ -15,7 +15,9 @@ function ProfileBase(c) {
     </div>
     <${Sec} t="Ułatwienia"/>
     <div class="list">
-      <div class="row"><span class="ic">${I('sun')}</span><span class="tx"><div class="t">Tryb prosty</div><div class="s">Duże przyciski, jedna decyzja na ekranie</div></span><${Toggle} on=${c.s.easy} label="Tryb prosty" set=${v => { c.go(v ? 'easy' : 'today', v ? 'tata' : 'anna'); }}/></div>
+      <div class="row"><span class="ic">${I('sun')}</span><span class="tx"><div class="t">Tryb prosty</div><div class="s">Duże przyciski, jedna decyzja na ekranie</div></span><${Toggle} on=${c.s.easy} label="Tryb prosty" set=${v => {
+        c.go(v ? 'easy' : 'today', v ? 'tata' : 'anna');
+      }}/></div>
       <${Row} icon="speaker" t="Odczyt na głos i sterowanie głosem" s="Włączone" onClick=${() => {}}/>
       <${Row} icon="people" t="Tłumacz polskiego języka migowego" s="Wideo z tłumaczem, przycisk na każdym ekranie" onClick=${() => c.go('pjm')}/>
       <${Row} icon="wifi" t="Co, jeśli aktualizacja się nie uda?" s="Zobacz, co działa bez internetu" onClick=${() => c.go('offline')}/>
@@ -29,8 +31,9 @@ function ProfileBase(c) {
 }
 
 function TextSize(c) {
-  const v = c.s.fs || 1; const steps = [.9, 1, 1.12, 1.25];
-  return html`<div class="fs8"><span class="fs-a sm">A</span><div class="fs-track">${steps.map(x => html`<button aria-label=${'Rozmiar ' + x} aria-pressed=${v === x} onClick=${() => c.set({ fs: x })}><i></i></button>`)}<span class="fs-fill" style=${`width:${steps.indexOf(v) / 3 * 100}%`}></span></div><span class="fs-a lg">A</span></div>`;
+  const v = c.s.fs || 1;
+  const steps = [0.9, 1, 1.12, 1.25];
+  return html`<div class="fs8"><span class="fs-a sm">A</span><div class="fs-track">${steps.map(x => html`<button aria-label=${'Rozmiar ' + x} aria-pressed=${v === x} onClick=${() => c.set({ fs: x })}><i></i></button>`)}<span class="fs-fill" style=${`width:${(steps.indexOf(v) / 3) * 100}%`}></span></div><span class="fs-a lg">A</span></div>`;
 }
 
 export function Profile(c) {

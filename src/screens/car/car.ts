@@ -38,10 +38,30 @@ function CarFullBase(c) {
     </div>
     <${Sec} t="Mandaty"/>
     <div class="list">
-      <div class="row"><span class="tx"><div class="t">Mandat 200 zł</div><div class="s">Parkowanie, ul. Długa, 18 listopada · do zapłaty do 25 listopada</div></span>${c.s.paid ? html`<span class="pill p-green">Opłacony</span>` : html`<button class="mini" onClick=${() => c.confirm({ t: 'Zapłacić mandat 200 zł?', items: ['Mandat nr KR 0021934', 'Odbiorca: Straż Miejska Kraków', 'Płatność BLIK'], ok: 'Zapłać', done: () => { c.set({ paid: true }); c.toast('Opłacono. Potwierdzenie w Skrzynce.'); } })}>Zapłać</button>`}</div>
+      <div class="row"><span class="tx"><div class="t">Mandat 200 zł</div><div class="s">Parkowanie, ul. Długa, 18 listopada · do zapłaty do 25 listopada</div></span>${
+        c.s.paid
+          ? html`<span class="pill p-green">Opłacony</span>`
+          : html`<button class="mini" onClick=${() =>
+              c.confirm({
+                t: 'Zapłacić mandat 200 zł?',
+                items: ['Mandat nr KR 0021934', 'Odbiorca: Straż Miejska Kraków', 'Płatność BLIK'],
+                ok: 'Zapłać',
+                done: () => {
+                  c.set({ paid: true });
+                  c.toast('Opłacono. Potwierdzenie w Skrzynce.');
+                },
+              })}>Zapłać</button>`
+      }</div>
     </div>
     <div class="actions"><button class="btn ghost" onClick=${() => c.go('car-sell')}>Sprzedaję ten samochód</button></div>
   </div>`;
 }
 
-export function CarFull(c) { return CarFullBase(payWrap(c, o => /mandat/i.test(o.t) && { amt: '200 zł', t: 'Mandat nr KR 0021934', to: 'Straż Miejska Kraków' })); }
+export function CarFull(c) {
+  return CarFullBase(
+    payWrap(
+      c,
+      o => /mandat/i.test(o.t) && { amt: '200 zł', t: 'Mandat nr KR 0021934', to: 'Straż Miejska Kraków' },
+    ),
+  );
+}

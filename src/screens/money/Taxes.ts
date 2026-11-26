@@ -15,7 +15,14 @@ function TaxesBase(c) {
     </div>
     <${Sec} t="Opłaty lokalne"/>
     <div class="list">
-      <div class="row"><span class="tx"><div class="t">Podatek od nieruchomości</div><div class="s">4. rata: 86 zł · termin 15 listopada</div></span>${c.s.propPaid ? html`<span class="pill p-green">Opłacony</span>` : html`<button class="mini" onClick=${() => { c.set({ propPaid: true }); c.toast('Opłacono 86 zł'); }}>Zapłać</button>`}</div>
+      <div class="row"><span class="tx"><div class="t">Podatek od nieruchomości</div><div class="s">4. rata: 86 zł · termin 15 listopada</div></span>${
+        c.s.propPaid
+          ? html`<span class="pill p-green">Opłacony</span>`
+          : html`<button class="mini" onClick=${() => {
+              c.set({ propPaid: true });
+              c.toast('Opłacono 86 zł');
+            }}>Zapłać</button>`
+      }</div>
       <div class="row"><span class="tx"><div class="t">Opłata za śmieci</div><div class="s">Grudzień: 3 osoby × 46 zł</div></span><span class="due">138 zł</span></div>
     </div>
     <${Sec} t="Pisma"/>
@@ -24,6 +31,22 @@ function TaxesBase(c) {
 }
 
 export function Taxes(c) {
-  const c2 = { ...c, set: p => { if (p && p.propPaid && !c.s.propPaid) { c.pay({ amt: '86 zł', t: 'Podatek od nieruchomości, 4. rata', to: 'Urząd Miasta Krakowa', done: () => { c.set({ propPaid: true }); c.toast('Opłacono 86 zł. Potwierdzenie w Skrzynce.'); } }); } else c.set(p); }, toast: t => /Opłacono 86/.test(t) ? null : c.toast(t) };
+  const c2 = {
+    ...c,
+    set: p => {
+      if (p && p.propPaid && !c.s.propPaid) {
+        c.pay({
+          amt: '86 zł',
+          t: 'Podatek od nieruchomości, 4. rata',
+          to: 'Urząd Miasta Krakowa',
+          done: () => {
+            c.set({ propPaid: true });
+            c.toast('Opłacono 86 zł. Potwierdzenie w Skrzynce.');
+          },
+        });
+      } else c.set(p);
+    },
+    toast: t => (/Opłacono 86/.test(t) ? null : c.toast(t)),
+  };
   return TaxesBase(c2);
 }

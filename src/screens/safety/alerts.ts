@@ -19,7 +19,14 @@ export function AlertRed(c) {
     </div>
     <div style="flex:1;min-height:14px"></div>
     <div class="actions" style="margin-top:12px">
-      <button class="btn" onClick=${() => { const el = document.querySelector('.phone .rcb-app'); if (el) { const q = el.getBoundingClientRect(); window.__morph = { left: q.left, top: q.top, width: q.width, height: q.height }; } c.go('alert-watch'); }}>${I('route', 18)} Prowadź do schronienia</button>
+      <button class="btn" onClick=${() => {
+        const el = document.querySelector('.phone .rcb-app');
+        if (el) {
+          const q = el.getBoundingClientRect();
+          window.__morph = { left: q.left, top: q.top, width: q.width, height: q.height };
+        }
+        c.go('alert-watch');
+      }}>${I('route', 18)} Prowadź do schronienia</button>
       <button class="btn ghost" onClick=${() => c.go('alert-guide')}>${I('speaker', 18)} Co robić teraz (odczytaj)</button>
     </div>
   </div>`;
@@ -92,12 +99,18 @@ export function AlertClear(c) {
 
 export function AlertSafe(c) {
   const [sent, setSent] = useState(c.s.safe);
-  const send = () => { setSent(true); c.set({ safe: true }); };
+  const send = () => {
+    setSent(true);
+    c.set({ safe: true });
+  };
   return html`<div>
     <h1 class="h-l">${sent ? 'Rodzina wie, że jesteś bezpieczna.' : 'Daj znać rodzinie'}</h1>
-    ${!sent && html`<div class="actions" style="margin-top:6px">
+    ${
+      !sent &&
+      html`<div class="actions" style="margin-top:6px">
       <button class="btn green bigbtn" onClick=${send}>${I('check', 22)} Jestem bezpieczna</button>
-      <button class="btn ghost" onClick=${() => c.toast('Rodzina dostała Twoją prośbę o pomoc i lokalizację.')}>Potrzebuję pomocy</button></div>`}
+      <button class="btn ghost" onClick=${() => c.toast('Rodzina dostała Twoją prośbę o pomoc i lokalizację.')}>Potrzebuję pomocy</button></div>`
+    }
     <${Sec} t="Status rodziny" more="Mapa" go=${() => c.go('family-map')}/>
     <div class="list">
       <div class="row"><span class="face-i" style="background:#132a5e">AN</span><span class="tx"><div class="t">Ty</div><div class="s">${sent ? 'Bezpieczna, schron Dekerta 24, 15:49' : 'Nie wysłano'}</div></span>${sent ? html`<span class="pill p-green">Bezpieczna</span>` : html`<span class="pill p-gray">—</span>`}</div>

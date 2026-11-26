@@ -3,7 +3,11 @@ import { coachTip } from '@/story/coach';
 import { I } from '@/ui/icons';
 
 /* Hop 18: one payment sheet for every fee and fine */
-const METHODS = [['blik', 'BLIK', 'Kod z aplikacji banku'], ['card2', 'Karta •• 4471', 'Zapisana w mObywatelu'], ['coin', 'Przelew z banku', 'PKO BP, Pekao, mBank i inne']];
+const METHODS = [
+  ['blik', 'BLIK', 'Kod z aplikacji banku'],
+  ['card2', 'Karta •• 4471', 'Zapisana w mObywatelu'],
+  ['coin', 'Przelew z banku', 'PKO BP, Pekao, mBank i inne'],
+];
 
 export function PaySheet({ sheet, setSheet, close }) {
   return html`<div class="pay8">
@@ -17,9 +21,23 @@ export function PaySheet({ sheet, setSheet, close }) {
 }
 
 export function PayDone({ sheet, close }) {
-  useEffect(() => { coachTip(null); const a = setTimeout(close, 2200); const k = setInterval(() => coachTip(null), 120); return () => { clearTimeout(a); clearInterval(k); }; }, []);
+  useEffect(() => {
+    coachTip(null);
+    const a = setTimeout(close, 2200);
+    const k = setInterval(() => coachTip(null), 120);
+    return () => {
+      clearTimeout(a);
+      clearInterval(k);
+    };
+  }, []);
   return html`<div class="pay8 done"><div class="pay-ok">${I('check', 30)}</div><div class="pay-amt sm">Zapłacono ${sheet.amt}</div>
     <div class="pay-to">${sheet.t}<br/><span>Potwierdzenie jest w Skrzynce</span></div></div>`;
 }
 
-export const payWrap = (c, map) => ({ ...c, confirm: o => { const m = map(o); m ? c.pay({ ...m, done: o.done }) : c.confirm(o); } });
+export const payWrap = (c, map) => ({
+  ...c,
+  confirm: o => {
+    const m = map(o);
+    m ? c.pay({ ...m, done: o.done }) : c.confirm(o);
+  },
+});

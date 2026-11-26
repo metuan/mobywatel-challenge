@@ -15,7 +15,16 @@ export function Plan(c) {
     </div>
     <${Sec} t="Plecak ewakuacyjny"/>
     <div class="list">
-      ${[['Woda, 2 l na osobę na dzień', true], ['Latarka i baterie', true], ['Powerbank', false], ['Kopie dokumentów', true], ['Apteczka', false]].map(([t, on]) => html`<div class="row"><span class="ic" style=${on ? 'background:var(--green-soft);color:var(--green)' : ''}>${on ? I('check', 18) : ''}</span><span class="tx"><div class="t">${t}</div></span>${!on && html`<span class="pill p-amber">Brakuje</span>`}</div>`)}
+      ${[
+        ['Woda, 2 l na osobę na dzień', true],
+        ['Latarka i baterie', true],
+        ['Powerbank', false],
+        ['Kopie dokumentów', true],
+        ['Apteczka', false],
+      ].map(
+        ([t, on]) =>
+          html`<div class="row"><span class="ic" style=${on ? 'background:var(--green-soft);color:var(--green)' : ''}>${on ? I('check', 18) : ''}</span><span class="tx"><div class="t">${t}</div></span>${!on && html`<span class="pill p-amber">Brakuje</span>`}</div>`,
+      )}
     </div>
   </div>`;
 }
@@ -23,20 +32,37 @@ export function Plan(c) {
 export function Places(c) {
   return html`<div><h1 class="h-l">Obserwowane miejsca</h1>
     <p class="lead">Alerty dla Twojej lokalizacji przychodzą zawsze. Alerty dla tych miejsc są oznaczone ich nazwą, żeby ich nie pomylić.</p>
-    <div class="list">${[['Sandomierz', 'Tata, ul. Mickiewicza'], ['Przedszkole nr 12, Kraków', 'Zosia'], ['Biuro Tomasza, Katowice', 'Tomasz']].map(([t, s]) => html`<div class="row"><span class="ic">${I('pin')}</span><span class="tx"><div class="t">${t}</div><div class="s">${s}</div></span><${Toggle} on=${true} set=${() => {}} label=${t}/></div>`)}</div>
+    <div class="list">${[
+      ['Sandomierz', 'Tata, ul. Mickiewicza'],
+      ['Przedszkole nr 12, Kraków', 'Zosia'],
+      ['Biuro Tomasza, Katowice', 'Tomasz'],
+    ].map(
+      ([t, s]) =>
+        html`<div class="row"><span class="ic">${I('pin')}</span><span class="tx"><div class="t">${t}</div><div class="s">${s}</div></span><${Toggle} on=${true} set=${() => {}} label=${t}/></div>`,
+    )}</div>
     <div class="actions"><button class="btn ghost">${I('plus', 18)} Dodaj miejsce</button></div></div>`;
 }
 
 export function Safety(c) {
   const [flood, setFlood] = useState(false);
-  const alarm = () => { setFlood(true); setTimeout(() => c.go('lock'), 650); };
+  const alarm = () => {
+    setFlood(true);
+    setTimeout(() => c.go('lock'), 650);
+  };
   return html`<div>
     <h1 class="h-xl">Ochrona</h1>
     <div class=${'status' + (flood ? ' flood' : '')}>
       <div class="st-k"><span class="pulse-dot"></span>Połączono z RCB · 15:40</div>
       <div class="st-city">Kraków</div><div class="st-calm">${flood ? 'Alarm, idź do schronu' : 'Spokojnie'}</div>
       <div class="st-people">
-        ${[['A', 'Ty', 'Kraków, Podgórze', 'ok'], ['Z', 'Zosia', 'Przedszkole nr 12', 'ok'], ['S', 'Tata', 'Sandomierz', 'warn']].map(([i, n, p, st]) => html`<button class="st-p" onClick=${() => c.go('family-map')}><${Av} i=${i} size=${28}/><span class="gtx"><span class="gt">${n}</span><span class="gs">${p}</span></span><i class=${'sdot ' + st}></i></button>`)}
+        ${[
+          ['A', 'Ty', 'Kraków, Podgórze', 'ok'],
+          ['Z', 'Zosia', 'Przedszkole nr 12', 'ok'],
+          ['S', 'Tata', 'Sandomierz', 'warn'],
+        ].map(
+          ([i, n, p, st]) =>
+            html`<button class="st-p" onClick=${() => c.go('family-map')}><${Av} i=${i} size=${28}/><span class="gtx"><span class="gt">${n}</span><span class="gs">${p}</span></span><i class=${'sdot ' + st}></i></button>`,
+        )}
       </div>
       <div class="st-warn"><i class="sdot warn"></i>Sandomierz: wiatr do 90 km/h od 20:00 (IMGW, 2. stopień)</div>
       <i class="st-flood"></i>
@@ -50,8 +76,11 @@ export function Safety(c) {
     </div>
     <${Label} t="Komunikaty"/>
     <div class="glist">
-      ${[['bell', 'Test syren w Krakowie, 1 grudnia, 12:00', 'RCB · wczoraj'], ['sun', 'Silny wiatr w Sandomierzu, 2. stopień', 'IMGW · 14:20'], ['wifi', 'Wisła: więcej wody, domom nic nie grozi', 'RSO · 11:02']].map(([ic, t, s2]) =>
-        html`<${GRow} ic=${ic} t=${t} s=${s2} onClick=${() => c.go('places')}/>`)}
+      ${[
+        ['bell', 'Test syren w Krakowie, 1 grudnia, 12:00', 'RCB · wczoraj'],
+        ['sun', 'Silny wiatr w Sandomierzu, 2. stopień', 'IMGW · 14:20'],
+        ['wifi', 'Wisła: więcej wody, domom nic nie grozi', 'RSO · 11:02'],
+      ].map(([ic, t, s2]) => html`<${GRow} ic=${ic} t=${t} s=${s2} onClick=${() => c.go('places')}/>`)}
       <${GRow} ic="call" t="Kto do mnie dzwoni?" s="Sprawdź, czy dzwoni naprawdę urząd" onClick=${() => c.go('caller')}/>
       <${GRow} ic="camera" t="Zgłoś szkody po zdarzeniu" s="Zdjęcia, opis, jeden wniosek" onClick=${() => c.go('damage-1')}/>
     </div>
