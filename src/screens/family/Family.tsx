@@ -1,3 +1,11 @@
+import {
+  List,
+  ListItem,
+  ListItemChevron,
+  ListItemContent,
+  ListItemDescription,
+  ListItemTitle,
+} from '@/components/ui/list';
 import { Display } from '@/components/ui/typography';
 import { sx } from '@/lib/sx';
 import { I } from '@/ui/icons';
@@ -19,39 +27,39 @@ export function Family(c: Ctx) {
         <AvStack size={32} />
         <span>{fam.length} osoby · 1 sprawa wymaga uwagi</span>
       </div>
-      <div className="glist">
+      <List>
         {fam.map(([i, n, r, f, red, go, k]) => (
-          <button className="grow-row tall" onClick={() => c.go(go)}>
+          <ListItem as="button" className="min-h-[72px]" onClick={() => c.go(go)}>
             <Av i={i} size={44} />
-            <span className="gtx">
-              <span className="gt h">
+            <ListItemContent>
+              <ListItemTitle className="text-[17px]/[22px] font-semibold tracking-[-0.015em]">
                 {n}
                 {k === 'key' && (
                   <span className="keyi" title="Masz pełnomocnictwo">
                     {I('key', 14)}
                   </span>
                 )}
-              </span>
-              <span className="gs">{r}</span>
-            </span>
+              </ListItemTitle>
+              <ListItemDescription>{r}</ListItemDescription>
+            </ListItemContent>
             <span className={'gv' + (red ? ' red' : '')}>{f}</span>
-            <span className="gch">{I('chevron', 16)}</span>
-          </button>
+            <ListItemChevron size={16} />
+          </ListItem>
         ))}
-        <button className="grow-row" onClick={() => c.go('invite')}>
+        <ListItem as="button" onClick={() => c.go('invite')}>
           <LeadIcon ic="plus" />
-          <span className="gtx">
-            <span className="gt">Dodaj osobę</span>
-          </span>
-        </button>
-      </div>
+          <ListItemContent>
+            <ListItemTitle>Dodaj osobę</ListItemTitle>
+          </ListItemContent>
+        </ListItem>
+      </List>
       <Label t="Wspólne" />
-      <div className="glist">
+      <List>
         <GRow ic="list" t="Kalendarz rodziny" v="7 terminów" onClick={() => c.go('calendar')} />
         <GRow ic="pin" t="Gdzie jest rodzina" s="Tylko podczas alarmu" onClick={() => c.go('family-map')} />
         <GRow ic="shield" t="Plan kryzysowy" v="2 miejsca" onClick={() => c.go('plan')} />
         <GRow ic="lock" t="Uprawnienia" s="Kto co widzi i do kiedy" onClick={() => c.go('consents')} />
-      </div>
+      </List>
     </div>
   );
 }

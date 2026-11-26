@@ -252,15 +252,6 @@
   letter-spacing: -0.02em;
   line-height: 1.35;
 }
-.row .s.red {
-  color: #ff3b30;
-}
-.row .s.amber {
-  color: #c77700;
-}
-.row:has(.caltile) + .row::before {
-  left: 74px;
-}
 .pcards {
   display: flex;
   gap: 12px;
@@ -664,9 +655,6 @@
   display: grid;
   place-items: center;
   flex: none;
-}
-.row:has(.src-b) + .row::before {
-  left: 76px;
 }
 .side .flows button {
   padding: 7px 0;

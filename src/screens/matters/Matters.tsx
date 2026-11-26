@@ -1,3 +1,16 @@
+import {
+  List,
+  ListItem,
+  ListItemChevron,
+  ListItemContent,
+  ListItemDescription,
+  ListItemTitle,
+  ListRow,
+  ListRowContent,
+  ListRowDescription,
+  ListRowIcon,
+  ListRowTitle,
+} from '@/components/ui/list';
 import { Note } from '@/components/ui/note';
 import { Display, Eyebrow, Title } from '@/components/ui/typography';
 import { sx } from '@/lib/sx';
@@ -19,19 +32,19 @@ export function CaseMeld(_c: Ctx) {
     <div>
       <Eyebrow>Sprawa</Eyebrow>
       <Title>Wymiana dowodu rejestracyjnego</Title>
-      <div className="list">
+      <List>
         {st.map(([t, s], i) => (
-          <div className="row">
-            <span className="ic" style={sx(i < 3 ? 'background:var(--green-soft);color:var(--green)' : '')}>
+          <ListRow>
+            <ListRowIcon style={sx(i < 3 ? 'background:var(--green-soft);color:var(--green)' : '')}>
               {i < 3 ? I('check', 18) : <b>4</b>}
-            </span>
-            <span className="tx">
-              <div className="t">{t}</div>
-              <div className="s">{s}</div>
-            </span>
-          </div>
+            </ListRowIcon>
+            <ListRowContent>
+              <ListRowTitle>{t}</ListRowTitle>
+              <ListRowDescription>{s}</ListRowDescription>
+            </ListRowContent>
+          </ListRow>
         ))}
-      </div>
+      </List>
       <Note icon="bell" style={{ marginTop: '14px' }}>
         Dostaniesz powiadomienie, gdy dokument będzie gotowy. Nie musisz dzwonić do urzędu.
       </Note>
@@ -76,20 +89,20 @@ export function Matters(c: Ctx) {
         ))}
       </div>
       <Label t="W toku" />
-      <div className="glist">
+      <List>
         {prog.map(([t, n, r, s2]) => (
-          <button className="grow-row" onClick={() => c.go(r)}>
+          <ListItem as="button" onClick={() => c.go(r)}>
             <Ring v={n} max={4} size={40}>
               <b style={{ fontSize: '11px' }}>{n}/4</b>
             </Ring>
-            <span className="gtx">
-              <span className="gt">{t}</span>
-              <span className="gs">{s2}</span>
-            </span>
-            <span className="gch">{I('chevron', 16)}</span>
-          </button>
+            <ListItemContent>
+              <ListItemTitle>{t}</ListItemTitle>
+              <ListItemDescription>{s2}</ListItemDescription>
+            </ListItemContent>
+            <ListItemChevron size={16} />
+          </ListItem>
         ))}
-      </div>
+      </List>
       <Label t="Załatw od początku do końca" />
       <div className="mgrid">
         {shown.map(([t, s2, r, n]) => (

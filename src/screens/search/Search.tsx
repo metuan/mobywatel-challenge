@@ -1,3 +1,4 @@
+import { ListItemChevron, ListItemContent, ListItemDescription, ListItemTitle } from '@/components/ui/list';
 import { Title } from '@/components/ui/typography';
 import { useEffect, useRef, useState } from 'react';
 import { norm } from '@/lib/env';
@@ -98,18 +99,18 @@ export function Search({
           {hits.map(([t, s, r, ic]) => (
             <button className="hit" onClick={() => c.go(r)}>
               <span className="lead-i">{I((ic in P ? ic : 'doc') as IconName, 18)}</span>
-              <span className="gtx">
-                <span className="gt">{t}</span>
-                <span className="gs">{s}</span>
-              </span>
+              <ListItemContent>
+                <ListItemTitle>{t}</ListItemTitle>
+                <ListItemDescription>{s}</ListItemDescription>
+              </ListItemContent>
             </button>
           ))}
           <button className="hit ask" onClick={() => c.ask(q)}>
             <span className="lead-i ai">{I('sparkle', 18)}</span>
-            <span className="gtx">
-              <span className="gt">Zapytaj asystenta: „{q}”</span>
-              <span className="gs">Odpowiedź z gov.pl, ze źródłami</span>
-            </span>
+            <ListItemContent>
+              <ListItemTitle>Zapytaj asystenta: „{q}”</ListItemTitle>
+              <ListItemDescription>Odpowiedź z gov.pl, ze źródłami</ListItemDescription>
+            </ListItemContent>
           </button>
         </div>
       )}
@@ -131,7 +132,7 @@ export function SearchScreen(c: Ctx) {
               <button className="how8-row" onClick={() => setPick(h.q)}>
                 <span className="lead-i ai">{I('sparkle', 16)}</span>
                 <span>{h.q}</span>
-                <span className="gch">{I('chevron', 16)}</span>
+                <ListItemChevron size={16} />
               </button>
             ))}
           </div>

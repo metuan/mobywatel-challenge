@@ -1,3 +1,12 @@
+import { Field, FieldLabel, FieldValue } from '@/components/ui/field';
+import {
+  List,
+  ListRow,
+  ListRowContent,
+  ListRowDescription,
+  ListRowIcon,
+  ListRowTitle,
+} from '@/components/ui/list';
 import { Card } from '@/components/ui/card';
 import { Caption, Eyebrow, Title } from '@/components/ui/typography';
 import { Actions, Button } from '@/components/ui/button';
@@ -14,20 +23,20 @@ export function Visit1(c: Ctx) {
       <Eyebrow>e-Skierowanie · Zosia</Eyebrow>
       <Hero n="doctor" />
       <Title>Kardiolog dziecięcy</Title>
-      <div className="list">
-        <div className="field">
-          <div className="l">Wystawił</div>
-          <div className="v">dr Ewa Mazur, Przychodnia Zdrowia nr 3</div>
-        </div>
-        <div className="field">
-          <div className="l">Powód</div>
-          <div className="v">Szmer serca, kontrola</div>
-        </div>
-        <div className="field">
-          <div className="l">Ważne do</div>
-          <div className="v">21 listopada 2027</div>
-        </div>
-      </div>
+      <List>
+        <Field>
+          <FieldLabel>Wystawił</FieldLabel>
+          <FieldValue>dr Ewa Mazur, Przychodnia Zdrowia nr 3</FieldValue>
+        </Field>
+        <Field>
+          <FieldLabel>Powód</FieldLabel>
+          <FieldValue>Szmer serca, kontrola</FieldValue>
+        </Field>
+        <Field>
+          <FieldLabel>Ważne do</FieldLabel>
+          <FieldValue>21 listopada 2027</FieldValue>
+        </Field>
+      </List>
       <Actions>
         <Button onClick={() => c.go('visit-2')}>Zarezerwuj wizytę</Button>
       </Actions>
@@ -59,30 +68,30 @@ export function Visit2(c: Ctx) {
           Po 15:00
         </button>
       </div>
-      <div className="list">
+      <List>
         {slots.map(([d, p, km], i) => (
-          <button className="row" onClick={() => setPick(i)} aria-pressed={pick === i}>
-            <span className="ic" style={sx(pick === i ? 'background:var(--navy);color:#fff' : '')}>
+          <ListRow as="button" onClick={() => setPick(i)} aria-pressed={pick === i}>
+            <ListRowIcon style={sx(pick === i ? 'background:var(--navy);color:#fff' : '')}>
               {pick === i ? I('check', 18) : ''}
-            </span>
-            <span className="tx">
-              <div className="t">{d}</div>
-              <div className="s">
+            </ListRowIcon>
+            <ListRowContent>
+              <ListRowTitle>{d}</ListRowTitle>
+              <ListRowDescription>
                 {p} · {km}
-              </div>
-            </span>
-          </button>
+              </ListRowDescription>
+            </ListRowContent>
+          </ListRow>
         ))}
-      </div>
-      <Card className="row" style={{ marginTop: '12px' }}>
-        <span className="tx">
-          <div className="t">Poczekalnia</div>
-          <div className="s">
+      </List>
+      <ListRow as={Card} className="mt-3">
+        <ListRowContent>
+          <ListRowTitle>Poczekalnia</ListRowTitle>
+          <ListRowDescription>
             Jeśli zwolni się wcześniejszy termin, przeniesiemy wizytę i zapytamy Cię o zgodę.
-          </div>
-        </span>
+          </ListRowDescription>
+        </ListRowContent>
         <Toggle on={wait} set={setWait} label="Poczekalnia" />
-      </Card>
+      </ListRow>
       <Actions>
         <Button
           onClick={() => {
@@ -103,24 +112,24 @@ export function Visit3(c: Ctx) {
     <div>
       <Eyebrow>Podgląd</Eyebrow>
       <Title>Sprawdź rezerwację</Title>
-      <div className="list">
-        <div className="field">
-          <div className="l">Pacjent</div>
-          <div className="v">Zofia Nowicka</div>
-        </div>
-        <div className="field">
-          <div className="l">Termin</div>
-          <div className="v">{s[0]}</div>
-        </div>
-        <div className="field">
-          <div className="l">Miejsce</div>
-          <div className="v">{s[1]}</div>
-        </div>
-        <div className="field">
-          <div className="l">Zabierz</div>
-          <div className="v">Wyniki EKG, książeczka zdrowia</div>
-        </div>
-      </div>
+      <List>
+        <Field>
+          <FieldLabel>Pacjent</FieldLabel>
+          <FieldValue>Zofia Nowicka</FieldValue>
+        </Field>
+        <Field>
+          <FieldLabel>Termin</FieldLabel>
+          <FieldValue>{s[0]}</FieldValue>
+        </Field>
+        <Field>
+          <FieldLabel>Miejsce</FieldLabel>
+          <FieldValue>{s[1]}</FieldValue>
+        </Field>
+        <Field>
+          <FieldLabel>Zabierz</FieldLabel>
+          <FieldValue>Wyniki EKG, książeczka zdrowia</FieldValue>
+        </Field>
+      </List>
       <Actions>
         <Button
           onClick={() =>
@@ -153,21 +162,21 @@ export function Visit4(c: Ctx) {
         {I('check', 28)}
       </div>
       <Title>Wizyta Zosi: {c.s.visit || '15 grudnia, 10:30'}</Title>
-      <div className="list">
-        <div className="row">
-          <span className="tx">
-            <div className="t">Przypomnienia</div>
-            <div className="s">7 dni i 1 dzień przed, Tobie i Tomaszowi</div>
-          </span>
+      <List>
+        <ListRow>
+          <ListRowContent>
+            <ListRowTitle>Przypomnienia</ListRowTitle>
+            <ListRowDescription>7 dni i 1 dzień przed, Tobie i Tomaszowi</ListRowDescription>
+          </ListRowContent>
           <Toggle on={true} set={() => {}} label="Przypomnienia" />
-        </div>
+        </ListRow>
         <Row
           icon="list"
           t="Dodano do kalendarza rodziny"
           s="Widzi też Tomasz"
           onClick={() => c.go('calendar')}
         />
-      </div>
+      </List>
       <Actions>
         <Button
           variant="secondary"

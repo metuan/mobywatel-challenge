@@ -1,5 +1,13 @@
+import {
+  List,
+  ListRow,
+  ListRowChevron,
+  ListRowContent,
+  ListRowDescription,
+  ListRowTile,
+  ListRowTitle,
+} from '@/components/ui/list';
 import { Lead, Muted, Title } from '@/components/ui/typography';
-import { I } from '@/ui/icons';
 import type { Ctx } from '@/types';
 
 export function Roadmap(c: Ctx) {
@@ -20,18 +28,18 @@ export function Roadmap(c: Ctx) {
     <div>
       <Title>Nowe funkcje</Title>
       <Lead>11 rzeczy, o które prosili ludzie w badaniach. Każdą da się kliknąć.</Lead>
-      <div className="list">
+      <List>
         {r.map(([t, s, go], i) => (
-          <button className="row" onClick={() => c.go(go)}>
-            <span className="it">{String(i + 1).padStart(2, '0')}</span>
-            <span className="tx">
-              <div className="t">{t}</div>
-              <div className="s">{s}</div>
-            </span>
-            <span className="chev">{I('chevron', 18)}</span>
-          </button>
+          <ListRow as="button" onClick={() => c.go(go)}>
+            <ListRowTile>{String(i + 1).padStart(2, '0')}</ListRowTile>
+            <ListRowContent>
+              <ListRowTitle>{t}</ListRowTitle>
+              <ListRowDescription>{s}</ListRowDescription>
+            </ListRowContent>
+            <ListRowChevron size={18} />
+          </ListRow>
         ))}
-      </div>
+      </List>
     </div>
   );
 }

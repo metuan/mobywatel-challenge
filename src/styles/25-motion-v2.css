@@ -183,9 +183,6 @@
     border-color 0.18s,
     transform 0.16s cubic-bezier(0.23, 1, 0.32, 1);
 }
-button.row:active .check {
-  transform: scale(0.9);
-}
 .check[aria-checked='true'] svg path {
   stroke-dasharray: 24;
   stroke-dashoffset: 24;
@@ -477,9 +474,7 @@ button.row:active .check {
 .srch8:has(input:not(:placeholder-shown)) ~ * {
   display: none;
 }
-.grow-row.guide8,
-.row.guide8,
-.how8-row.guide8 {
+:is([data-slot='list-row'], [data-slot='list-item'], .how8-row).guide8 {
   outline-offset: -3px;
   border-radius: 16px;
 }

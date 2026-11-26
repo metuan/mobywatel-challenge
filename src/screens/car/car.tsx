@@ -1,3 +1,4 @@
+import { List, ListRow, ListRowContent, ListRowDescription, ListRowTitle } from '@/components/ui/list';
 import { Badge } from '@/components/ui/badge';
 import { Eyebrow, Lead, Title } from '@/components/ui/typography';
 import { Actions, Button } from '@/components/ui/button';
@@ -55,7 +56,7 @@ function CarFullBase(c: Ctx) {
           <div className="v">3 / 24</div>
         </div>
       </div>
-      <div className="list">
+      <List>
         <Row
           icon="shield"
           t="OC: Warta, do 6 grudnia"
@@ -69,14 +70,16 @@ function CarFullBase(c: Ctx) {
           s="Przekroczenie prędkości, 12 września. Wygasną 12 września 2027"
           onClick={() => {}}
         />
-      </div>
+      </List>
       <Sec t="Mandaty" />
-      <div className="list">
-        <div className="row">
-          <span className="tx">
-            <div className="t">Mandat 200 zł</div>
-            <div className="s">Parkowanie, ul. Długa, 18 listopada · do zapłaty do 25 listopada</div>
-          </span>
+      <List>
+        <ListRow>
+          <ListRowContent>
+            <ListRowTitle>Mandat 200 zł</ListRowTitle>
+            <ListRowDescription>
+              Parkowanie, ul. Długa, 18 listopada · do zapłaty do 25 listopada
+            </ListRowDescription>
+          </ListRowContent>
           {c.s.paid ? (
             <Badge>Opłacony</Badge>
           ) : (
@@ -97,8 +100,8 @@ function CarFullBase(c: Ctx) {
               Zapłać
             </button>
           )}
-        </div>
-      </div>
+        </ListRow>
+      </List>
       <Actions>
         <Button variant="secondary" onClick={() => c.go('car-sell')}>
           Sprzedaję ten samochód

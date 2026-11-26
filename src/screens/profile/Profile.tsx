@@ -1,3 +1,12 @@
+import {
+  List,
+  ListRow,
+  ListRowAvatar,
+  ListRowContent,
+  ListRowDescription,
+  ListRowIcon,
+  ListRowTitle,
+} from '@/components/ui/list';
 import { Card } from '@/components/ui/card';
 import { Caption, Muted, Subtitle } from '@/components/ui/typography';
 import { sx } from '@/lib/sx';
@@ -9,16 +18,14 @@ function ProfileBase(c: Ctx) {
   return (
     <div>
       <div style={{ display: 'flex', gap: '12px', alignItems: 'center', marginTop: '8px' }}>
-        <span className="face-i" style={{ background: '#132a5e', width: '52px', height: '52px' }}>
-          AN
-        </span>
+        <ListRowAvatar className="size-[52px]">AN</ListRowAvatar>
         <div>
           <Subtitle as="h1">Anna Nowicka</Subtitle>
           <Muted>Kraków</Muted>
         </div>
       </div>
       <Sec t="Zaufanie" />
-      <div className="list">
+      <List>
         <Row
           icon="eye"
           t="Kto sprawdzał moje dane"
@@ -44,15 +51,15 @@ function ProfileBase(c: Ctx) {
           s="Sprawdź podejrzany SMS lub link"
           onClick={() => c.go('scam')}
         />
-      </div>
+      </List>
       <Sec t="Ułatwienia" />
-      <div className="list">
-        <div className="row">
-          <span className="ic">{I('sun')}</span>
-          <span className="tx">
-            <div className="t">Tryb prosty</div>
-            <div className="s">Duże przyciski, jedna decyzja na ekranie</div>
-          </span>
+      <List>
+        <ListRow>
+          <ListRowIcon>{I('sun')}</ListRowIcon>
+          <ListRowContent>
+            <ListRowTitle>Tryb prosty</ListRowTitle>
+            <ListRowDescription>Duże przyciski, jedna decyzja na ekranie</ListRowDescription>
+          </ListRowContent>
           <Toggle
             on={!!c.s.easy}
             label="Tryb prosty"
@@ -60,7 +67,7 @@ function ProfileBase(c: Ctx) {
               c.go(v ? 'easy' : 'today', v ? 'tata' : 'anna');
             }}
           />
-        </div>
+        </ListRow>
         <Row icon="speaker" t="Odczyt na głos i sterowanie głosem" s="Włączone" onClick={() => {}} />
         <Row
           icon="people"
@@ -74,9 +81,9 @@ function ProfileBase(c: Ctx) {
           s="Zobacz, co działa bez internetu"
           onClick={() => c.go('offline')}
         />
-      </div>
+      </List>
       <Sec t="O aplikacji" />
-      <div className="list">
+      <List>
         <Row
           icon="list"
           t="Nowe funkcje"
@@ -89,7 +96,7 @@ function ProfileBase(c: Ctx) {
           s="Niezależny projekt na mObywatel Challenge"
           onClick={() => c.go('about')}
         />
-      </div>
+      </List>
     </div>
   );
 }

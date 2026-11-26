@@ -39,6 +39,12 @@
       {
         "ignoreAtRules": ["apply"]
       }
+    ],
+    "nesting-selector-no-missing-scoping-root": [
+      true,
+      {
+        "ignoreAtRules": ["utility"]
+      }
     ]
   }
 }

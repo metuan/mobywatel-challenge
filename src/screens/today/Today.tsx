@@ -1,3 +1,4 @@
+import { List, ListItemDescription, ListItemTitle } from '@/components/ui/list';
 import { Display } from '@/components/ui/typography';
 import { sx } from '@/lib/sx';
 import { DocCard } from '@/ui/documentCard';
@@ -38,8 +39,10 @@ function TodayBase(c: Ctx) {
           <small>dni</small>
         </Ring>
         <div className="attn-tx">
-          <div className="gt">OC Toyoty kończy się za 12 dni</div>
-          <div className="gs">KR 4F21 · polisa do 6 grudnia</div>
+          <ListItemTitle as="div" className="text-[17px]/[22px] font-semibold tracking-[-0.015em]">
+            OC Toyoty kończy się za 12 dni
+          </ListItemTitle>
+          <ListItemDescription as="div">KR 4F21 · polisa do 6 grudnia</ListItemDescription>
         </div>
       </div>
       <div className="attn-act">
@@ -87,12 +90,12 @@ function TodayBase(c: Ctx) {
         </button>
       </div>
       <Label t="Terminy" more="Wszystkie" go={() => c.go('calendar')} />
-      <div className="glist">
+      <List>
         <GRow ic="car" t="OC Toyoty" s="6 gru" v="12 dni" red onClick={() => c.go('car')} />
         <GRow ic="steth" t="Szczepienie Zosi (MMR)" s="31 gru" v="37 dni" onClick={() => c.go('vacc')} />
         <GRow ic="card" t="Paszport Zosi wygasa" s="4 sty" v="41 dni" onClick={() => c.go('renew-pass')} />
         <GRow ic="doc" t="Dowód taty wygasa" s="26 sty" v="63 dni" onClick={() => c.go('member-tata')} />
-      </div>
+      </List>
       <Label t="Ważne momenty" more="Wszystkie" go={() => c.go('matters')} />
       <div className="mrow">
         <Tile t="Przeprowadzka" s="4 urzędy, 1 wniosek" n="move" onClick={() => c.go('move-1')} />

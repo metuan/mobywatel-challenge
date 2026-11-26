@@ -10,6 +10,7 @@
 @import 'tw-animate-css';
 @import './00-tokens.css';
 @import './theme.css';
+@import '../components/ui/list.css' layer(components);
 
 /* Legacy stylesheets, being folded into components. Order matters: later files refine earlier ones. */
 @import './01-reset.css' layer(legacy);

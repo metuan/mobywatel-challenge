@@ -1,3 +1,15 @@
+import { Field, FieldLabel, FieldValue } from '@/components/ui/field';
+import {
+  List,
+  ListItemContent,
+  ListItemDescription,
+  ListItemTitle,
+  ListRow,
+  ListRowContent,
+  ListRowDescription,
+  ListRowIcon,
+  ListRowTitle,
+} from '@/components/ui/list';
 import { Badge } from '@/components/ui/badge';
 import { Display, Lead, Title } from '@/components/ui/typography';
 import { Actions, Button } from '@/components/ui/button';
@@ -13,30 +25,30 @@ export function Plan(_c: Ctx) {
     <div>
       <Title>Plan rodziny na sytuację kryzysową</Title>
       <Lead>Ustalony razem z Tomaszem. Działa bez internetu.</Lead>
-      <div className="list">
-        <div className="field">
-          <div className="l">Miejsce spotkania 1</div>
-          <div className="v">Schron, ul. Dekerta 24 (240 m od domu)</div>
-        </div>
-        <div className="field">
-          <div className="l">Miejsce spotkania 2</div>
-          <div className="v">Szkoła Podstawowa nr 34, ul. Kalwaryjska</div>
-        </div>
-        <div className="field">
-          <div className="l">Kto odbiera Zosię z przedszkola</div>
-          <div className="v">Tomasz, a jeśli nie odpowiada: Anna</div>
-        </div>
-        <div className="field">
-          <div className="l">Kolejność kontaktu</div>
-          <div className="v">Anna, Tomasz, tata, sąsiadka p. Ewa</div>
-        </div>
-        <div className="field">
-          <div className="l">Leki</div>
-          <div className="v">Tata: leki na ciśnienie, zapas na 7 dni</div>
-        </div>
-      </div>
+      <List>
+        <Field>
+          <FieldLabel>Miejsce spotkania 1</FieldLabel>
+          <FieldValue>Schron, ul. Dekerta 24 (240 m od domu)</FieldValue>
+        </Field>
+        <Field>
+          <FieldLabel>Miejsce spotkania 2</FieldLabel>
+          <FieldValue>Szkoła Podstawowa nr 34, ul. Kalwaryjska</FieldValue>
+        </Field>
+        <Field>
+          <FieldLabel>Kto odbiera Zosię z przedszkola</FieldLabel>
+          <FieldValue>Tomasz, a jeśli nie odpowiada: Anna</FieldValue>
+        </Field>
+        <Field>
+          <FieldLabel>Kolejność kontaktu</FieldLabel>
+          <FieldValue>Anna, Tomasz, tata, sąsiadka p. Ewa</FieldValue>
+        </Field>
+        <Field>
+          <FieldLabel>Leki</FieldLabel>
+          <FieldValue>Tata: leki na ciśnienie, zapas na 7 dni</FieldValue>
+        </Field>
+      </List>
       <Sec t="Plecak ewakuacyjny" />
-      <div className="list">
+      <List>
         {[
           ['Woda, 2 l na osobę na dzień', true],
           ['Latarka i baterie', true],
@@ -44,17 +56,17 @@ export function Plan(_c: Ctx) {
           ['Kopie dokumentów', true],
           ['Apteczka', false],
         ].map(([t, on]) => (
-          <div className="row">
-            <span className="ic" style={sx(on ? 'background:var(--green-soft);color:var(--green)' : '')}>
+          <ListRow>
+            <ListRowIcon style={sx(on ? 'background:var(--green-soft);color:var(--green)' : '')}>
               {on ? I('check', 18) : ''}
-            </span>
-            <span className="tx">
-              <div className="t">{t}</div>
-            </span>
+            </ListRowIcon>
+            <ListRowContent>
+              <ListRowTitle>{t}</ListRowTitle>
+            </ListRowContent>
             {!on && <Badge>Brakuje</Badge>}
-          </div>
+          </ListRow>
         ))}
-      </div>
+      </List>
     </div>
   );
 }
@@ -67,22 +79,22 @@ export function Places(_c: Ctx) {
         Alerty dla Twojej lokalizacji przychodzą zawsze. Alerty dla tych miejsc są oznaczone ich nazwą, żeby
         ich nie pomylić.
       </Lead>
-      <div className="list">
+      <List>
         {[
           ['Sandomierz', 'Tata, ul. Mickiewicza'],
           ['Przedszkole nr 12, Kraków', 'Zosia'],
           ['Biuro Tomasza, Katowice', 'Tomasz'],
         ].map(([t, s]) => (
-          <div className="row">
-            <span className="ic">{I('pin')}</span>
-            <span className="tx">
-              <div className="t">{t}</div>
-              <div className="s">{s}</div>
-            </span>
+          <ListRow>
+            <ListRowIcon>{I('pin')}</ListRowIcon>
+            <ListRowContent>
+              <ListRowTitle>{t}</ListRowTitle>
+              <ListRowDescription>{s}</ListRowDescription>
+            </ListRowContent>
             <Toggle on={true} set={() => {}} label={t} />
-          </div>
+          </ListRow>
         ))}
-      </div>
+      </List>
       <Actions>
         <Button variant="secondary">{I('plus', 18)} Dodaj miejsce</Button>
       </Actions>
@@ -113,10 +125,12 @@ export function Safety(c: Ctx) {
           ].map(([i, n, p, st]) => (
             <button className="st-p" onClick={() => c.go('family-map')}>
               <Av i={i} size={28} />
-              <span className="gtx">
-                <span className="gt">{n}</span>
-                <span className="gs">{p}</span>
-              </span>
+              <ListItemContent>
+                <ListItemTitle className="text-[15px]/[22px]">{n}</ListItemTitle>
+                <ListItemDescription className="text-[13px]/[19px] in-[.flood]:text-white/85">
+                  {p}
+                </ListItemDescription>
+              </ListItemContent>
               <i className={'sdot ' + st}></i>
             </button>
           ))}
@@ -162,7 +176,7 @@ export function Safety(c: Ctx) {
         </button>
       </div>
       <Label t="Komunikaty" />
-      <div className="glist">
+      <List>
         {(
           [
             ['bell', 'Test syren w Krakowie, 1 grudnia, 12:00', 'RCB · wczoraj'],
@@ -184,7 +198,7 @@ export function Safety(c: Ctx) {
           s="Zdjęcia, opis, jeden wniosek"
           onClick={() => c.go('damage-1')}
         />
-      </div>
+      </List>
       <Label t="Rozpoznaj sygnał" />
       <div className="w8">
         <div className="w">

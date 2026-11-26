@@ -1093,8 +1093,6 @@
   overflow: hidden;
 }
 /* hop 17: press states everywhere */
-.grow-row,
-.row,
 .hit,
 .mtile,
 .w,
@@ -1104,8 +1102,6 @@
     background-color 0.12s,
     transform 0.16s var(--out);
 }
-.grow-row:active,
-button.row:active,
 .sug:active {
   background: var(--fill) !important;
 }
@@ -1113,12 +1109,6 @@ button.row:active,
 .w:active,
 .tile:active {
   transform: scale(0.97);
-}
-@media (hover: hover) {
-  .grow-row:hover,
-  button.row:hover {
-    background: #fafafb;
-  }
 }
 /* hop 18: payment sheet */
 .pay8 {
@@ -1166,9 +1156,6 @@ button.row:active,
 .pay-m button[aria-pressed='true'] {
   background: var(--surface);
   box-shadow: 0 1px 3px rgb(11 13 18 / 8%);
-}
-.pay-m .gtx {
-  flex: 1;
 }
 .radio {
   width: 20px;
@@ -1468,15 +1455,3 @@ button.row:active,
 }
 
 /* Tinted icon squares (were inline !important styles) */
-.it.it-red {
-  background: #ff3b30 !important;
-}
-.it.it-orange {
-  background: #ff9500 !important;
-}
-.it.it-green {
-  background: #34c759 !important;
-}
-.it.it-gray {
-  background: #8e8e93 !important;
-}

@@ -1,3 +1,4 @@
+import { List, ListRow, ListRowContent, ListRowDescription, ListRowTitle } from '@/components/ui/list';
 import { Badge } from '@/components/ui/badge';
 import { Card } from '@/components/ui/card';
 import { Muted, Title } from '@/components/ui/typography';
@@ -23,12 +24,12 @@ function TaxesBase(c: Ctx) {
         <Muted>Złożony · przyjęty · zwrot wypłacony</Muted>
       </Card>
       <Sec t="Opłaty lokalne" />
-      <div className="list">
-        <div className="row">
-          <span className="tx">
-            <div className="t">Podatek od nieruchomości</div>
-            <div className="s">4. rata: 86 zł · termin 15 listopada</div>
-          </span>
+      <List>
+        <ListRow>
+          <ListRowContent>
+            <ListRowTitle>Podatek od nieruchomości</ListRowTitle>
+            <ListRowDescription>4. rata: 86 zł · termin 15 listopada</ListRowDescription>
+          </ListRowContent>
           {c.s.propPaid ? (
             <Badge>Opłacony</Badge>
           ) : (
@@ -42,24 +43,24 @@ function TaxesBase(c: Ctx) {
               Zapłać
             </button>
           )}
-        </div>
-        <div className="row">
-          <span className="tx">
-            <div className="t">Opłata za śmieci</div>
-            <div className="s">Grudzień: 3 osoby × 46 zł</div>
-          </span>
+        </ListRow>
+        <ListRow>
+          <ListRowContent>
+            <ListRowTitle>Opłata za śmieci</ListRowTitle>
+            <ListRowDescription>Grudzień: 3 osoby × 46 zł</ListRowDescription>
+          </ListRowContent>
           <span className="due">138 zł</span>
-        </div>
-      </div>
+        </ListRow>
+      </List>
       <Sec t="Pisma" />
-      <div className="list">
+      <List>
         <Row
           icon="mail"
           t="Wezwanie z urzędu skarbowego"
           s="Wyjaśnimy prostym językiem"
           onClick={() => c.go('letter-2')}
         />
-      </div>
+      </List>
     </div>
   );
 }

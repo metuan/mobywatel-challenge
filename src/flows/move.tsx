@@ -1,3 +1,5 @@
+import { Field, FieldLabel, FieldSource, FieldValue } from '@/components/ui/field';
+import { List, ListRow, ListRowContent, ListRowDescription, ListRowTitle } from '@/components/ui/list';
 import { Badge } from '@/components/ui/badge';
 import { Card } from '@/components/ui/card';
 import { Note } from '@/components/ui/note';
@@ -17,21 +19,21 @@ export function Move1(c: Ctx) {
       <Progress n={1} of={4} />
       <Hero n="move" />
       <Title>Dokąd się przeprowadzasz?</Title>
-      <div className="list">
-        <div className="field">
-          <div className="l">Nowy adres</div>
-          <div className="v">ul. Długa 12/4, 31-147 Kraków</div>
-          <div className="src">{I('check', 12)} Z umowy najmu, którą dodałaś 20 listopada</div>
-        </div>
-        <div className="field">
-          <div className="l">Od kiedy</div>
-          <div className="v">1 grudnia 2026</div>
-        </div>
-        <div className="field">
-          <div className="l">Kto się przeprowadza</div>
-          <div className="v">Ty, Tomasz, Zosia</div>
-        </div>
-      </div>
+      <List>
+        <Field>
+          <FieldLabel>Nowy adres</FieldLabel>
+          <FieldValue>ul. Długa 12/4, 31-147 Kraków</FieldValue>
+          <FieldSource>{I('check', 12)} Z umowy najmu, którą dodałaś 20 listopada</FieldSource>
+        </Field>
+        <Field>
+          <FieldLabel>Od kiedy</FieldLabel>
+          <FieldValue>1 grudnia 2026</FieldValue>
+        </Field>
+        <Field>
+          <FieldLabel>Kto się przeprowadza</FieldLabel>
+          <FieldValue>Ty, Tomasz, Zosia</FieldValue>
+        </Field>
+      </List>
       <Actions>
         <Button onClick={() => c.go('move-2')}>Dalej</Button>
       </Actions>
@@ -70,21 +72,21 @@ export function Move2(c: Ctx) {
           <Muted as="span">{n} z 4</Muted>
         </div>
         {items.map(([k, t, sub, ini]) => (
-          <button
-            className="row"
+          <ListRow
+            as="button"
             role="checkbox"
             aria-checked={on[k]}
             onClick={() => setOn({ ...on, [k]: !on[k] })}
           >
             <span className="org">{ini}</span>
-            <span className="tx">
-              <div className="t">{t}</div>
-              <div className="s">{sub}</div>
-            </span>
+            <ListRowContent>
+              <ListRowTitle>{t}</ListRowTitle>
+              <ListRowDescription>{sub}</ListRowDescription>
+            </ListRowContent>
             <span className="check" aria-checked={on[k]}>
               {on[k] ? I('check', 15) : ''}
             </span>
-          </button>
+          </ListRow>
         ))}
       </Card>
       <Note icon="sparkle" style={{ marginTop: '12px' }}>
@@ -117,22 +119,22 @@ export function Move3(c: Ctx) {
           <div className="sec">
             <h3>Zameldowanie</h3>
           </div>
-          <div className="list">
-            <div className="field">
-              <div className="l">Osoby</div>
-              <div className="v">Anna, Tomasz i Zofia Nowiccy</div>
+          <List>
+            <Field>
+              <FieldLabel>Osoby</FieldLabel>
+              <FieldValue>Anna, Tomasz i Zofia Nowiccy</FieldValue>
               <Src t="rejestr PESEL" />
-            </div>
-            <div className="field">
-              <div className="l">Adres</div>
-              <div className="v">ul. Długa 12/4, 31-147 Kraków</div>
+            </Field>
+            <Field>
+              <FieldLabel>Adres</FieldLabel>
+              <FieldValue>ul. Długa 12/4, 31-147 Kraków</FieldValue>
               <Src t="umowa najmu z 20.11" />
-            </div>
-            <div className="field">
-              <div className="l">Zgoda właściciela</div>
-              <div className="v">Jan Kowalczyk · potwierdzi w swojej aplikacji</div>
-            </div>
-          </div>
+            </Field>
+            <Field>
+              <FieldLabel>Zgoda właściciela</FieldLabel>
+              <FieldValue>Jan Kowalczyk · potwierdzi w swojej aplikacji</FieldValue>
+            </Field>
+          </List>
         </>
       )}
       {sel.gp && (
@@ -140,13 +142,13 @@ export function Move3(c: Ctx) {
           <div className="sec">
             <h3>Lekarz rodzinny</h3>
           </div>
-          <div className="list">
-            <div className="field">
-              <div className="l">Nowa przychodnia</div>
-              <div className="v">Przychodnia Długa, ul. Długa 40</div>
+          <List>
+            <Field>
+              <FieldLabel>Nowa przychodnia</FieldLabel>
+              <FieldValue>Przychodnia Długa, ul. Długa 40</FieldValue>
               <Src t="NFZ, wyszukiwarka placówek" />
-            </div>
-          </div>
+            </Field>
+          </List>
         </>
       )}
       {sel.vote && (
@@ -154,13 +156,13 @@ export function Move3(c: Ctx) {
           <div className="sec">
             <h3>Wybory</h3>
           </div>
-          <div className="list">
-            <div className="field">
-              <div className="l">Nowy lokal wyborczy</div>
-              <div className="v">Lokal nr 87, Szkoła Podstawowa nr 9</div>
+          <List>
+            <Field>
+              <FieldLabel>Nowy lokal wyborczy</FieldLabel>
+              <FieldValue>Lokal nr 87, Szkoła Podstawowa nr 9</FieldValue>
               <Src t="Krajowe Biuro Wyborcze" />
-            </div>
-          </div>
+            </Field>
+          </List>
         </>
       )}
       {sel.car && (
@@ -168,13 +170,13 @@ export function Move3(c: Ctx) {
           <div className="sec">
             <h3>Samochód</h3>
           </div>
-          <div className="list">
-            <div className="field">
-              <div className="l">Pojazd</div>
-              <div className="v">Toyota Yaris, KR 4F21</div>
+          <List>
+            <Field>
+              <FieldLabel>Pojazd</FieldLabel>
+              <FieldValue>Toyota Yaris, KR 4F21</FieldValue>
               <Src t="CEPiK" />
-            </div>
-          </div>
+            </Field>
+          </List>
         </>
       )}
       <Actions>
@@ -214,7 +216,7 @@ export function MoveDone(c: Ctx) {
         {I('check', 28)}
       </div>
       <Title>Wysłane. Resztą zajmiemy się razem.</Title>
-      <div className="list">
+      <List>
         <Row
           t="Zameldowanie"
           s="Przyjęte. Właściciel potwierdził o 15:12."
@@ -234,7 +236,7 @@ export function MoveDone(c: Ctx) {
           right={<Badge>W toku</Badge>}
           onClick={() => c.go('case-meld')}
         />
-      </div>
+      </List>
       <Actions>
         <Button onClick={() => c.go('today')}>Wróć do ekranu Dziś</Button>
       </Actions>

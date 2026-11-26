@@ -1,3 +1,4 @@
+import { List, ListRow, ListRowContent, ListRowTitle } from '@/components/ui/list';
 import { Lead, Title } from '@/components/ui/typography';
 import { Actions, Button } from '@/components/ui/button';
 import { useState } from 'react';
@@ -53,20 +54,20 @@ export function Pjm(c: Ctx) {
           <Button onClick={() => setOn(true)}>{I('camera', 18)} Połącz z tłumaczem</Button>
         )}
       </Actions>
-      <div className="list" style={{ marginTop: '14px' }}>
-        <div className="row">
-          <span className="tx">
-            <div className="t">Przycisk PJM na każdym ekranie</div>
-          </span>
+      <List style={{ marginTop: '14px' }}>
+        <ListRow>
+          <ListRowContent>
+            <ListRowTitle>Przycisk PJM na każdym ekranie</ListRowTitle>
+          </ListRowContent>
           <Toggle on={!!c.s.pjm} label="Przycisk PJM" set={(v: boolean) => c.set({ pjm: v })} />
-        </div>
-        <div className="row">
-          <span className="tx">
-            <div className="t">Napisy do komunikatów głosowych</div>
-          </span>
+        </ListRow>
+        <ListRow>
+          <ListRowContent>
+            <ListRowTitle>Napisy do komunikatów głosowych</ListRowTitle>
+          </ListRowContent>
           <Toggle on={true} label="Napisy" set={() => {}} />
-        </div>
-      </div>
+        </ListRow>
+      </List>
     </div>
   );
 }

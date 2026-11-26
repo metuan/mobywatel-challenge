@@ -84,3 +84,21 @@
   --ease-drawer: var(--ease-drawer);
   --ease-spring: var(--ease-spring);
 }
+
+/* Children fade up one after another when a list appears. */
+@utility stagger {
+  @media (prefers-reduced-motion: no-preference) {
+    & > * {
+      animation: fade-up 0.42s var(--ease-out) both;
+    }
+    & > :nth-child(2) {
+      animation-delay: 0.04s;
+    }
+    & > :nth-child(3) {
+      animation-delay: 0.08s;
+    }
+    & > :nth-child(n + 4) {
+      animation-delay: 0.12s;
+    }
+  }
+}

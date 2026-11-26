@@ -1,3 +1,14 @@
+import { Field, FieldLabel, FieldSource, FieldValue } from '@/components/ui/field';
+import {
+  List,
+  ListRow,
+  ListRowAvatar,
+  ListRowChevron,
+  ListRowContent,
+  ListRowDescription,
+  ListRowTile,
+  ListRowTitle,
+} from '@/components/ui/list';
 import { Badge } from '@/components/ui/badge';
 import { Note } from '@/components/ui/note';
 import { Caption, Lead, Title } from '@/components/ui/typography';
@@ -29,22 +40,22 @@ export function AlertRed(c: Ctx) {
         <div className="lbl">
           <span className="flag"></span>mObywatel dodaje do tego alertu
         </div>
-        <button className="row" onClick={() => c.go('alert-shelter')}>
-          <span className="it bg-sand">{I('route', 20)}</span>
-          <span className="tx">
-            <div className="t">Schronienie: ul. Dekerta 24</div>
-            <div className="s">240 m · 3 min pieszo · trasa działa bez internetu</div>
-          </span>
-          <span className="chev">{I('chevron', 18)}</span>
-        </button>
-        <button className="row" onClick={() => c.go('family-map')}>
-          <span className="it bg-rose">{I('people', 20)}</span>
-          <span className="tx">
-            <div className="t">Rodzina</div>
-            <div className="s">Zosia: przedszkole w schronie · Tata: poza strefą alarmu</div>
-          </span>
-          <span className="chev">{I('chevron', 18)}</span>
-        </button>
+        <ListRow as="button" onClick={() => c.go('alert-shelter')}>
+          <ListRowTile className="bg-sand">{I('route', 20)}</ListRowTile>
+          <ListRowContent>
+            <ListRowTitle>Schronienie: ul. Dekerta 24</ListRowTitle>
+            <ListRowDescription>240 m · 3 min pieszo · trasa działa bez internetu</ListRowDescription>
+          </ListRowContent>
+          <ListRowChevron size={18} />
+        </ListRow>
+        <ListRow as="button" onClick={() => c.go('family-map')}>
+          <ListRowTile className="bg-rose">{I('people', 20)}</ListRowTile>
+          <ListRowContent>
+            <ListRowTitle>Rodzina</ListRowTitle>
+            <ListRowDescription>Zosia: przedszkole w schronie · Tata: poza strefą alarmu</ListRowDescription>
+          </ListRowContent>
+          <ListRowChevron size={18} />
+        </ListRow>
       </div>
       <div style={{ flex: '1', minHeight: '14px' }}></div>
       <Actions style={{ marginTop: '12px' }}>
@@ -109,21 +120,21 @@ export function AlertShelter(c: Ctx) {
       <Badge style={{ marginTop: '8px' }}>Alert RCB trwa · Kraków</Badge>
       <Title>Idź do schronienia przy ul. Dekerta 24</Title>
       <div className="map">{ShelterMap()}</div>
-      <div className="list" style={{ marginTop: '12px' }}>
-        <div className="field">
-          <div className="l">Odległość</div>
-          <div className="v">240 m · około 3 minuty pieszo</div>
-        </div>
-        <div className="field">
-          <div className="l">Typ</div>
-          <div className="v">Schron, dla 180 osób, czynny całą dobę</div>
-          <div className="src">{I('check', 12)} Źródło: lista „Gdzie się ukryć”, Państwowa Straż Pożarna</div>
-        </div>
-        <div className="field">
-          <div className="l">Gdy nie zdążysz</div>
-          <div className="v">Korytarz bez okien, z dwiema ścianami między Tobą a ulicą</div>
-        </div>
-      </div>
+      <List style={{ marginTop: '12px' }}>
+        <Field>
+          <FieldLabel>Odległość</FieldLabel>
+          <FieldValue>240 m · około 3 minuty pieszo</FieldValue>
+        </Field>
+        <Field>
+          <FieldLabel>Typ</FieldLabel>
+          <FieldValue>Schron, dla 180 osób, czynny całą dobę</FieldValue>
+          <FieldSource>{I('check', 12)} Źródło: lista „Gdzie się ukryć”, Państwowa Straż Pożarna</FieldSource>
+        </Field>
+        <Field>
+          <FieldLabel>Gdy nie zdążysz</FieldLabel>
+          <FieldValue>Korytarz bez okien, z dwiema ścianami między Tobą a ulicą</FieldValue>
+        </Field>
+      </List>
       <Note icon="wifi" style={{ marginTop: '12px' }}>
         Mapa i trasa są zapisane w telefonie. Działają bez internetu.
       </Note>
@@ -188,20 +199,20 @@ export function AlertClear(c: Ctx) {
         <div className="lbl">
           <span className="flag"></span>Twoja rodzina
         </div>
-        <div className="row">
-          <span className="tx">
-            <div className="t">Tomasz, Zosia</div>
-            <div className="s">Bezpieczni</div>
-          </span>
+        <ListRow>
+          <ListRowContent>
+            <ListRowTitle>Tomasz, Zosia</ListRowTitle>
+            <ListRowDescription>Bezpieczni</ListRowDescription>
+          </ListRowContent>
           <Badge>OK</Badge>
-        </div>
-        <div className="row">
-          <span className="tx">
-            <div className="t">Tata</div>
-            <div className="s">Brak odpowiedzi od 15:42</div>
-          </span>
+        </ListRow>
+        <ListRow>
+          <ListRowContent>
+            <ListRowTitle>Tata</ListRowTitle>
+            <ListRowDescription>Brak odpowiedzi od 15:42</ListRowDescription>
+          </ListRowContent>
           <Badge>Sprawdź</Badge>
-        </div>
+        </ListRow>
       </div>
       <div style={{ flex: '1', minHeight: '14px' }}></div>
       <Actions style={{ marginTop: '12px' }}>
@@ -239,50 +250,44 @@ export function AlertSafe(c: Ctx) {
         </Actions>
       )}
       <Sec t="Status rodziny" more="Mapa" go={() => c.go('family-map')} />
-      <div className="list">
-        <div className="row">
-          <span className="face-i" style={{ background: '#132a5e' }}>
-            AN
-          </span>
-          <span className="tx">
-            <div className="t">Ty</div>
-            <div className="s">{sent ? 'Bezpieczna, schron Dekerta 24, 15:49' : 'Nie wysłano'}</div>
-          </span>
+      <List>
+        <ListRow>
+          <ListRowAvatar>AN</ListRowAvatar>
+          <ListRowContent>
+            <ListRowTitle>Ty</ListRowTitle>
+            <ListRowDescription>
+              {sent ? 'Bezpieczna, schron Dekerta 24, 15:49' : 'Nie wysłano'}
+            </ListRowDescription>
+          </ListRowContent>
           {sent ? <Badge>Bezpieczna</Badge> : <Badge>—</Badge>}
-        </div>
-        <div className="row">
-          <span className="face-i" style={{ background: '#3d5a80' }}>
-            TN
-          </span>
-          <span className="tx">
-            <div className="t">Tomasz</div>
-            <div className="s">Bezpieczny, Katowice, 15:46</div>
-          </span>
+        </ListRow>
+        <ListRow>
+          <ListRowAvatar>TN</ListRowAvatar>
+          <ListRowContent>
+            <ListRowTitle>Tomasz</ListRowTitle>
+            <ListRowDescription>Bezpieczny, Katowice, 15:46</ListRowDescription>
+          </ListRowContent>
           <Badge>Bezpieczny</Badge>
-        </div>
-        <div className="row">
-          <span className="face-i" style={{ background: '#a8650a' }}>
-            ZN
-          </span>
-          <span className="tx">
-            <div className="t">Zosia</div>
-            <div className="s">Przedszkole nr 12: dzieci w schronie, 15:45</div>
-          </span>
+        </ListRow>
+        <ListRow>
+          <ListRowAvatar>ZN</ListRowAvatar>
+          <ListRowContent>
+            <ListRowTitle>Zosia</ListRowTitle>
+            <ListRowDescription>Przedszkole nr 12: dzieci w schronie, 15:45</ListRowDescription>
+          </ListRowContent>
           <Badge>Bezpieczna</Badge>
-        </div>
-        <div className="row">
-          <span className="face-i" style={{ background: '#1c7a4c' }}>
-            SN
-          </span>
-          <span className="tx">
-            <div className="t">Tata</div>
-            <div className="s">Brak odpowiedzi od 15:42</div>
-          </span>
+        </ListRow>
+        <ListRow>
+          <ListRowAvatar>SN</ListRowAvatar>
+          <ListRowContent>
+            <ListRowTitle>Tata</ListRowTitle>
+            <ListRowDescription>Brak odpowiedzi od 15:42</ListRowDescription>
+          </ListRowContent>
           <button className="mini" onClick={() => c.go('easy-call')}>
             {I('phone', 14)} Zadzwoń
           </button>
-        </div>
-      </div>
+        </ListRow>
+      </List>
       <Caption style={{ marginTop: '12px' }}>
         Status widzą tylko osoby z Twojej rodziny. Znika po 72 godzinach.
       </Caption>

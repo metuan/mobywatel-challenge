@@ -10,12 +10,6 @@
   color: var(--ink-2);
   font-weight: 500;
 }
-.gt {
-  font-weight: 500;
-}
-.gs {
-  color: var(--ink-2);
-}
 /* topbar: collapses like iOS large titles */
 .topbar {
   background: transparent;
@@ -198,12 +192,6 @@
   font-size: 30px;
   line-height: 32px;
   letter-spacing: -0.035em;
-}
-.grow-row {
-  padding: 12px 16px;
-}
-.grow-row + .grow-row::before {
-  left: 68px;
 }
 .lead-i {
   background: var(--bg);

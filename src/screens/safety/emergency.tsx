@@ -1,3 +1,12 @@
+import {
+  List,
+  ListRow,
+  ListRowChevron,
+  ListRowContent,
+  ListRowDescription,
+  ListRowTile,
+  ListRowTitle,
+} from '@/components/ui/list';
 import { Caption, Eyebrow, Title } from '@/components/ui/typography';
 import { useState } from 'react';
 import { I } from '@/ui/icons';
@@ -49,13 +58,13 @@ export function Ice(c: Ctx) {
           </div>
         </div>
       </div>
-      <div className="list" style={{ marginTop: '14px' }}>
-        <div className="row">
-          <span className="it it-red">{I('lock', 18)}</span>
-          <span className="tx">
-            <div className="t">Pokaż na ekranie blokady</div>
-            <div className="s">Ratownik zobaczy kartę bez odblokowania telefonu</div>
-          </span>
+      <List style={{ marginTop: '14px' }}>
+        <ListRow>
+          <ListRowTile tone="red">{I('lock', 18)}</ListRowTile>
+          <ListRowContent>
+            <ListRowTitle>Pokaż na ekranie blokady</ListRowTitle>
+            <ListRowDescription>Ratownik zobaczy kartę bez odblokowania telefonu</ListRowDescription>
+          </ListRowContent>
           <Toggle
             on={lock}
             label="Pokaż na ekranie blokady"
@@ -64,22 +73,22 @@ export function Ice(c: Ctx) {
               c.set({ medLock: v });
             }}
           />
-        </div>
-        <div className="row">
-          <span className="it">{I('wifi', 18)}</span>
-          <span className="tx">
-            <div className="t">Działa bez internetu</div>
-            <div className="s">Zapisana w telefonie, zaszyfrowana</div>
-          </span>
-        </div>
-        <button className="row" onClick={() => c.go('medical-id')}>
-          <span className="it">{I('eye', 18)}</span>
-          <span className="tx">
-            <div className="t">Zobacz, co widzi ratownik</div>
-          </span>
-          <span className="chev">{I('chevron', 18)}</span>
-        </button>
-      </div>
+        </ListRow>
+        <ListRow>
+          <ListRowTile>{I('wifi', 18)}</ListRowTile>
+          <ListRowContent>
+            <ListRowTitle>Działa bez internetu</ListRowTitle>
+            <ListRowDescription>Zapisana w telefonie, zaszyfrowana</ListRowDescription>
+          </ListRowContent>
+        </ListRow>
+        <ListRow as="button" onClick={() => c.go('medical-id')}>
+          <ListRowTile>{I('eye', 18)}</ListRowTile>
+          <ListRowContent>
+            <ListRowTitle>Zobacz, co widzi ratownik</ListRowTitle>
+          </ListRowContent>
+          <ListRowChevron size={18} />
+        </ListRow>
+      </List>
       <Caption style={{ marginTop: '12px' }}>
         Alergie i leki pobieramy z Internetowego Konta Pacjenta za Twoją zgodą. Grupę krwi i kontakty
         wpisujesz sama.

@@ -109,7 +109,7 @@ export function EasyDoc(c: Ctx) {
       <Card style={{ padding: '20px', fontSize: '20px' }}>
         <Muted style={{ fontSize: '16px' }}>Ważny do</Muted>
         <div style={{ fontWeight: '600', fontSize: '28px' }}>26 stycznia 2027</div>
-        <Note icon="info" className="mt-3 text-base">
+        <Note icon="info" className="mt-3 text-base/[1.45]">
           Za 63 dni. Anna pomoże złożyć wniosek o nowy.
         </Note>
       </Card>

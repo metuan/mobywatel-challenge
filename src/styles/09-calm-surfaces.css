@@ -6,10 +6,6 @@
 .askdock::before {
   background: linear-gradient(rgb(255 255 255 / 0%), #fff 55%);
 }
-.list {
-  box-shadow: none;
-  border: 1px solid var(--line);
-}
 .person {
   box-shadow: none;
   border: 1px solid var(--line);
@@ -192,14 +188,6 @@
   border-color: var(--ink);
 }
 /* icon tile in rows */
-.it {
-  width: 40px;
-  height: 40px;
-  border-radius: 12px;
-  display: grid;
-  place-items: center;
-  flex: none;
-}
 
 /* ===== Alert RCB ===== */
 .rcb-screen {
@@ -305,9 +293,6 @@
   font-weight: 600;
   border-radius: 999px;
   padding: 4px 10px;
-}
-.feed .row {
-  align-items: flex-start;
 }
 .sig-row {
   display: grid;

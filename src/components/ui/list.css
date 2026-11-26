@@ -1,0 +1,29 @@
+/* Hairlines between rows, inset past the previous row's icon or avatar. */
+:where([data-slot='list-row'], [data-slot='list-item'], [data-slot='field']) {
+  position: relative;
+}
+[data-slot='list-row'] + [data-slot='list-row']::before,
+[data-slot='field'] + [data-slot='field']::before,
+[data-slot='list-item'] + [data-slot='list-item']::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 16px;
+  height: 1px;
+  background: var(--hair);
+  pointer-events: none;
+}
+[data-slot='list-row']:has([data-slot='list-row-tile'], [data-slot='list-row-avatar'], .org)
+  + [data-slot='list-row']::before {
+  left: 66px;
+}
+[data-slot='list-row']:has(.caltile) + [data-slot='list-row']::before {
+  left: 74px;
+}
+[data-slot='list-row']:has(.src-b) + [data-slot='list-row']::before {
+  left: 76px;
+}
+[data-slot='list-item'] + [data-slot='list-item']::before {
+  left: 68px;
+}

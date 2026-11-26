@@ -1,3 +1,13 @@
+import { Field, FieldLabel, FieldValue } from '@/components/ui/field';
+import {
+  List,
+  ListRow,
+  ListRowAvatar,
+  ListRowContent,
+  ListRowDescription,
+  ListRowTile,
+  ListRowTitle,
+} from '@/components/ui/list';
 import { Badge } from '@/components/ui/badge';
 import { Card } from '@/components/ui/card';
 import { Note } from '@/components/ui/note';
@@ -27,44 +37,40 @@ export function Consent2(c: Ctx) {
         Od czerwca 2026 drugi rodzic może zatwierdzić paszport w swoim mObywatelu. Rozszerzamy to na szkołę i
         wyjazdy, w jednym miejscu.
       </Lead>
-      <div className="list">
-        <div className="row">
-          <span className="face-i" style={{ background: '#22408f' }}>
-            AN
-          </span>
-          <span className="tx">
-            <div className="t">Anna</div>
-            <div className="s">Zatwierdzone dziś, 16:10</div>
-          </span>
+      <List>
+        <ListRow>
+          <ListRowAvatar>AN</ListRowAvatar>
+          <ListRowContent>
+            <ListRowTitle>Anna</ListRowTitle>
+            <ListRowDescription>Zatwierdzone dziś, 16:10</ListRowDescription>
+          </ListRowContent>
           <Badge>Zgoda</Badge>
-        </div>
-        <div className="row">
-          <span className="face-i" style={{ background: '#3d5a80' }}>
-            TN
-          </span>
-          <span className="tx">
-            <div className="t">Tomasz</div>
-            <div className="s">
+        </ListRow>
+        <ListRow>
+          <ListRowAvatar>TN</ListRowAvatar>
+          <ListRowContent>
+            <ListRowTitle>Tomasz</ListRowTitle>
+            <ListRowDescription>
               {tom
                 ? 'Zatwierdzone dziś, 16:11'
                 : c.s.askedTom
                   ? 'Prośba wysłana, czekamy…'
                   : 'Jeszcze nie zapytany'}
-            </div>
-          </span>
+            </ListRowDescription>
+          </ListRowContent>
           {tom ? <Badge>Zgoda</Badge> : <Badge>{c.s.askedTom ? 'Czeka' : '—'}</Badge>}
-        </div>
-      </div>
-      <div className="list" style={{ marginTop: '14px' }}>
-        <div className="field">
-          <div className="l">Wizyta w urzędzie</div>
-          <div className="v">Tylko zdjęcie. Dzieci do 12 lat nie oddają odcisków palców</div>
-        </div>
-        <div className="field">
-          <div className="l">Opłata</div>
-          <div className="v">30 zł</div>
-        </div>
-      </div>
+        </ListRow>
+      </List>
+      <List style={{ marginTop: '14px' }}>
+        <Field>
+          <FieldLabel>Wizyta w urzędzie</FieldLabel>
+          <FieldValue>Tylko zdjęcie. Dzieci do 12 lat nie oddają odcisków palców</FieldValue>
+        </Field>
+        <Field>
+          <FieldLabel>Opłata</FieldLabel>
+          <FieldValue>30 zł</FieldValue>
+        </Field>
+      </List>
       <Actions>
         {tom ? (
           <Button onClick={() => c.toast('Wizyta: Małopolski Urząd Wojewódzki, 2 grudnia, 9:20')}>
@@ -85,9 +91,7 @@ export function School(c: Ctx) {
   return (
     <div>
       <div style={{ display: 'flex', gap: '12px', alignItems: 'center', marginTop: '4px' }}>
-        <span className="face-i" style={{ background: '#b0533f' }}>
-          ZN
-        </span>
+        <ListRowAvatar>ZN</ListRowAvatar>
         <div>
           <div className="t" style={{ fontWeight: '600', fontSize: '17px' }}>
             Zosia · zerówka
@@ -105,15 +109,15 @@ export function School(c: Ctx) {
       </div>
       {tab === 'dziś' && (
         <div>
-          <div className="list">
-            <div className="row">
-              <span className="it it-orange">{I('bell', 18)}</span>
-              <span className="tx">
-                <div className="t">Nieobecność wczoraj</div>
-                <div className="s">
+          <List>
+            <ListRow>
+              <ListRowTile tone="orange">{I('bell', 18)}</ListRowTile>
+              <ListRowContent>
+                <ListRowTitle>Nieobecność wczoraj</ListRowTitle>
+                <ListRowDescription>
                   {ex ? 'Usprawiedliwiona przez Ciebie, 16:20' : 'Poniedziałek, 23 listopada, cały dzień'}
-                </div>
-              </span>
+                </ListRowDescription>
+              </ListRowContent>
               {ex ? (
                 <Badge>OK</Badge>
               ) : (
@@ -128,28 +132,30 @@ export function School(c: Ctx) {
                   Usprawiedliw
                 </button>
               )}
-            </div>
-            <div className="row">
-              <span className="it it-green">{I('route', 18)}</span>
-              <span className="tx">
-                <div className="t">Wycieczka do Ojcowa, 4 grudnia</div>
-                <div className="s">Zgoda rodzica i 45 zł</div>
-              </span>
+            </ListRow>
+            <ListRow>
+              <ListRowTile tone="green">{I('route', 18)}</ListRowTile>
+              <ListRowContent>
+                <ListRowTitle>Wycieczka do Ojcowa, 4 grudnia</ListRowTitle>
+                <ListRowDescription>Zgoda rodzica i 45 zł</ListRowDescription>
+              </ListRowContent>
               <button
                 className="mini"
                 onClick={() => c.toast('Zgoda wyrażona. Płatność BLIK w pełnej wersji.')}
               >
                 Zgoda
               </button>
-            </div>
-            <div className="row">
-              <span className="it">{I('mail', 18)}</span>
-              <span className="tx">
-                <div className="t">Wiadomość od wychowawczyni</div>
-                <div className="s">„Jutro zajęcia z bezpieczeństwa, proszę o kamizelkę odblaskową”</div>
-              </span>
-            </div>
-          </div>
+            </ListRow>
+            <ListRow>
+              <ListRowTile>{I('mail', 18)}</ListRowTile>
+              <ListRowContent>
+                <ListRowTitle>Wiadomość od wychowawczyni</ListRowTitle>
+                <ListRowDescription>
+                  „Jutro zajęcia z bezpieczeństwa, proszę o kamizelkę odblaskową”
+                </ListRowDescription>
+              </ListRowContent>
+            </ListRow>
+          </List>
         </div>
       )}
       {tab === 'frekwencja' && (

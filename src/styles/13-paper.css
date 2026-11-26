@@ -3,7 +3,6 @@
 .app {
   background: var(--app);
 }
-.list,
 .person,
 .tile,
 .sug,
@@ -15,17 +14,6 @@
   background: #fff;
   border: 1px solid var(--line);
   border-radius: 16px;
-}
-.list {
-  padding: 0;
-}
-.row {
-  padding: 16px;
-}
-.row + .row::before,
-.field + .field::before {
-  left: 16px;
-  right: 0;
 }
 .statement {
   font-weight: 400;
@@ -164,11 +152,6 @@
 }
 .toggle[aria-checked='true'] {
   background: var(--navy);
-}
-.it {
-  border-radius: 10px;
-  background: #f1f1ee !important;
-  color: var(--ink) !important;
 }
 /* dock */
 .askdock::before {

@@ -1,3 +1,5 @@
+import { Field, FieldLabel, FieldValue } from '@/components/ui/field';
+import { List, ListRow, ListRowContent, ListRowDescription, ListRowTitle } from '@/components/ui/list';
 import { Badge } from '@/components/ui/badge';
 import { Note } from '@/components/ui/note';
 import { Eyebrow, Lead, Title } from '@/components/ui/typography';
@@ -16,26 +18,26 @@ export function Baby1(c: Ctx) {
       <Hero n="baby" />
       <Title>Gratulacje! Zgłośmy narodziny.</Title>
       <Note icon="doc">Szpital Uniwersytecki zgłosił urodzenie 15 listopada. Masz czas do 6 grudnia.</Note>
-      <div className="list" style={{ marginTop: '12px' }}>
-        <div className="field">
-          <div className="l">Imię dziecka</div>
-          <div className="v">Julia</div>
-        </div>
-        <div className="field">
-          <div className="l">Nazwisko</div>
-          <div className="v">Nowicka</div>
+      <List style={{ marginTop: '12px' }}>
+        <Field>
+          <FieldLabel>Imię dziecka</FieldLabel>
+          <FieldValue>Julia</FieldValue>
+        </Field>
+        <Field>
+          <FieldLabel>Nazwisko</FieldLabel>
+          <FieldValue>Nowicka</FieldValue>
           <Src t="nazwisko Zosi, zgodne z oświadczeniem rodziców" />
-        </div>
-        <div className="field">
-          <div className="l">Data i miejsce urodzenia</div>
-          <div className="v">15 listopada 2026, Kraków</div>
+        </Field>
+        <Field>
+          <FieldLabel>Data i miejsce urodzenia</FieldLabel>
+          <FieldValue>15 listopada 2026, Kraków</FieldValue>
           <Src t="karta urodzenia ze szpitala" />
-        </div>
-        <div className="field">
-          <div className="l">Adres</div>
-          <div className="v">ul. Długa 12/4, Kraków</div>
-        </div>
-      </div>
+        </Field>
+        <Field>
+          <FieldLabel>Adres</FieldLabel>
+          <FieldValue>ul. Długa 12/4, Kraków</FieldValue>
+        </Field>
+      </List>
       <Actions>
         <Button onClick={() => c.go('baby-2')}>Dalej</Button>
       </Actions>
@@ -51,21 +53,21 @@ export function Baby2(c: Ctx) {
       <Progress n={2} of={4} />
       <Title>Co załatwić od razu?</Title>
       <Lead>Po zgłoszeniu Julia dostanie PESEL i adres automatycznie. Te sprawy wypełnimy za Ciebie:</Lead>
-      <div className="list">
+      <List>
         {[
           ['p800', '800+', 'Wniosek do ZUS, bez logowania na stronę ZUS'],
           ['nfz', 'Ubezpieczenie zdrowotne', 'Zgłoszenie do NFZ przez Twojego pracodawcę'],
           ['pass', 'Paszport', 'Gdy planujecie podróż'],
         ].map(([k, t, s]) => (
-          <div className="row">
-            <span className="tx">
-              <div className="t">{t}</div>
-              <div className="s">{s}</div>
-            </span>
+          <ListRow>
+            <ListRowContent>
+              <ListRowTitle>{t}</ListRowTitle>
+              <ListRowDescription>{s}</ListRowDescription>
+            </ListRowContent>
             <Toggle on={on[k]} label={t} set={(v: boolean) => setOn({ ...on, [k]: v })} />
-          </div>
+          </ListRow>
         ))}
-      </div>
+      </List>
       <Actions>
         <Button onClick={() => c.go('baby-3')}>Pokaż podgląd</Button>
       </Actions>
@@ -86,23 +88,23 @@ export function Baby3(c: Ctx) {
       <Eyebrow>Nowe dziecko · krok 3 z 4</Eyebrow>
       <Progress n={3} of={4} />
       <Title>Sprawdź i poproś Tomasza o zgodę</Title>
-      <div className="list">
-        <div className="field">
-          <div className="l">Akt urodzenia</div>
-          <div className="v">Julia Nowicka, 15.11.2026, Kraków</div>
+      <List>
+        <Field>
+          <FieldLabel>Akt urodzenia</FieldLabel>
+          <FieldValue>Julia Nowicka, 15.11.2026, Kraków</FieldValue>
           <Src t="szpital" />
-        </div>
-        <div className="field">
-          <div className="l">800+</div>
-          <div className="v">800 zł/mies., konto •• 4821</div>
+        </Field>
+        <Field>
+          <FieldLabel>800+</FieldLabel>
+          <FieldValue>800 zł/mies., konto •• 4821</FieldValue>
           <Src t="wniosek na Zosię z 2026" />
-        </div>
-        <div className="field">
-          <div className="l">NFZ</div>
-          <div className="v">Julia będzie ubezpieczona razem z Anną</div>
+        </Field>
+        <Field>
+          <FieldLabel>NFZ</FieldLabel>
+          <FieldValue>Julia będzie ubezpieczona razem z Anną</FieldValue>
           <Src t="ZUS, dane pracodawcy" />
-        </div>
-      </div>
+        </Field>
+      </List>
       {stage === 0 && (
         <Actions>
           <Button onClick={() => setStage(1)}>Poproś Tomasza o zgodę</Button>
@@ -152,7 +154,7 @@ export function BabyDone(c: Ctx) {
         {I('check', 28)}
       </div>
       <Title>Witaj, Julio.</Title>
-      <div className="list">
+      <List>
         <Row
           t="Akt urodzenia"
           s="Odpis wysłany na e-Doręczenia"
@@ -177,7 +179,7 @@ export function BabyDone(c: Ctx) {
           right={<Badge>W toku</Badge>}
           onClick={() => c.go('p800')}
         />
-      </div>
+      </List>
       <Actions>
         <Button onClick={() => c.go('family')}>Zobacz kartę Julii w Bliskich</Button>
       </Actions>

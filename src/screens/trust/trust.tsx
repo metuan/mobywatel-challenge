@@ -1,3 +1,12 @@
+import {
+  List,
+  ListRow,
+  ListRowContent,
+  ListRowDescription,
+  ListRowIcon,
+  ListRowTile,
+  ListRowTitle,
+} from '@/components/ui/list';
 import { Badge } from '@/components/ui/badge';
 import { Note } from '@/components/ui/note';
 import { Caption, Lead, Muted, Title } from '@/components/ui/typography';
@@ -16,13 +25,13 @@ export function AccessLog(c: Ctx) {
       <Hero n="lock" />
       <Title>Kto sprawdzał moje dane</Title>
       <Lead>Listopad 2026. Każde sprawdzenie Twoich dokumentów lub rejestrów.</Lead>
-      <div className="list">
+      <List>
         {LOG.map((l, i) => (
-          <div className="row" style={{ alignItems: 'flex-start' }}>
-            <span className="ic">{I('eye', 18)}</span>
-            <span className="tx">
-              <div className="t">{l.who}</div>
-              <div className="s">{l.why}</div>
+          <ListRow style={{ alignItems: 'flex-start' }}>
+            <ListRowIcon>{I('eye', 18)}</ListRowIcon>
+            <ListRowContent>
+              <ListRowTitle>{l.who}</ListRowTitle>
+              <ListRowDescription>{l.why}</ListRowDescription>
               <Caption as="div">
                 {l.when} · {l.how}
               </Caption>
@@ -40,10 +49,10 @@ export function AccessLog(c: Ctx) {
                   To nie ja
                 </button>
               )}
-            </span>
-          </div>
+            </ListRowContent>
+          </ListRow>
         ))}
-      </div>
+      </List>
       {flag !== null && (
         <Actions>
           <Button onClick={() => c.go('devices')}>Urządzenia na moim koncie</Button>
@@ -84,7 +93,7 @@ export function Offline(c: Ctx) {
         mDowód, prawo jazdy i poradnik bezpieczeństwa działają bez połączenia. Usługi online wrócą po
         aktualizacji.
       </Lead>
-      <div className="list">
+      <List>
         <Row icon="card" t="mDowód" s="Działa bez internetu" onClick={() => c.go('doc-id')} />
         <Row
           icon="shield"
@@ -92,7 +101,7 @@ export function Offline(c: Ctx) {
           s="Działa bez internetu"
           onClick={() => c.go('alert-guide')}
         />
-      </div>
+      </List>
       <Actions>
         <Button>Spróbuj zaktualizować ponownie</Button>
       </Actions>
@@ -113,22 +122,22 @@ export function Devices(c: Ctx) {
         Tu widzisz, gdzie jesteś zalogowana. Jeśli zgubisz telefon, wyloguj go stąd albo z gov.pl na innym
         urządzeniu.
       </Lead>
-      <div className="list">
-        <div className="row">
-          <span className="it">{I('phone', 18)}</span>
-          <span className="tx">
-            <div className="t">iPhone 15 · ten telefon</div>
-            <div className="s">Kraków · aktywny teraz</div>
-          </span>
-        </div>
-        <div className="row">
-          <span className={lost ? 'it it-gray' : 'it'}>{I('phone', 18)}</span>
-          <span className="tx">
-            <div className="t">iPhone 11 · stary</div>
-            <div className="s">
+      <List>
+        <ListRow>
+          <ListRowTile>{I('phone', 18)}</ListRowTile>
+          <ListRowContent>
+            <ListRowTitle>iPhone 15 · ten telefon</ListRowTitle>
+            <ListRowDescription>Kraków · aktywny teraz</ListRowDescription>
+          </ListRowContent>
+        </ListRow>
+        <ListRow>
+          <ListRowTile tone={lost ? 'gray' : 'default'}>{I('phone', 18)}</ListRowTile>
+          <ListRowContent>
+            <ListRowTitle>iPhone 11 · stary</ListRowTitle>
+            <ListRowDescription>
               {lost ? 'Wylogowany, mDowód usunięty z telefonu' : 'Ostatnio: 2 listopada, Katowice'}
-            </div>
-          </span>
+            </ListRowDescription>
+          </ListRowContent>
           {lost ? (
             <Badge>Wylogowany</Badge>
           ) : (
@@ -154,15 +163,15 @@ export function Devices(c: Ctx) {
               Wyloguj
             </button>
           )}
-        </div>
-        <div className="row">
-          <span className="it">{I('card', 18)}</span>
-          <span className="tx">
-            <div className="t">Przeglądarka · gov.pl</div>
-            <div className="s">MacBook · dziś, 9:12</div>
-          </span>
-        </div>
-      </div>
+        </ListRow>
+        <ListRow>
+          <ListRowTile>{I('card', 18)}</ListRowTile>
+          <ListRowContent>
+            <ListRowTitle>Przeglądarka · gov.pl</ListRowTitle>
+            <ListRowDescription>MacBook · dziś, 9:12</ListRowDescription>
+          </ListRowContent>
+        </ListRow>
+      </List>
       <Note icon="bell" style={{ marginTop: '14px' }}>
         Dostaniesz powiadomienie przy każdym nowym logowaniu. Jeśli to nie Ty, wylogujesz je jednym ruchem.
       </Note>
@@ -200,15 +209,17 @@ export function Scam(c: Ctx) {
           </Actions>
         </div>
       )}
-      <div className="list" style={{ marginTop: '14px' }}>
-        <div className="row">
-          <span className="it it-green">{I('check', 18)}</span>
-          <span className="tx">
-            <div className="t">mObywatel nigdy nie pisze SMS-ów z linkiem</div>
-            <div className="s">Prawdziwe wiadomości od urzędów są tylko w Skrzynce aplikacji</div>
-          </span>
-        </div>
-      </div>
+      <List style={{ marginTop: '14px' }}>
+        <ListRow>
+          <ListRowTile tone="green">{I('check', 18)}</ListRowTile>
+          <ListRowContent>
+            <ListRowTitle>mObywatel nigdy nie pisze SMS-ów z linkiem</ListRowTitle>
+            <ListRowDescription>
+              Prawdziwe wiadomości od urzędów są tylko w Skrzynce aplikacji
+            </ListRowDescription>
+          </ListRowContent>
+        </ListRow>
+      </List>
     </div>
   );
 }

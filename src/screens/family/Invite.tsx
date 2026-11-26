@@ -1,3 +1,4 @@
+import { List, ListRow, ListRowContent, ListRowDescription, ListRowTitle } from '@/components/ui/list';
 import { Eyebrow, Lead, Muted, Title } from '@/components/ui/typography';
 import { Actions, Button } from '@/components/ui/button';
 import { useState } from 'react';
@@ -45,17 +46,17 @@ export function Invite(c: Ctx) {
       <Eyebrow>Krok 1 z 2</Eyebrow>
       <Title>Co ta osoba może?</Title>
       <Lead>Możesz to zmienić lub cofnąć w każdej chwili. Każde użycie zobaczysz w historii dostępu.</Lead>
-      <div className="list">
+      <List>
         {rows.map(([k, t, s]) => (
-          <div className="row">
-            <span className="tx">
-              <div className="t">{t}</div>
-              <div className="s">{s}</div>
-            </span>
+          <ListRow>
+            <ListRowContent>
+              <ListRowTitle>{t}</ListRowTitle>
+              <ListRowDescription>{s}</ListRowDescription>
+            </ListRowContent>
             <Toggle on={perm[k]} label={t} set={(v: boolean) => setPerm({ ...perm, [k]: v })} />
-          </div>
+          </ListRow>
         ))}
-      </div>
+      </List>
       <Actions>
         <Button onClick={() => setStep(1)}>Utwórz zaproszenie</Button>
       </Actions>

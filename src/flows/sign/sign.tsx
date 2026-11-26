@@ -1,3 +1,4 @@
+import { List, ListItem, ListItemDescription, ListItemTitle } from '@/components/ui/list';
 import { Note } from '@/components/ui/note';
 import { Caption, Eyebrow, Lead, Title } from '@/components/ui/typography';
 import { Actions, Button } from '@/components/ui/button';
@@ -53,29 +54,31 @@ export function Sign2(c: Ctx) {
         {BILL.k}. {BILL.who}.
       </Lead>
       <Label t="Kto co zobaczy" />
-      <div className="glist">
-        <div className="grow-row is-static">
+      <List>
+        <ListItem className="cursor-default">
           <LeadIcon ic="people" />
           <span className="g-tx">
-            <span className="gt">Komitet</span>
-            <span className="gs">„1 ważny podpis, Kraków”. Bez imienia, PESEL i adresu.</span>
+            <ListItemTitle>Komitet</ListItemTitle>
+            <ListItemDescription>„1 ważny podpis, Kraków”. Bez imienia, PESEL i adresu.</ListItemDescription>
           </span>
-        </div>
-        <div className="grow-row is-static">
+        </ListItem>
+        <ListItem className="cursor-default">
           <LeadIcon ic="shield" />
           <span className="g-tx">
-            <span className="gt">Marszałek Sejmu</span>
-            <span className="gs">Twoje dane, tylko do sprawdzenia ważności podpisu.</span>
+            <ListItemTitle>Marszałek Sejmu</ListItemTitle>
+            <ListItemDescription>Twoje dane, tylko do sprawdzenia ważności podpisu.</ListItemDescription>
           </span>
-        </div>
-        <div className="grow-row is-static">
+        </ListItem>
+        <ListItem className="cursor-default">
           <LeadIcon ic="eye" />
           <span className="g-tx">
-            <span className="gt">Ty</span>
-            <span className="gs">Podpis trafi do „Moje podpisy”. Możesz śledzić losy projektu.</span>
+            <ListItemTitle>Ty</ListItemTitle>
+            <ListItemDescription>
+              Podpis trafi do „Moje podpisy”. Możesz śledzić losy projektu.
+            </ListItemDescription>
           </span>
-        </div>
-      </div>
+        </ListItem>
+      </List>
       <Note icon="info" style={{ marginTop: '14px' }}>
         To poparcie projektu, nie głos w wyborach.
       </Note>
@@ -109,31 +112,35 @@ export function SignList(c: Ctx) {
     <div>
       <Title>Moje podpisy</Title>
       <Lead>Wszystko, co poparłaś: projekty ustaw, petycje i kandydaci.</Lead>
-      <div className="glist">
-        <div className="grow-row is-static">
+      <List>
+        <ListItem className="cursor-default">
           <LeadIcon ic="doc" />
           <span className="g-tx">
-            <span className="gt">{BILL.t}</span>
-            <span className="gs">
+            <ListItemTitle>{BILL.t}</ListItemTitle>
+            <ListItemDescription>
               Projekt ustawy · podpisano dziś · {fmt(BILL.n + 1)} / {fmt(BILL.goal)}
-            </span>
+            </ListItemDescription>
           </span>
-        </div>
-        <div className="grow-row is-static">
+        </ListItem>
+        <ListItem className="cursor-default">
           <LeadIcon ic="mail" />
           <span className="g-tx">
-            <span className="gt">Więcej drzew na Kazimierzu</span>
-            <span className="gs">Petycja do Rady Miasta Krakowa · odpowiedź do 12 grudnia</span>
+            <ListItemTitle>Więcej drzew na Kazimierzu</ListItemTitle>
+            <ListItemDescription>
+              Petycja do Rady Miasta Krakowa · odpowiedź do 12 grudnia
+            </ListItemDescription>
           </span>
-        </div>
-        <div className="grow-row is-static">
+        </ListItem>
+        <ListItem className="cursor-default">
           <LeadIcon ic="check" />
           <span className="g-tx">
-            <span className="gt">Kandydatka do Senatu, okręg 32</span>
-            <span className="gs">Poparcie zgłoszenia · podpis ważny, sprawdzony w rejestrze wyborców</span>
+            <ListItemTitle>Kandydatka do Senatu, okręg 32</ListItemTitle>
+            <ListItemDescription>
+              Poparcie zgłoszenia · podpis ważny, sprawdzony w rejestrze wyborców
+            </ListItemDescription>
           </span>
-        </div>
-      </div>
+        </ListItem>
+      </List>
       <Caption style={{ marginTop: '12px' }}>
         Partie i komitety nie mogą wysyłać Ci powiadomień. Podpisujesz tylko to, czego sama szukasz albo co
         ktoś poda Ci osobiście.

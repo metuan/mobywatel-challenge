@@ -1,3 +1,17 @@
+import { FieldSource } from '@/components/ui/field';
+import {
+  ListItem,
+  ListItemChevron,
+  ListItemContent,
+  ListItemDescription,
+  ListItemTitle,
+  ListRow,
+  ListRowChevron,
+  ListRowContent,
+  ListRowDescription,
+  ListRowIcon,
+  ListRowTitle,
+} from '@/components/ui/list';
 import { sx } from '@/lib/sx';
 import { useEffect, useRef, useState } from 'react';
 import { reducedMotion } from '@/lib/env';
@@ -27,14 +41,14 @@ export const Row = ({
   right?: Child;
   onClick?: () => void;
 }) => (
-  <button className="row" onClick={onClick}>
-    {icon && <span className="ic">{I(icon)}</span>}
-    <span className="tx">
-      <div className="t">{t}</div>
-      {s && <div className="s">{s}</div>}
-    </span>
-    {right !== undefined ? right : <span className="chev">{I('chevron', 18)}</span>}
-  </button>
+  <ListRow as="button" onClick={onClick}>
+    {icon && <ListRowIcon>{I(icon)}</ListRowIcon>}
+    <ListRowContent>
+      <ListRowTitle>{t}</ListRowTitle>
+      {s && <ListRowDescription>{s}</ListRowDescription>}
+    </ListRowContent>
+    {right !== undefined ? right : <ListRowChevron size={18} />}
+  </ListRow>
 );
 
 export const Progress = ({ n, of }: { n: number; of: number }) => (
@@ -56,9 +70,9 @@ export const Toggle = ({ on, set, label }: { on: boolean; set: (v: boolean) => v
 );
 
 export const Src = ({ t }: { t: Child }) => (
-  <div className="src">
+  <FieldSource>
     {I('check', 12)} Źródło: {t}
-  </div>
+  </FieldSource>
 );
 
 export const Ring = ({
@@ -150,15 +164,15 @@ export const GRow = ({
   red?: boolean;
   onClick?: () => void;
 }) => (
-  <button className="grow-row" onClick={onClick}>
+  <ListItem as="button" onClick={onClick}>
     {ic ? <LeadIcon ic={ic} /> : av ? av : ''}
-    <span className="gtx">
-      <span className="gt">{t}</span>
-      {s && <span className="gs">{s}</span>}
-    </span>
+    <ListItemContent>
+      <ListItemTitle>{t}</ListItemTitle>
+      {s && <ListItemDescription>{s}</ListItemDescription>}
+    </ListItemContent>
     {v && <span className={'gv' + (red ? ' red' : '')}>{v}</span>}
-    <span className="gch">{I('chevron', 16)}</span>
-  </button>
+    <ListItemChevron size={16} />
+  </ListItem>
 );
 
 export const Label = ({ t, more, go }: { t: Child; more?: Child; go?: () => void }) => (

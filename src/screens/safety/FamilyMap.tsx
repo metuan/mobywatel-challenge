@@ -1,3 +1,11 @@
+import {
+  List,
+  ListRow,
+  ListRowAvatar,
+  ListRowContent,
+  ListRowDescription,
+  ListRowTitle,
+} from '@/components/ui/list';
 import { Badge } from '@/components/ui/badge';
 import { Note } from '@/components/ui/note';
 import { Title } from '@/components/ui/typography';
@@ -83,50 +91,42 @@ export function FamilyMap(c: Ctx) {
           </g>
         </svg>
       </div>
-      <div className="list" style={{ marginTop: '12px' }}>
-        <div className="row">
-          <span className="face-i" style={{ background: '#22408f' }}>
-            AN
-          </span>
-          <span className="tx">
-            <div className="t">Ty</div>
-            <div className="s">Schron, Dekerta 24 · od 15:49</div>
-          </span>
+      <List style={{ marginTop: '12px' }}>
+        <ListRow>
+          <ListRowAvatar>AN</ListRowAvatar>
+          <ListRowContent>
+            <ListRowTitle>Ty</ListRowTitle>
+            <ListRowDescription>Schron, Dekerta 24 · od 15:49</ListRowDescription>
+          </ListRowContent>
           <Badge>Bezpieczna</Badge>
-        </div>
-        <div className="row">
-          <span className="face-i" style={{ background: '#b0533f' }}>
-            ZN
-          </span>
-          <span className="tx">
-            <div className="t">Zosia</div>
-            <div className="s">Z przedszkolem w schronie · 1,9 km od Ciebie</div>
-          </span>
+        </ListRow>
+        <ListRow>
+          <ListRowAvatar>ZN</ListRowAvatar>
+          <ListRowContent>
+            <ListRowTitle>Zosia</ListRowTitle>
+            <ListRowDescription>Z przedszkolem w schronie · 1,9 km od Ciebie</ListRowDescription>
+          </ListRowContent>
           <Badge>Bezpieczna</Badge>
-        </div>
-        <div className="row">
-          <span className="face-i" style={{ background: '#3d5a80' }}>
-            TN
-          </span>
-          <span className="tx">
-            <div className="t">Tomasz</div>
-            <div className="s">Katowice · poza strefą alarmu</div>
-          </span>
+        </ListRow>
+        <ListRow>
+          <ListRowAvatar>TN</ListRowAvatar>
+          <ListRowContent>
+            <ListRowTitle>Tomasz</ListRowTitle>
+            <ListRowDescription>Katowice · poza strefą alarmu</ListRowDescription>
+          </ListRowContent>
           <Badge>Bezpieczny</Badge>
-        </div>
-        <div className="row">
-          <span className="face-i" style={{ background: '#1c7a4c' }}>
-            SN
-          </span>
-          <span className="tx">
-            <div className="t">Tata</div>
-            <div className="s">Sandomierz · poza strefą alarmu · nie odpowiada</div>
-          </span>
+        </ListRow>
+        <ListRow>
+          <ListRowAvatar>SN</ListRowAvatar>
+          <ListRowContent>
+            <ListRowTitle>Tata</ListRowTitle>
+            <ListRowDescription>Sandomierz · poza strefą alarmu · nie odpowiada</ListRowDescription>
+          </ListRowContent>
           <button className="mini" onClick={() => c.go('easy-call')}>
             {I('phone', 14)} Zadzwoń
           </button>
-        </div>
-      </div>
+        </ListRow>
+      </List>
       <Note icon="lock" style={{ marginTop: '12px' }}>
         Lokalizację widzi tylko rodzina i tylko w czasie alarmu. Udostępnianie wyłącza się samo po odwołaniu.
       </Note>

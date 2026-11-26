@@ -1,3 +1,5 @@
+import { Field, FieldLabel, FieldValue } from '@/components/ui/field';
+import { List } from '@/components/ui/list';
 import { Card } from '@/components/ui/card';
 import { Note } from '@/components/ui/note';
 import { Eyebrow, Muted, Title } from '@/components/ui/typography';
@@ -87,12 +89,12 @@ export function Letter3(c: Ctx) {
         </p>
         <p style={{ margin: '0' }}>Anna Nowicka</p>
       </Card>
-      <div className="list" style={{ marginTop: '10px' }}>
-        <div className="field">
-          <div className="l">Załącznik</div>
-          <div className="v">Zaświadczenie o uldze na dziecko (z rejestru, bez skanowania)</div>
-        </div>
-      </div>
+      <List style={{ marginTop: '10px' }}>
+        <Field>
+          <FieldLabel>Załącznik</FieldLabel>
+          <FieldValue>Zaświadczenie o uldze na dziecko (z rejestru, bez skanowania)</FieldValue>
+        </Field>
+      </List>
       {c.s.letterSent ? (
         <Note icon="check" tone="green" style={{ marginTop: '14px' }}>
           Wysłano przez e-Doręczenia. Urzędowe potwierdzenie odbioru jest zapisane w sprawie.
@@ -153,21 +155,21 @@ export function Letter2(c: Ctx) {
           </span>
         </div>
       )}
-      <div className="list">
+      <List>
         {F.map(([l, v], i) => (
-          <div className="field">
-            <div className="l">{l}</div>
+          <Field>
+            <FieldLabel>{l}</FieldLabel>
             {i < k ? (
-              <div className="v in">{v}</div>
+              <FieldValue className="in">{v}</FieldValue>
             ) : (
               <div className="skel">
                 <i></i>
                 <i></i>
               </div>
             )}
-          </div>
+          </Field>
         ))}
-      </div>
+      </List>
       {k >= 4 && (
         <>
           <div className="msg ai in" style={{ maxWidth: '100%', marginTop: '12px' }}>

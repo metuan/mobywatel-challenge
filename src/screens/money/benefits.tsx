@@ -1,3 +1,4 @@
+import { List, ListItemDescription, ListItemTitle } from '@/components/ui/list';
 import { Badge } from '@/components/ui/badge';
 import { Card } from '@/components/ui/card';
 import { Note } from '@/components/ui/note';
@@ -16,7 +17,7 @@ export function Benefits(c: Ctx) {
       <Note icon="lock" tone="amber">
         Sprawdzamy to tylko za Twoją zgodą, na podstawie danych o rodzinie. Nic nie składamy bez Ciebie.
       </Note>
-      <div className="list" style={{ marginTop: '12px' }}>
+      <List style={{ marginTop: '12px' }}>
         <Row
           icon="coin"
           t="800+ na drugie dziecko"
@@ -38,7 +39,7 @@ export function Benefits(c: Ctx) {
           right={<Badge>Pasuje</Badge>}
           onClick={() => {}}
         />
-      </div>
+      </List>
     </div>
   );
 }
@@ -56,9 +57,9 @@ export function P800(c: Ctx) {
           <small>dni</small>
         </Ring>
         <div>
-          <div className="gs">Następna wypłata</div>
+          <ListItemDescription as="div">Następna wypłata</ListItemDescription>
           <div className="p8-v">800 zł</div>
-          <div className="gs">28 listopada · konto •• 4821</div>
+          <ListItemDescription as="div">28 listopada · konto •• 4821</ListItemDescription>
         </div>
       </div>
       <Label t="Wypłaty od czerwca 2026 do maja 2027" />
@@ -81,19 +82,19 @@ export function P800(c: Ctx) {
       {c.s.babyDone ? (
         <>
           <Label t="Julia" />
-          <div className="glist">
+          <List>
             <GRow ic="baby" t="Wniosek w ZUS" s="Decyzja do 24 grudnia" v="W toku" />
-          </div>
+          </List>
         </>
       ) : (
-        <div className="glist" style={{ marginTop: '12px' }}>
+        <List style={{ marginTop: '12px' }}>
           <GRow
             ic="baby"
             t="Urodziło się dziecko?"
             s="Wniosek o 800+ złożysz w pakiecie „Nowe dziecko”"
             onClick={() => c.go('baby-1')}
           />
-        </div>
+        </List>
       )}
       <Caption style={{ marginTop: '12px' }}>Nie musisz logować się do ZUS ani do banku.</Caption>
     </div>
@@ -118,8 +119,8 @@ export function Vacc(c: Ctx) {
           <div className={'vt-i ' + st}>
             <span className="vt-dot">{st === 'ok' ? I('check', 12) : ''}</span>
             <div className="vt-b">
-              <div className="gt">{t}</div>
-              <div className="gs">{s}</div>
+              <ListItemTitle as="div">{t}</ListItemTitle>
+              <ListItemDescription as="div">{s}</ListItemDescription>
               {st === 'due' && (
                 <button className="pill" style={{ marginTop: '10px' }} onClick={() => c.go('visit-1')}>
                   Umów szczepienie

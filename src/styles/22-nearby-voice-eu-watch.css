@@ -188,9 +188,6 @@
 .b8-n b {
   color: var(--ink);
 }
-.grow-row.is-static {
-  cursor: default;
-}
 .pl-map {
   position: relative;
   margin: 4px -4px 0;

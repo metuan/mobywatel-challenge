@@ -20,8 +20,6 @@ body {
   color: var(--label2);
   margin: 6px 0 0;
 }
-.row .s,
-.field .l,
 .mcard .ms {
   color: var(--label2);
 }
@@ -111,7 +109,6 @@ body {
   display: grid;
 }
 /* grouped inset lists */
-.list,
 .person,
 .tile,
 .sug,
@@ -125,56 +122,6 @@ body {
   border: 0;
   border-radius: 12px;
   box-shadow: none;
-}
-.row {
-  padding: 11px 16px;
-  min-height: 52px;
-}
-.row .t {
-  font-size: 17px;
-  font-weight: 400;
-  letter-spacing: -0.02em;
-}
-.row .s {
-  font-size: 15px;
-}
-.row + .row::before,
-.field + .field::before {
-  height: 0.5px;
-  background: var(--sep);
-  left: 16px;
-}
-.row:has(.it) + .row::before,
-.row:has(.org) + .row::before,
-.row:has(.face-i) + .row::before {
-  left: 66px;
-}
-button.row:hover {
-  background: #fff;
-}
-button.row:active {
-  background: #e5e5ea;
-}
-.row .chev {
-  color: #c4c4c7;
-}
-.it {
-  width: 30px;
-  height: 30px;
-  border-radius: 7px;
-  background: var(--tint) !important;
-  color: #fff !important;
-}
-.it svg {
-  width: 18px;
-  height: 18px;
-}
-.field {
-  padding: 11px 16px;
-}
-.field .v {
-  font-size: 17px;
-  font-weight: 400;
 }
 .pill {
   font-size: 15px;
@@ -347,11 +294,6 @@ button.row:active {
   background: #c7c7cc;
   margin: 0 auto 14px;
 }
-.sheet .fields {
-  background: #fff;
-  border: 0;
-  border-radius: 12px;
-}
 .sheet .q {
   color: var(--label2);
   font-weight: 600;
@@ -422,10 +364,6 @@ button.row:active {
 }
 .qr {
   border-radius: 16px;
-}
-.face-i {
-  width: 40px;
-  height: 40px;
 }
 .road .n {
   font-family: var(--disp);

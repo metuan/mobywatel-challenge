@@ -1,3 +1,11 @@
+import {
+  List,
+  ListRow,
+  ListRowAvatar,
+  ListRowContent,
+  ListRowIcon,
+  ListRowTitle,
+} from '@/components/ui/list';
 import { Badge } from '@/components/ui/badge';
 import { Note } from '@/components/ui/note';
 import { Caption, Muted, Subtitle } from '@/components/ui/typography';
@@ -11,16 +19,14 @@ export function MemberZosia(c: Ctx) {
   return (
     <div>
       <div style={{ display: 'flex', gap: '12px', alignItems: 'center', marginTop: '8px' }}>
-        <span className="face-i" style={{ background: '#a8650a', width: '52px', height: '52px' }}>
-          ZN
-        </span>
+        <ListRowAvatar className="size-[52px]">ZN</ListRowAvatar>
         <div>
           <Subtitle as="h1">Zofia Nowicka</Subtitle>
           <Muted>6 lat, PESEL 200307•••••</Muted>
         </div>
       </div>
       <Sec t="Dokumenty" />
-      <div className="list">
+      <List>
         <Row
           icon="card"
           t="Paszport"
@@ -34,18 +40,18 @@ export function MemberZosia(c: Ctx) {
           s="Szkoła Podstawowa nr 9, zerówka"
           onClick={() => c.go('school')}
         />
-      </div>
+      </List>
       <Sec t="Szkoła" />
-      <div className="list">
+      <List>
         <Row
           icon="list"
           t="Frekwencja, usprawiedliwienia, zgody"
           s={c.s.excused ? 'Wszystko załatwione' : '1 nieobecność do usprawiedliwienia'}
           onClick={() => c.go('school')}
         />
-      </div>
+      </List>
       <Sec t="Zdrowie" />
-      <div className="list">
+      <List>
         <Row
           icon="steth"
           t="e-Skierowanie: kardiolog"
@@ -60,11 +66,11 @@ export function MemberZosia(c: Ctx) {
           s="Kod 4821, ważna do 21 grudnia"
           onClick={() => {}}
         />
-      </div>
+      </List>
       <Sec t="Świadczenia" />
-      <div className="list">
+      <List>
         <Row icon="coin" t="800+" s="Wypłata 28 listopada" onClick={() => c.go('p800')} />
-      </div>
+      </List>
       <Caption style={{ marginTop: '14px' }}>Widzą: Ty i Tomasz (oboje rodzice).</Caption>
     </div>
   );
@@ -74,9 +80,7 @@ export function MemberTata(c: Ctx) {
   return (
     <div>
       <div style={{ display: 'flex', gap: '12px', alignItems: 'center', marginTop: '8px' }}>
-        <span className="face-i" style={{ background: '#1c7a4c', width: '52px', height: '52px' }}>
-          SN
-        </span>
+        <ListRowAvatar className="size-[52px]">SN</ListRowAvatar>
         <div>
           <Subtitle as="h1">Stanisław Nowicki</Subtitle>
           <Muted>Tata, 71 lat, Sandomierz</Muted>
@@ -87,7 +91,7 @@ export function MemberTata(c: Ctx) {
         każdej chwili.
       </Note>
       <Sec t="Możesz" />
-      <div className="list">
+      <List>
         {[
           ['Widzieć jego terminy', true],
           ['Czytać pisma z urzędów', true],
@@ -95,18 +99,18 @@ export function MemberTata(c: Ctx) {
           ['Widzieć dane o zdrowiu', false],
           ['Wysyłać wnioski bez jego zgody', false],
         ].map(([t, on]) => (
-          <div className="row">
-            <span className="ic" style={sx(on ? 'background:var(--green-soft);color:var(--green)' : '')}>
+          <ListRow>
+            <ListRowIcon style={sx(on ? 'background:var(--green-soft);color:var(--green)' : '')}>
               {I(on ? 'check' : 'x', 18)}
-            </span>
-            <span className="tx">
-              <div className="t">{t}</div>
-            </span>
-          </div>
+            </ListRowIcon>
+            <ListRowContent>
+              <ListRowTitle>{t}</ListRowTitle>
+            </ListRowContent>
+          </ListRow>
         ))}
-      </div>
+      </List>
       <Sec t="Terminy taty" />
-      <div className="list">
+      <List>
         <Row
           icon="card"
           t="Dowód osobisty"
@@ -121,7 +125,7 @@ export function MemberTata(c: Ctx) {
           right={<Badge>Ważna</Badge>}
           onClick={() => {}}
         />
-      </div>
+      </List>
       <Actions>
         <Button variant="secondary" onClick={() => c.go('easy-approve')}>
           Zobacz, jak tata to zatwierdził
@@ -135,31 +139,29 @@ export function MemberTomasz(_c: Ctx) {
   return (
     <div>
       <div style={{ display: 'flex', gap: '12px', alignItems: 'center', marginTop: '8px' }}>
-        <span className="face-i" style={{ background: '#3d5a80', width: '52px', height: '52px' }}>
-          TN
-        </span>
+        <ListRowAvatar className="size-[52px]">TN</ListRowAvatar>
         <div>
           <Subtitle as="h1">Tomasz Nowicki</Subtitle>
           <Muted>Partner</Muted>
         </div>
       </div>
       <Sec t="Wspólne" />
-      <div className="list">
+      <List>
         {[
           'Terminy rodziny',
           'Sprawy dzieci, jako drugi rodzic',
           'Plan kryzysowy i status „Jestem bezpieczna”',
         ].map(t => (
-          <div className="row">
-            <span className="ic" style={{ background: 'var(--green-soft)', color: 'var(--green)' }}>
+          <ListRow>
+            <ListRowIcon style={{ background: 'var(--green-soft)', color: 'var(--green)' }}>
               {I('check', 18)}
-            </span>
-            <span className="tx">
-              <div className="t">{t}</div>
-            </span>
-          </div>
+            </ListRowIcon>
+            <ListRowContent>
+              <ListRowTitle>{t}</ListRowTitle>
+            </ListRowContent>
+          </ListRow>
         ))}
-      </div>
+      </List>
       <Muted as="p" style={{ marginTop: '12px' }}>
         Każdy z Was zachowuje własne dokumenty, finanse i zdrowie. Nie są wspólne.
       </Muted>

@@ -1,3 +1,5 @@
+import { cn } from '@/lib/utils';
+import { List, ListRow, ListRowContent, ListRowIcon, ListRowTitle } from '@/components/ui/list';
 import { Caption, Lead, Title } from '@/components/ui/typography';
 import { Actions } from '@/components/ui/button';
 import { sx } from '@/lib/sx';
@@ -27,23 +29,23 @@ export function Lost(c: Ctx) {
           ? 'Zastrzeżenia są aktywne od 15:58. Oto co dalej.'
           : 'Zastrzeżemy to wszystko naraz. Każdy krok możesz później cofnąć.'}
       </Lead>
-      <div className={'list lost8' + (done ? ' done' : '')}>
+      <List className={cn('lost8', done && 'done')}>
         {items.map((t, i) => (
-          <div className="row" style={sx(`--i:${i}`)}>
-            <span className="ic lk">{done ? I('check', 18) : I('lock', 18)}</span>
-            <span className="tx">
-              <div className="t">{t}</div>
-            </span>
-          </div>
+          <ListRow style={sx(`--i:${i}`)}>
+            <ListRowIcon className="lk">{done ? I('check', 18) : I('lock', 18)}</ListRowIcon>
+            <ListRowContent>
+              <ListRowTitle>{t}</ListRowTitle>
+            </ListRowContent>
+          </ListRow>
         ))}
-      </div>
+      </List>
       {done ? (
         <>
           <Sec t="Następne kroki" />
-          <div className="list">
+          <List>
             <Row t="Zamów nowy dowód" s="Wizyta w urzędzie na zdjęcie i odciski" onClick={() => {}} />
             <Row t="Zgłoś kradzież na policję" s="Jeśli portfel ukradziono" onClick={() => {}} />
-          </div>
+          </List>
         </>
       ) : (
         <>

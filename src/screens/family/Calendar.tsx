@@ -1,5 +1,13 @@
+import { cn } from '@/lib/utils';
+import {
+  List,
+  ListItem,
+  ListItemChevron,
+  ListItemContent,
+  ListItemDescription,
+  ListItemTitle,
+} from '@/components/ui/list';
 import { Lead, Title } from '@/components/ui/typography';
-import { I } from '@/ui/icons';
 import type { Ctx } from '@/types';
 
 /* 6. Family calendar: a date tile on the left, the same shape for every row, red only for what is urgent */
@@ -17,22 +25,22 @@ export function Calendar(c: Ctx) {
     <div>
       <Title>Kalendarz rodziny</Title>
       <Lead>Najbliższe 90 dni. Każdy termin ma następny krok.</Lead>
-      <div className="glist cal8">
+      <List>
         {items.map(([d, m, t, w, left, r, urg]) => (
-          <button className={'grow-row' + (urg ? ' urg' : '')} onClick={() => c.go(r)}>
+          <ListItem as="button" className={cn('gap-3.5', urg && 'urg')} onClick={() => c.go(r)}>
             <span className="cal-d">
               <b>{d}</b>
               <small>{m}</small>
             </span>
-            <span className="gtx">
-              <span className="gt">{t}</span>
-              <span className="gs">{w}</span>
-            </span>
+            <ListItemContent>
+              <ListItemTitle>{t}</ListItemTitle>
+              <ListItemDescription>{w}</ListItemDescription>
+            </ListItemContent>
             <span className="cal-l">{left === 4 ? 'za 4 dni' : `za ${left} dni`}</span>
-            <span className="gch">{I('chevron', 16)}</span>
-          </button>
+            <ListItemChevron size={16} />
+          </ListItem>
         ))}
-      </div>
+      </List>
     </div>
   );
 }

@@ -1,3 +1,5 @@
+import { Field, FieldLabel, FieldValue } from '@/components/ui/field';
+import { List, ListRow, ListRowContent, ListRowDescription, ListRowTitle } from '@/components/ui/list';
 import { Eyebrow, Lead, Title } from '@/components/ui/typography';
 import { Actions, Button } from '@/components/ui/button';
 import { sx } from '@/lib/sx';
@@ -77,27 +79,27 @@ export function Damage2(c: Ctx) {
           </button>
         ))}
       </div>
-      <div className="list">
-        <div className="field">
-          <div className="l">Adres</div>
-          <div className="v">ul. Długa 12/4, Kraków</div>
+      <List>
+        <Field>
+          <FieldLabel>Adres</FieldLabel>
+          <FieldValue>ul. Długa 12/4, Kraków</FieldValue>
           <Src t="rejestr PESEL" />
-        </div>
-        <div className="field">
-          <div className="l">Zdarzenie</div>
-          <div className="v">Alarm powietrzny, 24 listopada</div>
+        </Field>
+        <Field>
+          <FieldLabel>Zdarzenie</FieldLabel>
+          <FieldValue>Alarm powietrzny, 24 listopada</FieldValue>
           <Src t="Alert RCB" />
-        </div>
-        <div className="field">
-          <div className="l">Opis</div>
-          <div className="v">Wybite okna w kuchni i pokoju, zalany parkiet</div>
-        </div>
-        <div className="field">
-          <div className="l">Konto do wypłaty</div>
-          <div className="v">PKO BP •••• 4471</div>
+        </Field>
+        <Field>
+          <FieldLabel>Opis</FieldLabel>
+          <FieldValue>Wybite okna w kuchni i pokoju, zalany parkiet</FieldValue>
+        </Field>
+        <Field>
+          <FieldLabel>Konto do wypłaty</FieldLabel>
+          <FieldValue>PKO BP •••• 4471</FieldValue>
           <Src t="konto do zwrotu podatku" />
-        </div>
-      </div>
+        </Field>
+      </List>
       <Actions>
         <Button
           onClick={() =>
@@ -122,22 +124,22 @@ export function Damage3(c: Ctx) {
       <Hero n="shelter" />
       <Title>Zgłoszenie przyjęte</Title>
       <Lead>Numer sprawy: KR/SZK/2026/0412. Zajmuje się nią Urząd Miasta Krakowa.</Lead>
-      <div className="list timeline">
+      <List className="timeline">
         {[
           ['Zgłoszenie wysłane', 'Dziś, 16:04', 1],
           ['Komisja ogląda szkody', 'Wybierz termin: 26 lub 27 listopada', 0],
           ['Komisja wycenia szkody', 'Wynik zobaczysz tutaj', 0],
           ['Wypłata zasiłku', 'Na konto •••• 4471', 0],
         ].map(([t, s, d]) => (
-          <div className="row">
+          <ListRow>
             <span className={'tl' + (d ? ' on' : '')}></span>
-            <span className="tx">
-              <div className="t">{t}</div>
-              <div className="s">{s}</div>
-            </span>
-          </div>
+            <ListRowContent>
+              <ListRowTitle>{t}</ListRowTitle>
+              <ListRowDescription>{s}</ListRowDescription>
+            </ListRowContent>
+          </ListRow>
         ))}
-      </div>
+      </List>
       <Actions>
         <Button onClick={() => c.toast('Komisja przyjdzie 26 listopada, 10:00–12:00')}>
           Wybierz termin wizyty komisji

@@ -1,3 +1,4 @@
+import { List, ListItemDescription, ListItemTitle } from '@/components/ui/list';
 import { Title } from '@/components/ui/typography';
 import { sx } from '@/lib/sx';
 import { useState } from 'react';
@@ -75,14 +76,14 @@ export function Consents(c: Ctx) {
       {groups.map(g => (
         <>
           <Label t={g} />
-          <div className="glist">
+          <List>
             {list
               .filter(x => x.group === g)
               .map(x => (
                 <div className="cons-row" key={x.k}>
                   {x.av ? <Av i={x.av} size={36} /> : <span className="lead-i">{x.ic && I(x.ic, 18)}</span>}
                   <span className="cr-tx">
-                    <span className="gt">
+                    <ListItemTitle>
                       {x.who}
                       {x.ai && (
                         <>
@@ -90,8 +91,8 @@ export function Consents(c: Ctx) {
                           <span className="tag-a sm">AI</span>
                         </>
                       )}
-                    </span>
-                    <span className="gs">{x.what}</span>
+                    </ListItemTitle>
+                    <ListItemDescription>{x.what}</ListItemDescription>
                     <span className={`cr-until ${x.left === 0 ? 'off' : ''}`}>
                       {x.left === 0 ? 'Wygasła' : x.until}
                       {x.left ? (
@@ -114,7 +115,7 @@ export function Consents(c: Ctx) {
                   </button>
                 </div>
               ))}
-          </div>
+          </List>
         </>
       ))}
       {!list.length && (

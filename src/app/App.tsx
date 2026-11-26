@@ -1,3 +1,4 @@
+import { Field, FieldValue } from '@/components/ui/field';
 import { Caption, Subtitle } from '@/components/ui/typography';
 import { Actions, Button } from '@/components/ui/button';
 import { sx } from '@/lib/sx';
@@ -534,14 +535,14 @@ export function App() {
                   >
                     {sheet.t}
                   </Subtitle>
-                  <div className="fields">
+                  <div className="rounded-[22px] bg-white">
                     {(sheet.items || []).map(i => (
-                      <div className="field" style={sx(sheet.big ? 'font-size:18px' : '')}>
-                        <div className="v" style={{ display: 'flex', gap: '10px', alignItems: 'flex-start' }}>
+                      <Field style={sx(sheet.big ? 'font-size:18px' : '')}>
+                        <FieldValue style={{ display: 'flex', gap: '10px', alignItems: 'flex-start' }}>
                           <span style={{ color: 'var(--blue)', marginTop: '2px' }}>{I('check', 16)}</span>
                           <span>{i}</span>
-                        </div>
-                      </div>
+                        </FieldValue>
+                      </Field>
                     ))}
                   </div>
                   <Caption style={{ marginTop: '12px' }}>

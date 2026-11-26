@@ -1,3 +1,4 @@
+import { ListItemContent, ListItemDescription, ListItemTitle } from '@/components/ui/list';
 import { Caption } from '@/components/ui/typography';
 import { Actions, Button } from '@/components/ui/button';
 import { useEffect } from 'react';
@@ -35,10 +36,10 @@ export function PaySheet({
         {METHODS.map(([ic, t, s], i) => (
           <button aria-pressed={sheet.m === i} onClick={() => setSheet({ ...sheet, m: i })}>
             <span className="lead-i">{I(ic, 18)}</span>
-            <span className="gtx">
-              <span className="gt">{t}</span>
-              <span className="gs">{s}</span>
-            </span>
+            <ListItemContent>
+              <ListItemTitle>{t}</ListItemTitle>
+              <ListItemDescription>{s}</ListItemDescription>
+            </ListItemContent>
             <span className="radio"></span>
           </button>
         ))}

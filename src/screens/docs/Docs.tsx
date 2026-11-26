@@ -1,3 +1,12 @@
+import { Field, FieldLabel, FieldValue } from '@/components/ui/field';
+import {
+  List,
+  ListItem,
+  ListItemChevron,
+  ListItemContent,
+  ListItemDescription,
+  ListItemTitle,
+} from '@/components/ui/list';
 import { Card } from '@/components/ui/card';
 import { Note } from '@/components/ui/note';
 import { Caption, Display, Eyebrow, Lead, Muted, Subtitle, Title } from '@/components/ui/typography';
@@ -18,16 +27,16 @@ function DocIdBase(c: Ctx) {
   return (
     <div>
       <DocCard c={c} />
-      <div className="glist" style={{ marginTop: '12px' }}>
-        <div className="grow-row">
-          <span className="gtx">
-            <span className="gs">PESEL</span>
-            <span className="gt" style={{ fontVariantNumeric: 'tabular-nums' }}>
+      <List style={{ marginTop: '12px' }}>
+        <ListItem>
+          <ListItemContent>
+            <ListItemDescription>PESEL</ListItemDescription>
+            <ListItemTitle style={{ fontVariantNumeric: 'tabular-nums' }}>
               {show ? '92031412345' : '92031•••••'}
-            </span>
-          </span>
-        </div>
-      </div>
+            </ListItemTitle>
+          </ListItemContent>
+        </ListItem>
+      </List>
       <Actions>
         <Button onClick={() => c.go('share-min')}>{I('qr', 18)} Pokaż do sprawdzenia</Button>
         <Button variant="secondary" onClick={() => setShow(!show)}>
@@ -91,16 +100,16 @@ export function RenewPass(c: Ctx) {
       <Lead>
         Wniosek przygotujemy z danych, które już są w rejestrach. Potrzebna jest zgoda obojga rodziców.
       </Lead>
-      <div className="list">
-        <div className="field">
-          <div className="l">Wizyta w urzędzie</div>
-          <div className="v">Tylko zdjęcie, dzieci do 12 lat nie oddają odcisków palców</div>
-        </div>
-        <div className="field">
-          <div className="l">Opłata</div>
-          <div className="v">30 zł</div>
-        </div>
-      </div>
+      <List>
+        <Field>
+          <FieldLabel>Wizyta w urzędzie</FieldLabel>
+          <FieldValue>Tylko zdjęcie, dzieci do 12 lat nie oddają odcisków palców</FieldValue>
+        </Field>
+        <Field>
+          <FieldLabel>Opłata</FieldLabel>
+          <FieldValue>30 zł</FieldValue>
+        </Field>
+      </List>
       <Actions>
         <Button onClick={() => c.go('consent2')}>Dalej: zgoda obojga rodziców</Button>
       </Actions>
@@ -150,7 +159,7 @@ export function Issued(c: Ctx) {
         </div>
       )}
       <Sec t="W portfelu" />
-      <div className="list">
+      <List>
         <Row
           icon="card"
           t="Prawo wykonywania zawodu (PWZ)"
@@ -164,7 +173,7 @@ export function Issued(c: Ctx) {
           onClick={() => {}}
         />
         {acc && <Row icon="doc" t="Dyplom magistra" s="Uniwersytet Jagielloński, 2016" onClick={() => {}} />}
-      </div>
+      </List>
       <Actions>
         <Button variant="secondary" onClick={() => c.go('share-min')}>
           Pokaż pracodawcy tylko dyplom
@@ -246,21 +255,21 @@ function DocsBase(c: Ctx) {
         </>
       )}
       <Label t="Pokaż tylko to, co trzeba" />
-      <div className="glist">
+      <List>
         <GRow ic="eye" t="Pokaż tylko 18+" s="Bez imienia i numeru PESEL" onClick={() => c.go('share-min')} />
         <GRow ic="pin" t="Pokaż tylko miasto" s="Bez dokładnego adresu" onClick={() => c.go('share-min')} />
         <GRow ic="list" t="Kto sprawdzał moje dane" v="4 w listopadzie" onClick={() => c.go('access-log')} />
-      </div>
-      <div className="glist" style={{ marginTop: '12px' }}>
-        <button className="grow-row" onClick={() => c.go('lost')}>
+      </List>
+      <List style={{ marginTop: '12px' }}>
+        <ListItem as="button" onClick={() => c.go('lost')}>
           <LeadIcon ic="lock" />
-          <span className="gtx">
-            <span className="gt red-t">Zgubiłam portfel</span>
-            <span className="gs">Zastrzeż wszystkie dokumenty naraz</span>
-          </span>
-          <span className="gch">{I('chevron', 16)}</span>
-        </button>
-      </div>
+          <ListItemContent>
+            <ListItemTitle className="red-t">Zgubiłam portfel</ListItemTitle>
+            <ListItemDescription>Zastrzeż wszystkie dokumenty naraz</ListItemDescription>
+          </ListItemContent>
+          <ListItemChevron size={16} />
+        </ListItem>
+      </List>
     </div>
   );
 }
