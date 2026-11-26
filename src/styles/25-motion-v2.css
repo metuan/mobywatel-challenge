@@ -35,8 +35,6 @@
 .hold-fill {
   position: absolute;
   inset: 0;
-  z-index: -1;
-  background: rgb(0 0 0 / 28%);
   clip-path: inset(0 calc((1 - var(--p)) * 100%) 0 0);
   transition: clip-path 0.2s cubic-bezier(0.23, 1, 0.32, 1);
 }
@@ -183,9 +181,6 @@
 }
 /* callouts nested inside a list row: align with the row text, no extra left inset */
 .app.scrolled .topbar {
-  background: rgb(244 244 246 / 82%);
-  backdrop-filter: blur(24px) saturate(180%);
-  -webkit-backdrop-filter: blur(24px) saturate(180%);
   transition: box-shadow 0.2s;
 }
 /* scroll fix: one calm material under the status bar, no grey band, no logo/title overlap */
@@ -244,9 +239,6 @@
   to {
     opacity: 1;
   }
-}
-.story:has(.st-next.ready) .st-nav {
-  margin-top: 56px;
 }
 .ms-next.ready::before,
 .ms-next.ready::after {

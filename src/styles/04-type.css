@@ -8,20 +8,11 @@
   display: flex;
   justify-content: space-between;
   align-items: baseline;
-  margin: 30px 2px 12px;
 }
 .sec h3 {
-  font-size: 19px;
-  letter-spacing: -0.025em;
   margin: 0;
-  font-weight: 600;
-  color: var(--ink);
 }
 .sec button {
-  color: var(--ink2);
-  font-size: 14px;
-  font-weight: 500;
-  text-decoration: underline;
   text-underline-offset: 3px;
   text-decoration-color: rgb(12 18 34 / 25%);
 }

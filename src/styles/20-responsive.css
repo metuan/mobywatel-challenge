@@ -13,7 +13,6 @@
   }
   .st-t {
     font-size: 32px;
-    line-height: 36px;
   }
 }
 @media (max-height: 820px) and (min-width: 961px) {
@@ -25,7 +24,6 @@
   }
   .st-t {
     font-size: 30px;
-    line-height: 34px;
   }
   .st-hook {
     font-size: 16px;

@@ -52,7 +52,6 @@
 }
 .conf8.done .cf-face,
 .conf8.done .cf-br {
-  opacity: 0;
   transition: opacity 0.15s;
 }
 .conf8.done .cf-ok {
@@ -174,9 +173,6 @@
   color: rgb(255 255 255 / 62%);
   margin-top: 4px;
   font-variant-numeric: tabular-nums;
-}
-.stack.w2 .sc-s {
-  display: none;
 }
 /* callouts: fix squashed icons, give them a proper tinted badge */
 /* sign list: avatar was being stretched by the text column rule */
@@ -312,17 +308,6 @@
   color: var(--ink-2);
   white-space: nowrap;
   font-variant-numeric: tabular-nums;
-}
-.cal8 .urg .cal-d {
-  background: var(--red-soft);
-}
-.cal8 .urg .cal-d b,
-.cal8 .urg .cal-d small,
-.cal8 .urg .cal-l {
-  color: var(--red);
-}
-.cal8 .urg .cal-l {
-  font-weight: 600;
 }
 .mtile .mt-t,
 .mtile .mt-s {

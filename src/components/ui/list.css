@@ -18,12 +18,6 @@
   + [data-slot='list-row']::before {
   left: 66px;
 }
-[data-slot='list-row']:has(.caltile) + [data-slot='list-row']::before {
-  left: 74px;
-}
-[data-slot='list-row']:has(.src-b) + [data-slot='list-row']::before {
-  left: 76px;
-}
 [data-slot='list-item'] + [data-slot='list-item']::before {
   left: 68px;
 }

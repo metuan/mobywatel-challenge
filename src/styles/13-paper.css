@@ -1,70 +1,18 @@
 /* ===== v5: review pass (paper app, calmer type, one neutral tile, one blue) ===== */
-.phone,
-.app {
-  background: var(--app);
-}
-.person,
-.tile,
-.sug,
-.msg.ai,
-.levels div,
-.offline,
-.map,
-.urgent {
-  background: #fff;
-  border: 1px solid var(--line);
-  border-radius: 16px;
-}
-.statement {
-  font-weight: 400;
-  font-size: 36px;
-  line-height: 1.16;
-  letter-spacing: -0.02em;
-}
-.sec {
-  margin: 32px 2px 12px;
-}
-.sec h3 {
-  font-size: 17px;
-  font-weight: 600;
-  letter-spacing: -0.01em;
-}
 .sec button {
   text-decoration: none;
-  color: var(--ink-2);
-  font-size: 14px;
-}
-.dateline {
-  font-size: 13px;
-  font-weight: 500;
-  color: var(--ink-2);
-  margin-top: 14px;
 }
 .menu-btn {
   border: 0;
   background: none;
   padding: 8px 4px;
-  font-size: 15px;
 }
 .round {
   background: #fff;
 }
-.bg-sky,
 .bg-sand,
-.bg-mint,
-.bg-rose,
-.bg-yellow,
-.bg-gray {
+.bg-rose {
   background: var(--tile);
-}
-.mcard .mimg {
-  border-radius: 12px;
-}
-.mrow .mcard {
-  flex-basis: 140px;
-}
-.spot {
-  margin: 14px 0 -2px;
 }
 .spot .ill {
   margin-left: -6px;
@@ -74,90 +22,40 @@
   display: flex;
   align-items: center;
   gap: 8px;
-  padding: 16px;
   margin-top: 0;
 }
 .urgent .k {
   display: flex;
   align-items: center;
   gap: 7px;
-  text-transform: none;
-  letter-spacing: 0;
   font-size: 13px;
   font-weight: 600;
-  color: var(--red);
 }
 .urgent .k::before {
   content: '';
   width: 6px;
   height: 6px;
   border-radius: 50%;
-  background: var(--red);
-}
-.urgent .ut {
-  font-size: 17px;
-  font-weight: 600;
-  letter-spacing: -0.01em;
-  margin: 6px 0 2px;
-  line-height: 1.25;
 }
 .urgent .ui {
   width: auto;
   height: auto;
   background: none;
 }
-.tlink {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  margin-top: 12px;
-  font-weight: 600;
-  color: var(--navy);
-  font-size: 15px;
-}
 .due {
-  font-size: 15px;
-  font-weight: 500;
   font-variant-numeric: tabular-nums;
   white-space: nowrap;
-  color: var(--ink);
-}
-.due.amber {
-  color: var(--amber);
-}
-.due.red {
-  color: var(--red);
 }
 .steps i {
   height: 3px;
 }
 /* monograms */
 .org {
-  width: 40px;
-  height: 40px;
-  border-radius: 10px;
-  background: #f1f1ee;
-  color: var(--ink);
-  font-size: 11px;
   font-weight: 600;
   letter-spacing: 0.02em;
   box-shadow: none;
 }
-.check {
-  border-radius: 6px;
-}
-.check[aria-checked='true'] {
-  background: var(--navy);
-  border-color: var(--navy);
-}
 /* dock */
-.askdock::before {
-  background: var(--app);
-  left: -14px;
-  right: -14px;
-  bottom: -24px;
-  height: 90px;
-}
 .askbar {
   height: 50px;
   border-radius: 14px;
@@ -170,10 +68,6 @@
 .askbar:focus-within {
   border-color: var(--ink);
 }
-.askbar .sg {
-  color: var(--ink-2);
-  display: grid;
-}
 .askbar .go {
   width: 36px;
   height: 36px;
@@ -184,43 +78,19 @@
   padding-bottom: 96px;
 }
 /* rail */
-.tech .eyebrow {
-  text-transform: none;
-  letter-spacing: 0;
-  font-size: 13px;
-  font-weight: 500;
-}
-.tag-j,
-.tag-n,
 .tag-a {
   background: none !important;
   padding: 0;
   font-size: 12px;
-  font-weight: 500;
   display: inline-flex;
   align-items: center;
   gap: 5px;
 }
-.tag-j::before,
-.tag-n::before,
 .tag-a::before {
   content: '';
   width: 6px;
   height: 6px;
   border-radius: 50%;
-  background: currentcolor;
-}
-.tag-j {
-  color: var(--green);
-}
-.tag-n {
-  color: var(--navy);
-}
-.tag-a {
-  color: var(--purple);
-}
-.tech .legend {
-  gap: 16px;
 }
 /* alert screens: flat, sans clock, red rule */
 .rcb-screen,
@@ -228,33 +98,20 @@
   background: #0f1012;
 }
 .rcb-clock {
-  font-family: var(--sans);
-  font-weight: 200;
   font-size: 72px;
-  letter-spacing: -0.02em;
 }
 .rcb {
-  border-radius: 18px;
   border-top: 3px solid var(--red);
 }
 .rcb.clear {
   border-top-color: var(--green);
 }
-.rcb-app {
-  border-radius: 18px;
-}
 .lk-clock {
-  font-family: var(--sans);
-  font-weight: 200;
   font-size: 80px;
-  letter-spacing: -0.02em;
 }
 .how-btn {
-  width: 38px;
-  height: 38px;
   padding: 0;
   justify-content: center;
-  background: #fff;
 }
 .done-mark {
   border-color: var(--app) !important;

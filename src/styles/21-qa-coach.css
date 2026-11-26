@@ -38,8 +38,6 @@
 /* --- Motion pass (Apple fluid + Emil design-eng) --- */
 /* touch: no sticky hover lifts */
 @media (hover: none), (pointer: coarse) {
-  .mcard:hover .mimg .ill,
-  .wcard:hover,
   .stack:not(.has-sel) .scard:hover {
     transform: none;
   }
@@ -102,24 +100,7 @@
       color 0.25s ease,
       font-size 0.25s var(--ease-out);
   }
-  .bt-act {
-    transition:
-      opacity 0.2s var(--ease-out),
-      transform 0.2s var(--ease-out);
-  }
-  @starting-style {
-    .bt-act {
-      opacity: 0;
-      transform: translateY(-4px);
-    }
-  }
   /* guidance loops stop nagging after a few beats */
-  .st-arrow {
-    animation-iteration-count: 3 !important;
-  }
-  .st-nav .pill.ready {
-    animation-iteration-count: 3 !important;
-  }
   /* sheet drag: let JS own the transform while dragging */
   /* chapter switch in the rail: soft blur bridges the swap */
   .story {
@@ -200,7 +181,6 @@
   position: absolute;
   left: 0;
   top: 0;
-  z-index: 35;
   pointer-events: none;
   transition: opacity 0.15s ease-out;
 }
@@ -221,7 +201,6 @@
 .coach-tip span::after {
   content: '';
   position: absolute;
-  left: 50%;
   top: 100%;
   margin-left: -6px;
   border: 6px solid transparent;
@@ -284,37 +263,6 @@
       transform: translate(-50%, 4px);
     }
   }
-}
-.bt-act {
-  width: 100%;
-  border: 0;
-  font: inherit;
-  cursor: pointer;
-  text-align: left;
-}
-.bt-do {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  flex: none;
-  font-weight: 600;
-  font-size: 13px;
-  padding: 5px 10px;
-  border-radius: 999px;
-  background: #2f6bff;
-  color: #fff;
-}
-.bt-do .st-arrow {
-  color: #fff;
-  font-size: 15px;
-}
-@media (hover: hover) and (pointer: fine) {
-  .bt-act:hover {
-    background: #f3f6ff;
-  }
-}
-.coach-tip {
-  z-index: 60;
 }
 .sheet .coach {
   outline-offset: 3px;

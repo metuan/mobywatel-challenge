@@ -6,82 +6,19 @@
   justify-content: center;
   gap: 72px;
   align-items: center;
-  padding-block: 48px;
   padding-left: max(32px, env(safe-area-inset-left, 0px));
   padding-right: max(32px, env(safe-area-inset-right, 0px));
 }
 .rail {
   display: flex;
   flex-direction: column;
-  gap: 28px;
   min-width: 0;
 }
 .rail .mark {
   display: flex;
   align-items: center;
   gap: 10px;
-  font-family: var(--serif);
-  font-weight: 500;
-  font-size: 22px;
   letter-spacing: -0.02em;
-}
-.statement {
-  font-family: var(--serif);
-  font-weight: 500;
-  font-size: 44px;
-  line-height: 1.08;
-  letter-spacing: -0.035em;
-  margin: 0;
-  text-wrap: pretty;
-}
-.badge-i {
-  display: inline-grid;
-  place-items: center;
-  vertical-align: middle;
-  width: 1.05em;
-  height: 1.05em;
-  border-radius: 50%;
-  background: var(--surface);
-  box-shadow: var(--shadow-s);
-  margin: 0 0.06em;
-  position: relative;
-  top: -0.06em;
-}
-.badge-i.navy {
-  background: var(--navy);
-  color: #fff;
-}
-.badge-i svg {
-  width: 0.5em;
-  height: 0.5em;
-}
-.badge-stack {
-  display: inline-flex;
-  vertical-align: middle;
-  position: relative;
-  top: -0.06em;
-  margin: 0 0.08em;
-}
-.badge-stack span {
-  width: 4.04em;
-  height: 4.04em;
-  border-radius: 50%;
-  display: grid;
-  place-items: center;
-  font-family: var(--sans);
-  font-size: 0.26em;
-  font-weight: 700;
-  color: #fff;
-  box-shadow: 0 0 0 3px var(--bg);
-  margin-left: -0.7em;
-}
-.badge-stack span:first-child {
-  margin-left: 0;
-}
-.demo-k {
-  font-size: 13px;
-  font-weight: 600;
-  color: var(--ink);
 }
 .flows {
   display: grid;
@@ -101,36 +38,12 @@
   text-decoration: underline;
   text-underline-offset: 3px;
 }
-.flows .fn {
-  font-family: var(--serif);
-  color: var(--faint);
-  font-size: 15px;
-  min-width: 14px;
-}
-.laurel {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  font-size: 12.5px;
-  color: var(--ink-2);
-}
-.disclaimer {
-  font-size: 12px;
-  color: var(--faint);
-  max-width: 52ch;
-}
 
 .phone {
   width: 392px;
   height: 846px;
-  background: var(--bg);
-  border-radius: 52px;
   position: relative;
   overflow: hidden;
-  box-shadow:
-    0 0 0 10px #101318,
-    0 0 0 11px #2a2e36,
-    0 50px 90px -30px rgb(12 18 34 / 45%);
 }
 .phone .notch {
   position: absolute;
@@ -154,8 +67,6 @@
   .phone {
     width: 100%;
     height: 100dvh;
-    border-radius: 0;
-    box-shadow: none;
   }
   .phone .notch,
   .statusbar {

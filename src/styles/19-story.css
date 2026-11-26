@@ -1,32 +1,11 @@
 /* ===== story rail ===== */
-.rail .statement {
-  font-size: 48px;
-  line-height: 50px;
-}
-.sub8 {
-  font-size: 16px;
-  line-height: 24px;
-  margin-top: 14px;
-}
-.cta8 {
-  margin: 22px 0 28px;
-}
-.story {
-  border-top: 1px solid var(--hair-2);
-  padding-top: 22px;
-}
 .st-n {
-  font-size: 13px;
   font-weight: 500;
   color: var(--ink-2);
   font-variant-numeric: tabular-nums;
 }
 .st-t {
-  font-size: 30px;
-  line-height: 34px;
   font-weight: 680;
-  letter-spacing: -0.035em;
-  margin: 4px 0 10px;
 }
 .st-p {
   font-size: 16px;
@@ -36,30 +15,11 @@
   max-width: 34em;
   text-wrap: pretty;
 }
-.st-try {
-  display: flex;
-  gap: 10px;
-  align-items: flex-start;
-  margin-top: 16px;
-  padding: 12px 14px;
-  border-radius: 14px;
-  background: #fff;
-  font-size: 14px;
-  line-height: 20px;
-  color: var(--ink);
-  box-shadow: inset 0 0 0 0.5px var(--hair);
-}
-.st-try svg {
-  flex: none;
-  margin-top: 2px;
-  color: var(--ink-2);
-}
 .st-more {
   display: flex;
   flex-wrap: wrap;
   gap: 6px;
   align-items: center;
-  margin-top: 14px;
 }
 .st-more span {
   font-size: 13px;
@@ -81,7 +41,6 @@
 .st-nav {
   display: flex;
   gap: 8px;
-  margin-top: 22px;
 }
 .st-nav .pill {
   height: 44px;
@@ -99,26 +58,7 @@
   height: 38px;
   font-size: 14px;
 }
-.side .explain {
-  margin-top: 28px;
-  border-top: 0;
-  padding-top: 0;
-}
-.side .explain .tech h3 {
-  font-size: 20px;
-  line-height: 24px;
-}
-.side .explain .what {
-  font-size: 13px;
-  line-height: 18px;
-}
-.side .explain .sys {
-  font-size: 14px;
-}
 @media (prefers-reduced-motion: no-preference) {
-  .story {
-    animation: rise 0.45s var(--out) both;
-  }
   .story .st-p {
     animation: rise 0.5s var(--out) 0.05s both;
   }
@@ -151,15 +91,8 @@
   display: flex;
   justify-content: space-between;
 }
-.st-n span:last-child {
-  color: var(--ink);
-  font-weight: 600;
-}
 .st-hook {
-  font-size: 19px;
-  line-height: 27px;
   font-weight: 500;
-  letter-spacing: -0.015em;
   margin: 0 0 16px;
   max-width: 30em;
   text-wrap: pretty;
@@ -173,17 +106,11 @@
   overflow: hidden;
   box-shadow: inset 0 0 0 0.5px var(--hair);
 }
-.st-ab > div {
-  background: var(--bg);
-  padding: 14px 16px;
-}
 .st-ab > div.on {
   background: #fff;
 }
 .st-ab p {
   margin: 6px 0 0;
-  font-size: 14px;
-  line-height: 20px;
   color: var(--ink-2);
   text-wrap: pretty;
 }
@@ -197,30 +124,6 @@
 }
 .st-ab .on .st-k {
   color: var(--ink);
-}
-.st-try {
-  margin-top: 12px;
-  background: transparent;
-  box-shadow: none;
-  padding: 4px 2px;
-  color: var(--ink-2);
-}
-.cta8 {
-  flex-wrap: wrap;
-}
-.cta8 .pill.soft {
-  background: #fff;
-  box-shadow: inset 0 0 0 0.5px var(--hair-2);
-}
-.rail .statement {
-  font-size: 44px;
-  line-height: 46px;
-}
-.sub8 {
-  display: none;
-}
-.cta8 {
-  margin: 22px 0 26px;
 }
 /* tour dialog */
 .tour-bg {
@@ -274,9 +177,7 @@
 }
 .tv-h {
   font-size: 30px;
-  line-height: 34px;
   font-weight: 680;
-  letter-spacing: -0.035em;
   margin: 6px 0 10px;
   text-wrap: balance;
 }
@@ -289,7 +190,6 @@
 }
 .tv-art.fam {
   gap: 22px;
-  align-items: flex-end;
   padding-bottom: 28px;
 }
 .tv-person {
@@ -339,9 +239,6 @@
   font-weight: 500;
   transform: rotate(var(--r));
 }
-.tv-card {
-  width: 290px;
-}
 .tv-card .flipwrap {
   margin: 0;
 }
@@ -366,21 +263,15 @@
   line-height: 17px;
   color: var(--ink-2);
 }
-.tv-art.week {
-  gap: 14px;
-}
 .tv-art.week div {
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 10px;
-  font-size: 13px;
   font-weight: 500;
   color: var(--ink-2);
 }
 .tv-art.week i {
-  width: 44px;
-  height: 44px;
   border-radius: 50%;
   background: #fff;
   box-shadow: 0 0 0 0.5px var(--hair-2);
@@ -497,7 +388,6 @@
   }
   .tv-h {
     font-size: 24px;
-    line-height: 28px;
   }
   .tv-p {
     font-size: 15px;
@@ -514,9 +404,6 @@
   }
   .tv-3 div {
     padding: 10px 12px;
-  }
-  .tv-card {
-    width: 240px;
   }
   .tour-btns .pill {
     height: 44px;
@@ -613,49 +500,11 @@
     }
   }
 }
-.st-try {
-  display: grid;
-  grid-template-columns: 1fr auto;
-  gap: 2px 12px;
-  align-items: center;
-  margin-top: 14px;
-  padding: 12px 16px;
-  border-radius: 16px;
-  background: #fff;
-  box-shadow: inset 0 0 0 1.5px #2f6bff;
-  color: var(--ink);
-}
-.st-tk {
-  grid-column: 1;
-  font-size: 12px;
-  font-weight: 600;
-  color: #2f6bff;
-}
-.st-tx {
-  grid-column: 1;
-  font-size: 15px;
-  line-height: 21px;
-  font-weight: 500;
-}
-.st-arrow {
-  grid-column: 2;
-  grid-row: 1/3;
-  font-size: 22px;
-  color: #2f6bff;
-}
 @media (prefers-reduced-motion: no-preference) {
-  .st-arrow {
-    animation: nudge 1.4s ease-in-out infinite;
-  }
   @keyframes nudge {
     50% {
       transform: translateX(5px);
     }
-  }
-}
-@media (max-width: 960px) {
-  .st-arrow {
-    display: none;
   }
 }
 /* how-to diagram in tour */
@@ -840,7 +689,6 @@
 }
 .st-t {
   font-size: 36px;
-  line-height: 40px;
   margin: 2px 0 8px;
 }
 .st-hook {
@@ -916,24 +764,6 @@
   line-height: 23px;
   font-weight: 500;
 }
-.bt-act {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 10px;
-  margin-top: 10px;
-  padding: 10px 14px;
-  border-radius: 12px;
-  background: #fff;
-  box-shadow: inset 0 0 0 1.5px #2f6bff;
-  color: #1f55e0;
-  font-size: 14px;
-  font-weight: 600;
-}
-.bt-act .st-arrow {
-  font-size: 20px;
-  color: #2f6bff;
-}
 @media (prefers-reduced-motion: no-preference) {
   .beats li.now > div {
     animation: rise 0.4s var(--out) both;
@@ -948,13 +778,7 @@
 .st-nav {
   margin-top: 18px;
 }
-.st-nav .pill.ready {
-  box-shadow: 0 0 0 0 rgb(11 13 18 / 35%);
-}
 @media (prefers-reduced-motion: no-preference) {
-  .st-nav .pill.ready {
-    animation: ready 1.8s ease-out infinite;
-  }
   @keyframes ready {
     0% {
       box-shadow: 0 0 0 0 rgb(11 13 18 / 30%);
@@ -971,8 +795,6 @@
 /* how it works: prominent card */
 .how-card {
   background: #fff;
-  border-radius: 24px;
-  padding: 22px 22px 18px;
   box-shadow:
     0 0 0 0.5px var(--hair),
     0 20px 50px -30px rgb(11 13 18 / 25%);
@@ -980,11 +802,6 @@
 .hc-k {
   display: flex;
   align-items: center;
-  gap: 8px;
-  font-size: 13px;
-  font-weight: 600;
-  color: #1f55e0;
-  margin-bottom: 6px;
 }
 .how-card .tech {
   background: none;
@@ -994,16 +811,6 @@
 .how-card .tech .eyebrow {
   display: none;
 }
-.how-card .tech h3 {
-  font-size: 24px;
-  line-height: 28px;
-  font-weight: 680;
-  letter-spacing: -0.03em;
-  margin: 0 0 16px;
-}
-.how-card .tnode .dot {
-  background: var(--bg) !important;
-}
 .how-card .sys {
   font-size: 15px;
 }
@@ -1011,20 +818,11 @@
   font-size: 14px;
   line-height: 20px;
 }
-.hc-legend {
-  display: flex;
-  gap: 14px;
-  flex-wrap: wrap;
-  border-top: 1px solid var(--hair);
-  margin-top: 6px;
-  padding-top: 12px;
-}
 @media (prefers-reduced-motion: no-preference) {
   .how-card {
     animation: rise 0.45s var(--out) both;
   }
 }
-.side .demo-k,
 .side .flows {
   display: none;
 }

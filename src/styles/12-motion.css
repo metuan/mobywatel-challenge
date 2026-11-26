@@ -40,31 +40,26 @@
     }
   }
   .screen .mrow > *,
-  .screen .mgrid2 > *,
   .screen .people > *,
   .screen .tiles > * {
     animation: fade-up 0.42s var(--ease-out) both;
   }
   .screen .mrow > *:nth-child(2),
-  .screen .mgrid2 > *:nth-child(2),
   .screen .people > *:nth-child(2),
   .screen .tiles > *:nth-child(2) {
     animation-delay: 0.04s;
   }
   .screen .mrow > *:nth-child(3),
-  .screen .mgrid2 > *:nth-child(3),
   .screen .people > *:nth-child(3),
   .screen .tiles > *:nth-child(3) {
     animation-delay: 0.08s;
   }
   .screen .mrow > *:nth-child(n + 4),
-  .screen .mgrid2 > *:nth-child(n + 4),
   .screen .people > *:nth-child(n + 4),
   .screen .tiles > *:nth-child(n + 4) {
     animation-delay: 0.12s;
   }
   button,
-  .mcard,
   .notif,
   .live {
     transition:
@@ -79,17 +74,10 @@
   .lk-btn:active {
     transform: scale(0.97);
   }
-  .mcard:active,
   .notif:active,
   .live:active,
   .urgent:active {
     transform: scale(0.985);
-  }
-  .mcard .mimg .ill {
-    transition: transform 0.5s var(--ease-out);
-  }
-  .mcard:hover .mimg .ill {
-    transform: translateY(-3px) scale(1.03);
   }
   @keyframes fade {
     from {
@@ -251,27 +239,6 @@
       opacity: 1;
     }
   }
-  .explain {
-    animation: fade-up 0.4s var(--ease-out) both;
-  }
-  .explain .tnode {
-    animation: fade-up 0.45s var(--ease-out) both;
-  }
-  .explain .tnode:nth-child(3) {
-    animation-delay: 0.05s;
-  }
-  .explain .tnode:nth-child(4) {
-    animation-delay: 0.1s;
-  }
-  .explain .tnode:nth-child(5) {
-    animation-delay: 0.15s;
-  }
-  .explain .tnode:nth-child(n + 6) {
-    animation-delay: 0.2s;
-  }
-  .hero-ill .ill {
-    animation: float-in 0.7s var(--ease-out) both;
-  }
   @keyframes float-in {
     from {
       opacity: 0;
@@ -281,12 +248,5 @@
       opacity: 1;
       transform: none;
     }
-  }
-  .check {
-    transition:
-      transform 0.2s var(--ease-out),
-      background-color 0.2s ease,
-      box-shadow 0.2s ease,
-      opacity 0.2s ease;
   }
 }

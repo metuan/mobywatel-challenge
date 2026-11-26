@@ -2,7 +2,6 @@
 /* hop 1: big easy-mode headings no longer collide (fixed px line-height under a bigger inline size) */
 /* hop 2: compact nav title on every screen */
 .tb-title {
-  max-width: 200px;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -363,14 +362,9 @@
   margin-top: 2px;
 }
 .rx-code {
-  display: grid;
   grid-template-rows: 0fr;
   overflow: hidden;
   opacity: 0;
-  transition:
-    grid-template-rows 0.3s var(--out),
-    opacity 0.2s,
-    margin 0.3s var(--out);
   text-align: center;
 }
 .rx-code > * {
@@ -382,7 +376,6 @@
   margin: 16px 0 4px;
   background: var(--fill);
   border-radius: 16px;
-  padding: 16px;
 }
 .rx-code b {
   display: block;
@@ -588,10 +581,6 @@
     background-position: -100% 0;
   }
 }
-.v.in,
-.msg.in {
-  animation: fadeUp 0.3s var(--out);
-}
 @media (prefers-reduced-motion: reduce) {
   .wave i,
   .skel i,
@@ -624,44 +613,6 @@
 /* hop 11: inbox */
 .tw8 {
   position: relative;
-}
-.hdr8 {
-  position: absolute;
-  right: 0;
-  top: 0;
-  display: flex;
-  gap: 8px;
-  z-index: 2;
-}
-.hdr8 button {
-  position: relative;
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-  background: var(--surface);
-  display: grid;
-  place-items: center;
-  box-shadow: 0 0 0 0.5px var(--hair);
-  transition: transform 0.16s var(--out);
-}
-.hdr8 button:active {
-  transform: scale(0.95);
-}
-.hdr8 b {
-  position: absolute;
-  top: -2px;
-  right: -2px;
-  min-width: 18px;
-  height: 18px;
-  padding: 0 5px;
-  border-radius: 9px;
-  background: var(--red);
-  color: #fff;
-  font-size: 11px;
-  font-weight: 700;
-  display: grid;
-  place-items: center;
-  box-shadow: 0 0 0 2px var(--bg);
 }
 .mail {
   display: flex;
@@ -1224,9 +1175,7 @@
 .ms-next.ready::before {
   content: 'Dotknij tutaj';
   position: absolute;
-  left: 50%;
   bottom: calc(100% + 14px);
-  transform: translateX(-50%);
   white-space: nowrap;
   background: #2f6bff;
   color: #fff;
@@ -1238,25 +1187,17 @@
   box-shadow: 0 8px 20px -6px rgb(47 107 255 / 55%);
   pointer-events: none;
   z-index: 5;
-  animation: tip-in 0.22s cubic-bezier(0.23, 1, 0.32, 1) both;
 }
 .st-nav .pill.st-next.ready::after,
 .ms-next.ready::after {
   content: '';
   position: absolute;
-  left: 50%;
   bottom: calc(100% + 2px);
   margin-left: -6px;
   border: 6px solid transparent;
   border-top-color: #2f6bff;
   pointer-events: none;
   z-index: 5;
-  animation: tip-in 0.22s cubic-bezier(0.23, 1, 0.32, 1) both;
-}
-.ms-next.ready::before {
-  left: auto;
-  right: -6px;
-  transform: none;
 }
 .ms-next.ready::after {
   left: 50%;
@@ -1277,20 +1218,9 @@
   width: auto;
   height: auto;
   border-radius: 999px;
-  left: calc(100% + 14px);
-  bottom: auto;
-  top: 50%;
-  transform: translateY(-50%);
-  animation: tip-side 0.22s cubic-bezier(0.23, 1, 0.32, 1) both;
 }
 .st-nav .pill.st-next.ready::after {
-  left: calc(100% + 2px);
-  bottom: auto;
-  top: 50%;
-  margin: -6px 0 0;
-  border-top-color: transparent;
   border-right-color: #2f6bff;
-  animation: tip-side 0.22s cubic-bezier(0.23, 1, 0.32, 1) both;
 }
 @keyframes tip-side {
   from {
