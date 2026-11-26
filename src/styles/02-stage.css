@@ -107,33 +107,6 @@
   font-size: 15px;
   min-width: 14px;
 }
-.seg {
-  display: inline-flex;
-  background: var(--track);
-  border-radius: 999px;
-  padding: 4px;
-  gap: 2px;
-}
-.seg button {
-  padding: 8px 14px;
-  border-radius: 999px;
-  font-size: 13.5px;
-  font-weight: 500;
-  color: var(--ink-2);
-  white-space: nowrap;
-}
-.seg button[aria-pressed='true'] {
-  background: var(--surface);
-  color: var(--ink);
-  box-shadow: var(--shadow-s);
-}
-.seg.full {
-  display: flex;
-}
-.seg.full button {
-  flex: 1;
-  text-align: center;
-}
 .laurel {
   display: flex;
   align-items: center;

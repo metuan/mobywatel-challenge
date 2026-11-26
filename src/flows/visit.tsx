@@ -1,3 +1,4 @@
+import { Segmented } from '@/components/ui/segmented';
 import { cn } from '@/lib/utils';
 import { Field, FieldLabel, FieldValue } from '@/components/ui/field';
 import {
@@ -57,15 +58,19 @@ export function Visit2(c: Ctx) {
     <div>
       <Eyebrow>Wybierz termin</Eyebrow>
       <Title>Najbliższe terminy</Title>
-      <div className="seg full mb-3">
-        <button aria-pressed="true">Najszybciej</button>
-        <button aria-pressed="false" onClick={() => c.toast('Sortowanie po odległości w pełnej wersji')}>
-          Najbliżej
-        </button>
-        <button aria-pressed="false" onClick={() => c.toast('Filtr godzin w pełnej wersji')}>
-          Po 15:00
-        </button>
-      </div>
+      <Segmented
+        className="mb-3"
+        label="Sortowanie"
+        value="fast"
+        onValueChange={v =>
+          c.toast(v === 'near' ? 'Sortowanie po odległości w pełnej wersji' : 'Filtr godzin w pełnej wersji')
+        }
+        options={[
+          ['fast', 'Najszybciej'],
+          ['near', 'Najbliżej'],
+          ['late', 'Po 15:00'],
+        ]}
+      />
       <List>
         {slots.map(([d, p, km], i) => (
           <ListRow as="button" onClick={() => setPick(i)} aria-pressed={pick === i}>

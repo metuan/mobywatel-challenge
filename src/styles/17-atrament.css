@@ -212,29 +212,6 @@ body {
     transition-duration: 0.12s;
   }
 }
-/* segmented */
-.seg {
-  background: var(--fill);
-  border-radius: 12px;
-  padding: 3px;
-  height: 40px;
-  gap: 0;
-}
-.seg button {
-  border-radius: 9px;
-  font-size: 14px;
-  font-weight: 600;
-  color: var(--ink-2);
-  padding: 0 14px;
-}
-.seg button[aria-pressed='true'] {
-  background: var(--surface);
-  color: var(--ink);
-  box-shadow: 0 1px 2px rgb(11 13 18 / 10%);
-}
-.toggle[aria-checked='true'] {
-  background: var(--ink);
-}
 .check[aria-checked='true'] {
   background: var(--ink);
   border-color: var(--ink);
@@ -1118,9 +1095,6 @@ body {
 .chips8 button[aria-pressed='true'] {
   background: var(--ink);
   color: #fff;
-}
-.side .seg button {
-  font-size: 13px;
 }
 @media (max-width: 1279px) {
   .stage.wide {

@@ -1,3 +1,4 @@
+import { Segmented } from '@/components/ui/segmented';
 import { Badge } from '@/components/ui/badge';
 import { Caption, Lead, Title } from '@/components/ui/typography';
 import { useState, type MouseEvent as ReactMouseEvent } from 'react';
@@ -78,19 +79,19 @@ export function Inbox(c: Ctx) {
       <Lead className="mb-3">
         Pisma ze wszystkich urzędów w jednym miejscu. Pod każdym krótkie wyjaśnienie.
       </Lead>
-      <div className="seg8">
-        {[
+      <Segmented
+        className="mb-3.5"
+        label="Filtr"
+        value={f}
+        onValueChange={setF}
+        options={[
           ['all', 'Wszystkie'],
           [
             'new',
             `Nieprzeczytane${list.some(x => x.unread) ? ' · ' + list.filter(x => x.unread).length : ''}`,
           ],
-        ].map(([k, t]) => (
-          <button aria-pressed={f === k} onClick={() => setF(k)}>
-            {t}
-          </button>
-        ))}
-      </div>
+        ]}
+      />
       <div className="mail">
         {shown.map(x => (
           <div className="mail-w" key={x.k}>

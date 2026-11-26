@@ -16,56 +16,6 @@
 .sheet {
   overflow: hidden;
 }
-/* M3: segmented controls slide one indicator instead of swapping backgrounds */
-.seg.full,
-.seg8 {
-  position: relative;
-  isolation: isolate;
-}
-.seg.full button,
-.seg8 button {
-  position: relative;
-  z-index: 1;
-  background: transparent !important;
-  box-shadow: none !important;
-  transition: color 0.2s;
-}
-.seg.full::before,
-.seg8::before {
-  content: '';
-  position: absolute;
-  z-index: 0;
-  top: 3px;
-  bottom: 3px;
-  left: 3px;
-  width: calc((100% - 6px) / var(--n, 3));
-  border-radius: 9px;
-  background: var(--surface);
-  box-shadow: 0 1px 3px rgb(11 13 18 / 10%);
-  transform: translateX(calc(var(--k, 0) * 100%));
-  transition: transform 0.28s cubic-bezier(0.32, 0.72, 0, 1);
-}
-.seg8 {
-  --n: 2;
-}
-.seg.full:has(> button:nth-child(2):last-child) {
-  --n: 2;
-}
-.seg.full:has(> button:nth-child(4)) {
-  --n: 4;
-}
-:is(.seg.full, .seg8):has(> button:nth-child(2)[aria-pressed='true']) {
-  --k: 1;
-}
-:is(.seg.full, .seg8):has(> button:nth-child(3)[aria-pressed='true']) {
-  --k: 2;
-}
-:is(.seg.full, .seg8):has(> button:nth-child(4)[aria-pressed='true']) {
-  --k: 3;
-}
-:is(.seg.full, .seg8):not(:has(> button[aria-pressed='true']))::before {
-  opacity: 0;
-}
 /* M4: rolling digits */
 .num {
   display: inline-flex;
@@ -226,10 +176,6 @@
   .sheet > div {
     animation: none !important;
     filter: none;
-  }
-  .seg.full::before,
-  .seg8::before {
-    transition: none;
   }
   .progress i.on.fresh::after {
     animation: none;

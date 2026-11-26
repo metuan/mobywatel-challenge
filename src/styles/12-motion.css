@@ -76,8 +76,7 @@
   .mini:active,
   .menu-btn:active,
   .round:active,
-  .lk-btn:active,
-  .seg button:active {
+  .lk-btn:active {
     transform: scale(0.97);
   }
   .mcard:active,
@@ -299,8 +298,6 @@
       transform: none;
     }
   }
-  .toggle,
-  .toggle::after,
   .check {
     transition:
       transform 0.2s var(--ease-out),

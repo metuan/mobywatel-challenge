@@ -1,3 +1,4 @@
+import { Segmented } from '@/components/ui/segmented';
 import { Field, FieldLabel, FieldValue } from '@/components/ui/field';
 import { List, ListRow, ListRowContent, ListRowDescription, ListRowTitle } from '@/components/ui/list';
 import { Eyebrow, Lead, Title } from '@/components/ui/typography';
@@ -67,17 +68,17 @@ export function Damage2(c: Ctx) {
       <Eyebrow>Zgłoszenie szkód · krok 2 z 3</Eyebrow>
       <Progress n={2} of={3} />
       <Title>Co zostało uszkodzone?</Title>
-      <div className="seg full mb-3.5">
-        {[
+      <Segmented
+        className="mb-3.5"
+        label="Rodzaj szkody"
+        value={k}
+        onValueChange={setK}
+        options={[
           ['dom', 'Mieszkanie'],
           ['auto', 'Samochód'],
           ['inne', 'Inne'],
-        ].map(([v, t]) => (
-          <button aria-pressed={k === v} onClick={() => setK(v)}>
-            {t}
-          </button>
-        ))}
-      </div>
+        ]}
+      />
       <List>
         <Field>
           <FieldLabel>Adres</FieldLabel>

@@ -1,3 +1,4 @@
+import { Segmented } from '@/components/ui/segmented';
 import { Field, FieldLabel, FieldValue } from '@/components/ui/field';
 import {
   List,
@@ -52,17 +53,17 @@ export function ShareMin(c: Ctx) {
   return (
     <div>
       <Title>Pokaż tylko to, co trzeba</Title>
-      <div className="seg full mb-2">
-        {[
+      <Segmented
+        className="mb-2"
+        label="Co pokazać"
+        value={what}
+        onValueChange={setWhat}
+        options={[
           ['age', 'Pełnoletność'],
           ['city', 'Miasto'],
           ['full', 'Pełne dane'],
-        ].map(([k, t]) => (
-          <button aria-pressed={what === k} onClick={() => setWhat(k)}>
-            {t}
-          </button>
-        ))}
-      </div>
+        ]}
+      />
       <div className="qr">{QR()}</div>
       <Card className="py-3.5 px-4">
         <Muted>Osoba, która sprawdza, zobaczy:</Muted>

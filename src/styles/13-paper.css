@@ -150,9 +150,6 @@
   background: var(--navy);
   border-color: var(--navy);
 }
-.toggle[aria-checked='true'] {
-  background: var(--navy);
-}
 /* dock */
 .askdock::before {
   background: var(--app);

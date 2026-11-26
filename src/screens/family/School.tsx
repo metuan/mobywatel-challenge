@@ -1,3 +1,4 @@
+import { Segmented } from '@/components/ui/segmented';
 import { Field, FieldLabel, FieldValue } from '@/components/ui/field';
 import {
   List,
@@ -98,13 +99,13 @@ export function School(c: Ctx) {
         </div>
       </div>
       <Title>Szkoła</Title>
-      <div className="seg full mb-3.5">
-        {['dziś', 'frekwencja', 'oceny'].map(t => (
-          <button aria-pressed={tab === t} onClick={() => setTab(t)}>
-            {t[0].toUpperCase() + t.slice(1)}
-          </button>
-        ))}
-      </div>
+      <Segmented
+        className="mb-3.5"
+        label="Widok"
+        value={tab}
+        onValueChange={setTab}
+        options={['dziś', 'frekwencja', 'oceny'].map(t => [t, t[0].toUpperCase() + t.slice(1)] as const)}
+      />
       {tab === 'dziś' && (
         <div>
           <List>

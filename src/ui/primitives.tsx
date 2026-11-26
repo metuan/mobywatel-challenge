@@ -1,3 +1,4 @@
+import { Switch } from '@/components/ui/switch';
 import { FieldSource } from '@/components/ui/field';
 import {
   ListItem,
@@ -59,13 +60,7 @@ export const Progress = ({ n, of }: { n: number; of: number }) => (
 );
 
 export const Toggle = ({ on, set, label }: { on: boolean; set: (v: boolean) => void; label?: string }) => (
-  <button
-    className="toggle"
-    role="switch"
-    aria-checked={on}
-    aria-label={label}
-    onClick={() => set(!on)}
-  ></button>
+  <Switch checked={on} onCheckedChange={set} aria-label={label} />
 );
 
 export const Src = ({ t }: { t: Child }) => (
