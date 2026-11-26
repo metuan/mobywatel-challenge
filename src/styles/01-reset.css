@@ -1,0 +1,9 @@
+/* Layout: desktop = big serif statement on the left + phone; phone = app full screen.
+   Language borrowed from editorial gov design: heavy text serif for statements, tight grotesk for UI,
+   white cards floating on soft gray, one navy for actions, a pill ask bar on every screen. */
+*{box-sizing:border-box}
+html,body{height:100%}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--sans);font-size:15px;line-height:1.45;-webkit-font-smoothing:antialiased;font-feature-settings:"ss01","cv11"}
+button{font:inherit;color:inherit;background:none;border:0;padding:0;cursor:pointer;text-align:left}
+input{font:inherit;color:inherit}
+:focus-visible{outline:2px solid var(--blue);outline-offset:2px;border-radius:10px}
