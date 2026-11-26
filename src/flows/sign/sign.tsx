@@ -226,6 +226,7 @@ export function Sign3(c: Ctx) {
         <svg viewBox="0 0 300 278" role="img" aria-label="Mapa Polski: gdzie ludzie podpisali projekt">
           {GRID.map(([x, y, v]) => (
             <circle
+              key={`${x}-${y}`}
               cx={x.toFixed(1)}
               cy={y.toFixed(1)}
               r={(1.1 + v * 1.5).toFixed(2)}

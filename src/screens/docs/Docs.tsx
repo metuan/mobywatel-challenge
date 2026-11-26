@@ -213,6 +213,7 @@ function DocsBase(c: Ctx) {
           const y = sel < 0 ? i * PEEK : isSel ? 0 : 208 + (i - (i > sel ? 1 : 0)) * 7;
           return (
             <button
+              key={t}
               className={
                 'scard absolute! left-0 right-0 top-0 justify-start gap-1.5 origin-[50%_0] [transition:transform_0.42s_var(--spring)]! [&:active]:filter-[brightness(1.1)] [.stack:not(.has-sel)_&:hover]:transform-[translateY(var(--y))] [@media(hover:none),_(pointer:coarse)]:[.stack:not(.has-sel)_&:hover]:transform-none [.stack.w2_&]:min-h-49 [.stack.w2:not(.has-sel)_&:not(.front)]:[box-shadow:inset_0_1px_0_rgb(255_255_255_/_14%),_0_-1px_0_rgb(0_0_0_/_25%)] [.stack.w2.has-sel_&:not(.sel)]:[clip-path:inset(0_0_calc(100%-12px)_0_round_18px_18px_0_0)] [.stack.w2.has-sel_&:not(.sel)]:pointer-events-auto [.stack.w2.has-sel_&:not(.sel)_*]:invisible doc tone-' +
                 tone +

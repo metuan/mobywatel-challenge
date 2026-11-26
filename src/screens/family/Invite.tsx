@@ -48,7 +48,7 @@ export function Invite(c: Ctx) {
       <Lead>Możesz to zmienić lub cofnąć w każdej chwili. Każde użycie zobaczysz w historii dostępu.</Lead>
       <List>
         {rows.map(([k, t, s]) => (
-          <ListRow>
+          <ListRow key={k}>
             <ListRowContent>
               <ListRowTitle>{t}</ListRowTitle>
               <ListRowDescription>{s}</ListRowDescription>

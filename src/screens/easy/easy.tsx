@@ -246,6 +246,7 @@ export function EasyVoice(c: Ctx) {
       >
         {Array.from({ length: 28 }, (_, i) => (
           <i
+            key={i}
             style={{ '--d': `${(i * 73) % 600}ms`, '--h': `${18 + ((i * 37) % 46)}px` } as CSSProperties}
           ></i>
         ))}
@@ -293,6 +294,7 @@ export function EasyRx(c: Ctx) {
       <div className="flex flex-col gap-3 mt-2.5">
         {RX.map(([t, k, how, d], i) => (
           <button
+            key={t}
             className={
               'rx flex flex-col items-stretch text-left bg-surface rounded-[22px] p-4.5 [box-shadow:0_0_0_0.5px_var(--hair)] [transition:transform_0.16s_var(--out)] [&:active]:transform-[scale(0.985)] ' +
               (open === i ? 'open' : '')

@@ -27,7 +27,7 @@ export function Calendar(c: Ctx) {
       <Lead>Najbliższe 90 dni. Każdy termin ma następny krok.</Lead>
       <List>
         {items.map(([d, m, t, w, left, r, urg]) => (
-          <ListItem as="button" className={cn('gap-3.5', urg && 'urg')} onClick={() => c.go(r)}>
+          <ListItem key={t} as="button" className={cn('gap-3.5', urg && 'urg')} onClick={() => c.go(r)}>
             <span className="flex-none w-11 h-12 rounded-[12px] bg-fill flex flex-col items-center justify-center leading-none [&_b]:text-[18px] [&_b]:font-[650] [&_b]:tracking-[-0.02em] [&_b]:[font-variant-numeric:tabular-nums] [&_small]:text-[11px] [&_small]:text-ink-2 [&_small]:mt-0.75">
               <b>{d}</b>
               <small>{m}</small>

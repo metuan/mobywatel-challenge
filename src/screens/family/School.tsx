@@ -166,6 +166,7 @@ export function School(c: Ctx) {
           <div className="att grid [grid-template-columns:repeat(10,_1fr)] gap-1 mt-3 [&_i]:h-6 [&_i]:rounded-[5px] [&_i]:bg-signal-green [&_i]:opacity-[0.85]">
             {Array.from({ length: 20 }, (_, i) => (
               <i
+                key={i}
                 className={
                   i === 15 ? (ex ? '[.att_i&]:[background:#ff9500]' : '[.att_i&]:bg-signal-red') : ''
                 }

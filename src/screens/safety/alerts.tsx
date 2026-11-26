@@ -13,7 +13,7 @@ import { Badge } from '@/components/ui/badge';
 import { Note } from '@/components/ui/note';
 import { Caption, Lead, Title } from '@/components/ui/typography';
 import { Actions, Button } from '@/components/ui/button';
-import { useState } from 'react';
+import { Fragment, useState } from 'react';
 import { I } from '@/ui/icons';
 import { Sec } from '@/ui/primitives';
 import type { Ctx } from '@/types';
@@ -184,12 +184,12 @@ export function AlertGuide(c: Ctx) {
           'Wyślij rodzinie status „Jestem bezpieczna”. Dojdzie nawet przy słabym zasięgu.',
           'Słuchaj komunikatów w aplikacji i w radiu.',
         ].map((t, i) => (
-          <>
+          <Fragment key={t}>
             <div className="n">{i + 1}</div>
             <div className="[.road_&]:[border-bottom:1px_solid_var(--hair)] [.road_&]:p-[13px_0] [.rcb_.hd_&]:w-5.5 [.rcb_.hd_&]:h-5.5 [.rcb_.hd_&]:rounded-[6px] [.rcb_.hd_&]:text-white [.rcb_.hd_&]:grid [.rcb_.hd_&]:place-items-center [.rcb.clear_.hd_&]:bg-green [.rcb_.hd_&]:[background:rgb(255_255_255_/_20%)]">
               {t}
             </div>
-          </>
+          </Fragment>
         ))}
       </div>
       <Actions>

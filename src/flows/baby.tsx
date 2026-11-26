@@ -59,7 +59,7 @@ export function Baby2(c: Ctx) {
           ['nfz', 'Ubezpieczenie zdrowotne', 'Zgłoszenie do NFZ przez Twojego pracodawcę'],
           ['pass', 'Paszport', 'Gdy planujecie podróż'],
         ].map(([k, t, s]) => (
-          <ListRow>
+          <ListRow key={k}>
             <ListRowContent>
               <ListRowTitle>{t}</ListRowTitle>
               <ListRowDescription>{s}</ListRowDescription>

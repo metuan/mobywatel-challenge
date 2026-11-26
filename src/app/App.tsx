@@ -423,6 +423,7 @@ export function App() {
                 ></i>
                 {TABS.map(([r, t, ic]) => (
                   <button
+                    key={r}
                     aria-current={curTab === r && route !== 'profile' ? 'page' : undefined}
                     onClick={() => {
                       setHist([]);
@@ -493,6 +494,7 @@ export function App() {
               <nav>
                 {MENU.map(([r, t]) => (
                   <button
+                    key={r}
                     aria-current={
                       route === r || (curTab === r && TABS.some(x => x[0] === r) && route !== 'profile')
                         ? 'page'
@@ -583,7 +585,7 @@ export function App() {
                 <Subtitle className={cn('mb-3', sheet.big && 'text-[30px]')}>{sheet.t}</Subtitle>
                 <div className="rounded-[22px] bg-white">
                   {(sheet.items || []).map(i => (
-                    <Field className={cn(sheet.big && 'text-lg')}>
+                    <Field key={i} className={cn(sheet.big && 'text-lg')}>
                       <FieldValue className="flex gap-2.5 items-start">
                         <span className="text-ink mt-0.5">{I('check', 16)}</span>
                         <span>{i}</span>

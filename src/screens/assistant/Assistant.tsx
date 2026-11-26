@@ -104,6 +104,7 @@ export function Assistant(c: Ctx) {
             'Dostałam pismo z urzędu',
           ].map(t => (
             <button
+              key={t}
               className="p-[14px_16px] text-[15px] font-medium [border:0] rounded-[22px]! [box-shadow:none]! bg-white [transition:background-color_0.12s,_transform_0.16s_var(--out)] [&:active]:bg-fill!"
               onClick={() => ask(t)}
             >
@@ -115,17 +116,23 @@ export function Assistant(c: Ctx) {
       <div className="flex flex-col gap-3">
         {msgs.map((m, i) =>
           m.ai === undefined ? (
-            <div className="msg max-w-[88%] p-[12px_15px] rounded-[22px] text-[15px] [&&.ai]:self-start [&.ai]:[border:0] [&.ai]:rounded-[22px]! [&.ai]:[box-shadow:none]! [&&.ai]:bg-white [&.msg]:self-end [&.msg]:bg-ink [&.msg]:text-white [&.msg]:[border-bottom-right-radius:8px]">
+            <div
+              key={i}
+              className="msg max-w-[88%] p-[12px_15px] rounded-[22px] text-[15px] [&&.ai]:self-start [&.ai]:[border:0] [&.ai]:rounded-[22px]! [&.ai]:[box-shadow:none]! [&&.ai]:bg-white [&.msg]:self-end [&.msg]:bg-ink [&.msg]:text-white [&.msg]:[border-bottom-right-radius:8px]"
+            >
               {m.me}
             </div>
           ) : (
-            <div className="msg max-w-[88%] p-[12px_15px] rounded-[22px] text-[15px] [&&.ai]:self-start [&.ai]:[border:0] [&.ai]:rounded-[22px]! [&.ai]:[box-shadow:none]! [&&.ai]:bg-white ai">
+            <div
+              key={i}
+              className="msg max-w-[88%] p-[12px_15px] rounded-[22px] text-[15px] [&&.ai]:self-start [&.ai]:[border:0] [&.ai]:rounded-[22px]! [&.ai]:[box-shadow:none]! [&&.ai]:bg-white ai"
+            >
               {m.typing ? <Typed text={m.ai.a} onDone={() => fin(i)} /> : m.ai.a}
               {!m.typing && (
                 <>
                   <div className="[.msg_&]:flex [.msg_&]:flex-wrap [.msg_&]:gap-1.5 [.msg_&]:mt-2.5 [.msg_&_span]:text-[12px] [.msg_&_span]:bg-bg [.msg_&_span]:rounded-[999px] [.msg_&_span]:p-[4px_10px] [.msg_&_span]:text-(--ink2) [.msg_&_span]:inline-flex [.msg_&_span]:gap-1.25 [.msg_&_span]:items-center [&.in]:animate-[fadeUp_0.25s_var(--out)] in [&.v]:[animation:txtin_0.3s_cubic-bezier(0.23,_1,_0.32,_1)_both] [&.msg]:[animation:txtin_0.3s_cubic-bezier(0.23,_1,_0.32,_1)_both] motion-reduce:[&.v]:animate-none! motion-reduce:[&.v]:filter-none motion-reduce:[&.msg]:animate-none! motion-reduce:[&.msg]:filter-none">
                     {m.ai.src.map(s => (
-                      <span>{s}</span>
+                      <span key={s}>{s}</span>
                     ))}
                   </div>
                   {m.ai.act && (

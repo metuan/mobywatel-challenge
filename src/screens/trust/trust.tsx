@@ -27,7 +27,7 @@ export function AccessLog(c: Ctx) {
       <Lead>Listopad 2026. Każde sprawdzenie Twoich dokumentów lub rejestrów.</Lead>
       <List>
         {LOG.map((l, i) => (
-          <ListRow className="items-start">
+          <ListRow key={i} className="items-start">
             <ListRowIcon>{I('eye', 18)}</ListRowIcon>
             <ListRowContent>
               <ListRowTitle>{l.who}</ListRowTitle>

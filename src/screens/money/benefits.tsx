@@ -67,6 +67,7 @@ export function P800(c: Ctx) {
         <div className="bars grid [grid-template-columns:repeat(12,_1fr)] gap-1.25 [align-items:end] h-30 [&_span]:flex [&_span]:flex-col [&_span]:items-center [&_span]:gap-1.5 [&_span]:h-full [&_span]:justify-end [&_i]:w-full [&_i]:h-[70%] [&_i]:rounded-[6px] [&_i]:bg-fill-2 [&_i]:origin-bottom [&_i]:animate-[barup_0.5s_var(--out)_calc(var(--i)*30ms)_both] [&_small]:text-[10px] [&_small]:text-ink-3 motion-reduce:[&_i]:animate-none!">
           {M.map((m, i) => (
             <span
+              key={i}
               className={
                 i < 5
                   ? '[.bars_&_i]:bg-ink'
@@ -125,6 +126,7 @@ export function Vacc(c: Ctx) {
       <div className="relative m-[14px_0_16px] pl-1.5">
         {V.map(([age, t, s, st]) => (
           <div
+            key={age}
             className={
               'vt-i relative flex gap-3.5 p-[0_0_22px] [&:not(:last-child)::before]:[content:""] [&:not(:last-child)::before]:absolute [&:not(:last-child)::before]:left-2.5 [&:not(:last-child)::before]:top-6 [&:not(:last-child)::before]:bottom-0.5 [&:not(:last-child)::before]:w-[1.5px] [&:not(:last-child)::before]:bg-hair-2 [&.later]:opacity-[0.55] ' +
               st

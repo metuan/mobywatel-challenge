@@ -25,7 +25,7 @@ function TodayBase(c: Ctx) {
             ['coin', 'Zapłać', 'taxes'],
           ] as [IconName, string, string][]
         ).map(([ic, t, r]) => (
-          <button onClick={() => c.go(r)}>
+          <button key={t} onClick={() => c.go(r)}>
             <span className="rounded-[50%] grid place-items-center w-14 h-14 bg-white [box-shadow:0_0_0_0.5px_var(--hair)]">
               {I(ic, 22)}
             </span>

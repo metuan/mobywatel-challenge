@@ -31,7 +31,7 @@ export function Lost(c: Ctx) {
       </Lead>
       <List className={cn('lost8', done && 'done')}>
         {items.map((t, i) => (
-          <ListRow style={{ '--i': i } as CSSProperties}>
+          <ListRow key={t} style={{ '--i': i } as CSSProperties}>
             <ListRowIcon className="[.lost8_&]:[transition:background_0.25s,_color_0.25s] [.lost8.done_&]:bg-green-soft [.lost8.done_&]:animate-[pop_0.32s_var(--spring)_calc(var(--i)*60ms)_both]">
               {done ? I('check', 18) : I('lock', 18)}
             </ListRowIcon>

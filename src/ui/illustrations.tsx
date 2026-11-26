@@ -76,7 +76,7 @@ const ILLS = {
   coin: (
     <g>
       {[70, 61, 52, 43].map(y => (
-        <g>
+        <g key={y}>
           <path d={`M24 ${y}v8a22 6 0 0 0 44 0v-8`} fill={C_.yellow2} />
           <ellipse cx="46" cy={y} rx="22" ry="6" fill={C_.yellow} />
         </g>
@@ -123,6 +123,7 @@ const ILLS = {
       {[0, 1, 2].map(r =>
         [0, 1, 2, 3].map(k => (
           <rect
+            key={k}
             x={30 + k * 12}
             y={48 + r * 10}
             width="7"

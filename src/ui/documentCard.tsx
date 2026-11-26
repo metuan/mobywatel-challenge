@@ -82,7 +82,7 @@ export const ROSETTE = (
     aria-hidden="true"
   >
     {Array.from({ length: 36 }, (_, i) => (
-      <ellipse rx="92" ry="34" transform={`rotate(${i * 5})`} />
+      <ellipse key={i} rx="92" ry="34" transform={`rotate(${i * 5})`} />
     ))}
   </svg>
 );

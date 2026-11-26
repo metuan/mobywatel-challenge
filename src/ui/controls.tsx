@@ -120,6 +120,7 @@ export function Confirming({ steps }: { steps?: string[] }) {
       <div className="mt-4.5 flex flex-col gap-2.25 min-w-50">
         {S.map((t, i) => (
           <div
+            key={t}
             className={
               'cf-s flex items-center gap-2.5 text-[14.5px] text-ink-3 [transition:color_0.2s] [&.now]:text-ink [&.now]:font-medium [&.ok]:text-ink-2' +
               (i < k

@@ -52,6 +52,7 @@ export function StoryPanel({
       <ol className="beats [list-style:none] m-[22px_0_0] p-0 relative [&_li]:grid [&_li]:grid-cols-[28px_1fr] [&_li]:gap-3 [&_li]:relative [&_li]:pb-4 [&_li:not(:last-child)::before]:[content:''] [&_li:not(:last-child)::before]:absolute [&_li:not(:last-child)::before]:left-[13.5px] [&_li:not(:last-child)::before]:top-7.5 [&_li:not(:last-child)::before]:bottom-0.5 [&_li:not(:last-child)::before]:w-px [&_li:not(:last-child)::before]:bg-hair-2 [&_li_p]:m-[4px_0_0] [&_li_p]:text-[14.5px] [&_li_p]:leading-5.25 [&_li_p]:text-ink-3 [&_li.done_p]:text-ink-2 [@media(max-height:820px)_and_(min-width:961px)]:mt-4 [@media(max-height:820px)_and_(min-width:961px)]:[&_li]:pb-3 motion-safe:[&_li_p]:[transition:color_0.25s_ease,_font-size_0.25s_var(--ease-out)] [@media(prefers-contrast:more)]:[&_li_p]:text-ink [&_li_p]:tracking-[-0.005em]">
         {beats.map(([r, t], j) => (
           <li
+            key={r}
             className={
               j < cur
                 ? 'done'
@@ -107,7 +108,9 @@ export function StoryPanel({
         <div className="flex flex-wrap gap-1.5 items-center [&_span]:text-[13px] [&_span]:text-ink-2 [&_span]:mr-1 [&_button]:h-7 [&_button]:p-[0_11px] [&_button]:rounded-[999px] [&_button]:bg-fill [&_button]:text-[12.5px] [&_button]:font-medium [&_button]:text-ink [&_button:hover]:bg-fill-2 mt-4.5 motion-safe:[&_button]:[transition:transform_0.16s_var(--ease-out),_background-color_0.15s_ease,_box-shadow_0.2s_ease] motion-safe:[&_button:active]:transform-[scale(0.97)] motion-safe:[&_button:active]:[transition-duration:0.1s]">
           <span>Zobacz też</span>
           {ch.x.map(([t, r]) => (
-            <button onClick={() => go(r, ch.p)}>{t}</button>
+            <button key={t} onClick={() => go(r, ch.p)}>
+              {t}
+            </button>
           ))}
         </div>
       )}
@@ -126,6 +129,7 @@ export function Progress12({ i, goChap }: { i: number; goChap: (k: number) => vo
       <div className="p12-bar grid [grid-template-columns:repeat(13,_1fr)] gap-1 [&_button]:h-1.5 [&_button]:rounded-[3px] [&_button]:bg-fill-2 [&_button]:relative [&_button]:p-0 [&_button::before]:[content:''] [&_button::before]:absolute [&_button::before]:inset-[-8px_0] [&_button.done]:bg-ink-3 [&_button_span]:absolute [&_button_span]:bottom-4 [&_button_span]:left-[50%] [&_button_span]:[transform:translate(-50%,_4px)] [&_button_span]:whitespace-nowrap [&_button_span]:bg-ink [&_button_span]:text-white [&_button_span]:text-[12px] [&_button_span]:font-medium [&_button_span]:p-[5px_9px] [&_button_span]:[border-radius:8px] [&_button_span]:opacity-[0] [&_button_span]:pointer-events-none [&_button_span]:[transition:opacity_0.15s,_transform_0.2s_var(--out)] [&_button_span]:z-5 [&_button:hover_span]:opacity-[1] [&_button:hover_span]:[transform:translate(-50%,_0)] [&_button:hover]:bg-ink-2 [@media(hover:none),_(pointer:coarse)]:[&_button:hover_span]:opacity-[0] motion-safe:[&_button]:[transition:background-color_0.3s_var(--ease-out),_transform_0.16s_var(--ease-out)] motion-safe:[&_button_span]:[transition:opacity_0.15s_ease-out,_transform_0.15s_var(--ease-out)]">
         {CHAPTERS.map((ch, j) => (
           <button
+            key={j}
             className={
               j < i
                 ? 'done'

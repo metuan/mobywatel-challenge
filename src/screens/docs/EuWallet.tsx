@@ -52,7 +52,7 @@ export function EuWallet(_c: Ctx) {
             aria-hidden="true"
           >
             {stars.map(([x, y]) => (
-              <circle cx={x} cy={y} r="2.6" fill="#D8C27A" />
+              <circle key={`${x}-${y}`} cx={x} cy={y} r="2.6" fill="#D8C27A" />
             ))}
           </svg>
           <div className="flex justify-between items-center [.eu-eu_&]:pr-24 [.stack.w2_&]:min-h-6">
@@ -75,7 +75,7 @@ export function EuWallet(_c: Ctx) {
       <Label t="Wypożyczalnia prosi o 3 informacje" />
       <div className="flex flex-wrap gap-2 [&_span]:inline-flex [&_span]:items-center [&_span]:gap-1.5 [&_span]:bg-white [&_span]:rounded-[999px] [&_span]:p-[8px_12px] [&_span]:text-[13.5px] [&_span]:font-medium [&_span]:[transition:background-color_0.3s_ease,_color_0.3s_ease] [&_span_svg]:text-ink-3 [&_span.ok]:bg-ink [&_span.ok]:text-white [&_span.ok_svg]:text-white">
         {['Imię i nazwisko', 'Prawo jazdy kat. B', 'Ukończone 25 lat'].map(t => (
-          <span className={sent ? 'ok' : ''}>
+          <span key={t} className={sent ? 'ok' : ''}>
             {I('check', 14)}
             {t}
           </span>

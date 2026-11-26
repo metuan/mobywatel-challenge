@@ -98,6 +98,7 @@ export function Search({
         <div className="mt-2 bg-surface rounded-[18px] [box-shadow:var(--e-float)] overflow-hidden animate-[fadeUp_0.18s_var(--out)]">
           {hits.map(([t, s, r, ic]) => (
             <button
+              key={t}
               className="flex gap-3 items-center w-full text-left p-[11px_14px] [border-top:0.5px_solid_var(--hair)] [&:first-child]:[border-top:0] [&:active]:bg-fill [transition:background-color_0.12s,_transform_0.16s_var(--out)]"
               onClick={() => c.go(r)}
             >
@@ -140,6 +141,7 @@ export function SearchScreen(c: Ctx) {
           <div className="bg-surface rounded-[18px] overflow-hidden">
             {HOWTO.slice(0, 5).map(h => (
               <button
+                key={h.q}
                 className="how8-row flex items-center gap-3 w-full text-left p-[12px_14px] text-[15px] font-medium [border-top:0.5px_solid_var(--hair)] [&:first-child]:[border-top:0] [&_>_span:nth-child(2)]:flex-1 [&:active]:bg-fill"
                 onClick={() => setPick(h.q)}
               >
@@ -155,6 +157,7 @@ export function SearchScreen(c: Ctx) {
           <div className="chips flex gap-2 overflow-x-auto m-[12px_-20px_0] p-[0_20px] scrollbar-none [&::-webkit-scrollbar]:hidden [&_button]:flex-none [&_button]:rounded-[999px] [&_button]:bg-fill [&_button]:text-ink [&_button]:text-[14px] [&_button]:font-medium [&_button]:h-9 [&_button]:p-[0_16px] [&_button[aria-pressed='true']]:bg-ink [&_button[aria-pressed='true']]:text-white [&&_button:not([aria-pressed='true'])]:bg-white [&_button:not([aria-pressed='true'])]:[box-shadow:inset_0_0_0_0.5px_var(--hair)] [&.chips]:flex-wrap">
             {['Przeprowadzka', 'Dowód', '800+', 'Schron', 'Podatki', 'Recepta'].map(t => (
               <button
+                key={t}
                 onClick={() => {
                   const h = IDX.find(x => norm(x[0] + x[1]).includes(norm(t)));
                   h ? c.go(h[2]) : c.ask(t);

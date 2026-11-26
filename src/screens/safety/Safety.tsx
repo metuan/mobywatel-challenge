@@ -56,7 +56,7 @@ export function Plan(_c: Ctx) {
           ['Kopie dokumentów', true],
           ['Apteczka', false],
         ].map(([t, on]) => (
-          <ListRow>
+          <ListRow key={String(t)}>
             <ListRowIcon className={cn(on && 'bg-green-soft text-green')}>
               {on ? I('check', 18) : ''}
             </ListRowIcon>
@@ -85,7 +85,7 @@ export function Places(_c: Ctx) {
           ['Przedszkole nr 12, Kraków', 'Zosia'],
           ['Biuro Tomasza, Katowice', 'Tomasz'],
         ].map(([t, s]) => (
-          <ListRow>
+          <ListRow key={t}>
             <ListRowIcon>{I('pin')}</ListRowIcon>
             <ListRowContent>
               <ListRowTitle>{t}</ListRowTitle>
@@ -127,6 +127,7 @@ export function Safety(c: Ctx) {
             ['S', 'Tata', 'Sandomierz', 'warn'],
           ].map(([i, n, p, st]) => (
             <button
+              key={n}
               className="flex gap-3 items-center w-full p-[8px_0] text-left text-[16px] leading-6.25 text-ink m-0 max-w-[34em] text-pretty motion-safe:[.story_&]:animate-[rise_0.5s_var(--out)_0.05s_both] [.sheet_&]:text-[15px] [.sheet_&]:leading-5.5"
               onClick={() => c.go('family-map')}
             >
@@ -208,7 +209,7 @@ export function Safety(c: Ctx) {
             ['wifi', 'Wisła: więcej wody, domom nic nie grozi', 'RSO · 11:02'],
           ] as [IconName, string, string][]
         ).map(([ic, t, s2]) => (
-          <GRow ic={ic} t={t} s={s2} onClick={() => c.go('places')} />
+          <GRow key={t} ic={ic} t={t} s={s2} onClick={() => c.go('places')} />
         ))}
         <GRow
           ic="call"

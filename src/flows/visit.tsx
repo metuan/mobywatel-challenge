@@ -73,7 +73,7 @@ export function Visit2(c: Ctx) {
       />
       <List>
         {slots.map(([d, p, km], i) => (
-          <ListRow as="button" onClick={() => setPick(i)} aria-pressed={pick === i}>
+          <ListRow key={d} as="button" onClick={() => setPick(i)} aria-pressed={pick === i}>
             <ListRowIcon className={cn(pick === i && 'bg-ink text-white')}>
               {pick === i ? I('check', 18) : ''}
             </ListRowIcon>

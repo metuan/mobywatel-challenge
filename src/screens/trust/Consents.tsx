@@ -1,6 +1,6 @@
 import { List, ListItemDescription, ListItemTitle } from '@/components/ui/list';
 import { Title } from '@/components/ui/typography';
-import { useState } from 'react';
+import { Fragment, useState } from 'react';
 import { collapseOut } from '@/ui/controls';
 import { I } from '@/ui/icons';
 import { Av, Label, Num } from '@/ui/primitives';
@@ -73,7 +73,7 @@ export function Consents(c: Ctx) {
         <p>Każdą zgodę cofniesz jednym ruchem. Działa od razu, a przez chwilę możesz to odwołać.</p>
       </div>
       {groups.map(g => (
-        <>
+        <Fragment key={g}>
           <Label t={g} />
           <List>
             {list
@@ -128,7 +128,7 @@ export function Consents(c: Ctx) {
                 </div>
               ))}
           </List>
-        </>
+        </Fragment>
       ))}
       {!list.length && (
         <div className="flex flex-col items-center text-center gap-1.5 p-[40px_20px] text-ink-2 [&_b]:text-ink [&_b]:font-semibold">

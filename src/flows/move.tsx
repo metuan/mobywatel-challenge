@@ -66,6 +66,7 @@ export function Move2(c: Ctx) {
         </div>
         {items.map(([k, t, sub, ini]) => (
           <ListRow
+            key={k}
             as="button"
             role="checkbox"
             aria-checked={on[k]}

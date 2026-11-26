@@ -34,7 +34,7 @@ export function CaseMeld(_c: Ctx) {
       <Title>Wymiana dowodu rejestracyjnego</Title>
       <List>
         {st.map(([t, s], i) => (
-          <ListRow>
+          <ListRow key={t}>
             <ListRowIcon className={cn(i < 3 && 'bg-green-soft text-green')}>
               {i < 3 ? I('check', 18) : <b>4</b>}
             </ListRowIcon>
@@ -83,7 +83,7 @@ export function Matters(c: Ctx) {
       <Search c={c} ph="Czego potrzebujesz?" />
       <div className="chips flex gap-2 overflow-x-auto m-[12px_-20px_0] p-[0_20px] scrollbar-none [&::-webkit-scrollbar]:hidden [&_button]:flex-none [&_button]:rounded-[999px] [&_button]:bg-fill [&_button]:text-ink [&_button]:text-[14px] [&_button]:font-medium [&_button]:h-9 [&_button]:p-[0_16px] [&_button[aria-pressed='true']]:bg-ink [&_button[aria-pressed='true']]:text-white [&&_button:not([aria-pressed='true'])]:bg-white [&_button:not([aria-pressed='true'])]:[box-shadow:inset_0_0_0_0.5px_var(--hair)]">
         {cats.map(([k, t]) => (
-          <button aria-pressed={cat === k} onClick={() => setCat(k)}>
+          <button key={k} aria-pressed={cat === k} onClick={() => setCat(k)}>
             {t}
           </button>
         ))}
@@ -91,7 +91,7 @@ export function Matters(c: Ctx) {
       <Label t="W toku" />
       <List>
         {prog.map(([t, n, r, s2]) => (
-          <ListItem as="button" onClick={() => c.go(r)}>
+          <ListItem key={t} as="button" onClick={() => c.go(r)}>
             <Ring v={n} max={4} size={40}>
               <b className="text-[11px]!">{n}/4</b>
             </Ring>
@@ -106,7 +106,7 @@ export function Matters(c: Ctx) {
       <Label t="Załatw od początku do końca" />
       <div className="mgrid [&_.moment]:h-42.5 [&_.moment]:flex-none grid grid-cols-[1fr_1fr] gap-3">
         {shown.map(([t, s2, r, n]) => (
-          <Tile t={t} s={s2} n={n} onClick={() => c.go(r)} />
+          <Tile key={t} t={t} s={s2} n={n} onClick={() => c.go(r)} />
         ))}
       </div>
     </div>

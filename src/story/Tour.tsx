@@ -57,6 +57,7 @@ export function Tour({
           <div className="tv-art h-50 flex items-center justify-center m-[4px_0_24px] rounded-[22px] bg-bg relative overflow-hidden [&.week_div]:flex [&.week_div]:flex-col [&.week_div]:items-center [&.week_div]:gap-2.5 [&.week_div]:font-medium [&.week_div]:text-ink-2 [&.week_i]:rounded-[50%] [&.week_i]:bg-white [&.week_i]:[box-shadow:0_0_0_0.5px_var(--hair-2)] [&.week_i.red]:bg-red [&.week_i.red]:[box-shadow:none] [&.week_i.red]:text-white motion-safe:[&.week_div]:animate-[rise_0.55s_var(--spring)_both] [@media(max-width:640px)]:h-42.5 [@media(max-width:640px)]:mb-4.5 [&&.week]:gap-2.5 [&.week_div]:w-15.5 [&.week_div]:text-[11.5px] [&.week_div]:text-center [&.week_i]:grid [&.week_i]:place-items-center [&.week_i]:not-italic [&.week_i]:text-[13px] [&.week_i]:font-semibold [&.week_i]:text-ink [&.week_i]:w-11.5 [&.week_i]:h-11.5 [&.week_div:nth-child(5)_span]:text-red [&.week_div:nth-child(5)_span]:font-semibold [@media(max-width:640px)]:[&.week]:gap-0.5 [@media(max-width:640px)]:[&.week_div]:w-11 [@media(max-width:640px)]:[&.week_div]:text-[10px] [@media(max-width:640px)]:[&.week_i]:w-9 [@media(max-width:640px)]:[&.week_i]:h-9 [&.tv-art]:gap-5.5 [@media(max-width:640px)]:[&.tv-art]:gap-3 [&.tv-art]:items-start [&.tv-art]:p-[34px_0_0]">
             {PEOPLE.map(([i, n, r], j) => (
               <div
+                key={n}
                 className="tv-person flex flex-col items-center gap-1.5 text-center max-w-27.5 [&_b]:text-[14px] [&_b]:font-semibold [&_span]:text-[12px] [&_span]:text-ink-2 [&_span]:leading-3.75 motion-safe:animate-[rise_0.55s_var(--spring)_both] [@media(max-width:640px)]:[&_>_span:not(.av)]:hidden [&:not(:first-child)]:mt-2"
                 style={{ animationDelay: `${j * 70}ms` }}
               >
@@ -81,7 +82,10 @@ export function Tour({
         >
           <div className="tv-art h-50 flex items-center justify-center m-[4px_0_24px] rounded-[22px] bg-bg relative overflow-hidden [&.week_div]:flex [&.week_div]:flex-col [&.week_div]:items-center [&.week_div]:gap-2.5 [&.week_div]:font-medium [&.week_div]:text-ink-2 [&.week_i]:rounded-[50%] [&.week_i]:bg-white [&.week_i]:[box-shadow:0_0_0_0.5px_var(--hair-2)] [&.week_i.red]:bg-red [&.week_i.red]:[box-shadow:none] [&.week_i.red]:text-white motion-safe:[&.week_div]:animate-[rise_0.55s_var(--spring)_both] [@media(max-width:640px)]:h-42.5 [@media(max-width:640px)]:mb-4.5 [&&.week]:gap-2.5 [&.week_div]:w-15.5 [&.week_div]:text-[11.5px] [&.week_div]:text-center [&.week_i]:grid [&.week_i]:place-items-center [&.week_i]:not-italic [&.week_i]:text-[13px] [&.week_i]:font-semibold [&.week_i]:text-ink [&.week_i]:w-11.5 [&.week_i]:h-11.5 [&.week_div:nth-child(5)_span]:text-red [&.week_div:nth-child(5)_span]:font-semibold [@media(max-width:640px)]:[&.week]:gap-0.5 [@media(max-width:640px)]:[&.week_div]:w-11 [@media(max-width:640px)]:[&.week_div]:text-[10px] [@media(max-width:640px)]:[&.week_i]:w-9 [@media(max-width:640px)]:[&.week_i]:h-9 [&.tv-art]:flex-wrap [&.tv-art]:gap-2 [&.tv-art]:p-[22px_26px] [&.tv-art]:content-center [&.tv-art_span]:h-8 [&.tv-art_span]:p-[0_13px] [&.tv-art_span]:rounded-[999px] [&.tv-art_span]:bg-white [&.tv-art_span]:[box-shadow:0_0_0_0.5px_var(--hair-2),_0_4px_12px_-6px_rgb(11_13_18_/_20%)] [&.tv-art_span]:inline-flex [&.tv-art_span]:items-center [&.tv-art_span]:text-[13px] [&.tv-art_span]:font-medium [&.tv-art_span]:transform-[rotate(var(--r))] motion-safe:[&.tv-art_span]:animate-[drop_0.6s_var(--spring)_both] motion-safe:[&.tv-art_span]:[animation-delay:var(--d)]">
             {OFFICES.map((o, j) => (
-              <span style={{ '--r': `${((j * 37) % 13) - 6}deg`, '--d': `${j * 40}ms` } as CSSProperties}>
+              <span
+                key={o}
+                style={{ '--r': `${((j * 37) % 13) - 6}deg`, '--d': `${j * 40}ms` } as CSSProperties}
+              >
                 {o}
               </span>
             ))}
@@ -187,6 +191,7 @@ export function Tour({
             <div className="tour-dots flex gap-1.5 [&_i]:w-1.5 [&_i]:h-1.5 [&_i]:rounded-[3px] [&_i]:bg-fill-2 [&_i]:[transition:width_0.3s_var(--out),_background_0.3s]">
               {Array.from({ length: N }, (_, j) => (
                 <i
+                  key={j}
                   className={
                     j === k
                       ? 'on [.progress_i&]:bg-ink [.steps_i&]:bg-ink [.st-ab_>_div&&]:bg-white [.st-ab_&_p]:text-ink [.tour-dots_i&]:w-5.5 [.tour-dots_i&]:bg-ink [.call-keys_button&_span]:bg-white [.call-keys_button&_span]:text-ink'

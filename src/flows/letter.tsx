@@ -130,7 +130,7 @@ export function Letter2(c: Ctx) {
       )}
       <List>
         {F.map(([l, v], i) => (
-          <Field>
+          <Field key={l}>
             <FieldLabel>{l}</FieldLabel>
             {i < k ? (
               <FieldValue className="in [&.v]:[animation:txtin_0.3s_cubic-bezier(0.23,_1,_0.32,_1)_both] [&.msg]:[animation:txtin_0.3s_cubic-bezier(0.23,_1,_0.32,_1)_both] motion-reduce:[&.v]:animate-none! motion-reduce:[&.v]:filter-none motion-reduce:[&.msg]:animate-none! motion-reduce:[&.msg]:filter-none">

@@ -58,6 +58,7 @@ export const Progress = ({ n, of }: { n: number; of: number }) => (
   >
     {Array.from({ length: of }, (_, i) => (
       <i
+        key={i}
         className={
           (i < n
             ? 'on [.progress_i&]:bg-ink [.steps_i&]:bg-ink [.st-ab_>_div&&]:bg-white [.st-ab_&_p]:text-ink [.tour-dots_i&]:w-5.5 [.tour-dots_i&]:bg-ink [.call-keys_button&_span]:bg-white [.call-keys_button&_span]:text-ink'
@@ -161,7 +162,7 @@ export const Av = ({ i, size = 40, dot }: { i: string; size?: number; dot?: stri
 export const AvStack = ({ size = 28, list = AV }: { size?: number; list?: [string, string?][] }) => (
   <span className="avstack [&_span]:rounded-[50%] [&_span]:text-white [&_span]:text-[10px] [&_span]:font-bold [&_span]:grid [&_span]:place-items-center [&_span]:[box-shadow:0_0_0_2.5px_#fff] [&_span]:-ml-2 [&_span:first-child]:ml-0 inline-flex">
     {list.map(([i]) => (
-      <Av i={i} size={size} />
+      <Av key={i} i={i} size={size} />
     ))}
   </span>
 );

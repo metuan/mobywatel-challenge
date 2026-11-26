@@ -13,6 +13,7 @@ export function TechPanel({ route }: { route: string }) {
       <ol className="[list-style:none] m-0 p-0 flex flex-col">
         {t[1].map(([sys, what, k], i) => (
           <li
+            key={what}
             className={
               'tstep relative grid grid-cols-[24px_1fr] gap-x-3.5 pb-4.5 [&:last-child]:pb-0 [&:not(:last-child)::before]:[content:""] [&:not(:last-child)::before]:absolute [&:not(:last-child)::before]:left-[11.5px] [&:not(:last-child)::before]:top-7.5 [&:not(:last-child)::before]:bottom-1.5 [&:not(:last-child)::before]:w-px [&:not(:last-child)::before]:bg-hair-2 motion-safe:[.how-card_&]:animate-[fadeUp_0.35s_var(--out)_both] motion-safe:[.how-card_&:nth-child(2)]:[animation-delay:0.04s] motion-safe:[.how-card_&:nth-child(3)]:[animation-delay:0.08s] motion-safe:[.how-card_&:nth-child(n_+_4)]:[animation-delay:0.12s]' +
               (k === 'a' ? ' ai' : '')

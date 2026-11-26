@@ -1,3 +1,4 @@
+import { Fragment } from 'react';
 import { List, ListRow, ListRowContent, ListRowDescription, ListRowTitle } from '@/components/ui/list';
 import { Badge } from '@/components/ui/badge';
 import { Eyebrow, Lead, Title } from '@/components/ui/typography';
@@ -22,12 +23,12 @@ export function CarSell(c: Ctx) {
           'Zgłaszamy sprzedaż auta w starostwie',
           'Przenosimy lub wypowiadamy OC',
         ].map((t, i) => (
-          <>
+          <Fragment key={t}>
             <div className="n">{i + 1}</div>
             <div className="[.road_&]:[border-bottom:1px_solid_var(--hair)] [.road_&]:p-[13px_0] [.rcb_.hd_&]:w-5.5 [.rcb_.hd_&]:h-5.5 [.rcb_.hd_&]:rounded-[6px] [.rcb_.hd_&]:text-white [.rcb_.hd_&]:grid [.rcb_.hd_&]:place-items-center [.rcb.clear_.hd_&]:bg-green [.rcb_.hd_&]:[background:rgb(255_255_255_/_20%)]">
               {t}
             </div>
-          </>
+          </Fragment>
         ))}
       </div>
       <Actions>

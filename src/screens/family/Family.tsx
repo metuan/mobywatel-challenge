@@ -28,7 +28,7 @@ export function Family(c: Ctx) {
       </div>
       <List>
         {fam.map(([i, n, r, f, red, go, k]) => (
-          <ListItem as="button" className="min-h-[72px]" onClick={() => c.go(go)}>
+          <ListItem key={n} as="button" className="min-h-[72px]" onClick={() => c.go(go)}>
             <Av i={i} size={44} />
             <ListItemContent>
               <ListItemTitle className="text-[17px]/[22px] font-semibold tracking-[-0.015em]">

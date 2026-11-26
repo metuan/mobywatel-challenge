@@ -38,7 +38,7 @@ export function PaySheet({
       </div>
       <div className="pay-m flex flex-col mt-4.5 bg-fill rounded-[18px] p-1 text-left [&_button]:flex [&_button]:items-center [&_button]:gap-3 [&_button]:p-[10px_12px] [&_button]:rounded-[14px] [&_button]:[transition:background_0.2s] [&_button[aria-pressed='true']]:bg-surface [&_button[aria-pressed='true']]:[box-shadow:0_1px_3px_rgb(11_13_18_/_8%)]">
         {METHODS.map(([ic, t, s], i) => (
-          <button aria-pressed={sheet.m === i} onClick={() => setSheet({ ...sheet, m: i })}>
+          <button key={t} aria-pressed={sheet.m === i} onClick={() => setSheet({ ...sheet, m: i })}>
             <span className="w-10 h-10 rounded-[50%] grid place-items-center flex-none text-ink bg-bg [&.ai]:[background:linear-gradient(135deg,_var(--signal-blue),_var(--signal-violet))] [&.ai]:text-white [.how8-row_&]:w-7.5 [.how8-row_&]:h-7.5 [.how8-row_&]:rounded-[10px]">
               {I(ic, 18)}
             </span>

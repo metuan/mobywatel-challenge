@@ -99,7 +99,7 @@ export function MemberTata(c: Ctx) {
           ['Widzieć dane o zdrowiu', false],
           ['Wysyłać wnioski bez jego zgody', false],
         ].map(([t, on]) => (
-          <ListRow>
+          <ListRow key={String(t)}>
             <ListRowIcon className={cn(on && 'bg-green-soft text-green')}>
               {I(on ? 'check' : 'x', 18)}
             </ListRowIcon>
@@ -152,7 +152,7 @@ export function MemberTomasz(_c: Ctx) {
           'Sprawy dzieci, jako drugi rodzic',
           'Plan kryzysowy i status „Jestem bezpieczna”',
         ].map(t => (
-          <ListRow>
+          <ListRow key={t}>
             <ListRowIcon className="bg-green-soft text-green">{I('check', 18)}</ListRowIcon>
             <ListRowContent>
               <ListRowTitle>{t}</ListRowTitle>
