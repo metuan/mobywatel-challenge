@@ -1,3 +1,4 @@
+import { Sheet } from '@/components/ui/sheet';
 import { cn } from '@/lib/utils';
 import type { CSSProperties } from 'react';
 import { Field, FieldValue } from '@/components/ui/field';
@@ -18,7 +19,7 @@ import { TechPanel } from '@/tech/TechPanel';
 import { Confirming } from '@/ui/controls';
 import { I } from '@/ui/icons';
 import { Wm } from '@/ui/primitives';
-import type { AppState, Ctx, Persona, Sheet, SheetRequest, ToastInput } from '@/types';
+import type { AppState, Ctx, Persona, Sheet as SheetState, SheetRequest, ToastInput } from '@/types';
 
 const startPersona = (r: string): Persona =>
   r === 'easy' || r === 'easy-doc' || r === 'easy-rx' || r === 'easy-voice' ? 'tata' : 'anna';
@@ -33,7 +34,8 @@ export function App() {
   const [, setHist] = useState<Route[]>([]);
   const [dir, setDir] = useState('tab');
   const [s, setS] = useState<AppState>({ persona: startPersona(hashRoute() || 'today'), inboxNew: 2 });
-  const [sheet, setSheet] = useState<Sheet | null>(null);
+  const [sheet, setSheet] = useState<SheetState | null>(null);
+  const [phoneEl, setPhoneEl] = useState<HTMLDivElement | null>(null);
   const closeSheet = (cb?: unknown) =>
     leave(
       document.querySelector('.phone .sheet'),
@@ -203,8 +205,19 @@ export function App() {
   }, [sheet]);
   /* M1: the sheet glides to its new height when its content changes (confirm -> loader -> receipt) */
   useEffect(() => {
-    const sh = document.querySelector<HTMLElement>('.phone .sheet');
-    if (!sh || !window.ResizeObserver) return;
+    if (!sheet || !window.ResizeObserver) return;
+    let ro: ResizeObserver | undefined;
+    // The sheet mounts through a portal a frame later, so look for it after the next paint.
+    const raf = requestAnimationFrame(() => {
+      const sh = document.querySelector<HTMLElement>('.phone .sheet');
+      if (sh) ro = glide(sh);
+    });
+    return () => {
+      cancelAnimationFrame(raf);
+      ro?.disconnect();
+    };
+  }, [!!sheet]);
+  const glide = (sh: HTMLElement) => {
     let h = sh.offsetHeight,
       busy = false;
     const ro = new ResizeObserver(() => {
@@ -223,8 +236,8 @@ export function App() {
       h = nh;
     });
     ro.observe(sh);
-    return () => ro.disconnect();
-  }, [!!sheet]);
+    return ro;
+  };
   const hadSheet = useRef(false);
   useEffect(() => {
     if (sheet) {
@@ -277,7 +290,7 @@ export function App() {
   useEffect(() => {
     const f = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
-        closeSheet();
+        // An open sheet handles Escape itself (see Sheet's onDismiss).
         setMenu(false);
         return;
       }
@@ -310,7 +323,7 @@ export function App() {
   const toastView = toast === null ? null : typeof toast === 'string' ? { t: toast, undo: undefined } : toast;
 
   const phone = (
-    <div className="phone" role="application" aria-label="Prototyp aplikacji">
+    <div ref={setPhoneEl} className="phone" role="application" aria-label="Prototyp aplikacji">
       <Island c={c} route={route} full={FULL.has(route)} />
       <div className={'app' + (compact ? ' compact' : '')}>
         <div className="statusbar">
@@ -491,75 +504,69 @@ export function App() {
           </div>
         )}
         {sheet && (
-          <div
-            className="sheet-bg"
-            onClick={e => e.target === e.currentTarget && (sheet.tech || sheet.stage === 0) && closeSheet()}
+          <Sheet
+            container={phoneEl}
+            title={sheet.t || 'Jak to działa'}
+            onDismiss={sheet.tech || sheet.stage === 0 ? () => closeSheet() : undefined}
+            onPointerDown={e => sheetDrag(e, closeSheet)}
           >
-            <div
-              className="sheet"
-              onPointerDown={e => sheetDrag(e, closeSheet)}
-              role="dialog"
-              aria-label={sheet.t || 'Jak to działa'}
-            >
-              {sheet.pay && sheet.stage === 0 ? (
-                <PaySheet sheet={sheet} setSheet={setSheet} close={() => closeSheet()} />
-              ) : sheet.pay && sheet.stage === 2 ? (
-                <PayDone sheet={sheet} close={() => closeSheet(sheet.done)} />
-              ) : sheet.tech ? (
-                <div>
-                  <StoryPanel
-                    i={chap}
-                    route={route}
-                    lastBeat={lastBeat}
-                    go={(r: string, p?: Persona) => {
-                      closeSheet(() => {
-                        setHist([]);
-                        go(r, p);
-                      });
-                    }}
-                    step={(d: number) => {
-                      closeSheet(() => step(d));
-                    }}
-                  />
-                  <TechPanel route={route} />
-                  <Actions>
-                    <Button variant="secondary" onClick={() => closeSheet()}>
-                      Zamknij
-                    </Button>
-                  </Actions>
-                </div>
-              ) : sheet.stage === 0 ? (
-                <div>
-                  <div className="q">Czy te dane są poprawne?</div>
-                  <Subtitle className={cn('mb-3', sheet.big && 'text-[30px]')}>{sheet.t}</Subtitle>
-                  <div className="rounded-[22px] bg-white">
-                    {(sheet.items || []).map(i => (
-                      <Field className={cn(sheet.big && 'text-lg')}>
-                        <FieldValue className="flex gap-2.5 items-start">
-                          <span className="text-(--blue) mt-0.5">{I('check', 16)}</span>
-                          <span>{i}</span>
-                        </FieldValue>
-                      </Field>
-                    ))}
-                  </div>
-                  <Caption className="mt-3">
-                    Potwierdzasz twarzą lub kodem PIN. To jest Twój podpis. Nic nie zostanie wysłane
-                    wcześniej.
-                  </Caption>
-                  <Actions row>
-                    <Button variant="secondary" onClick={() => closeSheet()}>
-                      Nie, popraw
-                    </Button>
-                    <Button onClick={() => setSheet({ ...sheet, stage: 1 })}>{sheet.ok}</Button>
-                  </Actions>
-                </div>
-              ) : (
-                <Confirming
-                  steps={sheet.pay ? ['Potwierdzam, że to Ty', 'Łączę z bankiem', 'Płacę'] : sheet.steps}
+            {sheet.pay && sheet.stage === 0 ? (
+              <PaySheet sheet={sheet} setSheet={setSheet} close={() => closeSheet()} />
+            ) : sheet.pay && sheet.stage === 2 ? (
+              <PayDone sheet={sheet} close={() => closeSheet(sheet.done)} />
+            ) : sheet.tech ? (
+              <div>
+                <StoryPanel
+                  i={chap}
+                  route={route}
+                  lastBeat={lastBeat}
+                  go={(r: string, p?: Persona) => {
+                    closeSheet(() => {
+                      setHist([]);
+                      go(r, p);
+                    });
+                  }}
+                  step={(d: number) => {
+                    closeSheet(() => step(d));
+                  }}
                 />
-              )}
-            </div>
-          </div>
+                <TechPanel route={route} />
+                <Actions>
+                  <Button variant="secondary" onClick={() => closeSheet()}>
+                    Zamknij
+                  </Button>
+                </Actions>
+              </div>
+            ) : sheet.stage === 0 ? (
+              <div>
+                <div className="q">Czy te dane są poprawne?</div>
+                <Subtitle className={cn('mb-3', sheet.big && 'text-[30px]')}>{sheet.t}</Subtitle>
+                <div className="rounded-[22px] bg-white">
+                  {(sheet.items || []).map(i => (
+                    <Field className={cn(sheet.big && 'text-lg')}>
+                      <FieldValue className="flex gap-2.5 items-start">
+                        <span className="text-(--blue) mt-0.5">{I('check', 16)}</span>
+                        <span>{i}</span>
+                      </FieldValue>
+                    </Field>
+                  ))}
+                </div>
+                <Caption className="mt-3">
+                  Potwierdzasz twarzą lub kodem PIN. To jest Twój podpis. Nic nie zostanie wysłane wcześniej.
+                </Caption>
+                <Actions row>
+                  <Button variant="secondary" onClick={() => closeSheet()}>
+                    Nie, popraw
+                  </Button>
+                  <Button onClick={() => setSheet({ ...sheet, stage: 1 })}>{sheet.ok}</Button>
+                </Actions>
+              </div>
+            ) : (
+              <Confirming
+                steps={sheet.pay ? ['Potwierdzam, że to Ty', 'Łączę z bankiem', 'Płacę'] : sheet.steps}
+              />
+            )}
+          </Sheet>
         )}
       </div>
     </div>

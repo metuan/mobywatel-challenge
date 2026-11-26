@@ -121,10 +121,6 @@
     animation-iteration-count: 3 !important;
   }
   /* sheet drag: let JS own the transform while dragging */
-  .sheet {
-    touch-action: pan-x;
-    will-change: transform;
-  }
   /* chapter switch in the rail: soft blur bridges the swap */
   .story {
     animation: story-in 0.32s var(--ease-out) both;
@@ -146,18 +142,11 @@
     animation-duration: 1.6s;
   }
 }
-.sheet::before {
-  cursor: grab;
-  width: 40px;
-  height: 5px;
-  margin-bottom: 12px;
-}
 /* materials respect reduced transparency / more contrast */
 @media (prefers-reduced-transparency: reduce) {
   .topbar,
   .tabbar,
   .mstory,
-  .sheet-bg,
   .tour-bg,
   .menu-bg,
   .toast,
@@ -179,7 +168,6 @@
 @media (prefers-contrast: more) {
   .tabbar,
   .topbar,
-  .sheet,
   .tour {
     box-shadow: 0 0 0 1px var(--ink);
   }

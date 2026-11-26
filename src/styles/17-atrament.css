@@ -259,13 +259,6 @@ body {
   background: #fff;
   border-radius: 22px;
 }
-.sheet {
-  background: var(--bg);
-  border-radius: 22px 22px 0 0;
-}
-.sheet-bg {
-  background: rgb(11 13 18 / 40%);
-}
 
 /* --- shared atoms --- */
 .lbl {

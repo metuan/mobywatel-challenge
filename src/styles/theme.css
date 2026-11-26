@@ -83,6 +83,27 @@
   --ease-out: var(--ease-out);
   --ease-drawer: var(--ease-drawer);
   --ease-spring: var(--ease-spring);
+
+  --animate-overlay-in: overlay-in 0.2s ease-out both;
+  --animate-sheet-up: sheet-up 0.42s var(--ease-drawer) both;
+  --animate-swap-in: swap-in 0.2s cubic-bezier(0.23, 1, 0.32, 1) both;
+
+  @keyframes overlay-in {
+    from {
+      opacity: 0;
+    }
+  }
+  @keyframes sheet-up {
+    from {
+      transform: translateY(100%);
+    }
+  }
+  @keyframes swap-in {
+    from {
+      opacity: 0;
+      filter: blur(2px);
+    }
+  }
 }
 
 /* Children fade up one after another when a list appears. */

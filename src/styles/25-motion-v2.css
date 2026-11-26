@@ -1,21 +1,5 @@
 /* ===== Motion uphill, 26 Nov ===== */
 /* M1: sheet content swaps crossfade */
-.sheet > div {
-  animation: shin 0.2s cubic-bezier(0.23, 1, 0.32, 1) both;
-}
-@keyframes shin {
-  from {
-    opacity: 0;
-    filter: blur(2px);
-  }
-  to {
-    opacity: 1;
-    filter: none;
-  }
-}
-.sheet {
-  overflow: hidden;
-}
 /* M4: rolling digits */
 .num {
   display: inline-flex;
@@ -172,8 +156,7 @@
   .dg.roll,
   .tw8,
   .v.in,
-  .msg.in,
-  .sheet > div {
+  .msg.in {
     animation: none !important;
     filter: none;
   }
