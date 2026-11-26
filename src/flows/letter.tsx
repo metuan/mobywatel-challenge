@@ -6,7 +6,7 @@ import { Note } from '@/components/ui/note';
 import { Eyebrow, Muted, Title } from '@/components/ui/typography';
 import { Actions, Button } from '@/components/ui/button';
 import { useEffect, useState } from 'react';
-import { I } from '@/ui/icons';
+import { Icon } from '@/ui/icons';
 import { Hero } from '@/ui/illustrations';
 import type { Ctx } from '@/types';
 
@@ -43,7 +43,9 @@ export function Letter1(c: Ctx) {
         {snap && <div className="absolute bottom-4 text-white text-[13px]">Czytam pismo…</div>}
       </div>
       <Actions>
-        <Button onClick={() => setSnap(true)}>{I('camera', 18)} Zrób zdjęcie</Button>
+        <Button onClick={() => setSnap(true)}>
+          <Icon name="camera" size={18} /> Zrób zdjęcie
+        </Button>
       </Actions>
     </div>
   );
@@ -122,7 +124,7 @@ export function Letter2(c: Ctx) {
       <Title>Urząd skarbowy prosi o wyjaśnienie korekty PIT-37.</Title>
       {k < 4 && (
         <div className="inline-flex items-center gap-2 text-[13px] font-medium p-[6px_12px] rounded-[999px] text-white [background:linear-gradient(135deg,_var(--signal-blue),_var(--signal-violet))] m-[2px_0_10px] [box-shadow:0_4px_12px_-6px_rgb(76_90_255_/_70%)] [&_span]:animate-[fadeUp_0.25s_var(--out)]">
-          {I('sparkle', 14)}{' '}
+          <Icon name="sparkle" size={14} />{' '}
           <span>
             {['Czytam pismo…', 'Szukam przepisu…', 'Sprawdzam termin…', 'Piszę prostym językiem…'][k]}
           </span>

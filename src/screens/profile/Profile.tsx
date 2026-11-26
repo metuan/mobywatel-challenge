@@ -9,7 +9,7 @@ import {
 } from '@/components/ui/list';
 import { Card } from '@/components/ui/card';
 import { Caption, Muted, Subtitle } from '@/components/ui/typography';
-import { I } from '@/ui/icons';
+import { Icon } from '@/ui/icons';
 import { Label, Row, Sec, Toggle } from '@/ui/primitives';
 import type { Ctx } from '@/types';
 
@@ -54,7 +54,9 @@ function ProfileBase(c: Ctx) {
       <Sec t="Ułatwienia" />
       <List>
         <ListRow>
-          <ListRowIcon>{I('sun')}</ListRowIcon>
+          <ListRowIcon>
+            <Icon name="sun" />
+          </ListRowIcon>
           <ListRowContent>
             <ListRowTitle>Tryb prosty</ListRowTitle>
             <ListRowDescription>Duże przyciski, jedna decyzja na ekranie</ListRowDescription>

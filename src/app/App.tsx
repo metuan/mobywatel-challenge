@@ -13,7 +13,7 @@ import { useToast } from '@/app/hooks/useToast';
 import { Progress12, StoryPanel } from '@/story/StoryPanel';
 import { Tour } from '@/story/Tour';
 import { TechPanel } from '@/tech/TechPanel';
-import { I } from '@/ui/icons';
+import { Icon } from '@/ui/icons';
 import { Wm } from '@/ui/primitives';
 import type { Ctx, Persona, Sheet as SheetState, SheetRequest } from '@/types';
 
@@ -96,7 +96,9 @@ export function App() {
       >
         <div className="[@media(max-width:960px)]:hidden! h-12.5 flex-none flex justify-between items-end p-[0_30px_6px] text-[14px] font-semibold text-ink [@media(max-width:960px)_and_(min-width:641px)]:[.stage.wide_&]:flex!">
           <span>15:40</span>
-          <span className="flex gap-1.5 items-center">{I('wifi', 15)} 82%</span>
+          <span className="flex gap-1.5 items-center">
+            <Icon name="wifi" size={15} /> 82%
+          </span>
         </div>
         {FULL.has(route) ? (
           <Wrap key={route} f={Screen} c={c} d="full" />
@@ -199,7 +201,7 @@ export function App() {
           key={route}
         >
           <div className="flex items-center text-[12.5px] font-semibold text-signal-blue mb-2 gap-1.5">
-            {I('info', 16)} Jak to działa na tym ekranie
+            <Icon name="info" size={16} /> Jak to działa na tym ekranie
           </div>
           <TechPanel route={route} />
         </div>

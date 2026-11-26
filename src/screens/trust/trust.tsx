@@ -13,7 +13,7 @@ import { Caption, Lead, Muted, Title } from '@/components/ui/typography';
 import { Actions, Button } from '@/components/ui/button';
 import { useState } from 'react';
 import { LOG } from '@/data/household';
-import { I } from '@/ui/icons';
+import { Icon } from '@/ui/icons';
 import { Hero } from '@/ui/illustrations';
 import { Row } from '@/ui/primitives';
 import type { Ctx } from '@/types';
@@ -28,7 +28,9 @@ export function AccessLog(c: Ctx) {
       <List>
         {LOG.map((l, i) => (
           <ListRow key={i} className="items-start">
-            <ListRowIcon>{I('eye', 18)}</ListRowIcon>
+            <ListRowIcon>
+              <Icon name="eye" size={18} />
+            </ListRowIcon>
             <ListRowContent>
               <ListRowTitle>{l.who}</ListRowTitle>
               <ListRowDescription>{l.why}</ListRowDescription>
@@ -66,7 +68,7 @@ export function Signin(c: Ctx) {
   return (
     <div className="text-center">
       <div className="w-21 h-21 rounded-[26px] bg-fill grid place-items-center text-ink m-[10px_auto_12px] motion-safe:[&.scan]:animate-[pulse_1s_ease-in-out_infinite] scan mt-[60px]">
-        {I('eye', 40)}
+        <Icon name="eye" size={40} />
       </div>
       <Title>Zaloguj się twarzą</Title>
       <Lead>
@@ -86,7 +88,8 @@ export function Offline(c: Ctx) {
   return (
     <div>
       <div className="offline mt-2 -mr-5 mb-0 -ml-5">
-        {I('wifi', 16)} Aktualizacja się nie powiodła. Nie masz internetu, ale najważniejsze rzeczy działają.
+        <Icon name="wifi" size={16} /> Aktualizacja się nie powiodła. Nie masz internetu, ale najważniejsze
+        rzeczy działają.
       </div>
       <Title>Twoje dokumenty są bezpieczne.</Title>
       <Lead>
@@ -124,14 +127,18 @@ export function Devices(c: Ctx) {
       </Lead>
       <List>
         <ListRow>
-          <ListRowTile>{I('phone', 18)}</ListRowTile>
+          <ListRowTile>
+            <Icon name="phone" size={18} />
+          </ListRowTile>
           <ListRowContent>
             <ListRowTitle>iPhone 15 · ten telefon</ListRowTitle>
             <ListRowDescription>Kraków · aktywny teraz</ListRowDescription>
           </ListRowContent>
         </ListRow>
         <ListRow>
-          <ListRowTile tone={lost ? 'gray' : 'default'}>{I('phone', 18)}</ListRowTile>
+          <ListRowTile tone={lost ? 'gray' : 'default'}>
+            <Icon name="phone" size={18} />
+          </ListRowTile>
           <ListRowContent>
             <ListRowTitle>iPhone 11 · stary</ListRowTitle>
             <ListRowDescription>
@@ -165,7 +172,9 @@ export function Devices(c: Ctx) {
           )}
         </ListRow>
         <ListRow>
-          <ListRowTile>{I('card', 18)}</ListRowTile>
+          <ListRowTile>
+            <Icon name="card" size={18} />
+          </ListRowTile>
           <ListRowContent>
             <ListRowTitle>Przeglądarka · gov.pl</ListRowTitle>
             <ListRowDescription>MacBook · dziś, 9:12</ListRowDescription>
@@ -198,7 +207,7 @@ export function Scam(c: Ctx) {
       ) : (
         <div className="verdict bg-white rounded-[14px] p-4 mt-3.5 [border-left:4px_solid_var(--signal-red)]">
           <div className="[.verdict_&]:flex [.verdict_&]:gap-1.5 [.verdict_&]:items-center [.verdict_&]:font-bold [.verdict_&]:text-[18px] [.verdict_&]:text-signal-red [.verdict_&]:mb-1.5">
-            {I('x', 18)} To oszustwo
+            <Icon name="x" size={18} /> To oszustwo
           </div>
           <Muted className="text-ink">
             Ta strona jest na liście ostrzeżeń CERT Polska od 21 listopada. Firmy kurierskie nie proszą o
@@ -214,7 +223,9 @@ export function Scam(c: Ctx) {
       )}
       <List className="mt-3.5">
         <ListRow>
-          <ListRowTile tone="green">{I('check', 18)}</ListRowTile>
+          <ListRowTile tone="green">
+            <Icon name="check" size={18} />
+          </ListRowTile>
           <ListRowContent>
             <ListRowTitle>mObywatel nigdy nie pisze SMS-ów z linkiem</ListRowTitle>
             <ListRowDescription>

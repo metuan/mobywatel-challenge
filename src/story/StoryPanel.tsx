@@ -1,5 +1,5 @@
 import { BEATS, CHAPTERS, beatOf } from '@/story/chapters';
-import { I } from '@/ui/icons';
+import { Icon } from '@/ui/icons';
 import type { Persona } from '@/types';
 
 export function StoryPanel({
@@ -66,7 +66,7 @@ export function StoryPanel({
               onClick={() => go(r, ch.p)}
               aria-label={'Krok ' + (j + 1)}
             >
-              {j < cur ? I('check', 13) : j + 1}
+              {j < cur ? <Icon name="check" size={13} /> : j + 1}
             </button>
             <div>
               <p>{t}</p>
@@ -75,7 +75,7 @@ export function StoryPanel({
                   className="inline-flex items-center gap-1.5 mt-2 p-[6px_12px_6px_9px] rounded-[999px] [border:0] bg-signal-blue text-white [font:inherit] [&&]:text-[13px] [&&]:font-semibold cursor-pointer motion-safe:[transition:transform_0.16s_var(--ease-out),_background-color_0.15s_ease,_box-shadow_0.2s_ease] motion-safe:[&:active]:transform-[scale(0.97)] motion-safe:[&:active]:[transition-duration:0.1s]"
                   onClick={() => go(r, ch.p)}
                 >
-                  {I('left', 14)}
+                  <Icon name="left" size={14} />
                   <span>Wróć do tego kroku</span>
                 </button>
               )}
@@ -95,13 +95,14 @@ export function StoryPanel({
           onClick={() => step(-1)}
           aria-label="Poprzedni rozdział"
         >
-          {I('left', 18)}
+          <Icon name="left" size={18} />
         </button>
         <button
           className="pill whitespace-nowrap h-13 rounded-[999px] bg-ink text-white text-[16px] font-semibold p-[0_22px] inline-flex items-center justify-center gap-2 [border:0] [box-shadow:none] [.attn-act_&]:text-[14px] [.attn-act_&]:p-[0_16px] [.attn-act_&]:h-9.5 [.st-nav_&]:h-11 [.st-nav_&]:text-[15px] [.st-nav_&]:p-[0_18px] [.st-nav_&:disabled]:opacity-[0.35] [.tour-btns_&]:h-11.5 [.tour-btns_&]:text-[15px] [@media(max-width:640px)]:[.tour-btns_&]:h-11 [@media(max-width:640px)]:[.tour-btns_&]:p-[0_16px] motion-safe:[transition:transform_0.16s_var(--ease-out),_background-color_0.15s_ease,_box-shadow_0.2s_ease] motion-safe:[&:active]:transform-[scale(0.97)] motion-safe:[&:active]:[transition-duration:0.1s] [.st-nav_&.ready]:[outline:2px_solid_var(--signal-blue)] [.st-nav_&.ready]:outline-offset-[3px] [.st-nav_&.ready]:[box-shadow:0_0_0_6px_rgb(47_107_255_/_18%)] motion-safe:[.st-nav_&.ready]:animate-[coach_1.6s_var(--out)_infinite]! [.w2-acts_&]:flex-1 [.w2-acts_&]:justify-center motion-safe:[.st-nav_&.ready]:[animation-iteration-count:3]! st-next [.st-nav_&.pill]:relative [.st-nav_&.pill.ready::before]:absolute [.st-nav_&.pill.ready::before]:whitespace-nowrap [.st-nav_&.pill.ready::before]:bg-signal-blue [.st-nav_&.pill.ready::before]:text-white [.st-nav_&.pill.ready::before]:text-[13px] [.st-nav_&.pill.ready::before]:font-semibold [.st-nav_&.pill.ready::before]:tracking-[-0.006em] [.st-nav_&.pill.ready::before]:p-[7px_12px] [.st-nav_&.pill.ready::before]:[box-shadow:0_8px_20px_-6px_rgb(47_107_255_/_55%)] [.st-nav_&.pill.ready::before]:pointer-events-none [.st-nav_&.pill.ready::after]:[content:''] [.st-nav_&.pill.ready::after]:absolute [.st-nav_&.pill.ready::after]:[border:6px_solid_transparent] [.st-nav_&.pill.ready::after]:pointer-events-none [.st-nav_&.pill.ready::before]:[content:'Dotknij_tutaj']! [.st-nav_&.pill.ready::before]:block! [.st-nav_&.pill.ready::before]:w-auto [.st-nav_&.pill.ready::before]:h-auto [.st-nav_&.pill.ready::before]:rounded-[999px] [.st-nav_&.pill.ready::before]:left-[50%]! [.st-nav_&.pill.ready::before]:top-auto! [.st-nav_&.pill.ready::before]:bottom-[calc(100%+14px)]! [.st-nav_&.pill.ready::before]:transform-[translateX(-50%)]! [.st-nav_&.pill.ready::before]:[animation:tip-in_0.22s_cubic-bezier(0.23,_1,_0.32,_1)_both]! [.st-nav_&.pill.ready::before]:z-30 [.st-nav_&.pill.ready::after]:left-[50%]! [.st-nav_&.pill.ready::after]:top-auto! [.st-nav_&.pill.ready::after]:bottom-[calc(100%+2px)]! [.st-nav_&.pill.ready::after]:m-[0_0_0_-6px]! [.st-nav_&.pill.ready::after]:border-transparent! [.st-nav_&.pill.ready::after]:border-t-signal-blue! [.st-nav_&.pill.ready::after]:[animation:tip-in-a_0.22s_cubic-bezier(0.23,_1,_0.32,_1)_both]! [.st-nav_&.pill.ready::after]:z-30"
           onClick={() => step(1)}
         >
-          {i < CHAPTERS.length - 1 ? <>Dalej: {CHAPTERS[i + 1].t}</> : 'Zakończ historię'} {I('chevron', 16)}
+          {i < CHAPTERS.length - 1 ? <>Dalej: {CHAPTERS[i + 1].t}</> : 'Zakończ historię'}{' '}
+          <Icon name="chevron" size={16} />
         </button>
       </div>
       {ch.x.length > 0 && (

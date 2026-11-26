@@ -6,7 +6,7 @@ import { useEffect, useState } from 'react';
 import { GRID, KRK2 } from '@/flows/sign/map';
 import { buzz, fire, fmt, reducedMotion } from '@/lib/env';
 import { TapShare } from '@/ui/controls';
-import { I } from '@/ui/icons';
+import { Icon } from '@/ui/icons';
 import { Av, Label, LeadIcon, Num } from '@/ui/primitives';
 import type { Ctx } from '@/types';
 
@@ -154,7 +154,7 @@ export function SignList(c: Ctx) {
           <b>Telefon taty</b>
           <span>Stanisław dostaje ostrzeżenie o podpisie, którego nie złożył.</span>
         </span>
-        {I('chevron', 18)}
+        <Icon name="chevron" size={18} />
       </button>
     </div>
   );
@@ -165,7 +165,7 @@ export function EasySign(c: Ctx) {
   return (
     <div className="easy">
       <div className="w-16 h-16 rounded-[20px] [background:var(--red-soft,_#fbe7ea)] text-red grid place-items-center m-[28px_0_18px]">
-        {I('shield', 34)}
+        <Icon name="shield" size={34} />
       </div>
       <Title className="text-[34px]/[38px] in-[.easy]:leading-[38px]">Ktoś podpisał się za Pana</Title>
       <Lead className="text-[19px]/[27px]">

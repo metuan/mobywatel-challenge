@@ -1,7 +1,7 @@
 import type { CSSProperties } from 'react';
 import { Button } from '@/components/ui/button';
 import { norm, reducedMotion } from '@/lib/env';
-import { I } from '@/ui/icons';
+import { Icon } from '@/ui/icons';
 import type { Ctx } from '@/types';
 
 /* "Jak to zrobić?": search answers how-to questions in plain steps, then "Pokaż mi" points at the real button */
@@ -192,7 +192,7 @@ export function HowCard({ c, h }: { c: Ctx; h: HowTo }) {
       key={h.q}
     >
       <div className="flex items-center gap-1.5 text-[12.5px] font-semibold text-[#5b5cf0]">
-        {I('sparkle', 14)}
+        <Icon name="sparkle" size={14} />
         <span>Jak to zrobić</span>
       </div>
       <div className="text-[17px] font-bold tracking-[-0.015em] m-[6px_0_10px]">{h.q}</div>

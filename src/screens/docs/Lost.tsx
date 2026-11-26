@@ -5,7 +5,7 @@ import { Caption, Lead, Title } from '@/components/ui/typography';
 import { Actions } from '@/components/ui/button';
 import { useState } from 'react';
 import { HoldBtn } from '@/ui/controls';
-import { I } from '@/ui/icons';
+import { Icon } from '@/ui/icons';
 import { Row, Sec } from '@/ui/primitives';
 import type { Ctx } from '@/types';
 
@@ -33,7 +33,7 @@ export function Lost(c: Ctx) {
         {items.map((t, i) => (
           <ListRow key={t} style={{ '--i': i } as CSSProperties}>
             <ListRowIcon className="[.lost8_&]:[transition:background_0.25s,_color_0.25s] [.lost8.done_&]:bg-green-soft [.lost8.done_&]:animate-[pop_0.32s_var(--spring)_calc(var(--i)*60ms)_both]">
-              {done ? I('check', 18) : I('lock', 18)}
+              {done ? <Icon name="check" size={18} /> : <Icon name="lock" size={18} />}
             </ListRowIcon>
             <ListRowContent>
               <ListRowTitle>{t}</ListRowTitle>

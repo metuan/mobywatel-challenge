@@ -3,7 +3,7 @@ import { Badge } from '@/components/ui/badge';
 import { Caption, Lead, Title } from '@/components/ui/typography';
 import { useState, type MouseEvent as ReactMouseEvent } from 'react';
 import { swipeRow } from '@/ui/controls';
-import { I } from '@/ui/icons';
+import { Icon } from '@/ui/icons';
 import type { Ctx, MailItem } from '@/types';
 
 /* Hop 11: one inbox for letters from every office (e-Doręczenia), swipe to archive */
@@ -96,7 +96,7 @@ export function Inbox(c: Ctx) {
         {shown.map(x => (
           <div className="relative rounded-[20px] overflow-hidden bg-ink will-change-auto" key={x.k}>
             <span className="absolute inset-0 flex items-center justify-end gap-2 pr-5.5 text-white text-[13px] font-semibold [opacity:calc(0.4_+_var(--sw,_0)_*_0.6)]">
-              {I('archive', 20)}
+              <Icon name="archive" size={20} />
               <span>Archiwum</span>
             </span>
             <button
@@ -132,7 +132,7 @@ export function Inbox(c: Ctx) {
         ))}
         {!shown.length && (
           <div className="flex flex-col items-center text-center gap-1.5 p-[40px_20px] text-ink-2 [&_b]:text-ink [&_b]:font-semibold">
-            {I('check', 22)}
+            <Icon name="check" size={22} />
             <b>Wszystko przeczytane.</b>
             <span>Nowe pisma pojawią się tutaj i w powiadomieniach.</span>
           </div>

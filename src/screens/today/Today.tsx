@@ -1,7 +1,7 @@
 import { List, ListItemDescription, ListItemTitle } from '@/components/ui/list';
 import { Display } from '@/components/ui/typography';
 import { DocCard } from '@/ui/documentCard';
-import { I } from '@/ui/icons';
+import { Icon } from '@/ui/icons';
 import { AvStack, GRow, Label, Num, Ring, Tile } from '@/ui/primitives';
 import type { Ctx } from '@/types';
 import type { IconName } from '@/ui/icons';
@@ -27,7 +27,7 @@ function TodayBase(c: Ctx) {
         ).map(([ic, t, r]) => (
           <button key={t} onClick={() => c.go(r)}>
             <span className="rounded-[50%] grid place-items-center w-14 h-14 bg-white [box-shadow:0_0_0_0.5px_var(--hair)]">
-              {I(ic, 22)}
+              <Icon name={ic} size={22} />
             </span>
             <span>{t}</span>
           </button>
@@ -66,7 +66,9 @@ function TodayBase(c: Ctx) {
           onClick={() => c.go('p800')}
         >
           <span className="text-[12px] font-medium pr-6.5 leading-4 text-ink-2">800+ na Zosię</span>
-          <span className="absolute top-3.5 right-3.5 grid text-ink-3">{I('coin', 20)}</span>
+          <span className="absolute top-3.5 right-3.5 grid text-ink-3">
+            <Icon name="coin" size={20} />
+          </span>
           <span className="font-semibold [font-variant-numeric:tabular-nums] mt-auto text-[30px] leading-8 tracking-[-0.035em] [&_small]:text-[14px] [&_small]:font-medium [&_small]:text-ink-2 [&_small]:tracking-[-0.01em]">
             800 zł
           </span>
@@ -79,7 +81,9 @@ function TodayBase(c: Ctx) {
           <span className="text-[12px] font-medium pr-6.5 leading-4 text-ink-2">
             {s.moved ? 'Przeprowadzka' : 'Rejestracja auta'}
           </span>
-          <span className="absolute top-3.5 right-3.5 grid text-ink-3">{I('folder', 20)}</span>
+          <span className="absolute top-3.5 right-3.5 grid text-ink-3">
+            <Icon name="folder" size={20} />
+          </span>
           <span className="font-semibold [font-variant-numeric:tabular-nums] mt-auto text-[30px] leading-8 tracking-[-0.035em] [&_small]:text-[14px] [&_small]:font-medium [&_small]:text-ink-2 [&_small]:tracking-[-0.01em]">
             {s.moved ? 2 : 3}
             <small> z 4</small>
@@ -96,7 +100,9 @@ function TodayBase(c: Ctx) {
           onClick={() => c.go('family')}
         >
           <span className="text-[12px] font-medium pr-6.5 leading-4 text-ink-2">Bliscy</span>
-          <span className="absolute top-3.5 right-3.5 grid text-ink-3">{I('people', 20)}</span>
+          <span className="absolute top-3.5 right-3.5 grid text-ink-3">
+            <Icon name="people" size={20} />
+          </span>
           <span className="mt-auto">
             <AvStack size={28} />
           </span>
@@ -107,7 +113,9 @@ function TodayBase(c: Ctx) {
           onClick={() => c.go(s.visit ? 'visit-4' : 'visit-1')}
         >
           <span className="text-[12px] font-medium pr-6.5 leading-4 text-ink-2">Zosia, kardiolog</span>
-          <span className="absolute top-3.5 right-3.5 grid text-ink-3">{I('steth', 20)}</span>
+          <span className="absolute top-3.5 right-3.5 grid text-ink-3">
+            <Icon name="steth" size={20} />
+          </span>
           <span className="font-semibold [font-variant-numeric:tabular-nums] mt-auto leading-8 tracking-[-0.035em] [&_small]:font-medium [&_small]:text-ink-2 [&_small]:tracking-[-0.01em] text-[22px]">
             {s.visit ? '15 gru' : 'Skierowanie'}
           </span>
@@ -144,7 +152,7 @@ export function Today(c: Ctx) {
         className="flex-1 min-w-0 flex items-center gap-2 h-11 p-[0_14px] rounded-[14px] bg-surface [box-shadow:inset_0_0_0_0.5px_var(--hair)] [color:var(--label2,_#8a8f99)] text-[15px] text-left [transition:transform_0.16s_var(--out)] [&_span]:overflow-hidden [&_span]:whitespace-nowrap [&_span]:text-ellipsis [&:active]:transform-[scale(0.97)]"
         onClick={() => c.go('search')}
       >
-        {I('search', 18)}
+        <Icon name="search" size={18} />
         <span>Szukaj albo zapytaj</span>
       </button>
       <button
@@ -152,7 +160,7 @@ export function Today(c: Ctx) {
         aria-label={'Skrzynka, nowe: ' + n}
         onClick={() => c.go('inbox')}
       >
-        {I('inbox', 20)}
+        <Icon name="inbox" size={20} />
         {n > 0 && (
           <b>
             <Num v={n} />

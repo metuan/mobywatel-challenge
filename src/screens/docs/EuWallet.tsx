@@ -3,7 +3,7 @@ import { Caption, Eyebrow, Title } from '@/components/ui/typography';
 import { useEffect, useState } from 'react';
 import { reducedMotion } from '@/lib/env';
 import { TapShare } from '@/ui/controls';
-import { I } from '@/ui/icons';
+import { Icon } from '@/ui/icons';
 import { Label } from '@/ui/primitives';
 import type { Ctx } from '@/types';
 
@@ -76,7 +76,7 @@ export function EuWallet(_c: Ctx) {
       <div className="flex flex-wrap gap-2 [&_span]:inline-flex [&_span]:items-center [&_span]:gap-1.5 [&_span]:bg-white [&_span]:rounded-[999px] [&_span]:p-[8px_12px] [&_span]:text-[13.5px] [&_span]:font-medium [&_span]:[transition:background-color_0.3s_ease,_color_0.3s_ease] [&_span_svg]:text-ink-3 [&_span.ok]:bg-ink [&_span.ok]:text-white [&_span.ok_svg]:text-white">
         {['Imię i nazwisko', 'Prawo jazdy kat. B', 'Ukończone 25 lat'].map(t => (
           <span key={t} className={sent ? 'ok' : ''}>
-            {I('check', 14)}
+            <Icon name="check" size={14} />
             {t}
           </span>
         ))}

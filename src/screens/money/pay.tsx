@@ -3,7 +3,7 @@ import { Caption } from '@/components/ui/typography';
 import { Actions, Button } from '@/components/ui/button';
 import { useEffect } from 'react';
 import { coachTip } from '@/story/coach';
-import { I } from '@/ui/icons';
+import { Icon } from '@/ui/icons';
 import type { IconName } from '@/ui/icons';
 import type { Ctx, Sheet, SheetRequest } from '@/types';
 
@@ -40,7 +40,7 @@ export function PaySheet({
         {METHODS.map(([ic, t, s], i) => (
           <button key={t} aria-pressed={sheet.m === i} onClick={() => setSheet({ ...sheet, m: i })}>
             <span className="w-10 h-10 rounded-[50%] grid place-items-center flex-none text-ink bg-bg [&.ai]:[background:linear-gradient(135deg,_var(--signal-blue),_var(--signal-violet))] [&.ai]:text-white [.how8-row_&]:w-7.5 [.how8-row_&]:h-7.5 [.how8-row_&]:rounded-[10px]">
-              {I(ic, 18)}
+              <Icon name={ic} size={18} />
             </span>
             <ListItemContent>
               <ListItemTitle>{t}</ListItemTitle>
@@ -76,7 +76,7 @@ export function PayDone({ sheet, close }: { sheet: Sheet; close: () => void }) {
   return (
     <div className="pay8 text-center [&.done]:p-[18px_0_26px] done">
       <div className="w-16 h-16 m-[0_auto] rounded-[50%] bg-green text-white grid place-items-center animate-[pop_0.4s_var(--spring)]">
-        {I('check', 30)}
+        <Icon name="check" size={30} />
       </div>
       <div className="text-[44px] font-[650] tracking-[-0.035em] leading-[1.1] [font-variant-numeric:tabular-nums] [&.sm]:text-[26px] [&.sm]:mt-3 sm">
         Zapłacono {sheet.amt}

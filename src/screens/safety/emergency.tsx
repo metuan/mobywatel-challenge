@@ -9,7 +9,7 @@ import {
 } from '@/components/ui/list';
 import { Caption, Eyebrow, Title } from '@/components/ui/typography';
 import { useState } from 'react';
-import { I } from '@/ui/icons';
+import { Icon } from '@/ui/icons';
 import { Toggle } from '@/ui/primitives';
 import type { Ctx } from '@/types';
 
@@ -23,7 +23,7 @@ export function Ice(c: Ctx) {
       <div className="bg-white rounded-2xl overflow-hidden">
         <div className="ice-h flex gap-3 items-center p-4 [border-bottom:0.5px_solid_var(--sep)]">
           <span className="w-9 h-9 rounded-[10px] bg-signal-red text-white grid place-items-center flex-none">
-            {I('plus', 18)}
+            <Icon name="plus" size={18} />
           </span>
           <div>
             <div className="[.ice-h_&]:font-semibold [.ice-h_&]:text-[17px]">Anna Nowicka</div>
@@ -63,20 +63,22 @@ export function Ice(c: Ctx) {
           <div className="flex justify-between items-center p-[8px_0] text-[15px]">
             <span>Tomasz Nowicki · partner</span>
             <span className="mini inline-flex gap-1.5 items-center whitespace-nowrap motion-safe:[&:active]:transform-[scale(0.97)] font-semibold text-[15px] p-[6px_14px] bg-fill text-ink rounded-[999px]">
-              {I('phone', 14)} Zadzwoń
+              <Icon name="phone" size={14} /> Zadzwoń
             </span>
           </div>
           <div className="flex justify-between items-center p-[8px_0] text-[15px]">
             <span>Stanisław Nowicki · tata</span>
             <span className="mini inline-flex gap-1.5 items-center whitespace-nowrap motion-safe:[&:active]:transform-[scale(0.97)] font-semibold text-[15px] p-[6px_14px] bg-fill text-ink rounded-[999px]">
-              {I('phone', 14)} Zadzwoń
+              <Icon name="phone" size={14} /> Zadzwoń
             </span>
           </div>
         </div>
       </div>
       <List className="mt-3.5">
         <ListRow>
-          <ListRowTile tone="red">{I('lock', 18)}</ListRowTile>
+          <ListRowTile tone="red">
+            <Icon name="lock" size={18} />
+          </ListRowTile>
           <ListRowContent>
             <ListRowTitle>Pokaż na ekranie blokady</ListRowTitle>
             <ListRowDescription>Ratownik zobaczy kartę bez odblokowania telefonu</ListRowDescription>
@@ -91,14 +93,18 @@ export function Ice(c: Ctx) {
           />
         </ListRow>
         <ListRow>
-          <ListRowTile>{I('wifi', 18)}</ListRowTile>
+          <ListRowTile>
+            <Icon name="wifi" size={18} />
+          </ListRowTile>
           <ListRowContent>
             <ListRowTitle>Działa bez internetu</ListRowTitle>
             <ListRowDescription>Zapisana w telefonie, zaszyfrowana</ListRowDescription>
           </ListRowContent>
         </ListRow>
         <ListRow as="button" onClick={() => c.go('medical-id')}>
-          <ListRowTile>{I('eye', 18)}</ListRowTile>
+          <ListRowTile>
+            <Icon name="eye" size={18} />
+          </ListRowTile>
           <ListRowContent>
             <ListRowTitle>Zobacz, co widzi ratownik</ListRowTitle>
           </ListRowContent>
@@ -124,7 +130,7 @@ export function MedicalId(c: Ctx) {
       <div className="[background:#1c1c1e] rounded-2xl p-4 mt-2.5">
         <div className="flex gap-2.5 items-center text-[#ff453a] text-[15px]">
           <span className="w-9 h-9 rounded-[10px] bg-signal-red text-white grid place-items-center flex-none bg-signal-red">
-            {I('plus', 16)}
+            <Icon name="plus" size={16} />
           </span>
           <b>Identyfikator medyczny</b>
         </div>
@@ -155,10 +161,10 @@ export function MedicalId(c: Ctx) {
           className="lk-btn inline-flex gap-1.5 items-center [background:rgb(255_255_255_/_18%)] [-webkit-backdrop-filter:blur(14px)] text-white rounded-[999px] p-[10px_14px] text-[13px] font-medium motion-safe:[&:active]:transform-[scale(0.97)]"
           onClick={c.back}
         >
-          {I('left', 15)} Wróć do karty
+          <Icon name="left" size={15} /> Wróć do karty
         </button>
         <button className="lk-btn inline-flex gap-1.5 items-center [-webkit-backdrop-filter:blur(14px)] text-white rounded-[999px] p-[10px_14px] text-[13px] font-medium motion-safe:[&:active]:transform-[scale(0.97)] bg-signal-red">
-          {I('phone', 15)} 112
+          <Icon name="phone" size={15} /> 112
         </button>
       </div>
     </div>

@@ -15,7 +15,7 @@ import { Note } from '@/components/ui/note';
 import { Caption, Eyebrow, Lead, Muted, Subtitle, Title } from '@/components/ui/typography';
 import { Actions, Button } from '@/components/ui/button';
 import { useEffect, useState } from 'react';
-import { I } from '@/ui/icons';
+import { Icon } from '@/ui/icons';
 import type { Ctx } from '@/types';
 
 /* 4: Zgoda obojga rodziców */
@@ -110,7 +110,9 @@ export function School(c: Ctx) {
         <div>
           <List>
             <ListRow>
-              <ListRowTile tone="orange">{I('bell', 18)}</ListRowTile>
+              <ListRowTile tone="orange">
+                <Icon name="bell" size={18} />
+              </ListRowTile>
               <ListRowContent>
                 <ListRowTitle>Nieobecność wczoraj</ListRowTitle>
                 <ListRowDescription>
@@ -133,7 +135,9 @@ export function School(c: Ctx) {
               )}
             </ListRow>
             <ListRow>
-              <ListRowTile tone="green">{I('route', 18)}</ListRowTile>
+              <ListRowTile tone="green">
+                <Icon name="route" size={18} />
+              </ListRowTile>
               <ListRowContent>
                 <ListRowTitle>Wycieczka do Ojcowa, 4 grudnia</ListRowTitle>
                 <ListRowDescription>Zgoda rodzica i 45 zł</ListRowDescription>
@@ -146,7 +150,9 @@ export function School(c: Ctx) {
               </button>
             </ListRow>
             <ListRow>
-              <ListRowTile>{I('mail', 18)}</ListRowTile>
+              <ListRowTile>
+                <Icon name="mail" size={18} />
+              </ListRowTile>
               <ListRowContent>
                 <ListRowTitle>Wiadomość od wychowawczyni</ListRowTitle>
                 <ListRowDescription>

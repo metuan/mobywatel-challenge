@@ -1,6 +1,6 @@
 import { Fam } from '@/screens/family/Family';
 import { useTicker } from '@/ui/hooks';
-import { I } from '@/ui/icons';
+import { Icon } from '@/ui/icons';
 import { AppIcon } from '@/ui/primitives';
 import type { Ctx } from '@/types';
 
@@ -72,7 +72,9 @@ export function Lock(c: Ctx) {
         />
       </svg>
       <div className="text-center relative [&_>_span]:opacity-[0.8]">
-        <span>{I('lock', 14)}</span>
+        <span>
+          <Icon name="lock" size={14} />
+        </span>
         <div className="leading-none mt-0.5 [font-variant-numeric:tabular-nums] text-[80px] font-sans font-semibold tracking-[-0.02em]">
           {n >= 2 ? '15:43' : '15:41'}
         </div>
@@ -132,7 +134,7 @@ export function Lock(c: Ctx) {
             {x.act && (
               <div className="[.notif_&]:mt-2 [.notif_&]:[border-top:1px_solid_rgb(0_0_0_/_8%)] [.notif_&]:pt-2 [.notif_&]:text-[13.5px] [.notif_&]:font-semibold [.notif_&]:text-ink [.notif_&_span]:inline-flex [.notif_&_span]:gap-1.5 [.notif_&_span]:items-center">
                 <span>
-                  {I('phone', 14)} {x.act}
+                  <Icon name="phone" size={14} /> {x.act}
                 </span>
               </div>
             )}
@@ -150,7 +152,7 @@ export function Lock(c: Ctx) {
           className="lk-btn inline-flex gap-1.5 items-center [background:rgb(255_255_255_/_18%)] [-webkit-backdrop-filter:blur(14px)] text-white rounded-[999px] p-[10px_14px] text-[13px] font-medium motion-safe:[&:active]:transform-[scale(0.97)]"
           onClick={replay}
         >
-          {I('route', 15)} Odtwórz od nowa
+          <Icon name="route" size={15} /> Odtwórz od nowa
         </button>
         <button
           className="lk-btn inline-flex gap-1.5 items-center [background:rgb(255_255_255_/_18%)] [-webkit-backdrop-filter:blur(14px)] text-white rounded-[999px] p-[10px_14px] text-[13px] font-medium motion-safe:[&:active]:transform-[scale(0.97)]"

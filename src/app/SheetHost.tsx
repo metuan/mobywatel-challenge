@@ -11,7 +11,7 @@ import { PayDone, PaySheet } from '@/screens/money/pay';
 import { StoryPanel } from '@/story/StoryPanel';
 import { TechPanel } from '@/tech/TechPanel';
 import { Confirming } from '@/ui/controls';
-import { I } from '@/ui/icons';
+import { Icon } from '@/ui/icons';
 import type { Persona, Sheet as SheetState } from '@/types';
 
 /** The sheet glides to its new height when its content changes (confirm, then loader, then receipt). */
@@ -128,7 +128,9 @@ export function SheetHost({
             {(sheet.items || []).map(i => (
               <Field key={i} className={cn(sheet.big && 'text-lg')}>
                 <FieldValue className="flex gap-2.5 items-start">
-                  <span className="text-ink mt-0.5">{I('check', 16)}</span>
+                  <span className="text-ink mt-0.5">
+                    <Icon name="check" size={16} />
+                  </span>
                   <span>{i}</span>
                 </FieldValue>
               </Field>

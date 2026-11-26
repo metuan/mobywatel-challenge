@@ -4,7 +4,7 @@ import { List, ListRow, ListRowContent, ListRowDescription, ListRowTitle } from 
 import { Eyebrow, Lead, Title } from '@/components/ui/typography';
 import { Actions, Button } from '@/components/ui/button';
 import { useState } from 'react';
-import { I } from '@/ui/icons';
+import { Icon } from '@/ui/icons';
 import { Hero } from '@/ui/illustrations';
 import { Progress, Src } from '@/ui/primitives';
 import type { Ctx } from '@/types';
@@ -50,7 +50,7 @@ export function Damage1(c: Ctx) {
                 c.set({ dmgPhotos: n + 1 });
               }}
             >
-              {I('camera', 24)}
+              <Icon name="camera" size={24} />
               <span>{i === n ? 'Zrób zdjęcie' : ''}</span>
             </button>
           ),

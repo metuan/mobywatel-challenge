@@ -15,7 +15,7 @@ import {
 } from '@/components/ui/list';
 import { useEffect, useState } from 'react';
 import { reducedMotion } from '@/lib/env';
-import { I } from '@/ui/icons';
+import { Icon } from '@/ui/icons';
 import { ILL } from '@/ui/illustrations';
 import type { IllustrationName } from '@/ui/illustrations';
 import type { IconName } from '@/ui/icons';
@@ -42,7 +42,11 @@ export const Row = ({
   onClick?: () => void;
 }) => (
   <ListRow as="button" onClick={onClick}>
-    {icon && <ListRowIcon>{I(icon)}</ListRowIcon>}
+    {icon && (
+      <ListRowIcon>
+        <Icon name={icon} />
+      </ListRowIcon>
+    )}
     <ListRowContent>
       <ListRowTitle>{t}</ListRowTitle>
       {s && <ListRowDescription>{s}</ListRowDescription>}
@@ -78,7 +82,7 @@ export const Toggle = ({ on, set, label }: { on: boolean; set: (v: boolean) => v
 
 export const Src = ({ t }: { t: Child }) => (
   <FieldSource>
-    {I('check', 12)} Źródło: {t}
+    <Icon name="check" size={12} /> Źródło: {t}
   </FieldSource>
 );
 
@@ -169,7 +173,7 @@ export const AvStack = ({ size = 28, list = AV }: { size?: number; list?: [strin
 
 export const LeadIcon = ({ ic }: { ic: IconName }) => (
   <span className="w-10 h-10 rounded-[50%] grid place-items-center flex-none text-ink bg-bg [&.ai]:[background:linear-gradient(135deg,_var(--signal-blue),_var(--signal-violet))] [&.ai]:text-white [.how8-row_&]:w-7.5 [.how8-row_&]:h-7.5 [.how8-row_&]:rounded-[10px]">
-    {I(ic, 20)}
+    <Icon name={ic} size={20} />
   </span>
 );
 
@@ -216,7 +220,7 @@ export const Label = ({ t, more, go }: { t: Child; more?: Child; go?: () => void
     {more && (
       <button onClick={go}>
         {more}
-        {I('chevron', 14)}
+        <Icon name="chevron" size={14} />
       </button>
     )}
   </div>
@@ -250,11 +254,11 @@ export const Tile = ({
 export const AppIcon = ({ k }: { k: string }) =>
   k === 'rcb' ? (
     <span className="w-5.5 h-5.5 rounded-[6px] grid place-items-center flex-none [&.mob]:bg-white [&.mob]:[box-shadow:inset_0_0_0_1px_rgb(0_0_0_/_8%)] bg-[#d42a3e] text-white">
-      {I('bell', 15)}
+      <Icon name="bell" size={15} />
     </span>
   ) : k === 'imgw' ? (
     <span className="w-5.5 h-5.5 rounded-[6px] grid place-items-center flex-none [&.mob]:bg-white [&.mob]:[box-shadow:inset_0_0_0_1px_rgb(0_0_0_/_8%)] bg-[#2b6cb0] text-white">
-      {I('sun', 15)}
+      <Icon name="sun" size={15} />
     </span>
   ) : (
     <span className="w-5.5 h-5.5 rounded-[6px] grid place-items-center flex-none [&.mob]:bg-white [&.mob]:[box-shadow:inset_0_0_0_1px_rgb(0_0_0_/_8%)] mob">

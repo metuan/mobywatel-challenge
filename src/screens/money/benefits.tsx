@@ -4,7 +4,7 @@ import { Badge } from '@/components/ui/badge';
 import { Card } from '@/components/ui/card';
 import { Note } from '@/components/ui/note';
 import { Caption, Eyebrow, Title } from '@/components/ui/typography';
-import { I } from '@/ui/icons';
+import { Icon } from '@/ui/icons';
 import { Hero } from '@/ui/illustrations';
 import { GRow, Label, Ring, Row } from '@/ui/primitives';
 import type { Ctx } from '@/types';
@@ -133,7 +133,7 @@ export function Vacc(c: Ctx) {
             }
           >
             <span className="flex-none w-5.5 h-5.5 rounded-[50%] grid place-items-center bg-bg [box-shadow:inset_0_0_0_1.5px_var(--ink-3)] text-white mt-px [.vt-i.ok_&]:bg-ink [.vt-i.ok_&]:[box-shadow:none] [.vt-i.due_&&]:[box-shadow:inset_0_0_0_2px_var(--red),_0_0_0_4px_var(--red-soft)]">
-              {st === 'ok' ? I('check', 12) : ''}
+              {st === 'ok' ? <Icon name="check" size={12} /> : ''}
             </span>
             <div className="flex-1">
               <ListItemTitle as="div">{t}</ListItemTitle>

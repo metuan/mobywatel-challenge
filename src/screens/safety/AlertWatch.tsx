@@ -1,7 +1,7 @@
 import { Actions, Button } from '@/components/ui/button';
 import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { buzz, fire, reducedMotion } from '@/lib/env';
-import { I } from '@/ui/icons';
+import { Icon } from '@/ui/icons';
 import type { Ctx } from '@/types';
 import { takeBox } from '@/lib/morph';
 
@@ -98,7 +98,7 @@ export function AlertWatch(c: Ctx) {
     >
       <div className="flex items-center gap-2 text-[14px] [color:rgb(255_255_255_/_70%)] mt-2 motion-safe:[animation:fade-up_0.4s_cubic-bezier(0.23,_1,_0.32,_1)_0.35s_both] motion-safe:[.wt8.leaving_&]:[transition:opacity_0.2s_ease-out] motion-safe:[.wt8.leaving_&]:opacity-[0]">
         <span className="grid place-items-center w-7 h-7 rounded-[9px] [background:rgb(255_255_255_/_8%)]">
-          {I('phone', 16)}
+          <Icon name="phone" size={16} />
         </span>
         Telefon w kieszeni. Prowadzi zegarek.
       </div>
@@ -130,7 +130,7 @@ export function AlertWatch(c: Ctx) {
             {arrived ? (
               <div className="flex flex-col items-center text-center gap-0.5 relative [&_small]:text-[13px] [&_small]:[color:rgb(255_255_255_/_65%)] [&_small]:max-w-37.5 [&.done_b]:text-[19px] [&.done_b]:font-[650] motion-safe:[&.done]:[animation:num-in_0.45s_cubic-bezier(0.23,_1,_0.32,_1)_both] done">
                 <span className="w-16.5 h-16.5 rounded-[50%] [background:#e0263f] grid place-items-center mb-2">
-                  {I('check', 40)}
+                  <Icon name="check" size={40} />
                 </span>
                 <b>Jesteś w schronie</b>
                 <small>Dekerta 24 · poziom -1</small>

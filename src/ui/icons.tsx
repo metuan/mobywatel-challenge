@@ -76,6 +76,3 @@ export function Icon({ name, size = 20, className }: { name: IconName; size?: nu
     </svg>
   );
 }
-
-/** Shorthand used across the screens: I('bell', 18). */
-export const I = (n: IconName, s = 20) => <Icon name={n} size={s} />;

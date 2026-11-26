@@ -6,7 +6,7 @@ import { Note } from '@/components/ui/note';
 import { Eyebrow, Lead, Muted, Title } from '@/components/ui/typography';
 import { Actions, Button } from '@/components/ui/button';
 import { useState } from 'react';
-import { I } from '@/ui/icons';
+import { Icon } from '@/ui/icons';
 import { Hero } from '@/ui/illustrations';
 import { Progress, Row, Src } from '@/ui/primitives';
 import type { Ctx } from '@/types';
@@ -23,7 +23,9 @@ export function Move1(c: Ctx) {
         <Field>
           <FieldLabel>Nowy adres</FieldLabel>
           <FieldValue>ul. Długa 12/4, 31-147 Kraków</FieldValue>
-          <FieldSource>{I('check', 12)} Z umowy najmu, którą dodałaś 20 listopada</FieldSource>
+          <FieldSource>
+            <Icon name="check" size={12} /> Z umowy najmu, którą dodałaś 20 listopada
+          </FieldSource>
         </Field>
         <Field>
           <FieldLabel>Od kiedy</FieldLabel>
@@ -80,7 +82,7 @@ export function Move2(c: Ctx) {
               <ListRowDescription>{sub}</ListRowDescription>
             </ListRowContent>
             <span className="check" aria-checked={on[k]}>
-              {on[k] ? I('check', 15) : ''}
+              {on[k] ? <Icon name="check" size={15} /> : ''}
             </span>
           </ListRow>
         ))}
@@ -206,7 +208,7 @@ export function MoveDone(c: Ctx) {
     <div>
       <Hero n="move" />
       <div className="w-15 h-15 rounded-[50%] text-white grid place-items-center m-[26px_0_4px] [box-shadow:var(--shadow-s)] border-bg! motion-safe:animate-[pop_0.5s_0.15s_var(--ease-spring)_both] bg-ink mt-[-34px] ml-4 relative [border:4px_solid_#fff]">
-        {I('check', 28)}
+        <Icon name="check" size={28} />
       </div>
       <Title>Wysłane. Resztą zajmiemy się razem.</Title>
       <List>

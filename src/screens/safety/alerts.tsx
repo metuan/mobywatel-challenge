@@ -14,7 +14,7 @@ import { Note } from '@/components/ui/note';
 import { Caption, Lead, Title } from '@/components/ui/typography';
 import { Actions, Button } from '@/components/ui/button';
 import { Fragment, useState } from 'react';
-import { I } from '@/ui/icons';
+import { Icon } from '@/ui/icons';
 import { Sec } from '@/ui/primitives';
 import type { Ctx } from '@/types';
 import { stashBox } from '@/lib/morph';
@@ -33,7 +33,7 @@ export function AlertRed(c: Ctx) {
       <div className="rcb">
         <div className="hd [.rcb_&]:flex [.rcb_&]:items-center [.rcb_&]:gap-2 [.rcb_&]:text-[12.5px] [.rcb_&]:font-semibold [.rcb_&]:tracking-[0.02em]">
           <span className="[.road_&]:[border-bottom:1px_solid_var(--hair)] [.road_&]:p-[13px_0] [.rcb_.hd_&]:w-5.5 [.rcb_.hd_&]:h-5.5 [.rcb_.hd_&]:rounded-[6px] [.rcb_.hd_&]:text-white [.rcb_.hd_&]:grid [.rcb_.hd_&]:place-items-center [.rcb.clear_.hd_&]:bg-green [.rcb_.hd_&]:[background:rgb(255_255_255_/_20%)]">
-            {I('bell', 14)}
+            <Icon name="bell" size={14} />
           </span>
           ALERT RCB · ALERT EKSTREMALNY
           <span className="[.rcb_.hd_&]:ml-auto [.rcb_.hd_&]:font-medium [.rcb_.hd_&]:[color:rgb(255_255_255_/_82%)]">
@@ -48,7 +48,7 @@ export function AlertRed(c: Ctx) {
           służb.
         </div>
         <div className="[.rcb_&]:flex [.rcb_&]:gap-1.5 [.rcb_&]:items-center [.rcb_&]:text-[12px] [.rcb_&]:mt-2 [.rcb_&]:font-medium [.rcb_&]:[color:rgb(255_255_255_/_92%)]">
-          {I('check', 14)} Telefon sprawdził, że to prawdziwy alert RCB
+          <Icon name="check" size={14} /> Telefon sprawdził, że to prawdziwy alert RCB
         </div>
       </div>
       <div className="rcb-app bg-white text-ink p-[6px_0] mt-2.5 motion-safe:animate-[fade-up_0.5s_0.25s_var(--ease-out)_both] rounded-2xl">
@@ -57,7 +57,9 @@ export function AlertRed(c: Ctx) {
           mObywatel dodaje do tego alertu
         </div>
         <ListRow as="button" onClick={() => c.go('alert-shelter')}>
-          <ListRowTile className="[background:var(--tile)]">{I('route', 20)}</ListRowTile>
+          <ListRowTile className="[background:var(--tile)]">
+            <Icon name="route" size={20} />
+          </ListRowTile>
           <ListRowContent>
             <ListRowTitle>Schronienie: ul. Dekerta 24</ListRowTitle>
             <ListRowDescription>240 m · 3 min pieszo · trasa działa bez internetu</ListRowDescription>
@@ -65,7 +67,9 @@ export function AlertRed(c: Ctx) {
           <ListRowChevron size={18} />
         </ListRow>
         <ListRow as="button" onClick={() => c.go('family-map')}>
-          <ListRowTile className="[background:var(--tile)]">{I('people', 20)}</ListRowTile>
+          <ListRowTile className="[background:var(--tile)]">
+            <Icon name="people" size={20} />
+          </ListRowTile>
           <ListRowContent>
             <ListRowTitle>Rodzina</ListRowTitle>
             <ListRowDescription>Zosia: przedszkole w schronie · Tata: poza strefą alarmu</ListRowDescription>
@@ -82,10 +86,10 @@ export function AlertRed(c: Ctx) {
             c.go('alert-watch');
           }}
         >
-          {I('route', 18)} Prowadź do schronienia
+          <Icon name="route" size={18} /> Prowadź do schronienia
         </Button>
         <Button variant="inverseSecondary" onClick={() => c.go('alert-guide')}>
-          {I('speaker', 18)} Co robić teraz (odczytaj)
+          <Icon name="speaker" size={18} /> Co robić teraz (odczytaj)
         </Button>
       </Actions>
     </div>
@@ -146,7 +150,9 @@ export function AlertShelter(c: Ctx) {
         <Field>
           <FieldLabel>Typ</FieldLabel>
           <FieldValue>Schron, dla 180 osób, czynny całą dobę</FieldValue>
-          <FieldSource>{I('check', 12)} Źródło: lista „Gdzie się ukryć”, Państwowa Straż Pożarna</FieldSource>
+          <FieldSource>
+            <Icon name="check" size={12} /> Źródło: lista „Gdzie się ukryć”, Państwowa Straż Pożarna
+          </FieldSource>
         </Field>
         <Field>
           <FieldLabel>Gdy nie zdążysz</FieldLabel>
@@ -174,7 +180,8 @@ export function AlertGuide(c: Ctx) {
         className="flex gap-2.5 items-center justify-center bg-ink text-white rounded-[999px] p-4.5 text-[18px] font-medium w-full"
         onClick={() => setReading(!reading)}
       >
-        {I(reading ? 'pause' : 'speaker', 22)} {reading ? 'Zatrzymaj odczyt' : 'Odczytaj na głos'}
+        <Icon name={reading ? 'pause' : 'speaker'} size={22} />{' '}
+        {reading ? 'Zatrzymaj odczyt' : 'Odczytaj na głos'}
       </button>
       <div className="road grid grid-cols-[auto_1fr] gap-[0_16px] [&_.n]:text-ink-3 [&_.n]:pt-3 [&_.n]:font-sans [&_.n]:font-bold [&_.n]:text-[20px] mt-2.5">
         {[
@@ -193,7 +200,9 @@ export function AlertGuide(c: Ctx) {
         ))}
       </div>
       <Actions>
-        <Button onClick={() => c.go('alert-safe')}>{I('heart', 18)} Jestem bezpieczna</Button>
+        <Button onClick={() => c.go('alert-safe')}>
+          <Icon name="heart" size={18} /> Jestem bezpieczna
+        </Button>
         <Button variant="secondary" onClick={() => c.go('alert-clear')}>
           Pokaż odwołanie alarmu (demo)
         </Button>
@@ -216,7 +225,7 @@ export function AlertClear(c: Ctx) {
       <div className="rcb clear [&.rcb]:border-t-green [&.rcb]:bg-[#1f2a24]">
         <div className="hd [.rcb_&]:flex [.rcb_&]:items-center [.rcb_&]:gap-2 [.rcb_&]:text-[12.5px] [.rcb_&]:font-semibold [.rcb_&]:tracking-[0.02em]">
           <span className="[.road_&]:[border-bottom:1px_solid_var(--hair)] [.road_&]:p-[13px_0] [.rcb_.hd_&]:w-5.5 [.rcb_.hd_&]:h-5.5 [.rcb_.hd_&]:rounded-[6px] [.rcb_.hd_&]:text-white [.rcb_.hd_&]:grid [.rcb_.hd_&]:place-items-center [.rcb.clear_.hd_&]:bg-green [.rcb_.hd_&]:[background:rgb(255_255_255_/_20%)]">
-            {I('check', 14)}
+            <Icon name="check" size={14} />
           </span>
           ALERT RCB
           <span className="[.rcb_.hd_&]:ml-auto [.rcb_.hd_&]:font-medium [.rcb_.hd_&]:[color:rgb(255_255_255_/_82%)]">
@@ -231,7 +240,7 @@ export function AlertClear(c: Ctx) {
           odwołania.
         </div>
         <div className="[.rcb_&]:flex [.rcb_&]:gap-1.5 [.rcb_&]:items-center [.rcb_&]:text-[12px] [.rcb_&]:mt-2 [.rcb_&]:font-medium [.rcb_&]:[color:rgb(255_255_255_/_92%)]">
-          {I('check', 14)} Telefon sprawdził, że to prawdziwy alert RCB
+          <Icon name="check" size={14} /> Telefon sprawdził, że to prawdziwy alert RCB
         </div>
       </div>
       <div className="rcb-app bg-white text-ink p-[6px_0] mt-2.5 motion-safe:animate-[fade-up_0.5s_0.25s_var(--ease-out)_both] rounded-2xl">
@@ -279,7 +288,7 @@ export function AlertSafe(c: Ctx) {
       {!sent && (
         <Actions className="mt-1.5">
           <Button variant="success" onClick={send}>
-            {I('check', 22)} Jestem bezpieczna
+            <Icon name="check" size={22} /> Jestem bezpieczna
           </Button>
           <Button
             variant="secondary"
@@ -327,7 +336,7 @@ export function AlertSafe(c: Ctx) {
             className="mini inline-flex gap-1.5 items-center whitespace-nowrap motion-safe:[&:active]:transform-[scale(0.97)] font-semibold text-[15px] p-[6px_14px] bg-fill text-ink rounded-[999px]"
             onClick={() => c.go('easy-call')}
           >
-            {I('phone', 14)} Zadzwoń
+            <Icon name="phone" size={14} /> Zadzwoń
           </button>
         </ListRow>
       </List>

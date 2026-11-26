@@ -2,7 +2,7 @@ import { List, ListRow, ListRowContent, ListRowTitle } from '@/components/ui/lis
 import { Lead, Title } from '@/components/ui/typography';
 import { Actions, Button } from '@/components/ui/button';
 import { useState } from 'react';
-import { I } from '@/ui/icons';
+import { Icon } from '@/ui/icons';
 import { Toggle } from '@/ui/primitives';
 import type { Ctx } from '@/types';
 
@@ -58,7 +58,9 @@ export function Pjm(c: Ctx) {
             Zakończ
           </Button>
         ) : (
-          <Button onClick={() => setOn(true)}>{I('camera', 18)} Połącz z tłumaczem</Button>
+          <Button onClick={() => setOn(true)}>
+            <Icon name="camera" size={18} /> Połącz z tłumaczem
+          </Button>
         )}
       </Actions>
       <List className="mt-3.5">

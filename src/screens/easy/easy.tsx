@@ -4,7 +4,7 @@ import { Note, NoteButton } from '@/components/ui/note';
 import { Display, Lead, Muted, Title } from '@/components/ui/typography';
 import { Actions, Button } from '@/components/ui/button';
 import { useEffect, useState } from 'react';
-import { I } from '@/ui/icons';
+import { Icon } from '@/ui/icons';
 import { Av } from '@/ui/primitives';
 import type { Ctx } from '@/types';
 
@@ -30,7 +30,7 @@ export function Easy(c: Ctx) {
           onClick={() => c.go('easy-doc')}
         >
           <span className="[.tile_&]:w-14 [.tile_&]:h-14 [.tile_&]:rounded-[50%] [.tile_&]:bg-bg [.tile_&]:text-ink [.tile_&]:grid [.tile_&]:place-items-center [.tile_&]:flex-none bg-fill! text-ink! rounded-[50%]!">
-            {I('card', 28)}
+            <Icon name="card" size={28} />
           </span>
           Mój dowód
         </button>
@@ -39,7 +39,7 @@ export function Easy(c: Ctx) {
           onClick={() => c.go('easy-rx')}
         >
           <span className="[.tile_&]:w-14 [.tile_&]:h-14 [.tile_&]:rounded-[50%] [.tile_&]:bg-bg [.tile_&]:text-ink [.tile_&]:grid [.tile_&]:place-items-center [.tile_&]:flex-none bg-fill! text-ink! rounded-[50%]!">
-            {I('doc', 28)}
+            <Icon name="doc" size={28} />
           </span>
           Moje recepty
         </button>
@@ -48,7 +48,7 @@ export function Easy(c: Ctx) {
           onClick={() => c.go('assistant')}
         >
           <span className="[.tile_&]:w-14 [.tile_&]:h-14 [.tile_&]:rounded-[50%] [.tile_&]:bg-bg [.tile_&]:text-ink [.tile_&]:grid [.tile_&]:place-items-center [.tile_&]:flex-none bg-fill! text-ink! rounded-[50%]!">
-            {I('sparkle', 28)}
+            <Icon name="sparkle" size={28} />
           </span>
           Zapytaj o pomoc
         </button>
@@ -57,7 +57,7 @@ export function Easy(c: Ctx) {
           onClick={() => c.go('easy-call')}
         >
           <span className="[.tile_&]:w-14 [.tile_&]:h-14 [.tile_&]:rounded-[50%] [.tile_&]:bg-bg [.tile_&]:text-ink [.tile_&]:grid [.tile_&]:place-items-center [.tile_&]:flex-none bg-fill! text-ink! rounded-[50%]!">
-            {I('phone', 28)}
+            <Icon name="phone" size={28} />
           </span>
           Zadzwoń do Anny
         </button>
@@ -67,7 +67,7 @@ export function Easy(c: Ctx) {
 
         onClick={() => c.go('easy-voice')}
       >
-        {I('mic', 24)} Powiedz, czego potrzebujesz
+        <Icon name="mic" size={24} /> Powiedz, czego potrzebujesz
       </button>
     </div>
   );
@@ -119,7 +119,9 @@ export function EasyApprove(c: Ctx) {
           <Button variant="secondary" onClick={() => c.go('easy')}>
             Nie teraz
           </Button>
-          <Button variant="secondary">{I('speaker', 22)} Przeczytaj mi to</Button>
+          <Button variant="secondary">
+            <Icon name="speaker" size={22} /> Przeczytaj mi to
+          </Button>
         </Actions>
       )}
     </div>
@@ -181,7 +183,8 @@ export function EasyCall(c: Ctx) {
       </div>
       {t >= 2 && (
         <div className="mt-5.5 flex gap-2 items-start text-[14px] leading-[1.4] [background:rgb(255_255_255_/_8%)] rounded-2xl p-[12px_14px] [color:rgb(255_255_255_/_85%)] animate-[fadeUp_0.3s_var(--out)]">
-          {I('sparkle', 14)} Anna widzi, że oglądasz ekran z dowodem. Może Ci pomóc krok po kroku.
+          <Icon name="sparkle" size={14} /> Anna widzi, że oglądasz ekran z dowodem. Może Ci pomóc krok po
+          kroku.
         </div>
       )}
       <div className="call-keys grid [grid-template-columns:repeat(3,_1fr)] gap-5.5 mt-auto pt-10 w-full [&_button]:flex [&_button]:flex-col [&_button]:items-center [&_button]:gap-2 [&_button]:text-white [&_button]:text-[13px] [&_span]:w-18 [&_span]:h-18 [&_span]:rounded-[50%] [&_span]:grid [&_span]:place-items-center [&_span]:[background:rgb(255_255_255_/_12%)] [&_span]:[transition:background_0.2s,_color_0.2s,_transform_0.16s_var(--out)] [&_button:active_span]:transform-[scale(0.95)]">
@@ -193,10 +196,16 @@ export function EasyCall(c: Ctx) {
           }
           onClick={() => setMute(!mute)}
         >
-          <span>{I('mute', 26)}</span>Wycisz
+          <span>
+            <Icon name="mute" size={26} />
+          </span>
+          Wycisz
         </button>
         <button onClick={() => c.toast('Klawiatura')}>
-          <span>{I('grid', 26)}</span>Klawiatura
+          <span>
+            <Icon name="grid" size={26} />
+          </span>
+          Klawiatura
         </button>
         <button
           className={
@@ -206,7 +215,10 @@ export function EasyCall(c: Ctx) {
           }
           onClick={() => setSpk(!spk)}
         >
-          <span>{I('speaker', 26)}</span>Głośnik
+          <span>
+            <Icon name="speaker" size={26} />
+          </span>
+          Głośnik
         </button>
       </div>
       <button
@@ -217,7 +229,7 @@ export function EasyCall(c: Ctx) {
           c.back();
         }}
       >
-        {I('call', 30)}
+        <Icon name="call" size={30} />
       </button>
     </div>
   );
@@ -270,7 +282,7 @@ export function EasyVoice(c: Ctx) {
               className="flex gap-2.5 items-center justify-center bg-ink text-white rounded-[999px] p-4.5 text-[18px] font-medium"
               onClick={() => c.toast('Czytam na głos…')}
             >
-              {I('speaker', 22)} Przeczytaj jeszcze raz
+              <Icon name="speaker" size={22} /> Przeczytaj jeszcze raz
             </button>
             <Button onClick={() => c.go('easy-doc')}>Pokaż mój dowód</Button>
           </Actions>
@@ -303,7 +315,7 @@ export function EasyRx(c: Ctx) {
           >
             <span className="flex gap-3 items-center [&_b]:block [&_b]:text-[20px] [&_b]:font-semibold [&_b]:tracking-[-0.015em] [&_small]:block [&_small]:text-[16px] [&_small]:text-ink-2 [&_small]:mt-0.5">
               <span className="w-11 h-11 rounded-[14px] bg-fill grid place-items-center">
-                {I('pharm', 22)}
+                <Icon name="pharm" size={22} />
               </span>
               <span>
                 <b>{t}</b>

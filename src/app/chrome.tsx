@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { FULL, TABS } from '@/app/routes';
 import type { Route } from '@/app/routes';
 import { BEATS, CHAPTERS, beatOf } from '@/story/chapters';
-import { I } from '@/ui/icons';
+import { Icon } from '@/ui/icons';
 import { Wm } from '@/ui/primitives';
 import type { Persona } from '@/types';
 
@@ -50,7 +50,7 @@ export function TopBar({
         </button>
       ) : (
         <button className="flex items-center gap-0 -ml-2 text-ink text-[16px] font-medium" onClick={back}>
-          {I('left', 22)}
+          <Icon name="left" size={22} />
           <span>Wstecz</span>
         </button>
       )}
@@ -65,7 +65,7 @@ export function TopBar({
           aria-label="Jak to działa"
           onClick={openHow}
         >
-          {I('info', 18)}
+          <Icon name="info" size={18} />
         </button>
         {tata ? (
           <button
@@ -125,7 +125,7 @@ export function TabBar({
             go(r);
           }}
         >
-          {I(ic, 24)}
+          <Icon name={ic} size={24} />
           <span>{t}</span>
         </button>
       ))}
@@ -185,7 +185,7 @@ export function StoryBar({
         aria-label="Następny rozdział"
         onClick={() => step(1)}
       >
-        {I('chevron', 18)}
+        <Icon name="chevron" size={18} />
       </button>
     </div>
   );
@@ -210,7 +210,7 @@ export function Toast({ view, onClose }: { view: { t: string; undo?: () => void 
             onClose();
           }}
         >
-          {I('undo', 15)} Cofnij
+          <Icon name="undo" size={15} /> Cofnij
         </button>
       )}
     </div>

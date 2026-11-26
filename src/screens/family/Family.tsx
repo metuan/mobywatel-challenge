@@ -7,7 +7,7 @@ import {
   ListItemTitle,
 } from '@/components/ui/list';
 import { Display } from '@/components/ui/typography';
-import { I } from '@/ui/icons';
+import { Icon } from '@/ui/icons';
 import { Av, AvStack, GRow, Label, LeadIcon } from '@/ui/primitives';
 import type { Ctx } from '@/types';
 
@@ -35,7 +35,7 @@ export function Family(c: Ctx) {
                 {n}
                 {k === 'key' && (
                   <span className="text-ink-3 inline-grid" title="Masz pełnomocnictwo">
-                    {I('key', 14)}
+                    <Icon name="key" size={14} />
                   </span>
                 )}
               </ListItemTitle>

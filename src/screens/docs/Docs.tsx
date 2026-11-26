@@ -16,7 +16,7 @@ import { useLayoutEffect, useState } from 'react';
 import { reducedMotion } from '@/lib/env';
 import { DRAWER } from '@/ui/controls';
 import { DocCard, QR, ROSETTE } from '@/ui/documentCard';
-import { I } from '@/ui/icons';
+import { Icon } from '@/ui/icons';
 import { GRow, Label, LeadIcon, Row, Sec } from '@/ui/primitives';
 import type { Ctx } from '@/types';
 import type { Persona } from '@/types';
@@ -36,7 +36,9 @@ function DocIdBase(c: Ctx) {
         </ListItem>
       </List>
       <Actions>
-        <Button onClick={() => c.go('share-min')}>{I('qr', 18)} Pokaż do sprawdzenia</Button>
+        <Button onClick={() => c.go('share-min')}>
+          <Icon name="qr" size={18} /> Pokaż do sprawdzenia
+        </Button>
         <Button variant="secondary" onClick={() => setShow(!show)}>
           {show ? 'Ukryj PESEL' : 'Pokaż PESEL'}
         </Button>
@@ -81,7 +83,7 @@ export function ShareMin(c: Ctx) {
       <Caption className="mt-2.5">Każde sprawdzenie trafia do historii „Kto sprawdzał moje dane”.</Caption>
       <Actions>
         <Button variant="secondary" onClick={() => c.go('eu')}>
-          {I('card', 18)} Za granicą: portfel UE
+          <Icon name="card" size={18} /> Za granicą: portfel UE
         </Button>
       </Actions>
     </div>
@@ -154,7 +156,7 @@ export function Issued(c: Ctx) {
           </div>
           <div className="[.diploma_&]:text-ink-2">Magister pielęgniarstwa · 2016</div>
           <div className="[.diploma_&]:flex [.diploma_&]:gap-1.5 [.diploma_&]:items-center [.diploma_&]:text-signal-green [.diploma_&]:text-[13px] [.diploma_&]:font-semibold [.diploma_&]:mt-3.5">
-            {I('check', 14)} Podpisany przez wystawcę
+            <Icon name="check" size={14} /> Podpisany przez wystawcę
           </div>
         </div>
       )}

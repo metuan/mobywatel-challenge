@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { I } from '@/ui/icons';
+import { Icon } from '@/ui/icons';
 import type { Ctx } from '@/types';
 
 /* Hop 13: "Kto do mnie dzwoni?" checks a caller who claims to be an office */
@@ -32,7 +32,7 @@ export function Caller(c: Ctx) {
         ) : (
           <>
             <span className="flex-none w-8.5 h-8.5 rounded-[50%] [background:rgb(255_255_255_/_20%)] grid place-items-center">
-              {I('shield', 20)}
+              <Icon name="shield" size={20} />
             </span>
             <span>
               <b>To nie jest ZUS.</b> ZUS nie dzwoni teraz do Ciebie z żadnego numeru. Ktoś podszywa się pod
@@ -49,7 +49,10 @@ export function Caller(c: Ctx) {
             c.back();
           }}
         >
-          <span>{I('call', 28)}</span>Odrzuć i zgłoś
+          <span>
+            <Icon name="call" size={28} />
+          </span>
+          Odrzuć i zgłoś
         </button>
         <button
           className="cl-btn flex flex-col items-center gap-2.5 text-white text-[13px] [&_span]:w-18.5 [&_span]:h-18.5 [&_span]:rounded-[50%] [&_span]:grid [&_span]:place-items-center [&_span]:[transition:transform_0.16s_var(--out)] [&:active_span]:transform-[scale(0.95)] [&.cl-btn_span]:bg-signal-green"
@@ -58,7 +61,10 @@ export function Caller(c: Ctx) {
             c.back();
           }}
         >
-          <span>{I('call', 28)}</span>Odbierz
+          <span>
+            <Icon name="call" size={28} />
+          </span>
+          Odbierz
         </button>
       </div>
       <p className="m-[22px_0_0] text-[12px] leading-[1.4] [color:rgb(255_255_255_/_55%)]">

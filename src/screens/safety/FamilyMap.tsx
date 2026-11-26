@@ -9,7 +9,7 @@ import {
 import { Badge } from '@/components/ui/badge';
 import { Note } from '@/components/ui/note';
 import { Title } from '@/components/ui/typography';
-import { I } from '@/ui/icons';
+import { Icon } from '@/ui/icons';
 import type { Ctx } from '@/types';
 
 export function FamilyMap(c: Ctx) {
@@ -132,7 +132,7 @@ export function FamilyMap(c: Ctx) {
             className="mini inline-flex gap-1.5 items-center whitespace-nowrap motion-safe:[&:active]:transform-[scale(0.97)] font-semibold text-[15px] p-[6px_14px] bg-fill text-ink rounded-[999px]"
             onClick={() => c.go('easy-call')}
           >
-            {I('phone', 14)} Zadzwoń
+            <Icon name="phone" size={14} /> Zadzwoń
           </button>
         </ListRow>
       </List>

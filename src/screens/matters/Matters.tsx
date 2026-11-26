@@ -16,7 +16,7 @@ import { Note } from '@/components/ui/note';
 import { Display, Eyebrow, Title } from '@/components/ui/typography';
 import { useState } from 'react';
 import { Search } from '@/screens/search/Search';
-import { I } from '@/ui/icons';
+import { Icon } from '@/ui/icons';
 import { Label, Ring, Tile } from '@/ui/primitives';
 import type { Ctx } from '@/types';
 import type { IllustrationName } from '@/ui/illustrations';
@@ -36,7 +36,7 @@ export function CaseMeld(_c: Ctx) {
         {st.map(([t, s], i) => (
           <ListRow key={t}>
             <ListRowIcon className={cn(i < 3 && 'bg-green-soft text-green')}>
-              {i < 3 ? I('check', 18) : <b>4</b>}
+              {i < 3 ? <Icon name="check" size={18} /> : <b>4</b>}
             </ListRowIcon>
             <ListRowContent>
               <ListRowTitle>{t}</ListRowTitle>

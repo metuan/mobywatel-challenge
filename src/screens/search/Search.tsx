@@ -3,7 +3,7 @@ import { Title } from '@/components/ui/typography';
 import { useEffect, useRef, useState } from 'react';
 import { norm } from '@/lib/env';
 import { HOWTO, HowCard, howFor, showMe } from '@/story/howto';
-import { I, P } from '@/ui/icons';
+import { P, Icon } from '@/ui/icons';
 import { Label } from '@/ui/primitives';
 import type { Ctx } from '@/types';
 import type { IconName } from '@/ui/icons';
@@ -85,11 +85,11 @@ export function Search({
         />
         {q ? (
           <button aria-label="Wyczyść" onClick={() => setQ('')}>
-            {I('x', 16)}
+            <Icon name="x" size={16} />
           </button>
         ) : (
           <button aria-label="Mów" onClick={() => c.ask('Kiedy kończy się ważność mojego dowodu?')}>
-            {I('mic', 18)}
+            <Icon name="mic" size={18} />
           </button>
         )}
       </div>
@@ -103,7 +103,7 @@ export function Search({
               onClick={() => c.go(r)}
             >
               <span className="w-10 h-10 rounded-[50%] grid place-items-center flex-none text-ink bg-bg [&.ai]:[background:linear-gradient(135deg,_var(--signal-blue),_var(--signal-violet))] [&.ai]:text-white [.how8-row_&]:w-7.5 [.how8-row_&]:h-7.5 [.how8-row_&]:rounded-[10px]">
-                {I((ic in P ? ic : 'doc') as IconName, 18)}
+                <Icon name={(ic in P ? ic : 'doc') as IconName} size={18} />
               </span>
               <ListItemContent>
                 <ListItemTitle>{t}</ListItemTitle>
@@ -116,7 +116,7 @@ export function Search({
             onClick={() => c.ask(q)}
           >
             <span className="w-10 h-10 rounded-[50%] grid place-items-center flex-none text-ink bg-bg [&.ai]:[background:linear-gradient(135deg,_var(--signal-blue),_var(--signal-violet))] [&.ai]:text-white [.how8-row_&]:w-7.5 [.how8-row_&]:h-7.5 [.how8-row_&]:rounded-[10px] ai">
-              {I('sparkle', 18)}
+              <Icon name="sparkle" size={18} />
             </span>
             <ListItemContent>
               <ListItemTitle>Zapytaj asystenta: „{q}”</ListItemTitle>
@@ -146,7 +146,7 @@ export function SearchScreen(c: Ctx) {
                 onClick={() => setPick(h.q)}
               >
                 <span className="w-10 h-10 rounded-[50%] grid place-items-center flex-none text-ink bg-bg [&.ai]:[background:linear-gradient(135deg,_var(--signal-blue),_var(--signal-violet))] [&.ai]:text-white [.how8-row_&]:w-7.5 [.how8-row_&]:h-7.5 [.how8-row_&]:rounded-[10px] ai">
-                  {I('sparkle', 16)}
+                  <Icon name="sparkle" size={16} />
                 </span>
                 <span>{h.q}</span>
                 <ListItemChevron size={16} />

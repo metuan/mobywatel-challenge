@@ -5,7 +5,7 @@ import type { PointerEvent as ReactPointerEvent } from 'react';
 import { useEffect, useRef, useState } from 'react';
 import { buzz, fire, reducedMotion } from '@/lib/env';
 import { coachTip } from '@/story/coach';
-import { I } from '@/ui/icons';
+import { Icon } from '@/ui/icons';
 
 /* Zbliż telefony: two phones meet top to top, a ripple of light passes, one haptic click */
 export function TapShare({
@@ -131,7 +131,7 @@ export function Confirming({ steps }: { steps?: string[] }) {
             }
           >
             <span className="w-4.5 h-4.5 rounded-[50%] flex-none grid place-items-center [box-shadow:inset_0_0_0_1.5px_var(--hair-2)] text-white [transition:background_0.2s,_box-shadow_0.2s] [.cf-s.now_&]:[box-shadow:inset_0_0_0_2px_var(--signal-blue)] [.cf-s.now_&]:animate-[cfpulse_1s_ease-in-out_infinite] [.cf-s.ok_&]:bg-ink [.cf-s.ok_&]:[box-shadow:none] [.cf-s.ok_&]:animate-[pop_0.25s_var(--spring)] motion-reduce:[.cf-s.now_&&]:animate-none">
-              {i < k ? I('check', 12) : ''}
+              {i < k ? <Icon name="check" size={12} /> : ''}
             </span>
             {t}
           </div>

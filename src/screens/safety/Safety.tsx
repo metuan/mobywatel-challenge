@@ -15,7 +15,7 @@ import { Badge } from '@/components/ui/badge';
 import { Display, Lead, Title } from '@/components/ui/typography';
 import { Actions, Button } from '@/components/ui/button';
 import { useState } from 'react';
-import { I } from '@/ui/icons';
+import { Icon } from '@/ui/icons';
 import { Av, GRow, Label, Sec, Toggle } from '@/ui/primitives';
 import type { Ctx } from '@/types';
 import type { IconName } from '@/ui/icons';
@@ -58,7 +58,7 @@ export function Plan(_c: Ctx) {
         ].map(([t, on]) => (
           <ListRow key={String(t)}>
             <ListRowIcon className={cn(on && 'bg-green-soft text-green')}>
-              {on ? I('check', 18) : ''}
+              {on ? <Icon name="check" size={18} /> : ''}
             </ListRowIcon>
             <ListRowContent>
               <ListRowTitle>{t}</ListRowTitle>
@@ -86,7 +86,9 @@ export function Places(_c: Ctx) {
           ['Biuro Tomasza, Katowice', 'Tomasz'],
         ].map(([t, s]) => (
           <ListRow key={t}>
-            <ListRowIcon>{I('pin')}</ListRowIcon>
+            <ListRowIcon>
+              <Icon name="pin" />
+            </ListRowIcon>
             <ListRowContent>
               <ListRowTitle>{t}</ListRowTitle>
               <ListRowDescription>{s}</ListRowDescription>
@@ -96,7 +98,9 @@ export function Places(_c: Ctx) {
         ))}
       </List>
       <Actions>
-        <Button variant="secondary">{I('plus', 18)} Dodaj miejsce</Button>
+        <Button variant="secondary">
+          <Icon name="plus" size={18} /> Dodaj miejsce
+        </Button>
       </Actions>
     </div>
   );
@@ -160,7 +164,9 @@ export function Safety(c: Ctx) {
           onClick={() => c.go('alert-shelter')}
         >
           <span className="text-[12px] font-medium pr-6.5 leading-4 text-ink-2">Najbliższy schron</span>
-          <span className="absolute top-3.5 right-3.5 grid text-ink-3">{I('route', 20)}</span>
+          <span className="absolute top-3.5 right-3.5 grid text-ink-3">
+            <Icon name="route" size={20} />
+          </span>
           <span className="font-semibold [font-variant-numeric:tabular-nums] mt-auto text-[30px] leading-8 tracking-[-0.035em] [&_small]:text-[14px] [&_small]:font-medium [&_small]:text-ink-2 [&_small]:tracking-[-0.01em]">
             240 m
           </span>
@@ -171,7 +177,9 @@ export function Safety(c: Ctx) {
           onClick={() => c.go('ice')}
         >
           <span className="text-[12px] font-medium pr-6.5 leading-4 text-ink-2">Karta ratunkowa</span>
-          <span className="absolute top-3.5 right-3.5 grid text-ink-3">{I('heart', 20)}</span>
+          <span className="absolute top-3.5 right-3.5 grid text-ink-3">
+            <Icon name="heart" size={20} />
+          </span>
           <span className="font-semibold [font-variant-numeric:tabular-nums] mt-auto leading-8 tracking-[-0.035em] [&_small]:font-medium [&_small]:text-ink-2 [&_small]:tracking-[-0.01em] text-[22px]">
             A Rh+
           </span>
@@ -182,7 +190,9 @@ export function Safety(c: Ctx) {
           onClick={() => c.go('plan')}
         >
           <span className="text-[12px] font-medium pr-6.5 leading-4 text-ink-2">Plan rodziny</span>
-          <span className="absolute top-3.5 right-3.5 grid text-ink-3">{I('people', 20)}</span>
+          <span className="absolute top-3.5 right-3.5 grid text-ink-3">
+            <Icon name="people" size={20} />
+          </span>
           <span className="font-semibold [font-variant-numeric:tabular-nums] mt-auto text-[30px] leading-8 tracking-[-0.035em] [&_small]:text-[14px] [&_small]:font-medium [&_small]:text-ink-2 [&_small]:tracking-[-0.01em]">
             2<small> miejsca</small>
           </span>
@@ -193,7 +203,9 @@ export function Safety(c: Ctx) {
           onClick={() => c.go('scam')}
         >
           <span className="text-[12px] font-medium pr-6.5 leading-4 text-ink-2">Tarcza SMS</span>
-          <span className="absolute top-3.5 right-3.5 grid text-ink-3">{I('shield', 20)}</span>
+          <span className="absolute top-3.5 right-3.5 grid text-ink-3">
+            <Icon name="shield" size={20} />
+          </span>
           <span className="font-semibold [font-variant-numeric:tabular-nums] mt-auto text-[30px] leading-8 tracking-[-0.035em] [&_small]:text-[14px] [&_small]:font-medium [&_small]:text-ink-2 [&_small]:tracking-[-0.01em]">
             3<small> zablokowane</small>
           </span>

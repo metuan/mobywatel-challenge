@@ -2,7 +2,7 @@ import { List, ListItemDescription, ListItemTitle } from '@/components/ui/list';
 import { Title } from '@/components/ui/typography';
 import { Fragment, useState } from 'react';
 import { collapseOut } from '@/ui/controls';
-import { I } from '@/ui/icons';
+import { Icon } from '@/ui/icons';
 import { Av, Label, Num } from '@/ui/primitives';
 import type { ConsentItem, Ctx } from '@/types';
 
@@ -87,7 +87,7 @@ export function Consents(c: Ctx) {
                     <Av i={x.av} size={36} />
                   ) : (
                     <span className="w-10 h-10 rounded-[50%] grid place-items-center flex-none text-ink bg-bg [&.ai]:[background:linear-gradient(135deg,_var(--signal-blue),_var(--signal-violet))] [&.ai]:text-white [.how8-row_&]:w-7.5 [.how8-row_&]:h-7.5 [.how8-row_&]:rounded-[10px]">
-                      {x.ic && I(x.ic, 18)}
+                      {x.ic && <Icon name={x.ic} size={18} />}
                     </span>
                   )}
                   <span className="flex-1 min-w-0 flex flex-col gap-0.5">
@@ -132,7 +132,7 @@ export function Consents(c: Ctx) {
       ))}
       {!list.length && (
         <div className="flex flex-col items-center text-center gap-1.5 p-[40px_20px] text-ink-2 [&_b]:text-ink [&_b]:font-semibold">
-          {I('check', 22)}
+          <Icon name="check" size={22} />
           <b>Nikt nie ma dostępu do Twoich danych.</b>
           <span>Zgody pojawią się tu, gdy ich udzielisz.</span>
         </div>

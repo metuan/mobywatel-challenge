@@ -2,7 +2,7 @@ import { Title } from '@/components/ui/typography';
 import { Button } from '@/components/ui/button';
 import { useEffect, useRef, useState } from 'react';
 import { reducedMotion } from '@/lib/env';
-import { I } from '@/ui/icons';
+import { Icon } from '@/ui/icons';
 import { Typed } from '@/ui/primitives';
 import type { Ctx } from '@/types';
 
@@ -182,7 +182,7 @@ export function Assistant(c: Ctx) {
           aria-label="Mów"
           onClick={() => ask('Kiedy wygasa dowód taty?')}
         >
-          {I('mic')}
+          <Icon name="mic" />
         </button>
         <button
           className="[.askbar_&]:w-9 [.askbar_&]:h-9 [.askbar_&]:rounded-[50%] [.askbar_&]:grid [.askbar_&]:place-items-center [.askbar_&]:text-ink [.askbar_&]:bg-ink [.askbar_&&]:text-white [.askbar_&]:w-9 [.askbar_&]:h-9 [.askbar_&&]:rounded-[10px] [.askbar_&]:animate-[fade_0.16s_ease-out]"
@@ -194,7 +194,7 @@ export function Assistant(c: Ctx) {
             }
           }}
         >
-          {I('send', 18)}
+          <Icon name="send" size={18} />
         </button>
       </div>
     </div>

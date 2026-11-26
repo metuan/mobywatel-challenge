@@ -9,7 +9,7 @@ import { Icon } from '@/ui/icons';
  *
  *   <List>
  *     <ListRow as="button" onClick={…}>
- *       <ListRowIcon>{I('doc', 18)}</ListRowIcon>
+ *       <ListRowIcon><Icon name="doc" size={18} /></ListRowIcon>
  *       <ListRowContent>
  *         <ListRowTitle>Dowód osobisty</ListRowTitle>
  *         <ListRowDescription>Ważny do 2031</ListRowDescription>
